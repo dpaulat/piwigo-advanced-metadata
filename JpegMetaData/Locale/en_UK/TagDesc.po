@@ -1,0 +1,4080 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TagNames\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: grum <grum@piwigo.org>\n"
+"Language-Team: grum <grum@piwigo.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: en\n"
+"X-Poedit-Country: UK\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "A Series Lens"
+msgstr "DESC_A Series Lens"
+
+#. Pentax specific tags / 0x0206 (AEInfo)
+msgid "AEInfo"
+msgstr "DESC_AEInfo"
+
+#. Pentax specific tags / 0x0048 (AELock)
+msgid "AELock"
+msgstr "DESC_AELock"
+
+#. Pentax specific tags / 0x0209 (AEMeteringSegments)
+msgid "AEMeteringSegments"
+msgstr "DESC_AEMeteringSegments"
+
+#. Pentax specific tags / 0x0072 (AFAdjustment)
+msgid "AFAdjustment"
+msgstr "DESC_AFAdjustment"
+
+#. Exif & Tiff tags / 0x8568 (AFCP_IPTC)
+msgid "AFCP_IPTC"
+msgstr "DESC_AFCP_IPTC"
+
+#. Pentax specific tags / 0x021f (AFInfo)
+msgid "AFInfo"
+msgstr "DESC_AFInfo"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "AFPoint"
+msgstr "DESC_AFPoint"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+#. Pentax specific tags / 0x003c (AFPointsInFocus)
+msgid "AFPointsInFocus"
+msgstr "DESC_AFPointsInFocus"
+
+#. IPTC tags / 0x0178 (ARM Identifier)
+msgid "ARM Identifier"
+msgstr "DESC_ARM Identifier"
+
+#. IPTC tags / 0x017a (ARM Version)
+msgid "ARM Version"
+msgstr "DESC_ARM Version"
+
+#. IPTC tags / 0x022a (Action Advised)
+msgid "Action Advised"
+msgstr "DESC_Action Advised"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Adelaide"
+msgstr "DESC_Adelaide"
+
+#. Exif & Tiff tags / 0x0103 (Compression)
+msgid "Adobe Deflate"
+msgstr "DESC_Adobe Deflate"
+
+#. Exif & Tiff tags / 0xa001 (ColorSpace)
+msgid "Adobe RGB"
+msgstr "DESC_Adobe RGB"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Algiers"
+msgstr "DESC_Algiers"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Amsterdam"
+msgstr "DESC_Amsterdam"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Anchorage"
+msgstr "DESC_Anchorage"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Aperture Priority"
+msgstr "DESC_Aperture Priority"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Aperture Priority (Off-Auto-Aperture)"
+msgstr "DESC_Aperture Priority (Off-Auto-Aperture)"
+
+#. Exif & Tiff tags / 0x9202 (ApertureValue)
+msgid "ApertureValue"
+msgstr "DESC_ApertureValue"
+
+#. Exif & Tiff tags / 0x013b (Artist)
+msgid "Artist"
+msgstr "DESC_Artist"
+
+#. XMP tags / crs:Balance
+msgid "As Shot"
+msgstr "DESC_As Shot"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Athens"
+msgstr "DESC_Athens"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Auckland"
+msgstr "DESC_Auckland"
+
+#. IPTC tags / 0x0299 (Audio Duration)
+msgid "Audio Duration"
+msgstr "DESC_Audio Duration"
+
+#. IPTC tags / 0x0298 (Audio Sampling Resolution)
+msgid "Audio Sampling Resolution"
+msgstr "DESC_Audio Sampling Resolution"
+
+#. IPTC tags / 0x0296 (Audio Type)
+msgid "Audio Type"
+msgstr "DESC_Audio Type"
+
+#. IPTC tags / 0x0297 (Audion Sampling Rate)
+msgid "Audion Sampling Rate"
+msgstr "DESC_Audion Sampling Rate"
+
+#. XMP tags / crs:Balance
+#. Pentax specific tags / 0x0001 (ShootingMode)
+#. Pentax specific tags / 0x000e (AFPoint)
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "Auto"
+msgstr "DESC_Auto"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "Auto (Cloudy)"
+msgstr "DESC_Auto (Cloudy)"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "Auto (Daylight)"
+msgstr "DESC_Auto (Daylight)"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "Auto (DaylightFluorescent)"
+msgstr "DESC_Auto (DaylightFluorescent)"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "Auto (DaywhiteFluorescent)"
+msgstr "DESC_Auto (DaywhiteFluorescent)"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "Auto (Flash)"
+msgstr "DESC_Auto (Flash)"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "Auto (Shade)"
+msgstr "DESC_Auto (Shade)"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "Auto (Tungsten)"
+msgstr "DESC_Auto (Tungsten)"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "Auto (WhiteFluorescent)"
+msgstr "DESC_Auto (WhiteFluorescent)"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Auto PICT (Landscape)"
+msgstr "DESC_Auto PICT (Landscape)"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Auto PICT (Macro)"
+msgstr "DESC_Auto PICT (Macro)"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Auto PICT (Portrait)"
+msgstr "DESC_Auto PICT (Portrait)"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Auto PICT (Sport)"
+msgstr "DESC_Auto PICT (Sport)"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Auto PICT (Standard)"
+msgstr "DESC_Auto PICT (Standard)"
+
+#. Pentax specific tags / 0x0018 (AutoBracketing)
+msgid "AutoBracketing"
+msgstr "DESC_AutoBracketing"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Automatic Tracking AF"
+msgstr "DESC_Automatic Tracking AF"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Autumn"
+msgstr "DESC_Autumn"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Bangkok"
+msgstr "DESC_Bangkok"
+
+#. Pentax specific tags / 0x0216 (BatteryInfo)
+msgid "BatteryInfo"
+msgstr "DESC_BatteryInfo"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Beijing"
+msgstr "DESC_Beijing"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Berlin"
+msgstr "DESC_Berlin"
+
+#. Pentax specific tags / 0x0008 (Quality)
+msgid "Best"
+msgstr "DESC_Best"
+
+#. Pentax specific tags / 0x0008 (Quality)
+msgid "Better"
+msgstr "DESC_Better"
+
+#. Exif & Tiff tags / 0x0102 (BitsPerSample)
+msgid "BitsPerSample"
+msgstr "DESC_BitsPerSample"
+
+#. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
+msgid "BlackIsZero"
+msgstr "DESC_BlackIsZero"
+
+#. Pentax specific tags / 0x0200 (BlackPoint)
+msgid "BlackPoint"
+msgstr "DESC_BlackPoint"
+
+#. Pentax specific tags / 0x001b (BlueBalance)
+msgid "BlueBalance"
+msgstr "DESC_BlueBalance"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Blur Reduction"
+msgstr "DESC_Blur Reduction"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Bottom"
+msgstr "DESC_Bottom"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+msgid "Bottom-center"
+msgstr "DESC_Bottom-center"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+msgid "Bottom-left"
+msgstr "DESC_Bottom-left"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+msgid "Bottom-right"
+msgstr "DESC_Bottom-right"
+
+#. Pentax specific tags / 0x004f (ImageTone)
+msgid "Bright"
+msgstr "DESC_Bright"
+
+#. Exif & Tiff tags / 0x9203 (BrightnessValue)
+msgid "BrightnessValue"
+msgstr "DESC_BrightnessValue"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Buenos Aires"
+msgstr "DESC_Buenos Aires"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Bulb"
+msgstr "DESC_Bulb"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Bulb (Off-Auto-Aperture)"
+msgstr "DESC_Bulb (Off-Auto-Aperture)"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "Burst"
+msgstr "DESC_Burst"
+
+#. IPTC tags / 0x0250 (By-line)
+msgid "By-line"
+msgstr "DESC_By-line"
+
+#. IPTC tags / 0x0255 (By-line Title)
+msgid "By-line Title"
+msgstr "DESC_By-line Title"
+
+#. Exif & Tiff tags / 0xa302 (CFAPattern)
+msgid "CFAPattern"
+msgstr "DESC_CFAPattern"
+
+#. Pentax specific tags / 0x0028 (CPUFirmwareVersion)
+msgid "CPUFirmwareVersion"
+msgstr "DESC_CPUFirmwareVersion"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Cairo"
+msgstr "DESC_Cairo"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Calgary"
+msgstr "DESC_Calgary"
+
+#. Pentax specific tags / 0x0215 (CameraInfo)
+msgid "CameraInfo"
+msgstr "DESC_CameraInfo"
+
+#. Pentax specific tags / 0x0005 (CameraModel)
+msgid "CameraModel"
+msgstr "DESC_CameraModel"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Candlelight"
+msgstr "DESC_Candlelight"
+
+#. IPTC tags / 0x0278 (Caption/Abstract)
+msgid "Caption/Abstract"
+msgstr "DESC_Caption/Abstract"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Caracus"
+msgstr "DESC_Caracus"
+
+#. IPTC tags / 0x020f (Category)
+msgid "Category"
+msgstr "DESC_Category"
+
+#. Exif & Tiff tags / 0x0109 (CellLength)
+msgid "CellLength"
+msgstr "DESC_CellLength"
+
+#. Exif & Tiff tags / 0x0108 (CellWidth)
+msgid "CellWidth"
+msgstr "DESC_CellWidth"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Center"
+msgstr "DESC_Center"
+
+#. Pentax specific tags / 0x0017 (MeteringMode)
+msgid "Center Weighted"
+msgstr "DESC_Center Weighted"
+
+#. Exif & Tiff tags / 0x9207 (MeteringMode)
+msgid "CenterWeightedAverage"
+msgstr "DESC_CenterWeightedAverage"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Chicago"
+msgstr "DESC_Chicago"
+
+#. IPTC tags / 0x025a (City)
+msgid "City"
+msgstr "DESC_City"
+
+#. XMP tags / crs:Balance
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "Cloudy"
+msgstr "DESC_Cloudy"
+
+#. IPTC tags / 0x015a (Coded Character Set)
+msgid "Coded Character Set"
+msgstr "DESC_Coded Character Set"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Colombo"
+msgstr "DESC_Colombo"
+
+#. Pentax specific tags / 0x0032 (ImageProcessing)
+msgid "Color Filter"
+msgstr "DESC_Color Filter"
+
+#. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
+msgid "Color Filter Array"
+msgstr "DESC_Color Filter Array"
+
+#. Pentax specific tags / 0x0222 (ColorInfo)
+msgid "ColorInfo"
+msgstr "DESC_ColorInfo"
+
+#. Pentax specific tags / 0x0203 (ColorMatrixA)
+msgid "ColorMatrixA"
+msgstr "DESC_ColorMatrixA"
+
+#. Pentax specific tags / 0x0204 (ColorMatrixB)
+msgid "ColorMatrixB"
+msgstr "DESC_ColorMatrixB"
+
+#. Exif & Tiff tags / 0x012c (ColorResponseUnit)
+msgid "ColorResponseUnit"
+msgstr "DESC_ColorResponseUnit"
+
+#. Pentax specific tags / 0x0037 (ColorSpace)
+#. Exif & Tiff tags / 0xa001 (ColorSpace)
+msgid "ColorSpace"
+msgstr "DESC_ColorSpace"
+
+#. Pentax specific tags / 0x0050 (ColorTemperature)
+msgid "ColorTemperature"
+msgstr "DESC_ColorTemperature"
+
+#. Exif & Tiff tags / 0x9101 (ComponentsConfiguration)
+msgid "ComponentsConfiguration"
+msgstr "DESC_ComponentsConfiguration"
+
+#. Exif & Tiff tags / 0x9102 (CompressedBitsPerPixel)
+msgid "CompressedBitsPerPixel"
+msgstr "DESC_CompressedBitsPerPixel"
+
+#. Exif & Tiff tags / 0x0103 (Compression)
+msgid "Compression"
+msgstr "DESC_Compression"
+
+#. IPTC tags / 0x090a (Confirmed ObjectData Size)
+msgid "Confirmed ObjectData Size"
+msgstr "DESC_Confirmed ObjectData Size"
+
+#. IPTC tags / 0x0276 (Contact)
+msgid "Contact"
+msgstr "DESC_Contact"
+
+#. IPTC tags / 0x021a (Content Location Code)
+msgid "Content Location Code"
+msgstr "DESC_Content Location Code"
+
+#. IPTC tags / 0x021b (Content Location Name)
+msgid "Content Location Name"
+msgstr "DESC_Content Location Name"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "Continuous"
+msgstr "DESC_Continuous"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "Continuous (Hi)"
+msgstr "DESC_Continuous (Hi)"
+
+#. Pentax specific tags / 0x0020 (Contrast)
+#. Exif & Tiff tags / 0xa408 (Contrast)
+msgid "Contrast"
+msgstr "DESC_Contrast"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Copenhagen"
+msgstr "DESC_Copenhagen"
+
+#. Exif & Tiff tags / 0x8298 (Copyright)
+msgid "Copyright"
+msgstr "DESC_Copyright"
+
+#. IPTC tags / 0x0274 (Copyright Notice)
+msgid "Copyright Notice"
+msgstr "DESC_Copyright Notice"
+
+#. IPTC tags / 0x0264 (Country/Primary Location Code)
+msgid "Country/Primary Location Code"
+msgstr "DESC_Country/Primary Location Code"
+
+#. IPTC tags / 0x0265 (Country/Primary Location Name)
+msgid "Country/Primary Location Name"
+msgstr "DESC_Country/Primary Location Name"
+
+#. IPTC tags / 0x026e (Credit)
+msgid "Credit"
+msgstr "DESC_Credit"
+
+#. Pentax specific tags / 0x0032 (ImageProcessing)
+msgid "Cropped"
+msgstr "DESC_Cropped"
+
+#. XMP tags / crs:ToneCurveName
+#. XMP tags / crs:Balance
+msgid "Custom"
+msgstr "DESC_Custom"
+
+#. Exif & Tiff tags / 0xa401 (CustomRendered)
+msgid "CustomRendered"
+msgstr "DESC_CustomRendered"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "DOF Program"
+msgstr "DESC_DOF Program"
+
+#. Pentax specific tags / 0x0027 (DSPFirmwareVersion)
+msgid "DSPFirmwareVersion"
+msgstr "DESC_DSPFirmwareVersion"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Dacca"
+msgstr "DESC_Dacca"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Dakar"
+msgstr "DESC_Dakar"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Dark Pet"
+msgstr "DESC_Dark Pet"
+
+#. Pentax specific tags / 0x03fe (DataDump)
+msgid "DataDump"
+msgstr "DESC_DataDump"
+
+#. Pentax specific tags / 0x0006 (Date)
+msgid "Date"
+msgstr "DESC_Date"
+
+#. IPTC tags / 0x0237 (Date Created)
+msgid "Date Created"
+msgstr "DESC_Date Created"
+
+#. IPTC tags / 0x0146 (Date Sent)
+msgid "Date Sent"
+msgstr "DESC_Date Sent"
+
+#. Exif & Tiff tags / 0x0132 (DateTime)
+msgid "DateTime"
+msgstr "DESC_DateTime"
+
+#. Exif & Tiff tags / 0x9004 (DateTimeDigitized)
+msgid "DateTimeDigitized"
+msgstr "DESC_DateTimeDigitized"
+
+#. Exif & Tiff tags / 0x9003 (DateTimeOriginal)
+msgid "DateTimeOriginal"
+msgstr "DESC_DateTimeOriginal"
+
+#. XMP tags / crs:Balance
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "Daylight"
+msgstr "DESC_Daylight"
+
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "DaylightFluorescent"
+msgstr "DESC_DaylightFluorescent"
+
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "DaywhiteFluorescent"
+msgstr "DESC_DaywhiteFluorescent"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Delhi"
+msgstr "DESC_Delhi"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Denver"
+msgstr "DESC_Denver"
+
+#. IPTC tags / 0x0105 (Destination)
+#. Pentax specific tags / 0x0022 (WorldTimeLocation)
+msgid "Destination"
+msgstr "DESC_Destination"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "DestinationCityName"
+msgstr "DESC_DestinationCityName"
+
+#. Pentax specific tags / 0x0026 (DestinationDST)
+msgid "DestinationDST"
+msgstr "DESC_DestinationDST"
+
+#. Exif & Tiff tags / 0xa40b (DeviceSettingDescription)
+msgid "DeviceSettingDescription"
+msgstr "DESC_DeviceSettingDescription"
+
+#. IPTC tags / 0x023e (Digital Creation Date)
+msgid "Digital Creation Date"
+msgstr "DESC_Digital Creation Date"
+
+#. IPTC tags / 0x023f (Digital Creation Time)
+msgid "Digital Creation Time"
+msgstr "DESC_Digital Creation Time"
+
+#. Pentax specific tags / 0x0032 (ImageProcessing)
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Digital Filter"
+msgstr "DESC_Digital Filter"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Digital Filter?"
+msgstr "DESC_Digital Filter?"
+
+#. Pentax specific tags / 0x0041 (DigitalFilter)
+msgid "DigitalFilter"
+msgstr "DESC_DigitalFilter"
+
+#. Pentax specific tags / 0x001e (DigitalZoom)
+msgid "DigitalZoom"
+msgstr "DESC_DigitalZoom"
+
+#. Exif & Tiff tags / 0xa404 (DigitalZoomRatio)
+msgid "DigitalZoomRatio"
+msgstr "DESC_DigitalZoomRatio"
+
+#. Exif & Tiff tags / 0x010d (DocumentName)
+msgid "DocumentName"
+msgstr "DESC_DocumentName"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "DriveMode"
+msgstr "DESC_DriveMode"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Dubai"
+msgstr "DESC_Dubai"
+
+#. Pentax specific tags / 0x0069 (DynamicRangeExpansion)
+msgid "DynamicRangeExpansion"
+msgstr "DESC_DynamicRangeExpansion"
+
+#. Pentax specific tags / 0x0224 (EVStepInfo)
+msgid "EVStepInfo"
+msgstr "DESC_EVStepInfo"
+
+#. IPTC tags / 0x0207 (Edit Status)
+msgid "Edit Status"
+msgstr "DESC_Edit Status"
+
+#. IPTC tags / 0x0208 (Editorial Update)
+msgid "Editorial Update"
+msgstr "DESC_Editorial Update"
+
+#. Pentax specific tags / 0x002d (EffectiveLV)
+msgid "EffectiveLV"
+msgstr "DESC_EffectiveLV"
+
+#. IPTC tags / 0x0128 (Envelope Number)
+msgid "Envelope Number"
+msgstr "DESC_Envelope Number"
+
+#. IPTC tags / 0x013c (Envelope Priority)
+msgid "Envelope Priority"
+msgstr "DESC_Envelope Priority"
+
+#. Exif & Tiff tags / 0x9000 (ExifVersion)
+msgid "ExifVersion"
+msgstr "DESC_ExifVersion"
+
+#. IPTC tags / 0x0225 (Expiration Date)
+msgid "Expiration Date"
+msgstr "DESC_Expiration Date"
+
+#. IPTC tags / 0x0226 (Expiration Time)
+msgid "Expiration Time"
+msgstr "DESC_Expiration Time"
+
+#. Exif & Tiff tags / 0x9204 (ExposureBiasValue)
+msgid "ExposureBiasValue"
+msgstr "DESC_ExposureBiasValue"
+
+#. Pentax specific tags / 0x0016 (ExposureCompensation)
+msgid "ExposureCompensation"
+msgstr "DESC_ExposureCompensation"
+
+#. Exif & Tiff tags / 0xa215 (ExposureIndex)
+msgid "ExposureIndex"
+msgstr "DESC_ExposureIndex"
+
+#. Exif & Tiff tags / 0xa402 (ExposureMode)
+msgid "ExposureMode"
+msgstr "DESC_ExposureMode"
+
+#. Exif & Tiff tags / 0x8822 (ExposureProgram)
+msgid "ExposureProgram"
+msgstr "DESC_ExposureProgram"
+
+#. Exif & Tiff tags / 0x829a (ExposureTime)
+#. Pentax specific tags / 0x0012 (ExposureTime)
+msgid "ExposureTime"
+msgstr "DESC_ExposureTime"
+
+#. Pentax specific tags / 0x0013 (FNumber)
+#. Exif & Tiff tags / 0x829d (FNumber)
+msgid "FNumber"
+msgstr "DESC_FNumber"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Face Recognition AF"
+msgstr "DESC_Face Recognition AF"
+
+#. IPTC tags / 0x0114 (File Format)
+msgid "File Format"
+msgstr "DESC_File Format"
+
+#. IPTC tags / 0x0116 (File Format Version)
+msgid "File Format Version"
+msgstr "DESC_File Format Version"
+
+#. Exif & Tiff tags / 0xa300 (FileSource)
+msgid "FileSource"
+msgstr "DESC_FileSource"
+
+#. Exif & Tiff tags / 0x010a (FillOrder)
+msgid "FillOrder"
+msgstr "DESC_FillOrder"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Fireworks"
+msgstr "DESC_Fireworks"
+
+#. Pentax specific tags / 0x0230 (FirmwareVersion)
+msgid "FirmwareVersion"
+msgstr "DESC_FirmwareVersion"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Fixed Center"
+msgstr "DESC_Fixed Center"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+msgid "Fixed Center or Multiple"
+msgstr "DESC_Fixed Center or Multiple"
+
+#. IPTC tags / 0x0216 (Fixture Identifier)
+msgid "Fixture Identifier"
+msgstr "DESC_Fixture Identifier"
+
+#. Pentax specific tags / 0x0019 (Balance)
+#. XMP tags / crs:Balance
+#. Pentax specific tags / 0x000c (Flash)
+msgid "Flash"
+msgstr "DESC_Flash"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Flash X-Sync Speed AE, 1/2 EV steps"
+msgstr "DESC_Flash X-Sync Speed AE, 1/2 EV steps"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Flash X-Sync Speed AE, 1/3 EV steps"
+msgstr "DESC_Flash X-Sync Speed AE, 1/3 EV steps"
+
+#. Pentax specific tags / 0x020a (FlashADump)
+msgid "FlashADump"
+msgstr "DESC_FlashADump"
+
+#. Pentax specific tags / 0x020b (FlashBDump)
+msgid "FlashBDump"
+msgstr "DESC_FlashBDump"
+
+#. Pentax specific tags / 0x004d (FlashExposureCompensation)
+msgid "FlashExposureCompensation"
+msgstr "DESC_FlashExposureCompensation"
+
+#. Pentax specific tags / 0x0208 (FlashInfo)
+msgid "FlashInfo"
+msgstr "DESC_FlashInfo"
+
+#. Exif & Tiff tags / 0xa000 (FlashpixVersion)
+msgid "FlashpixVersion"
+msgstr "DESC_FlashpixVersion"
+
+#. Pentax specific tags / 0x0019 (Balance)
+#. XMP tags / crs:Balance
+msgid "Fluorescent"
+msgstr "DESC_Fluorescent"
+
+#. Pentax specific tags / 0x001d (FocalLength)
+#. Exif & Tiff tags / 0x920a (FocalLength)
+msgid "FocalLength"
+msgstr "DESC_FocalLength"
+
+#. Exif & Tiff tags / 0xa405 (FocalLengthIn35mmFilm)
+msgid "FocalLengthIn35mmFilm"
+msgstr "DESC_FocalLengthIn35mmFilm"
+
+#. Exif & Tiff tags / 0xa210 (FocalPlaneResolutionUnit)
+msgid "FocalPlaneResolutionUnit"
+msgstr "DESC_FocalPlaneResolutionUnit"
+
+#. Exif & Tiff tags / 0xa20e (FocalPlaneXResolution)
+msgid "FocalPlaneXResolution"
+msgstr "DESC_FocalPlaneXResolution"
+
+#. Exif & Tiff tags / 0xa20f (FocalPlaneYResolution)
+msgid "FocalPlaneYResolution"
+msgstr "DESC_FocalPlaneYResolution"
+
+#. Pentax specific tags / 0x000d (Focus)
+msgid "Focus"
+msgstr "DESC_Focus"
+
+#. Pentax specific tags / 0x0010 (FocusPosition)
+msgid "FocusPosition"
+msgstr "DESC_FocusPosition"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Food"
+msgstr "DESC_Food"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Frame Composite"
+msgstr "DESC_Frame Composite"
+
+#. Pentax specific tags / 0x0032 (ImageProcessing)
+msgid "Frame Synthesis?"
+msgstr "DESC_Frame Synthesis?"
+
+#. Pentax specific tags / 0x0029 (FrameNumber)
+msgid "FrameNumber"
+msgstr "DESC_FrameNumber"
+
+#. Exif & Tiff tags / 0x0121 (FreeByteCounts)
+msgid "FreeByteCounts"
+msgstr "DESC_FreeByteCounts"
+
+#. Exif & Tiff tags / 0x0120 (FreeOffsets)
+msgid "FreeOffsets"
+msgstr "DESC_FreeOffsets"
+
+#. Pentax specific tags / 0x0009 (Size)
+msgid "Full"
+msgstr "DESC_Full"
+
+#. Exif GPS tags / 0x0006 (GPSAltitude)
+msgid "GPSAltitude"
+msgstr "DESC_GPSAltitude"
+
+#. Exif GPS tags / 0x0005 (GPSAltitudeRef)
+msgid "GPSAltitudeRef"
+msgstr "DESC_GPSAltitudeRef"
+
+#. Exif GPS tags / 0x001c (GPSAreaInformation)
+msgid "GPSAreaInformation"
+msgstr "DESC_GPSAreaInformation"
+
+#. Exif GPS tags / 0x000b (GPSDOP)
+msgid "GPSDOP"
+msgstr "DESC_GPSDOP"
+
+#. Exif GPS tags / 0x001d (GPSDateStamp)
+msgid "GPSDateStamp"
+msgstr "DESC_GPSDateStamp"
+
+#. Exif GPS tags / 0x0018 (GPSDestBearing)
+msgid "GPSDestBearing"
+msgstr "DESC_GPSDestBearing"
+
+#. Exif GPS tags / 0x0017 (GPSDestBearingRef)
+msgid "GPSDestBearingRef"
+msgstr "DESC_GPSDestBearingRef"
+
+#. Exif GPS tags / 0x001a (GPSDestDistance)
+msgid "GPSDestDistance"
+msgstr "DESC_GPSDestDistance"
+
+#. Exif GPS tags / 0x0019 (GPSDestDistanceRef)
+msgid "GPSDestDistanceRef"
+msgstr "DESC_GPSDestDistanceRef"
+
+#. Exif GPS tags / 0x0014 (GPSDestLatitude)
+msgid "GPSDestLatitude"
+msgstr "DESC_GPSDestLatitude"
+
+#. Exif GPS tags / 0x0013 (GPSDestLatitudeRef)
+msgid "GPSDestLatitudeRef"
+msgstr "DESC_GPSDestLatitudeRef"
+
+#. Exif GPS tags / 0x0016 (GPSDestLongitude)
+msgid "GPSDestLongitude"
+msgstr "DESC_GPSDestLongitude"
+
+#. Exif GPS tags / 0x0015 (GPSDestLongitudeRef)
+msgid "GPSDestLongitudeRef"
+msgstr "DESC_GPSDestLongitudeRef"
+
+#. Exif GPS tags / 0x001e (GPSDifferential)
+msgid "GPSDifferential"
+msgstr "DESC_GPSDifferential"
+
+#. Exif GPS tags / 0x0011 (GPSImgDirection)
+msgid "GPSImgDirection"
+msgstr "DESC_GPSImgDirection"
+
+#. Exif GPS tags / 0x0010 (GPSImgDirectionRef)
+msgid "GPSImgDirectionRef"
+msgstr "DESC_GPSImgDirectionRef"
+
+#. Exif GPS tags / 0x0002 (GPSLatitude)
+msgid "GPSLatitude"
+msgstr "DESC_GPSLatitude"
+
+#. Exif GPS tags / 0x0001 (GPSLatitudeRef)
+msgid "GPSLatitudeRef"
+msgstr "DESC_GPSLatitudeRef"
+
+#. Exif GPS tags / 0x0004 (GPSLongitude)
+msgid "GPSLongitude"
+msgstr "DESC_GPSLongitude"
+
+#. Exif GPS tags / 0x0003 (GPSLongitudeRef)
+msgid "GPSLongitudeRef"
+msgstr "DESC_GPSLongitudeRef"
+
+#. Exif GPS tags / 0x0012 (GPSMapDatum)
+msgid "GPSMapDatum"
+msgstr "DESC_GPSMapDatum"
+
+#. Exif GPS tags / 0x000a (GPSMeasureMode)
+msgid "GPSMeasureMode"
+msgstr "DESC_GPSMeasureMode"
+
+#. Exif GPS tags / 0x001b (GPSProcessingMethod)
+msgid "GPSProcessingMethod"
+msgstr "DESC_GPSProcessingMethod"
+
+#. Exif GPS tags / 0x0008 (GPSSatellites)
+msgid "GPSSatellites"
+msgstr "DESC_GPSSatellites"
+
+#. Exif GPS tags / 0x000d (GPSSpeed)
+msgid "GPSSpeed"
+msgstr "DESC_GPSSpeed"
+
+#. Exif GPS tags / 0x000c (GPSSpeedRef)
+msgid "GPSSpeedRef"
+msgstr "DESC_GPSSpeedRef"
+
+#. Exif GPS tags / 0x0009 (GPSStatus)
+msgid "GPSStatus"
+msgstr "DESC_GPSStatus"
+
+#. Exif GPS tags / 0x0007 (GPSTimeStamp)
+msgid "GPSTimeStamp"
+msgstr "DESC_GPSTimeStamp"
+
+#. Exif GPS tags / 0x000f (GPSTrack)
+msgid "GPSTrack"
+msgstr "DESC_GPSTrack"
+
+#. Exif GPS tags / 0x000e (GPSTrackRef)
+msgid "GPSTrackRef"
+msgstr "DESC_GPSTrackRef"
+
+#. Exif GPS tags / 0x0000 (GPSVersionID)
+msgid "GPSVersionID"
+msgstr "DESC_GPSVersionID"
+
+#. Exif & Tiff tags / 0xa407 (GainControl)
+msgid "GainControl"
+msgstr "DESC_GainControl"
+
+#. Exif & Tiff tags / 0xa500 (Gamma)
+msgid "Gamma"
+msgstr "DESC_Gamma"
+
+#. Pentax specific tags / 0x0008 (Quality)
+msgid "Good"
+msgstr "DESC_Good"
+
+#. Exif & Tiff tags / 0x0123 (GrayResponseCurve)
+msgid "GrayResponseCurve"
+msgstr "DESC_GrayResponseCurve"
+
+#. Exif & Tiff tags / 0x0122 (GrayResponseUnit)
+msgid "GrayResponseUnit"
+msgstr "DESC_GrayResponseUnit"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Green Mode"
+msgstr "DESC_Green Mode"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Guam"
+msgstr "DESC_Guam"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Half-length Portrait"
+msgstr "DESC_Half-length Portrait"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Halifax"
+msgstr "DESC_Halifax"
+
+#. Pentax specific tags / 0x0021 (Sharpness)
+msgid "Hard"
+msgstr "DESC_Hard"
+
+#. IPTC tags / 0x0269 (Headline)
+msgid "Headline"
+msgstr "DESC_Headline"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Helsinki"
+msgstr "DESC_Helsinki"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Hi-speed Program"
+msgstr "DESC_Hi-speed Program"
+
+#. Pentax specific tags / 0x0020 (Contrast)
+#. Pentax specific tags / 0x001f (Saturation)
+msgid "High"
+msgstr "DESC_High"
+
+#. Pentax specific tags / 0x0071 (HighISONoiseReduction)
+msgid "HighISONoiseReduction"
+msgstr "DESC_HighISONoiseReduction"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Ho Chi Minh"
+msgstr "DESC_Ho Chi Minh"
+
+#. Pentax specific tags / 0x0022 (WorldTimeLocation)
+msgid "Home town"
+msgstr "DESC_Home town"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "HomeCityName"
+msgstr "DESC_HomeCityName"
+
+#. Pentax specific tags / 0x0025 (HometownDST)
+msgid "HometownDST"
+msgstr "DESC_HometownDST"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Hong Kong"
+msgstr "DESC_Hong Kong"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Honolulu"
+msgstr "DESC_Honolulu"
+
+#. Exif & Tiff tags / 0x013c (HostComputer)
+msgid "HostComputer"
+msgstr "DESC_HostComputer"
+
+#. Pentax specific tags / 0x0220 (HuffmanTable)
+msgid "HuffmanTable"
+msgstr "DESC_HuffmanTable"
+
+#. Exif & Tiff tags / 0x8773 (ICC_Profile)
+msgid "ICC_Profile"
+msgstr "DESC_ICC_Profile"
+
+#. Pentax specific tags / 0x0014 (ISO)
+msgid "ISO"
+msgstr "DESC_ISO"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "ISO studio tungsten"
+msgstr "DESC_ISO studio tungsten"
+
+#. Exif & Tiff tags / 0x8827 (ISOSpeedRatings)
+msgid "ISOSpeedRatings"
+msgstr "DESC_ISOSpeedRatings"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Illustrations"
+msgstr "DESC_Illustrations"
+
+#. IPTC tags / 0x0283 (Image Orientation)
+msgid "Image Orientation"
+msgstr "DESC_Image Orientation"
+
+#. IPTC tags / 0x0282 (Image Type)
+msgid "Image Type"
+msgstr "DESC_Image Type"
+
+#. Pentax specific tags / 0x0038 (ImageAreaOffset)
+msgid "ImageAreaOffset"
+msgstr "DESC_ImageAreaOffset"
+
+#. Exif & Tiff tags / 0x010e (ImageDescription)
+msgid "ImageDescription"
+msgstr "DESC_ImageDescription"
+
+#. Exif & Tiff tags / 0x9213 (ImageHistory)
+msgid "ImageHistory"
+msgstr "DESC_ImageHistory"
+
+#. Exif & Tiff tags / 0x0101 (ImageLength)
+msgid "ImageLength"
+msgstr "DESC_ImageLength"
+
+#. Exif & Tiff tags / 0x9211 (ImageNumber)
+msgid "ImageNumber"
+msgstr "DESC_ImageNumber"
+
+#. Pentax specific tags / 0x0032 (ImageProcessing)
+msgid "ImageProcessing"
+msgstr "DESC_ImageProcessing"
+
+#. Pentax specific tags / 0x004f (ImageTone)
+msgid "ImageTone"
+msgstr "DESC_ImageTone"
+
+#. Exif & Tiff tags / 0xa420 (ImageUniqueID)
+msgid "ImageUniqueID"
+msgstr "DESC_ImageUniqueID"
+
+#. Exif & Tiff tags / 0x0100 (ImageWidth)
+msgid "ImageWidth"
+msgstr "DESC_ImageWidth"
+
+#. Pentax specific tags / 0x000d (Focus)
+msgid "Infinity"
+msgstr "DESC_Infinity"
+
+#. XMP tags / Iptc4xmpCore:CiAdrCity
+msgid "Iptc4xmpCore:CiAdrCity"
+msgstr "DESC_Iptc4xmpCore:CiAdrCity"
+
+#. XMP tags / Iptc4xmpCore:CiAdrCtry
+msgid "Iptc4xmpCore:CiAdrCtry"
+msgstr "DESC_Iptc4xmpCore:CiAdrCtry"
+
+#. XMP tags / Iptc4xmpCore:CiAdrExtadr
+msgid "Iptc4xmpCore:CiAdrExtadr"
+msgstr "DESC_Iptc4xmpCore:CiAdrExtadr"
+
+#. XMP tags / Iptc4xmpCore:CiAdrPcode
+msgid "Iptc4xmpCore:CiAdrPcode"
+msgstr "DESC_Iptc4xmpCore:CiAdrPcode"
+
+#. XMP tags / Iptc4xmpCore:CiEmailWork
+msgid "Iptc4xmpCore:CiEmailWork"
+msgstr "DESC_Iptc4xmpCore:CiEmailWork"
+
+#. XMP tags / Iptc4xmpCore:CiTelWork
+msgid "Iptc4xmpCore:CiTelWork"
+msgstr "DESC_Iptc4xmpCore:CiTelWork"
+
+#. XMP tags / Iptc4xmpCore:CiUrlWork
+msgid "Iptc4xmpCore:CiUrlWork"
+msgstr "DESC_Iptc4xmpCore:CiUrlWork"
+
+#. XMP tags / Iptc4xmpCore:CountryCode
+msgid "Iptc4xmpCore:CountryCode"
+msgstr "DESC_Iptc4xmpCore:CountryCode"
+
+#. XMP tags / Iptc4xmpCore:CreatorContactInfo
+msgid "Iptc4xmpCore:CreatorContactInfo"
+msgstr "DESC_Iptc4xmpCore:CreatorContactInfo"
+
+#. XMP tags / Iptc4xmpCore:DateCreated
+msgid "Iptc4xmpCore:DateCreated"
+msgstr "DESC_Iptc4xmpCore:DateCreated"
+
+#. XMP tags / Iptc4xmpCore:IntellectualGenre
+msgid "Iptc4xmpCore:IntellectualGenre"
+msgstr "DESC_Iptc4xmpCore:IntellectualGenre"
+
+#. XMP tags / Iptc4xmpCore:Location
+msgid "Iptc4xmpCore:Location"
+msgstr "DESC_Iptc4xmpCore:Location"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "Iptc4xmpCore:Scene"
+msgstr "DESC_Iptc4xmpCore:Scene"
+
+#. XMP tags / Iptc4xmpCore:SubjectCode
+msgid "Iptc4xmpCore:SubjectCode"
+msgstr "DESC_Iptc4xmpCore:SubjectCode"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Istanbul"
+msgstr "DESC_Istanbul"
+
+#. Exif & Tiff tags / 0x0103 (Compression)
+msgid "JPEG (old style)"
+msgstr "DESC_JPEG (old style)"
+
+#. Exif & Tiff tags / 0x0201 (JPEGInterchangeFormat)
+msgid "JPEGInterchangeFormat"
+msgstr "DESC_JPEGInterchangeFormat"
+
+#. Exif & Tiff tags / 0x0202 (JPEGInterchangeFormatLength)
+msgid "JPEGInterchangeFormatLength"
+msgstr "DESC_JPEGInterchangeFormatLength"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Jakarta"
+msgstr "DESC_Jakarta"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Jeddah"
+msgstr "DESC_Jeddah"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Jerusalem"
+msgstr "DESC_Jerusalem"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Johannesburg"
+msgstr "DESC_Johannesburg"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "K,M Lens"
+msgstr "DESC_K,M Lens"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Kabul"
+msgstr "DESC_Kabul"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Karachi"
+msgstr "DESC_Karachi"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Kathmandu"
+msgstr "DESC_Kathmandu"
+
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "Kelvin"
+msgstr "DESC_Kelvin"
+
+#. IPTC tags / 0x0219 (Keywords)
+msgid "Keywords"
+msgstr "DESC_Keywords"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Kids"
+msgstr "DESC_Kids"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Kuala Lumpur"
+msgstr "DESC_Kuala Lumpur"
+
+#. Pentax specific tags / 0x004f (ImageTone)
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Landscape"
+msgstr "DESC_Landscape"
+
+#. IPTC tags / 0x0287 (Language Identifier)
+msgid "Language Identifier"
+msgstr "DESC_Language Identifier"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Left"
+msgstr "DESC_Left"
+
+#. Pentax specific tags / 0x0207 (LensInfo)
+msgid "LensInfo"
+msgstr "DESC_LensInfo"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "LensType"
+msgstr "DESC_LensType"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Light Pet"
+msgstr "DESC_Light Pet"
+
+#. Pentax specific tags / 0x0015 (LightReading)
+msgid "LightReading"
+msgstr "DESC_LightReading"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "LightSource"
+msgstr "DESC_LightSource"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Lima"
+msgstr "DESC_Lima"
+
+#. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
+msgid "Linear Raw"
+msgstr "DESC_Linear Raw"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Lisbon"
+msgstr "DESC_Lisbon"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "London"
+msgstr "DESC_London"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Los Angeles"
+msgstr "DESC_Los Angeles"
+
+#. Pentax specific tags / 0x001f (Saturation)
+#. Pentax specific tags / 0x0020 (Contrast)
+msgid "Low"
+msgstr "DESC_Low"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Lower-left"
+msgstr "DESC_Lower-left"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Lower-right"
+msgstr "DESC_Lower-right"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "M-42 or No Lens"
+msgstr "DESC_M-42 or No Lens"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "MTF Program"
+msgstr "DESC_MTF Program"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x000d (Focus)
+msgid "Macro"
+msgstr "DESC_Macro"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Madrid"
+msgstr "DESC_Madrid"
+
+#. Exif & Tiff tags / 0x010f (Make)
+msgid "Make"
+msgstr "DESC_Make"
+
+#. Exif & Tiff tags / 0x927c (MakerNote)
+msgid "MakerNote"
+msgstr "DESC_MakerNote"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Male"
+msgstr "DESC_Male"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Manila"
+msgstr "DESC_Manila"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x0033 (PictureMode)
+#. Pentax specific tags / 0x000d (Focus)
+#. Pentax specific tags / 0x0001 (ShootingMode)
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "Manual"
+msgstr "DESC_Manual"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Manual (Off-Auto-Aperture)"
+msgstr "DESC_Manual (Off-Auto-Aperture)"
+
+#. IPTC tags / 0x0714 (Max Subfile Size)
+msgid "Max Subfile Size"
+msgstr "DESC_Max Subfile Size"
+
+#. Exif & Tiff tags / 0x9205 (MaxApertureValue)
+msgid "MaxApertureValue"
+msgstr "DESC_MaxApertureValue"
+
+#. Exif & Tiff tags / 0x0119 (MaxSampleValue)
+msgid "MaxSampleValue"
+msgstr "DESC_MaxSampleValue"
+
+#. IPTC tags / 0x075f (Maximum ObjectData Size)
+msgid "Maximum ObjectData Size"
+msgstr "DESC_Maximum ObjectData Size"
+
+#. Pentax specific tags / 0x0021 (Sharpness)
+msgid "Med Hard"
+msgstr "DESC_Med Hard"
+
+#. Pentax specific tags / 0x001f (Saturation)
+#. Pentax specific tags / 0x0020 (Contrast)
+msgid "Med High"
+msgstr "DESC_Med High"
+
+#. Pentax specific tags / 0x001f (Saturation)
+#. Pentax specific tags / 0x0020 (Contrast)
+msgid "Med Low"
+msgstr "DESC_Med Low"
+
+#. Pentax specific tags / 0x0021 (Sharpness)
+msgid "Med Soft"
+msgstr "DESC_Med Soft"
+
+#. XMP tags / crs:ToneCurveName
+msgid "Medium Contrast"
+msgstr "DESC_Medium Contrast"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Medium Pet"
+msgstr "DESC_Medium Pet"
+
+#. Pentax specific tags / 0x0017 (MeteringMode)
+#. Exif & Tiff tags / 0x9207 (MeteringMode)
+msgid "MeteringMode"
+msgstr "DESC_MeteringMode"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Mexico City"
+msgstr "DESC_Mexico City"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Miami"
+msgstr "DESC_Miami"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Mid-left"
+msgstr "DESC_Mid-left"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Mid-right"
+msgstr "DESC_Mid-right"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Milan"
+msgstr "DESC_Milan"
+
+#. Exif & Tiff tags / 0x0118 (MinSampleValue)
+msgid "MinSampleValue"
+msgstr "DESC_MinSampleValue"
+
+#. Exif & Tiff tags / 0x0110 (Model)
+msgid "Model"
+msgstr "DESC_Model"
+
+#. IPTC tags / 0x0100 (Model Version)
+msgid "Model Version"
+msgstr "DESC_Model Version"
+
+#. Pentax specific tags / 0x004f (ImageTone)
+msgid "Monochrome"
+msgstr "DESC_Monochrome"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Moscow"
+msgstr "DESC_Moscow"
+
+#. Pentax specific tags / 0x0017 (MeteringMode)
+msgid "Multi Segment"
+msgstr "DESC_Multi Segment"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "Multiple Exposure"
+msgstr "DESC_Multiple Exposure"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Museum"
+msgstr "DESC_Museum"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "N/A"
+msgstr "DESC_N/A"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Nairobi"
+msgstr "DESC_Nairobi"
+
+#. Pentax specific tags / 0x004f (ImageTone)
+msgid "Natural"
+msgstr "DESC_Natural"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Natural Skin Tone"
+msgstr "DESC_Natural Skin Tone"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "New York"
+msgstr "DESC_New York"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Night Scene"
+msgstr "DESC_Night Scene"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Night Scene Portrait"
+msgstr "DESC_Night Scene Portrait"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Night Snap"
+msgstr "DESC_Night Snap"
+
+#. Pentax specific tags / 0x0001 (ShootingMode)
+msgid "Night-Scene"
+msgstr "DESC_Night-Scene"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "No Flash"
+msgstr "DESC_No Flash"
+
+#. IPTC tags / 0x0114 (File Format)
+msgid "No ObjectData"
+msgstr "DESC_No ObjectData"
+
+#. Exif & Tiff tags / 0xa20d (Noise)
+msgid "Noise"
+msgstr "DESC_Noise"
+
+#. Pentax specific tags / 0x0049 (NoiseReduction)
+msgid "NoiseReduction"
+msgstr "DESC_NoiseReduction"
+
+#. Pentax specific tags / 0x001f (Saturation)
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+msgid "None"
+msgstr "DESC_None"
+
+#. Pentax specific tags / 0x001f (Saturation)
+#. Pentax specific tags / 0x000d (Focus)
+#. Pentax specific tags / 0x0021 (Sharpness)
+#. Pentax specific tags / 0x0020 (Contrast)
+msgid "Normal"
+msgstr "DESC_Normal"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Noumea"
+msgstr "DESC_Noumea"
+
+#. IPTC tags / 0x0204 (Object Attribute Reference)
+msgid "Object Attribute Reference"
+msgstr "DESC_Object Attribute Reference"
+
+#. IPTC tags / 0x024b (Object Cycle)
+msgid "Object Cycle"
+msgstr "DESC_Object Cycle"
+
+#. IPTC tags / 0x0205 (Object Name)
+msgid "Object Name"
+msgstr "DESC_Object Name"
+
+#. IPTC tags / 0x0203 (Object Type Reference)
+msgid "Object Type Reference"
+msgstr "DESC_Object Type Reference"
+
+#. IPTC tags / 0x02ca (ObjectData Preview Data)
+msgid "ObjectData Preview Data"
+msgstr "DESC_ObjectData Preview Data"
+
+#. IPTC tags / 0x02c8 (ObjectData Preview File Format)
+msgid "ObjectData Preview File Format"
+msgstr "DESC_ObjectData Preview File Format"
+
+#. IPTC tags / 0x02c9 (ObjectData Preview File Format Version)
+msgid "ObjectData Preview File Format Version"
+msgstr "DESC_ObjectData Preview File Format Version"
+
+#. IPTC tags / 0x075a (ObjectData Size Announced)
+msgid "ObjectData Size Announced"
+msgstr "DESC_ObjectData Size Announced"
+
+#. Pentax specific tags / 0x0071 (HighISONoiseReduction)
+#. Pentax specific tags / 0x0069 (DynamicRangeExpansion)
+msgid "Off"
+msgstr "DESC_Off"
+
+#. Exif & Tiff tags / 0x00ff (OldSubfileType)
+msgid "OldSubfileType"
+msgstr "DESC_OldSubfileType"
+
+#. Pentax specific tags / 0x0069 (DynamicRangeExpansion)
+msgid "On"
+msgstr "DESC_On"
+
+#. Exif & Tiff tags / 0x0112 (Orientation)
+msgid "Orientation"
+msgstr "DESC_Orientation"
+
+#. IPTC tags / 0x0267 (Original Transmission Reference)
+msgid "Original Transmission Reference"
+msgstr "DESC_Original Transmission Reference"
+
+#. IPTC tags / 0x0241 (Originating Program)
+msgid "Originating Program"
+msgstr "DESC_Originating Program"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "PENTAX-F 28-80mm F3.5-4.5 or SIGMA AF 18-125mm F3.5-5.6 DC"
+msgstr "DESC_PENTAX-F 28-80mm F3.5-4.5 or SIGMA AF 18-125mm F3.5-5.6 DC"
+
+#. Exif & Tiff tags / 0x011d (PageName)
+msgid "PageName"
+msgstr "DESC_PageName"
+
+#. Exif & Tiff tags / 0x0129 (PageNumber)
+msgid "PageNumber"
+msgstr "DESC_PageNumber"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Pago Pago"
+msgstr "DESC_Pago Pago"
+
+#. Pentax specific tags / 0x000d (Focus)
+msgid "Pan Focus"
+msgstr "DESC_Pan Focus"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Panorama"
+msgstr "DESC_Panorama"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Paris"
+msgstr "DESC_Paris"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Perth"
+msgstr "DESC_Perth"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Pet"
+msgstr "DESC_Pet"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Phnom Penh"
+msgstr "DESC_Phnom Penh"
+
+#. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
+msgid "PhotometricInterpretation"
+msgstr "DESC_PhotometricInterpretation"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "PictureMode"
+msgstr "DESC_PictureMode"
+
+#. Exif & Tiff tags / 0xa002 (PixelXDimension)
+msgid "PixelXDimension"
+msgstr "DESC_PixelXDimension"
+
+#. Exif & Tiff tags / 0xa003 (PixelYDimension)
+msgid "PixelYDimension"
+msgstr "DESC_PixelYDimension"
+
+#. Exif & Tiff tags / 0x011c (PlanarConfiguration)
+msgid "PlanarConfiguration"
+msgstr "DESC_PlanarConfiguration"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x004f (ImageTone)
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Portrait"
+msgstr "DESC_Portrait"
+
+#. Exif & Tiff tags / 0x013d (Predictor)
+msgid "Predictor"
+msgstr "DESC_Predictor"
+
+#. Pentax specific tags / 0x0008 (Quality)
+msgid "Premium"
+msgstr "DESC_Premium"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "Preset (Fireworks?)"
+msgstr "DESC_Preset (Fireworks?)"
+
+#. Pentax specific tags / 0x003e (PreviewImageBorders)
+msgid "PreviewImageBorders"
+msgstr "DESC_PreviewImageBorders"
+
+#. Pentax specific tags / 0x0003 (PreviewLength)
+msgid "PreviewLength"
+msgstr "DESC_PreviewLength"
+
+#. Pentax specific tags / 0x0004 (PreviewOffset)
+msgid "PreviewOffset"
+msgstr "DESC_PreviewOffset"
+
+#. Pentax specific tags / 0x0002 (PreviewResolution)
+msgid "PreviewResolution"
+msgstr "DESC_PreviewResolution"
+
+#. Exif & Tiff tags / 0x013f (PrimaryChromaticities)
+msgid "PrimaryChromaticities"
+msgstr "DESC_PrimaryChromaticities"
+
+#. Pentax specific tags / 0x0e00 (PrintIM)
+#. Exif & Tiff tags / 0xc4a5 (PrintIM)
+msgid "PrintIM"
+msgstr "DESC_PrintIM"
+
+#. Exif & Tiff tags / 0x000b (ProcessingSoftware)
+msgid "ProcessingSoftware"
+msgstr "DESC_ProcessingSoftware"
+
+#. IPTC tags / 0x0132 (Product I.D.)
+msgid "Product I.D."
+msgstr "DESC_Product I.D."
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Program"
+msgstr "DESC_Program"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Program AE"
+msgstr "DESC_Program AE"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Program Av Shift"
+msgstr "DESC_Program Av Shift"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Program Tv Shift"
+msgstr "DESC_Program Tv Shift"
+
+#. IPTC tags / 0x0246 (Program Version)
+msgid "Program Version"
+msgstr "DESC_Program Version"
+
+#. IPTC tags / 0x025f (Province/State)
+msgid "Province/State"
+msgstr "DESC_Province/State"
+
+#. Pentax specific tags / 0x0008 (Quality)
+msgid "Quality"
+msgstr "DESC_Quality"
+
+#. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
+msgid "RGB"
+msgstr "DESC_RGB"
+
+#. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
+msgid "RGB Palette"
+msgstr "DESC_RGB Palette"
+
+#. IPTC tags / 0x027d (Rasterized Caption)
+msgid "Rasterized Caption"
+msgstr "DESC_Rasterized Caption"
+
+#. Exif & Tiff tags / 0x4746 (Rating)
+msgid "Rating"
+msgstr "DESC_Rating"
+
+#. Exif & Tiff tags / 0x4749 (RatingPercent)
+msgid "RatingPercent"
+msgstr "DESC_RatingPercent"
+
+#. Pentax specific tags / 0x0039 (RawImageSize)
+msgid "RawImageSize"
+msgstr "DESC_RawImageSize"
+
+#. IPTC tags / 0x0200 (Record Version)
+msgid "Record Version"
+msgstr "DESC_Record Version"
+
+#. Pentax specific tags / 0x001c (RedBalance)
+msgid "RedBalance"
+msgstr "DESC_RedBalance"
+
+#. IPTC tags / 0x022f (Reference Date)
+msgid "Reference Date"
+msgstr "DESC_Reference Date"
+
+#. IPTC tags / 0x022d (Reference Service)
+msgid "Reference Service"
+msgstr "DESC_Reference Service"
+
+#. IPTC tags / 0x0232 (Reference number)
+msgid "Reference number"
+msgstr "DESC_Reference number"
+
+#. Exif & Tiff tags / 0x0214 (ReferenceBlackWhite)
+msgid "ReferenceBlackWhite"
+msgstr "DESC_ReferenceBlackWhite"
+
+#. Exif & Tiff tags / 0xa004 (RelatedSoundFile)
+msgid "RelatedSoundFile"
+msgstr "DESC_RelatedSoundFile"
+
+#. IPTC tags / 0x021e (Release Date)
+msgid "Release Date"
+msgstr "DESC_Release Date"
+
+#. IPTC tags / 0x0223 (Release Time)
+msgid "Release Time"
+msgstr "DESC_Release Time"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "Remote Control"
+msgstr "DESC_Remote Control"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "Remote Control (3 sec)"
+msgstr "DESC_Remote Control (3 sec)"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Report"
+msgstr "DESC_Report"
+
+#. Exif & Tiff tags / 0x0128 (ResolutionUnit)
+msgid "ResolutionUnit"
+msgstr "DESC_ResolutionUnit"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Right"
+msgstr "DESC_Right"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Rio de Janeiro"
+msgstr "DESC_Rio de Janeiro"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Rome"
+msgstr "DESC_Rome"
+
+#. Exif & Tiff tags / 0x0116 (RowsPerStrip)
+msgid "RowsPerStrip"
+msgstr "DESC_RowsPerStrip"
+
+#. Exif & Tiff tags / 0x0115 (SamplesPerPixel)
+msgid "SamplesPerPixel"
+msgstr "DESC_SamplesPerPixel"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "San Fransisco"
+msgstr "DESC_San Fransisco"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Santiago"
+msgstr "DESC_Santiago"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Sao Paulo"
+msgstr "DESC_Sao Paulo"
+
+#. Exif & Tiff tags / 0xa409 (Saturation)
+#. Pentax specific tags / 0x001f (Saturation)
+msgid "Saturation"
+msgstr "DESC_Saturation"
+
+#. Pentax specific tags / 0x021b (SaturationInfo)
+msgid "SaturationInfo"
+msgstr "DESC_SaturationInfo"
+
+#. Exif & Tiff tags / 0xa406 (SceneCaptureType)
+msgid "SceneCaptureType"
+msgstr "DESC_SceneCaptureType"
+
+#. Exif & Tiff tags / 0xa301 (SceneType)
+msgid "SceneType"
+msgstr "DESC_SceneType"
+
+#. Exif & Tiff tags / 0x9212 (SecurityClassification)
+msgid "SecurityClassification"
+msgstr "DESC_SecurityClassification"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Self Portrait"
+msgstr "DESC_Self Portrait"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "Self-timer (12 sec)"
+msgstr "DESC_Self-timer (12 sec)"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "Self-timer (2 sec)"
+msgstr "DESC_Self-timer (2 sec)"
+
+#. Exif & Tiff tags / 0x882a (SelfTimerMode)
+msgid "SelfTimerMode"
+msgstr "DESC_SelfTimerMode"
+
+#. Exif & Tiff tags / 0xa217 (SensingMethod)
+msgid "SensingMethod"
+msgstr "DESC_SensingMethod"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Sensitivity Priority AE, 1/2 EV steps"
+msgstr "DESC_Sensitivity Priority AE, 1/2 EV steps"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Sensitivity Priority AE, 1/3 EV steps"
+msgstr "DESC_Sensitivity Priority AE, 1/3 EV steps"
+
+#. Pentax specific tags / 0x0040 (SensitivityAdjust)
+msgid "SensitivityAdjust"
+msgstr "DESC_SensitivityAdjust"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Seoul"
+msgstr "DESC_Seoul"
+
+#. Pentax specific tags / 0x0229 (SerialNumber)
+msgid "SerialNumber"
+msgstr "DESC_SerialNumber"
+
+#. IPTC tags / 0x011e (Service Identifier)
+msgid "Service Identifier"
+msgstr "DESC_Service Identifier"
+
+#. Pentax specific tags / 0x0019 (Balance)
+#. XMP tags / crs:Balance
+msgid "Shade"
+msgstr "DESC_Shade"
+
+#. Pentax specific tags / 0x005c (ShakeReduction)
+msgid "ShakeReduction"
+msgstr "DESC_ShakeReduction"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Shanghai"
+msgstr "DESC_Shanghai"
+
+#. Exif & Tiff tags / 0xa40a (Sharpness)
+#. Pentax specific tags / 0x0021 (Sharpness)
+msgid "Sharpness"
+msgstr "DESC_Sharpness"
+
+#. Pentax specific tags / 0x0001 (ShootingMode)
+msgid "ShootingMode"
+msgstr "DESC_ShootingMode"
+
+#. Pentax specific tags / 0x0205 (ShotInfo)
+msgid "ShotInfo"
+msgstr "DESC_ShotInfo"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Shutter & Aperture Priority AE, 1/2 EV steps"
+msgstr "DESC_Shutter & Aperture Priority AE, 1/2 EV steps"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Shutter & Aperture Priority AE, 1/3 EV steps"
+msgstr "DESC_Shutter & Aperture Priority AE, 1/3 EV steps"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Shutter Priority"
+msgstr "DESC_Shutter Priority"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Shutter Speed Priority"
+msgstr "DESC_Shutter Speed Priority"
+
+#. Pentax specific tags / 0x005d (ShutterCount)
+msgid "ShutterCount"
+msgstr "DESC_ShutterCount"
+
+#. Exif & Tiff tags / 0x9201 (ShutterSpeedValue)
+msgid "ShutterSpeedValue"
+msgstr "DESC_ShutterSpeedValue"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "Sigma lens"
+msgstr "DESC_Sigma lens"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Singapore"
+msgstr "DESC_Singapore"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "Single-frame;No timer;Shutter button;Single exposure"
+msgstr "DESC_Single-frame;No timer;Shutter button;Single exposure"
+
+#. Pentax specific tags / 0x0009 (Size)
+msgid "Size"
+msgstr "DESC_Size"
+
+#. IPTC tags / 0x070a (Size Mode)
+msgid "Size Mode"
+msgstr "DESC_Size Mode"
+
+#. Pentax specific tags / 0x0021 (Sharpness)
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Soft"
+msgstr "DESC_Soft"
+
+#. Exif & Tiff tags / 0x0131 (Software)
+msgid "Software"
+msgstr "DESC_Software"
+
+#. IPTC tags / 0x0273 (Source)
+msgid "Source"
+msgstr "DESC_Source"
+
+#. Exif & Tiff tags / 0xa20c (SpatialFrequencyResponse)
+msgid "SpatialFrequencyResponse"
+msgstr "DESC_SpatialFrequencyResponse"
+
+#. IPTC tags / 0x0228 (Special Instructions)
+msgid "Special Instructions"
+msgstr "DESC_Special Instructions"
+
+#. Exif & Tiff tags / 0x8824 (SpectralSensitivity)
+msgid "SpectralSensitivity"
+msgstr "DESC_SpectralSensitivity"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Sport"
+msgstr "DESC_Sport"
+
+#. Pentax specific tags / 0x0017 (MeteringMode)
+msgid "Spot"
+msgstr "DESC_Spot"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Stage Lighting"
+msgstr "DESC_Stage Lighting"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Standard"
+msgstr "DESC_Standard"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Stockholm"
+msgstr "DESC_Stockholm"
+
+#. Exif & Tiff tags / 0x0117 (StripByteCounts)
+msgid "StripByteCounts"
+msgstr "DESC_StripByteCounts"
+
+#. Exif & Tiff tags / 0x0111 (StripOffsets)
+msgid "StripOffsets"
+msgstr "DESC_StripOffsets"
+
+#. Pentax specific tags / 0x0071 (HighISONoiseReduction)
+msgid "Strong"
+msgstr "DESC_Strong"
+
+#. XMP tags / crs:ToneCurveName
+msgid "Strong Contrast"
+msgstr "DESC_Strong Contrast"
+
+#. IPTC tags / 0x080a (Subfile)
+msgid "Subfile"
+msgstr "DESC_Subfile"
+
+#. Exif & Tiff tags / 0x00fe (SubfileType)
+msgid "SubfileType"
+msgstr "DESC_SubfileType"
+
+#. IPTC tags / 0x020c (Subject Reference)
+msgid "Subject Reference"
+msgstr "DESC_Subject Reference"
+
+#. Exif & Tiff tags / 0x9214 (SubjectArea)
+msgid "SubjectArea"
+msgstr "DESC_SubjectArea"
+
+#. Exif & Tiff tags / 0x9206 (SubjectDistance)
+msgid "SubjectDistance"
+msgstr "DESC_SubjectDistance"
+
+#. Exif & Tiff tags / 0xa40c (SubjectDistanceRange)
+msgid "SubjectDistanceRange"
+msgstr "DESC_SubjectDistanceRange"
+
+#. Exif & Tiff tags / 0xa214 (SubjectLocation)
+msgid "SubjectLocation"
+msgstr "DESC_SubjectLocation"
+
+#. IPTC tags / 0x025c (Sublocation)
+msgid "Sublocation"
+msgstr "DESC_Sublocation"
+
+#. Exif & Tiff tags / 0x9290 (SubsecTime)
+msgid "SubsecTime"
+msgstr "DESC_SubsecTime"
+
+#. Exif & Tiff tags / 0x9292 (SubsecTimeDigitized)
+msgid "SubsecTimeDigitized"
+msgstr "DESC_SubsecTimeDigitized"
+
+#. Exif & Tiff tags / 0x9291 (SubsecTimeOriginal)
+msgid "SubsecTimeOriginal"
+msgstr "DESC_SubsecTimeOriginal"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Sunset"
+msgstr "DESC_Sunset"
+
+#. Pentax specific tags / 0x000d (Focus)
+msgid "Super Macro"
+msgstr "DESC_Super Macro"
+
+#. IPTC tags / 0x0214 (Supplemental Category)
+msgid "Supplemental Category"
+msgstr "DESC_Supplemental Category"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Surf & Snow"
+msgstr "DESC_Surf & Snow"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Sydney"
+msgstr "DESC_Sydney"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Synchro Sound Record"
+msgstr "DESC_Synchro Sound Record"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Taipei"
+msgstr "DESC_Taipei"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "Tamron 35-90mm F4 AF or various SIGMA models"
+msgstr "DESC_Tamron 35-90mm F4 AF or various SIGMA models"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Tehran"
+msgstr "DESC_Tehran"
+
+#. Pentax specific tags / 0x0047 (Temperature)
+msgid "Temperature"
+msgstr "DESC_Temperature"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Text"
+msgstr "DESC_Text"
+
+#. Exif & Tiff tags / 0x0107 (Thresholding)
+msgid "Thresholding"
+msgstr "DESC_Thresholding"
+
+#. Exif & Tiff tags / 0x0103 (Compression)
+msgid "Thunderscan"
+msgstr "DESC_Thunderscan"
+
+#. Pentax specific tags / 0x0007 (Time)
+msgid "Time"
+msgstr "DESC_Time"
+
+#. IPTC tags / 0x023c (Time Created)
+msgid "Time Created"
+msgstr "DESC_Time Created"
+
+#. IPTC tags / 0x0150 (Time Sent)
+msgid "Time Sent"
+msgstr "DESC_Time Sent"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Tokyo"
+msgstr "DESC_Tokyo"
+
+#. Pentax specific tags / 0x0402 (ToneCurve)
+msgid "ToneCurve"
+msgstr "DESC_ToneCurve"
+
+#. Pentax specific tags / 0x0403 (ToneCurves)
+msgid "ToneCurves"
+msgstr "DESC_ToneCurves"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Top"
+msgstr "DESC_Top"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+msgid "Top-center"
+msgstr "DESC_Top-center"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+msgid "Top-left"
+msgstr "DESC_Top-left"
+
+#. Pentax specific tags / 0x000f (AFPointsInFocus)
+msgid "Top-right"
+msgstr "DESC_Top-right"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Toronto"
+msgstr "DESC_Toronto"
+
+#. Exif & Tiff tags / 0x012d (TransferFunction)
+msgid "TransferFunction"
+msgstr "DESC_TransferFunction"
+
+#. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
+msgid "Transparency Mask"
+msgstr "DESC_Transparency Mask"
+
+#. Pentax specific tags / 0x0019 (Balance)
+#. XMP tags / crs:Balance
+msgid "Tungsten"
+msgstr "DESC_Tungsten"
+
+#. IPTC tags / 0x0164 (UNO)
+msgid "UNO"
+msgstr "DESC_UNO"
+
+#. Exif & Tiff tags / 0xa001 (ColorSpace)
+msgid "Uncalibrated"
+msgstr "DESC_Uncalibrated"
+
+#. Pentax specific tags / 0x000b (PictureMode)
+#. Pentax specific tags / 0x000b (PictureMode)
+msgid "Underwater"
+msgstr "DESC_Underwater"
+
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "Unknown"
+msgstr "DESC_Unknown"
+
+#. Pentax specific tags / 0x03ff (UnknownInfo)
+msgid "UnknownInfo"
+msgstr "DESC_UnknownInfo"
+
+#. Pentax specific tags / 0x0032 (ImageProcessing)
+msgid "Unprocessed"
+msgstr "DESC_Unprocessed"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Upper-left"
+msgstr "DESC_Upper-left"
+
+#. Pentax specific tags / 0x000e (AFPoint)
+msgid "Upper-right"
+msgstr "DESC_Upper-right"
+
+#. IPTC tags / 0x020a (Urgency)
+msgid "Urgency"
+msgstr "DESC_Urgency"
+
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "User Selected"
+msgstr "DESC_User Selected"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "User-Selected"
+msgstr "DESC_User-Selected"
+
+#. Exif & Tiff tags / 0x9286 (UserComment)
+msgid "UserComment"
+msgstr "DESC_UserComment"
+
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+#. Pentax specific tags / 0x0023 (HomeCityName)
+msgid "Vancouver"
+msgstr "DESC_Vancouver"
+
+#. Pentax specific tags / 0x0000 (Version)
+msgid "Version"
+msgstr "DESC_Version"
+
+#. Pentax specific tags / 0x0021 (Sharpness)
+msgid "Very Hard"
+msgstr "DESC_Very Hard"
+
+#. Pentax specific tags / 0x001f (Saturation)
+#. Pentax specific tags / 0x0020 (Contrast)
+msgid "Very High"
+msgstr "DESC_Very High"
+
+#. Pentax specific tags / 0x001f (Saturation)
+#. Pentax specific tags / 0x0020 (Contrast)
+msgid "Very Low"
+msgstr "DESC_Very Low"
+
+#. Pentax specific tags / 0x0021 (Sharpness)
+msgid "Very Soft"
+msgstr "DESC_Very Soft"
+
+#. Pentax specific tags / 0x004f (ImageTone)
+msgid "Vibrant"
+msgstr "DESC_Vibrant"
+
+#. Pentax specific tags / 0x0034 (DriveMode)
+#. Pentax specific tags / 0x0034 (DriveMode)
+msgid "Video"
+msgstr "DESC_Video"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Video (24 fps)"
+msgstr "DESC_Video (24 fps)"
+
+#. Pentax specific tags / 0x0033 (PictureMode)
+msgid "Video (30 fps)"
+msgstr "DESC_Video (30 fps)"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Vientiane"
+msgstr "DESC_Vientiane"
+
+#. Pentax specific tags / 0x020f (WB_RGGBLevelsCloudy)
+msgid "WB_RGGBLevelsCloudy"
+msgstr "DESC_WB_RGGBLevelsCloudy"
+
+#. Pentax specific tags / 0x020d (WB_RGGBLevelsDaylight)
+msgid "WB_RGGBLevelsDaylight"
+msgstr "DESC_WB_RGGBLevelsDaylight"
+
+#. Pentax specific tags / 0x0214 (WB_RGGBLevelsFlash)
+msgid "WB_RGGBLevelsFlash"
+msgstr "DESC_WB_RGGBLevelsFlash"
+
+#. Pentax specific tags / 0x0211 (WB_RGGBLevelsFluorescentD)
+msgid "WB_RGGBLevelsFluorescentD"
+msgstr "DESC_WB_RGGBLevelsFluorescentD"
+
+#. Pentax specific tags / 0x0212 (WB_RGGBLevelsFluorescentN)
+msgid "WB_RGGBLevelsFluorescentN"
+msgstr "DESC_WB_RGGBLevelsFluorescentN"
+
+#. Pentax specific tags / 0x0213 (WB_RGGBLevelsFluorescentW)
+msgid "WB_RGGBLevelsFluorescentW"
+msgstr "DESC_WB_RGGBLevelsFluorescentW"
+
+#. Pentax specific tags / 0x020e (WB_RGGBLevelsShade)
+msgid "WB_RGGBLevelsShade"
+msgstr "DESC_WB_RGGBLevelsShade"
+
+#. Pentax specific tags / 0x0210 (WB_RGGBLevelsTungsten)
+msgid "WB_RGGBLevelsTungsten"
+msgstr "DESC_WB_RGGBLevelsTungsten"
+
+#. Pentax specific tags / 0x0071 (HighISONoiseReduction)
+msgid "Weak"
+msgstr "DESC_Weak"
+
+#. Pentax specific tags / 0x0071 (HighISONoiseReduction)
+msgid "Weakest"
+msgstr "DESC_Weakest"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Wellington"
+msgstr "DESC_Wellington"
+
+#. Exif & Tiff tags / 0xa403 (Balance)
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "Balance"
+msgstr "DESC_Balance"
+
+#. Pentax specific tags / 0x001a (BalanceMode)
+msgid "BalanceMode"
+msgstr "DESC_BalanceMode"
+
+#. Pentax specific tags / 0x0019 (Balance)
+msgid "WhiteFluorescent"
+msgstr "DESC_WhiteFluorescent"
+
+#. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
+msgid "WhiteIsZero"
+msgstr "DESC_WhiteIsZero"
+
+#. Exif & Tiff tags / 0x013e (WhitePoint)
+#. Pentax specific tags / 0x0201 (WhitePoint)
+msgid "WhitePoint"
+msgstr "DESC_WhitePoint"
+
+#. Pentax specific tags / 0x0022 (WorldTimeLocation)
+msgid "WorldTimeLocation"
+msgstr "DESC_WorldTimeLocation"
+
+#. IPTC tags / 0x027a (Writer/Editor)
+msgid "Writer/Editor"
+msgstr "DESC_Writer/Editor"
+
+#. Exif & Tiff tags / 0x9c9d (XPAuthor)
+msgid "XPAuthor"
+msgstr "DESC_XPAuthor"
+
+#. Exif & Tiff tags / 0x9c9c (XPComment)
+msgid "XPComment"
+msgstr "DESC_XPComment"
+
+#. Exif & Tiff tags / 0x9c9e (XPKeywords)
+msgid "XPKeywords"
+msgstr "DESC_XPKeywords"
+
+#. Exif & Tiff tags / 0x9c9f (XPSubject)
+msgid "XPSubject"
+msgstr "DESC_XPSubject"
+
+#. Exif & Tiff tags / 0x9c9b (XPTitle)
+msgid "XPTitle"
+msgstr "DESC_XPTitle"
+
+#. Exif & Tiff tags / 0x011e (XPosition)
+msgid "XPosition"
+msgstr "DESC_XPosition"
+
+#. Exif & Tiff tags / 0x011a (XResolution)
+msgid "XResolution"
+msgstr "DESC_XResolution"
+
+#. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
+msgid "YCbCr"
+msgstr "DESC_YCbCr"
+
+#. Exif & Tiff tags / 0x0211 (YCbCrCoefficients)
+msgid "YCbCrCoefficients"
+msgstr "DESC_YCbCrCoefficients"
+
+#. Exif & Tiff tags / 0x0213 (YCbCrPositioning)
+msgid "YCbCrPositioning"
+msgstr "DESC_YCbCrPositioning"
+
+#. Exif & Tiff tags / 0x0212 (YCbCrSubSampling)
+msgid "YCbCrSubSampling"
+msgstr "DESC_YCbCrSubSampling"
+
+#. Exif & Tiff tags / 0x011f (YPosition)
+msgid "YPosition"
+msgstr "DESC_YPosition"
+
+#. Exif & Tiff tags / 0x011b (YResolution)
+msgid "YResolution"
+msgstr "DESC_YResolution"
+
+#. Pentax specific tags / 0x0023 (HomeCityName)
+#. Pentax specific tags / 0x0024 (DestinationCityName)
+msgid "Yangon"
+msgstr "DESC_Yangon"
+
+#. Exif & Tiff tags / 0xa301 (SceneType)
+msgid "a directly photographed image"
+msgstr "DESC_a directly photographed image"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "action"
+msgstr "DESC_action"
+
+#. Exif & Tiff tags / 0x8822 (ExposureProgram)
+msgid "action program"
+msgstr "DESC_action program"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "aerial view"
+msgstr "DESC_aerial view"
+
+#. Exif & Tiff tags / 0x8822 (ExposureProgram)
+msgid "aperture priority"
+msgstr "DESC_aperture priority"
+
+#. Exif & Tiff tags / 0xa402 (ExposureMode)
+msgid "auto bracket"
+msgstr "DESC_auto bracket"
+
+#. Exif & Tiff tags / 0xa402 (ExposureMode)
+msgid "auto exposure"
+msgstr "DESC_auto exposure"
+
+#. Exif & Tiff tags / 0xa403 (Balance)
+msgid "auto white balance"
+msgstr "DESC_auto white balance"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "auto, did not fire"
+msgstr "DESC_auto, did not fire"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "auto, did not fire, red-eye reduction"
+msgstr "DESC_auto, did not fire, red-eye reduction"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "auto, fired"
+msgstr "DESC_auto, fired"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "auto, fired, red-eye reduction"
+msgstr "DESC_auto, fired, red-eye reduction"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "auto, fired, red-eye reduction, return detected"
+msgstr "DESC_auto, fired, red-eye reduction, return detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "auto, fired, red-eye reduction, return not detected"
+msgstr "DESC_auto, fired, red-eye reduction, return not detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "auto, fired, return detected"
+msgstr "DESC_auto, fired, return detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "auto, fired, return not detected"
+msgstr "DESC_auto, fired, return not detected"
+
+#. XMP tags / aux:Lens
+msgid "aux:Lens"
+msgstr "DESC_aux:Lens"
+
+#. XMP tags / aux:SerialNumber
+msgid "aux:SerialNumber"
+msgstr "DESC_aux:SerialNumber"
+
+#. Exif & Tiff tags / 0x9207 (MeteringMode)
+msgid "average"
+msgstr "DESC_average"
+
+#. IPTC tags / 0x024b (Object Cycle)
+msgid "both"
+msgstr "DESC_both"
+
+#. Exif & Tiff tags / 0x0213 (YCbCrPositioning)
+msgid "centered"
+msgstr "DESC_centered"
+
+#. Exif & Tiff tags / 0xa210 (FocalPlaneResolutionUnit)
+#. XMP tags / crs:CropUnits
+#. Exif & Tiff tags / 0x0128 (ResolutionUnit)
+msgid "centimeters"
+msgstr "DESC_centimeters"
+
+#. Exif & Tiff tags / 0x011c (PlanarConfiguration)
+msgid "chunky"
+msgstr "DESC_chunky"
+
+#. Exif & Tiff tags / 0xa40c (SubjectDistanceRange)
+msgid "close"
+msgstr "DESC_close"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "close-up"
+msgstr "DESC_close-up"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "cloudy weather"
+msgstr "DESC_cloudy weather"
+
+#. Exif & Tiff tags / 0x0213 (YCbCrPositioning)
+msgid "co-sited"
+msgstr "DESC_co-sited"
+
+#. Exif & Tiff tags / 0xa217 (SensingMethod)
+msgid "color sequential area sensor"
+msgstr "DESC_color sequential area sensor"
+
+#. Exif & Tiff tags / 0xa217 (SensingMethod)
+msgid "color sequential linear sensor"
+msgstr "DESC_color sequential linear sensor"
+
+#. Exif & Tiff tags / 0x9212 (SecurityClassification)
+msgid "confidential"
+msgstr "DESC_confidential"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "cool white fluorescent (W 3900 - 4500K)"
+msgstr "DESC_cool white fluorescent (W 3900 - 4500K)"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "couple"
+msgstr "DESC_couple"
+
+#. Exif & Tiff tags / 0x8822 (ExposureProgram)
+msgid "creative program"
+msgstr "DESC_creative program"
+
+#. XMP tags / crs:AutoBrightness
+msgid "crs:AutoBrightness"
+msgstr "DESC_crs:AutoBrightness"
+
+#. XMP tags / crs:AutoContrast
+msgid "crs:AutoContrast"
+msgstr "DESC_crs:AutoContrast"
+
+#. XMP tags / crs:AutoExposure
+msgid "crs:AutoExposure"
+msgstr "DESC_crs:AutoExposure"
+
+#. XMP tags / crs:AutoShadows
+msgid "crs:AutoShadows"
+msgstr "DESC_crs:AutoShadows"
+
+#. XMP tags / crs:BlueHue
+msgid "crs:BlueHue"
+msgstr "DESC_crs:BlueHue"
+
+#. XMP tags / crs:BlueSaturation
+msgid "crs:BlueSaturation"
+msgstr "DESC_crs:BlueSaturation"
+
+#. XMP tags / crs:Brightness
+msgid "crs:Brightness"
+msgstr "DESC_crs:Brightness"
+
+#. XMP tags / crs:CameraProfile
+msgid "crs:CameraProfile"
+msgstr "DESC_crs:CameraProfile"
+
+#. XMP tags / crs:ChromaticAberrationB
+msgid "crs:ChromaticAberrationB"
+msgstr "DESC_crs:ChromaticAberrationB"
+
+#. XMP tags / crs:ChromaticAberrationR
+msgid "crs:ChromaticAberrationR"
+msgstr "DESC_crs:ChromaticAberrationR"
+
+#. XMP tags / crs:ColorNoiseReduction
+msgid "crs:ColorNoiseReduction"
+msgstr "DESC_crs:ColorNoiseReduction"
+
+#. XMP tags / crs:Contrast
+msgid "crs:Contrast"
+msgstr "DESC_crs:Contrast"
+
+#. XMP tags / crs:CropAngle
+msgid "crs:CropAngle"
+msgstr "DESC_crs:CropAngle"
+
+#. XMP tags / crs:CropBottom
+msgid "crs:CropBottom"
+msgstr "DESC_crs:CropBottom"
+
+#. XMP tags / crs:CropHeight
+msgid "crs:CropHeight"
+msgstr "DESC_crs:CropHeight"
+
+#. XMP tags / crs:CropLeft
+msgid "crs:CropLeft"
+msgstr "DESC_crs:CropLeft"
+
+#. XMP tags / crs:CropRight
+msgid "crs:CropRight"
+msgstr "DESC_crs:CropRight"
+
+#. XMP tags / crs:CropTop
+msgid "crs:CropTop"
+msgstr "DESC_crs:CropTop"
+
+#. XMP tags / crs:CropUnits
+msgid "crs:CropUnits"
+msgstr "DESC_crs:CropUnits"
+
+#. XMP tags / crs:CropWidth
+msgid "crs:CropWidth"
+msgstr "DESC_crs:CropWidth"
+
+#. XMP tags / crs:Exposure
+msgid "crs:Exposure"
+msgstr "DESC_crs:Exposure"
+
+#. XMP tags / crs:GreenHue
+msgid "crs:GreenHue"
+msgstr "DESC_crs:GreenHue"
+
+#. XMP tags / crs:GreenSaturation
+msgid "crs:GreenSaturation"
+msgstr "DESC_crs:GreenSaturation"
+
+#. XMP tags / crs:HasCrop
+msgid "crs:HasCrop"
+msgstr "DESC_crs:HasCrop"
+
+#. XMP tags / crs:HasSettings
+msgid "crs:HasSettings"
+msgstr "DESC_crs:HasSettings"
+
+#. XMP tags / crs:LuminanceSmoothing
+msgid "crs:LuminanceSmoothing"
+msgstr "DESC_crs:LuminanceSmoothing"
+
+#. XMP tags / crs:RawFileName
+msgid "crs:RawFileName"
+msgstr "DESC_crs:RawFileName"
+
+#. XMP tags / crs:RedHue
+msgid "crs:RedHue"
+msgstr "DESC_crs:RedHue"
+
+#. XMP tags / crs:RedSaturation
+msgid "crs:RedSaturation"
+msgstr "DESC_crs:RedSaturation"
+
+#. XMP tags / crs:Saturation
+msgid "crs:Saturation"
+msgstr "DESC_crs:Saturation"
+
+#. XMP tags / crs:ShadowTint
+msgid "crs:ShadowTint"
+msgstr "DESC_crs:ShadowTint"
+
+#. XMP tags / crs:Shadows
+msgid "crs:Shadows"
+msgstr "DESC_crs:Shadows"
+
+#. XMP tags / crs:Sharpness
+msgid "crs:Sharpness"
+msgstr "DESC_crs:Sharpness"
+
+#. XMP tags / crs:Temperature
+msgid "crs:Temperature"
+msgstr "DESC_crs:Temperature"
+
+#. XMP tags / crs:Tint
+msgid "crs:Tint"
+msgstr "DESC_crs:Tint"
+
+#. XMP tags / crs:ToneCurve
+msgid "crs:ToneCurve"
+msgstr "DESC_crs:ToneCurve"
+
+#. XMP tags / crs:ToneCurveName
+msgid "crs:ToneCurveName"
+msgstr "DESC_crs:ToneCurveName"
+
+#. XMP tags / crs:Version
+msgid "crs:Version"
+msgstr "DESC_crs:Version"
+
+#. XMP tags / crs:VignetteAmount
+msgid "crs:VignetteAmount"
+msgstr "DESC_crs:VignetteAmount"
+
+#. XMP tags / crs:VignetteMidpoint
+msgid "crs:VignetteMidpoint"
+msgstr "DESC_crs:VignetteMidpoint"
+
+#. XMP tags / crs:Balance
+msgid "crs:Balance"
+msgstr "DESC_crs:Balance"
+
+#. Exif & Tiff tags / 0xa401 (CustomRendered)
+msgid "custom process"
+msgstr "DESC_custom process"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "day white fluorescent (N 4600 - 5400K)"
+msgstr "DESC_day white fluorescent (N 4600 - 5400K)"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "daylight"
+msgstr "DESC_daylight"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "daylight fluorescent (D 5700 - 7100K)"
+msgstr "DESC_daylight fluorescent (D 5700 - 7100K)"
+
+#. XMP tags / dc:Type
+msgid "dc:Type"
+msgstr "DESC_dc:Type"
+
+#. XMP tags / dc:contributor
+msgid "dc:contributor"
+msgstr "DESC_dc:contributor"
+
+#. XMP tags / dc:coverage
+msgid "dc:coverage"
+msgstr "DESC_dc:coverage"
+
+#. XMP tags / dc:creator
+msgid "dc:creator"
+msgstr "DESC_dc:creator"
+
+#. XMP tags / dc:date
+msgid "dc:date"
+msgstr "DESC_dc:date"
+
+#. XMP tags / dc:description
+msgid "dc:description"
+msgstr "DESC_dc:description"
+
+#. XMP tags / dc:format
+msgid "dc:format"
+msgstr "DESC_dc:format"
+
+#. XMP tags / dc:identifier
+msgid "dc:identifier"
+msgstr "DESC_dc:identifier"
+
+#. XMP tags / dc:language
+msgid "dc:language"
+msgstr "DESC_dc:language"
+
+#. XMP tags / dc:publisher
+msgid "dc:publisher"
+msgstr "DESC_dc:publisher"
+
+#. XMP tags / dc:relation
+msgid "dc:relation"
+msgstr "DESC_dc:relation"
+
+#. XMP tags / dc:rights
+msgid "dc:rights"
+msgstr "DESC_dc:rights"
+
+#. XMP tags / dc:source
+msgid "dc:source"
+msgstr "DESC_dc:source"
+
+#. XMP tags / dc:subject
+msgid "dc:subject"
+msgstr "DESC_dc:subject"
+
+#. XMP tags / dc:title
+msgid "dc:title"
+msgstr "DESC_dc:title"
+
+#. Exif & Tiff tags / 0xa40c (SubjectDistanceRange)
+msgid "distant"
+msgstr "DESC_distant"
+
+#. IPTC tags / 0x024b (Object Cycle)
+msgid "evening"
+msgstr "DESC_evening"
+
+#. Exif & Tiff tags / 0xa20b (exif)
+msgid "exif"
+msgstr "DESC_exif"
+
+#. XMP tags / exif:ApertureValue
+msgid "exif:ApertureValue"
+msgstr "DESC_exif:ApertureValue"
+
+#. XMP tags / exif:BrightnessValue
+msgid "exif:BrightnessValue"
+msgstr "DESC_exif:BrightnessValue"
+
+#. XMP tags / exif:CFAPattern
+msgid "exif:CFAPattern"
+msgstr "DESC_exif:CFAPattern"
+
+#. XMP tags / exif:ColorSpace
+msgid "exif:ColorSpace"
+msgstr "DESC_exif:ColorSpace"
+
+#. XMP tags / exif:ComponentsConfiguration
+msgid "exif:ComponentsConfiguration"
+msgstr "DESC_exif:ComponentsConfiguration"
+
+#. XMP tags / exif:CompressedBitsPerPixel
+msgid "exif:CompressedBitsPerPixel"
+msgstr "DESC_exif:CompressedBitsPerPixel"
+
+#. XMP tags / exif:Contrast
+msgid "exif:Contrast"
+msgstr "DESC_exif:Contrast"
+
+#. XMP tags / exif:CustomRendered
+msgid "exif:CustomRendered"
+msgstr "DESC_exif:CustomRendered"
+
+#. XMP tags / exif:DateTimeDigitized
+msgid "exif:DateTimeDigitized"
+msgstr "DESC_exif:DateTimeDigitized"
+
+#. XMP tags / exif:DateTimeOriginal
+msgid "exif:DateTimeOriginal"
+msgstr "DESC_exif:DateTimeOriginal"
+
+#. XMP tags / exif:DeviceSettingDescription
+msgid "exif:DeviceSettingDescription"
+msgstr "DESC_exif:DeviceSettingDescription"
+
+#. XMP tags / exif:DigitalZoomRatio
+msgid "exif:DigitalZoomRatio"
+msgstr "DESC_exif:DigitalZoomRatio"
+
+#. XMP tags / exif:ExifVersion
+msgid "exif:ExifVersion"
+msgstr "DESC_exif:ExifVersion"
+
+#. XMP tags / exif:ExposureBiasValue
+msgid "exif:ExposureBiasValue"
+msgstr "DESC_exif:ExposureBiasValue"
+
+#. XMP tags / exif:ExposureIndex
+msgid "exif:ExposureIndex"
+msgstr "DESC_exif:ExposureIndex"
+
+#. XMP tags / exif:ExposureMode
+msgid "exif:ExposureMode"
+msgstr "DESC_exif:ExposureMode"
+
+#. XMP tags / exif:ExposureProgram
+msgid "exif:ExposureProgram"
+msgstr "DESC_exif:ExposureProgram"
+
+#. XMP tags / exif:ExposureTime
+msgid "exif:ExposureTime"
+msgstr "DESC_exif:ExposureTime"
+
+#. XMP tags / exif:FNumber
+msgid "exif:FNumber"
+msgstr "DESC_exif:FNumber"
+
+#. XMP tags / exif:FileSource
+msgid "exif:FileSource"
+msgstr "DESC_exif:FileSource"
+
+#. XMP tags / exif:Flash
+msgid "exif:Flash"
+msgstr "DESC_exif:Flash"
+
+#. XMP tags / exif:FlashEnergy
+msgid "exif:FlashEnergy"
+msgstr "DESC_exif:FlashEnergy"
+
+#. XMP tags / exif:FlashpixVersion
+msgid "exif:FlashpixVersion"
+msgstr "DESC_exif:FlashpixVersion"
+
+#. XMP tags / exif:FocalLength
+msgid "exif:FocalLength"
+msgstr "DESC_exif:FocalLength"
+
+#. XMP tags / exif:FocalLengthIn35mmFilm
+msgid "exif:FocalLengthIn35mmFilm"
+msgstr "DESC_exif:FocalLengthIn35mmFilm"
+
+#. XMP tags / exif:FocalPlaneResolutionUnit
+msgid "exif:FocalPlaneResolutionUnit"
+msgstr "DESC_exif:FocalPlaneResolutionUnit"
+
+#. XMP tags / exif:FocalPlaneXResolution
+msgid "exif:FocalPlaneXResolution"
+msgstr "DESC_exif:FocalPlaneXResolution"
+
+#. XMP tags / exif:FocalPlaneYResolution
+msgid "exif:FocalPlaneYResolution"
+msgstr "DESC_exif:FocalPlaneYResolution"
+
+#. XMP tags / exif:GPSAltitude
+msgid "exif:GPSAltitude"
+msgstr "DESC_exif:GPSAltitude"
+
+#. XMP tags / exif:GPSAltitudeRef
+msgid "exif:GPSAltitudeRef"
+msgstr "DESC_exif:GPSAltitudeRef"
+
+#. XMP tags / exif:GPSAreaInformation
+msgid "exif:GPSAreaInformation"
+msgstr "DESC_exif:GPSAreaInformation"
+
+#. XMP tags / exif:GPSDOP
+msgid "exif:GPSDOP"
+msgstr "DESC_exif:GPSDOP"
+
+#. XMP tags / exif:GPSDestBearing
+msgid "exif:GPSDestBearing"
+msgstr "DESC_exif:GPSDestBearing"
+
+#. XMP tags / exif:GPSDestBearingRef
+msgid "exif:GPSDestBearingRef"
+msgstr "DESC_exif:GPSDestBearingRef"
+
+#. XMP tags / exif:GPSDestDistance
+msgid "exif:GPSDestDistance"
+msgstr "DESC_exif:GPSDestDistance"
+
+#. XMP tags / exif:GPSDestDistanceRef
+msgid "exif:GPSDestDistanceRef"
+msgstr "DESC_exif:GPSDestDistanceRef"
+
+#. XMP tags / exif:GPSDestLatitude
+msgid "exif:GPSDestLatitude"
+msgstr "DESC_exif:GPSDestLatitude"
+
+#. XMP tags / exif:GPSDestLongitude
+msgid "exif:GPSDestLongitude"
+msgstr "DESC_exif:GPSDestLongitude"
+
+#. XMP tags / exif:GPSDifferential
+msgid "exif:GPSDifferential"
+msgstr "DESC_exif:GPSDifferential"
+
+#. XMP tags / exif:GPSImgDirection
+msgid "exif:GPSImgDirection"
+msgstr "DESC_exif:GPSImgDirection"
+
+#. XMP tags / exif:GPSImgDirectionRef
+msgid "exif:GPSImgDirectionRef"
+msgstr "DESC_exif:GPSImgDirectionRef"
+
+#. XMP tags / exif:GPSLatitude
+msgid "exif:GPSLatitude"
+msgstr "DESC_exif:GPSLatitude"
+
+#. XMP tags / exif:GPSLongitude
+msgid "exif:GPSLongitude"
+msgstr "DESC_exif:GPSLongitude"
+
+#. XMP tags / exif:GPSMapDatum
+msgid "exif:GPSMapDatum"
+msgstr "DESC_exif:GPSMapDatum"
+
+#. XMP tags / exif:GPSMeasureMode
+msgid "exif:GPSMeasureMode"
+msgstr "DESC_exif:GPSMeasureMode"
+
+#. XMP tags / exif:GPSProcessingMethod
+msgid "exif:GPSProcessingMethod"
+msgstr "DESC_exif:GPSProcessingMethod"
+
+#. XMP tags / exif:GPSSatellites
+msgid "exif:GPSSatellites"
+msgstr "DESC_exif:GPSSatellites"
+
+#. XMP tags / exif:GPSSpeed
+msgid "exif:GPSSpeed"
+msgstr "DESC_exif:GPSSpeed"
+
+#. XMP tags / exif:GPSSpeedRef
+msgid "exif:GPSSpeedRef"
+msgstr "DESC_exif:GPSSpeedRef"
+
+#. XMP tags / exif:GPSStatus
+msgid "exif:GPSStatus"
+msgstr "DESC_exif:GPSStatus"
+
+#. XMP tags / exif:GPSTimeStamp
+msgid "exif:GPSTimeStamp"
+msgstr "DESC_exif:GPSTimeStamp"
+
+#. XMP tags / exif:GPSTrack
+msgid "exif:GPSTrack"
+msgstr "DESC_exif:GPSTrack"
+
+#. XMP tags / exif:GPSTrackRef
+msgid "exif:GPSTrackRef"
+msgstr "DESC_exif:GPSTrackRef"
+
+#. XMP tags / exif:GPSVersionID
+msgid "exif:GPSVersionID"
+msgstr "DESC_exif:GPSVersionID"
+
+#. XMP tags / exif:GainControl
+msgid "exif:GainControl"
+msgstr "DESC_exif:GainControl"
+
+#. XMP tags / exif:ISOSpeedRatings
+msgid "exif:ISOSpeedRatings"
+msgstr "DESC_exif:ISOSpeedRatings"
+
+#. XMP tags / exif:ImageUniqueID
+msgid "exif:ImageUniqueID"
+msgstr "DESC_exif:ImageUniqueID"
+
+#. XMP tags / exif:LightSource
+msgid "exif:LightSource"
+msgstr "DESC_exif:LightSource"
+
+#. XMP tags / exif:MaxApertureValue
+msgid "exif:MaxApertureValue"
+msgstr "DESC_exif:MaxApertureValue"
+
+#. XMP tags / exif:MeteringMode
+msgid "exif:MeteringMode"
+msgstr "DESC_exif:MeteringMode"
+
+#. XMP tags / exif:OECF
+msgid "exif:OECF"
+msgstr "DESC_exif:OECF"
+
+#. XMP tags / exif:PixelXDimension
+msgid "exif:PixelXDimension"
+msgstr "DESC_exif:PixelXDimension"
+
+#. XMP tags / exif:PixelYDimension
+msgid "exif:PixelYDimension"
+msgstr "DESC_exif:PixelYDimension"
+
+#. XMP tags / exif:RelatedSoundFile
+msgid "exif:RelatedSoundFile"
+msgstr "DESC_exif:RelatedSoundFile"
+
+#. XMP tags / exif:Saturation
+msgid "exif:Saturation"
+msgstr "DESC_exif:Saturation"
+
+#. XMP tags / exif:SceneCaptureType
+msgid "exif:SceneCaptureType"
+msgstr "DESC_exif:SceneCaptureType"
+
+#. XMP tags / exif:SceneType
+msgid "exif:SceneType"
+msgstr "DESC_exif:SceneType"
+
+#. XMP tags / exif:SensingMethod
+msgid "exif:SensingMethod"
+msgstr "DESC_exif:SensingMethod"
+
+#. XMP tags / exif:Sharpness
+msgid "exif:Sharpness"
+msgstr "DESC_exif:Sharpness"
+
+#. XMP tags / exif:ShutterSpeedValue
+msgid "exif:ShutterSpeedValue"
+msgstr "DESC_exif:ShutterSpeedValue"
+
+#. XMP tags / exif:SpatialFrequencyResponse
+msgid "exif:SpatialFrequencyResponse"
+msgstr "DESC_exif:SpatialFrequencyResponse"
+
+#. XMP tags / exif:SpectralSensitivity
+msgid "exif:SpectralSensitivity"
+msgstr "DESC_exif:SpectralSensitivity"
+
+#. XMP tags / exif:SubjectArea
+msgid "exif:SubjectArea"
+msgstr "DESC_exif:SubjectArea"
+
+#. XMP tags / exif:SubjectDistance
+msgid "exif:SubjectDistance"
+msgstr "DESC_exif:SubjectDistance"
+
+#. XMP tags / exif:SubjectDistanceRange
+msgid "exif:SubjectDistanceRange"
+msgstr "DESC_exif:SubjectDistanceRange"
+
+#. XMP tags / exif:SubjectLocation
+msgid "exif:SubjectLocation"
+msgstr "DESC_exif:SubjectLocation"
+
+#. XMP tags / exif:UserComment
+msgid "exif:UserComment"
+msgstr "DESC_exif:UserComment"
+
+#. XMP tags / exif:Balance
+msgid "exif:Balance"
+msgstr "DESC_exif:Balance"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "exterior view"
+msgstr "DESC_exterior view"
+
+#. Exif & Tiff tags / 0xa300 (FileSource)
+msgid "film scanner"
+msgstr "DESC_film scanner"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "fine weather"
+msgstr "DESC_fine weather"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "fired"
+msgstr "DESC_fired"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "fired, red-eye reduction"
+msgstr "DESC_fired, red-eye reduction"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "fired, red-eye reduction, return detected"
+msgstr "DESC_fired, red-eye reduction, return detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "fired, red-eye reduction, return not detected"
+msgstr "DESC_fired, red-eye reduction, return not detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "fired, return detected"
+msgstr "DESC_fired, return detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "fired, return not detected"
+msgstr "DESC_fired, return not detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "flash"
+msgstr "DESC_flash"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "flash fired"
+msgstr "DESC_flash fired"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "flash function"
+msgstr "DESC_flash function"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "flash mode"
+msgstr "DESC_flash mode"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "fluorescent"
+msgstr "DESC_fluorescent"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "full-length"
+msgstr "DESC_full-length"
+
+#. Exif & Tiff tags / 0x00ff (OldSubfileType)
+#. Exif & Tiff tags / 0x00fe (SubfileType)
+msgid "full-resolution image"
+msgstr "DESC_full-resolution image"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "general view"
+msgstr "DESC_general view"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "group"
+msgstr "DESC_group"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "half-length"
+msgstr "DESC_half-length"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "headshot"
+msgstr "DESC_headshot"
+
+#. Exif & Tiff tags / 0xa40a (Sharpness)
+#. XMP tags / photoshop:Urgency
+#. Exif & Tiff tags / 0xa408 (Contrast)
+#. Exif & Tiff tags / 0xa409 (Saturation)
+#. IPTC tags / 0x013c (Envelope Priority)
+#. IPTC tags / 0x020a (Urgency)
+msgid "high"
+msgstr "DESC_high"
+
+#. Exif & Tiff tags / 0xa407 (GainControl)
+msgid "high gain down"
+msgstr "DESC_high gain down"
+
+#. Exif & Tiff tags / 0xa407 (GainControl)
+msgid "high gain up"
+msgstr "DESC_high gain up"
+
+#. XMP tags / photoshop:Urgency
+#. IPTC tags / 0x020a (Urgency)
+#. IPTC tags / 0x013c (Envelope Priority)
+msgid "high+"
+msgstr "DESC_high+"
+
+#. IPTC tags / 0x013c (Envelope Priority)
+#. IPTC tags / 0x020a (Urgency)
+#. XMP tags / photoshop:Urgency
+msgid "high++"
+msgstr "DESC_high++"
+
+#. IPTC tags / 0x013c (Envelope Priority)
+#. XMP tags / photoshop:Urgency
+#. IPTC tags / 0x020a (Urgency)
+msgid "high+++"
+msgstr "DESC_high+++"
+
+#. Exif & Tiff tags / 0x013d (Predictor)
+msgid "horizontal differencing"
+msgstr "DESC_horizontal differencing"
+
+#. Exif & Tiff tags / 0xa210 (FocalPlaneResolutionUnit)
+#. XMP tags / crs:CropUnits
+#. Exif & Tiff tags / 0x0128 (ResolutionUnit)
+msgid "inches"
+msgstr "DESC_inches"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "interior view"
+msgstr "DESC_interior view"
+
+#. IPTC tags / 0x0283 (Image Orientation)
+#. Exif & Tiff tags / 0xa406 (SceneCaptureType)
+msgid "landscape"
+msgstr "DESC_landscape"
+
+#. Exif & Tiff tags / 0x8822 (ExposureProgram)
+msgid "landscape mode"
+msgstr "DESC_landscape mode"
+
+#. XMP tags / crs:ToneCurveName
+msgid "linear"
+msgstr "DESC_linear"
+
+#. Exif & Tiff tags / 0xa409 (Saturation)
+#. Exif & Tiff tags / 0xa408 (Contrast)
+#. XMP tags / photoshop:Urgency
+#. Exif & Tiff tags / 0xa40a (Sharpness)
+#. IPTC tags / 0x013c (Envelope Priority)
+#. IPTC tags / 0x020a (Urgency)
+msgid "low"
+msgstr "DESC_low"
+
+#. Exif & Tiff tags / 0xa407 (GainControl)
+msgid "low gain down"
+msgstr "DESC_low gain down"
+
+#. Exif & Tiff tags / 0xa407 (GainControl)
+msgid "low gain up"
+msgstr "DESC_low gain up"
+
+#. IPTC tags / 0x020a (Urgency)
+#. IPTC tags / 0x013c (Envelope Priority)
+#. XMP tags / photoshop:Urgency
+msgid "low+"
+msgstr "DESC_low+"
+
+#. XMP tags / photoshop:Urgency
+#. IPTC tags / 0x013c (Envelope Priority)
+#. IPTC tags / 0x020a (Urgency)
+msgid "low++"
+msgstr "DESC_low++"
+
+#. Exif & Tiff tags / 0xa40c (SubjectDistanceRange)
+msgid "macro"
+msgstr "DESC_macro"
+
+#. Exif & Tiff tags / 0x8822 (ExposureProgram)
+msgid "manual"
+msgstr "DESC_manual"
+
+#. Exif & Tiff tags / 0xa402 (ExposureMode)
+msgid "manual exposure"
+msgstr "DESC_manual exposure"
+
+#. Exif & Tiff tags / 0xa403 (Balance)
+msgid "manual white balance"
+msgstr "DESC_manual white balance"
+
+#. Exif & Tiff tags / 0xa210 (FocalPlaneResolutionUnit)
+msgid "micrometers"
+msgstr "DESC_micrometers"
+
+#. Exif & Tiff tags / 0xa210 (FocalPlaneResolutionUnit)
+msgid "millimeters"
+msgstr "DESC_millimeters"
+
+#. IPTC tags / 0x024b (Object Cycle)
+msgid "morning"
+msgstr "DESC_morning"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "movie scene"
+msgstr "DESC_movie scene"
+
+#. Exif & Tiff tags / 0x9207 (MeteringMode)
+msgid "multispot"
+msgstr "DESC_multispot"
+
+#. XMP tags / Iptc4xmpCore:Scene
+#. Exif & Tiff tags / 0xa406 (SceneCaptureType)
+msgid "night scene"
+msgstr "DESC_night scene"
+
+#. Exif & Tiff tags / 0x0107 (Thresholding)
+msgid "no dithering or halftoning"
+msgstr "DESC_no dithering or halftoning"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "no flash"
+msgstr "DESC_no flash"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "no flash function"
+msgstr "DESC_no flash function"
+
+#. IPTC tags / 0x020a (Urgency)
+#. Exif & Tiff tags / 0xa210 (FocalPlaneResolutionUnit)
+#. IPTC tags / 0x013c (Envelope Priority)
+#. XMP tags / photoshop:Urgency
+#. IPTC tags / 0x013c (Envelope Priority)
+#. Exif & Tiff tags / 0x0128 (ResolutionUnit)
+#. Exif & Tiff tags / 0x013d (Predictor)
+#. Exif & Tiff tags / 0xa407 (GainControl)
+#. XMP tags / photoshop:Urgency
+#. IPTC tags / 0x020a (Urgency)
+msgid "none"
+msgstr "DESC_none"
+
+#. Exif & Tiff tags / 0xa409 (Saturation)
+#. Exif & Tiff tags / 0xa408 (Contrast)
+#. IPTC tags / 0x020a (Urgency)
+#. IPTC tags / 0x013c (Envelope Priority)
+#. Exif & Tiff tags / 0xa40a (Sharpness)
+#. XMP tags / photoshop:Urgency
+msgid "normal"
+msgstr "DESC_normal"
+
+#. Exif & Tiff tags / 0xa401 (CustomRendered)
+msgid "normal process"
+msgstr "DESC_normal process"
+
+#. Exif & Tiff tags / 0x8822 (ExposureProgram)
+msgid "normal program"
+msgstr "DESC_normal program"
+
+#. Exif & Tiff tags / 0xa217 (SensingMethod)
+#. Exif & Tiff tags / 0x8822 (ExposureProgram)
+msgid "not defined"
+msgstr "DESC_not defined"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "off, did not fire"
+msgstr "DESC_off, did not fire"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "off, did not fire, return not detected"
+msgstr "DESC_off, did not fire, return not detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "off, no flash function"
+msgstr "DESC_off, no flash function"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "off, red-eye reduction"
+msgstr "DESC_off, red-eye reduction"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "off-beat"
+msgstr "DESC_off-beat"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "on, did not fire"
+msgstr "DESC_on, did not fire"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "on, fired"
+msgstr "DESC_on, fired"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "on, red-eye reduction"
+msgstr "DESC_on, red-eye reduction"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "on, red-eye reduction, return detected"
+msgstr "DESC_on, red-eye reduction, return detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "on, red-eye reduction, return not detected"
+msgstr "DESC_on, red-eye reduction, return not detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "on, return detected"
+msgstr "DESC_on, return detected"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "on, return not detected"
+msgstr "DESC_on, return not detected"
+
+#. Exif & Tiff tags / 0xa217 (SensingMethod)
+msgid "one-chip color area sensor"
+msgstr "DESC_one-chip color area sensor"
+
+#. Exif & Tiff tags / 0x0107 (Thresholding)
+msgid "ordered dither or halftone"
+msgstr "DESC_ordered dither or halftone"
+
+#. Exif & Tiff tags / 0x9207 (MeteringMode)
+msgid "other"
+msgstr "DESC_other"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "other light source"
+msgstr "DESC_other light source"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "panoramic view"
+msgstr "DESC_panoramic view"
+
+#. Exif & Tiff tags / 0x9207 (MeteringMode)
+msgid "partial"
+msgstr "DESC_partial"
+
+#. Exif & Tiff tags / 0x9207 (MeteringMode)
+msgid "pattern"
+msgstr "DESC_pattern"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "performing"
+msgstr "DESC_performing"
+
+#. XMP tags / photoshop:AuthorsPosition
+msgid "photoshop:AuthorsPosition"
+msgstr "DESC_photoshop:AuthorsPosition"
+
+#. XMP tags / photoshop:CaptionWriter
+msgid "photoshop:CaptionWriter"
+msgstr "DESC_photoshop:CaptionWriter"
+
+#. XMP tags / photoshop:Category
+msgid "photoshop:Category"
+msgstr "DESC_photoshop:Category"
+
+#. XMP tags / photoshop:City
+msgid "photoshop:City"
+msgstr "DESC_photoshop:City"
+
+#. XMP tags / photoshop:Country
+msgid "photoshop:Country"
+msgstr "DESC_photoshop:Country"
+
+#. XMP tags / photoshop:Credit
+msgid "photoshop:Credit"
+msgstr "DESC_photoshop:Credit"
+
+#. XMP tags / photoshop:DateCreated
+msgid "photoshop:DateCreated"
+msgstr "DESC_photoshop:DateCreated"
+
+#. XMP tags / photoshop:Headline
+msgid "photoshop:Headline"
+msgstr "DESC_photoshop:Headline"
+
+#. XMP tags / photoshop:Instructions
+msgid "photoshop:Instructions"
+msgstr "DESC_photoshop:Instructions"
+
+#. XMP tags / photoshop:Source
+msgid "photoshop:Source"
+msgstr "DESC_photoshop:Source"
+
+#. XMP tags / photoshop:State
+msgid "photoshop:State"
+msgstr "DESC_photoshop:State"
+
+#. XMP tags / photoshop:SupplementalCategories
+msgid "photoshop:SupplementalCategories"
+msgstr "DESC_photoshop:SupplementalCategories"
+
+#. XMP tags / photoshop:TransmissionReference
+msgid "photoshop:TransmissionReference"
+msgstr "DESC_photoshop:TransmissionReference"
+
+#. XMP tags / photoshop:Urgency
+msgid "photoshop:Urgency"
+msgstr "DESC_photoshop:Urgency"
+
+#. XMP tags / crs:CropUnits
+msgid "pixels"
+msgstr "DESC_pixels"
+
+#. Exif & Tiff tags / 0x011c (PlanarConfiguration)
+msgid "planar"
+msgstr "DESC_planar"
+
+#. IPTC tags / 0x0283 (Image Orientation)
+#. Exif & Tiff tags / 0xa406 (SceneCaptureType)
+msgid "portrait"
+msgstr "DESC_portrait"
+
+#. Exif & Tiff tags / 0x8822 (ExposureProgram)
+msgid "portrait mode"
+msgstr "DESC_portrait mode"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "posing"
+msgstr "DESC_posing"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "profile"
+msgstr "DESC_profile"
+
+#. Exif & Tiff tags / 0x0107 (Thresholding)
+msgid "randomized dither"
+msgstr "DESC_randomized dither"
+
+#. XMP tags / rdf:about
+msgid "rdf:about"
+msgstr "DESC_rdf:about"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "rear view"
+msgstr "DESC_rear view"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "red-eye mode"
+msgstr "DESC_red-eye mode"
+
+#. Exif & Tiff tags / 0x00ff (OldSubfileType)
+#. Exif & Tiff tags / 0x00fe (SubfileType)
+msgid "reduced-resolution image"
+msgstr "DESC_reduced-resolution image"
+
+#. Exif & Tiff tags / 0xa300 (FileSource)
+msgid "reflection print scanner"
+msgstr "DESC_reflection print scanner"
+
+#. Exif & Tiff tags / 0x9212 (SecurityClassification)
+msgid "restricted"
+msgstr "DESC_restricted"
+
+#. Exif & Tiff tags / 0x9209 (flash)
+msgid "returned light"
+msgstr "DESC_returned light"
+
+#. Exif & Tiff tags / 0xa001 (ColorSpace)
+msgid "sRGB"
+msgstr "DESC_sRGB"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "satellite"
+msgstr "DESC_satellite"
+
+#. Exif & Tiff tags / 0x9212 (SecurityClassification)
+msgid "secret"
+msgstr "DESC_secret"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "shade"
+msgstr "DESC_shade"
+
+#. Exif & Tiff tags / 0x8822 (ExposureProgram)
+msgid "shutter priority"
+msgstr "DESC_shutter priority"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "single"
+msgstr "DESC_single"
+
+#. Exif & Tiff tags / 0x00ff (OldSubfileType)
+#. Exif & Tiff tags / 0x00fe (SubfileType)
+msgid "single page of multi-page image"
+msgstr "DESC_single page of multi-page image"
+
+#. Exif & Tiff tags / 0x00fe (SubfileType)
+msgid "single page of multi-page reduced-resolution image"
+msgstr "DESC_single page of multi-page reduced-resolution image"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "smc PENTAX-DA* 16-50mm F2.8 ED AL [IF] SDM (SDM not used)"
+msgstr "DESC_smc PENTAX-DA* 16-50mm F2.8 ED AL [IF] SDM (SDM not used)"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "smc PENTAX-DA* 200mm F2.8 ED [IF] SDM (SDM not used)"
+msgstr "DESC_smc PENTAX-DA* 200mm F2.8 ED [IF] SDM (SDM not used)"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "smc PENTAX-DA* 300 mm F4ED [IF] SDM (SDM not used)"
+msgstr "DESC_smc PENTAX-DA* 300 mm F4ED [IF] SDM (SDM not used)"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "smc PENTAX-DA* 50-135mm F2.8 ED [IF] SDM (SDM not used)"
+msgstr "DESC_smc PENTAX-DA* 50-135mm F2.8 ED [IF] SDM (SDM not used)"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "smc PENTAX-F 35-105mm F4-5.6 or SIGMA or Tokina"
+msgstr "DESC_smc PENTAX-F 35-105mm F4-5.6 or SIGMA or Tokina"
+
+#. Pentax specific tags / 0x003f (LensType)
+msgid "smc PENTAX-F MACRO 50mm F2.8 or Sigma 50mm F2,8 MACRO"
+msgstr "DESC_smc PENTAX-F MACRO 50mm F2.8 or Sigma 50mm F2,8 MACRO"
+
+#. Exif & Tiff tags / 0x9207 (MeteringMode)
+msgid "spot"
+msgstr "DESC_spot"
+
+#. IPTC tags / 0x0283 (Image Orientation)
+msgid "square"
+msgstr "DESC_square"
+
+#. Exif & Tiff tags / 0xa406 (SceneCaptureType)
+msgid "standard"
+msgstr "DESC_standard"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "standard light A"
+msgstr "DESC_standard light A"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "standard light B"
+msgstr "DESC_standard light B"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "standard light C"
+msgstr "DESC_standard light C"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "symbolic"
+msgstr "DESC_symbolic"
+
+#. Exif & Tiff tags / 0xa217 (SensingMethod)
+msgid "three-chip color area sensor"
+msgstr "DESC_three-chip color area sensor"
+
+#. XMP tags / tiff:Artist
+msgid "tiff:Artist"
+msgstr "DESC_tiff:Artist"
+
+#. XMP tags / tiff:BitsPerSample
+msgid "tiff:BitsPerSample"
+msgstr "DESC_tiff:BitsPerSample"
+
+#. XMP tags / tiff:Compression
+msgid "tiff:Compression"
+msgstr "DESC_tiff:Compression"
+
+#. XMP tags / tiff:Copyright
+msgid "tiff:Copyright"
+msgstr "DESC_tiff:Copyright"
+
+#. XMP tags / tiff:DateTime
+msgid "tiff:DateTime"
+msgstr "DESC_tiff:DateTime"
+
+#. XMP tags / tiff:ImageDescription
+msgid "tiff:ImageDescription"
+msgstr "DESC_tiff:ImageDescription"
+
+#. XMP tags / tiff:ImageLength
+msgid "tiff:ImageLength"
+msgstr "DESC_tiff:ImageLength"
+
+#. XMP tags / tiff:ImageWidth
+msgid "tiff:ImageWidth"
+msgstr "DESC_tiff:ImageWidth"
+
+#. XMP tags / tiff:Make
+msgid "tiff:Make"
+msgstr "DESC_tiff:Make"
+
+#. XMP tags / tiff:Model
+msgid "tiff:Model"
+msgstr "DESC_tiff:Model"
+
+#. XMP tags / tiff:Orientation
+msgid "tiff:Orientation"
+msgstr "DESC_tiff:Orientation"
+
+#. XMP tags / tiff:PhotometricInterpretation
+msgid "tiff:PhotometricInterpretation"
+msgstr "DESC_tiff:PhotometricInterpretation"
+
+#. XMP tags / tiff:PlanarConfiguration
+msgid "tiff:PlanarConfiguration"
+msgstr "DESC_tiff:PlanarConfiguration"
+
+#. XMP tags / tiff:PrimaryChromaticities
+msgid "tiff:PrimaryChromaticities"
+msgstr "DESC_tiff:PrimaryChromaticities"
+
+#. XMP tags / tiff:ReferenceBlackWhite
+msgid "tiff:ReferenceBlackWhite"
+msgstr "DESC_tiff:ReferenceBlackWhite"
+
+#. XMP tags / tiff:ResolutionUnit
+msgid "tiff:ResolutionUnit"
+msgstr "DESC_tiff:ResolutionUnit"
+
+#. XMP tags / tiff:SamplesPerPixel
+msgid "tiff:SamplesPerPixel"
+msgstr "DESC_tiff:SamplesPerPixel"
+
+#. XMP tags / tiff:Software
+msgid "tiff:Software"
+msgstr "DESC_tiff:Software"
+
+#. XMP tags / tiff:TransferFunction
+msgid "tiff:TransferFunction"
+msgstr "DESC_tiff:TransferFunction"
+
+#. XMP tags / tiff:WhitePoint
+msgid "tiff:WhitePoint"
+msgstr "DESC_tiff:WhitePoint"
+
+#. XMP tags / tiff:XResolution
+msgid "tiff:XResolution"
+msgstr "DESC_tiff:XResolution"
+
+#. XMP tags / tiff:YCbCrCoefficients
+msgid "tiff:YCbCrCoefficients"
+msgstr "DESC_tiff:YCbCrCoefficients"
+
+#. XMP tags / tiff:YCbCrPositioning
+msgid "tiff:YCbCrPositioning"
+msgstr "DESC_tiff:YCbCrPositioning"
+
+#. XMP tags / tiff:YCbCrSubSampling
+msgid "tiff:YCbCrSubSampling"
+msgstr "DESC_tiff:YCbCrSubSampling"
+
+#. XMP tags / tiff:YResolution
+msgid "tiff:YResolution"
+msgstr "DESC_tiff:YResolution"
+
+#. Exif & Tiff tags / 0x9212 (SecurityClassification)
+msgid "top secret"
+msgstr "DESC_top secret"
+
+#. Exif & Tiff tags / 0x00fe (SubfileType)
+msgid "transparency mask"
+msgstr "DESC_transparency mask"
+
+#. Exif & Tiff tags / 0x00fe (SubfileType)
+msgid "transparency mask of multi-page image"
+msgstr "DESC_transparency mask of multi-page image"
+
+#. Exif & Tiff tags / 0x00fe (SubfileType)
+msgid "transparency mask of reduced-resolution image"
+msgstr "DESC_transparency mask of reduced-resolution image"
+
+#. Exif & Tiff tags / 0x00fe (SubfileType)
+msgid "transparency mask of reduced-resolution multi-page image"
+msgstr "DESC_transparency mask of reduced-resolution multi-page image"
+
+#. Exif & Tiff tags / 0xa217 (SensingMethod)
+msgid "trilinear sensor"
+msgstr "DESC_trilinear sensor"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "tungsten (incandescent light)"
+msgstr "DESC_tungsten (incandescent light)"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "two"
+msgstr "DESC_two"
+
+#. Exif & Tiff tags / 0xa217 (SensingMethod)
+msgid "two-chip color area sensor"
+msgstr "DESC_two-chip color area sensor"
+
+#. Exif & Tiff tags / 0x9212 (SecurityClassification)
+msgid "unclassified"
+msgstr "DESC_unclassified"
+
+#. Exif & Tiff tags / 0x0103 (Compression)
+msgid "uncompressed"
+msgstr "DESC_uncompressed"
+
+#. XMP tags / Iptc4xmpCore:Scene
+msgid "under-water"
+msgstr "DESC_under-water"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+#. Exif & Tiff tags / 0xa40c (SubjectDistanceRange)
+#. Exif & Tiff tags / 0x9207 (MeteringMode)
+msgid "unknown"
+msgstr "DESC_unknown"
+
+#. Exif & Tiff tags / 0x9208 (LightSource)
+msgid "white fluorescent (WW 3200 - 3700K)"
+msgstr "DESC_white fluorescent (WW 3200 - 3700K)"
+
+#. XMP tags / x:xmptk
+msgid "x:xmptk"
+msgstr "DESC_x:xmptk"
+
+#. XMP tags / xmlns:Iptc4xmpCore
+msgid "xmlns:Iptc4xmpCore"
+msgstr "DESC_xmlns:Iptc4xmpCore"
+
+#. XMP tags / xmlns:aux
+msgid "xmlns:aux"
+msgstr "DESC_xmlns:aux"
+
+#. XMP tags / xmlns:crs
+msgid "xmlns:crs"
+msgstr "DESC_xmlns:crs"
+
+#. XMP tags / xmlns:dc
+msgid "xmlns:dc"
+msgstr "DESC_xmlns:dc"
+
+#. XMP tags / xmlns:exif
+msgid "xmlns:exif"
+msgstr "DESC_xmlns:exif"
+
+#. XMP tags / xmlns:photoshop
+msgid "xmlns:photoshop"
+msgstr "DESC_xmlns:photoshop"
+
+#. XMP tags / xmlns:rdf
+msgid "xmlns:rdf"
+msgstr "DESC_xmlns:rdf"
+
+#. XMP tags / xmlns:tiff
+msgid "xmlns:tiff"
+msgstr "DESC_xmlns:tiff"
+
+#. XMP tags / xmlns:x
+msgid "xmlns:x"
+msgstr "DESC_xmlns:x"
+
+#. XMP tags / xmlns:xmp
+msgid "xmlns:xmp"
+msgstr "DESC_xmlns:xmp"
+
+#. XMP tags / xmlns:xmpBJ
+msgid "xmlns:xmpBJ"
+msgstr "DESC_xmlns:xmpBJ"
+
+#. XMP tags / xmlns:xmpDM
+msgid "xmlns:xmpDM"
+msgstr "DESC_xmlns:xmpDM"
+
+#. XMP tags / xmlns:xmpMM
+msgid "xmlns:xmpMM"
+msgstr "DESC_xmlns:xmpMM"
+
+#. XMP tags / xmlns:xmpRights
+msgid "xmlns:xmpRights"
+msgstr "DESC_xmlns:xmpRights"
+
+#. XMP tags / xmlns:xmpTPg
+msgid "xmlns:xmpTPg"
+msgstr "DESC_xmlns:xmpTPg"
+
+#. XMP tags / xmp:Advisory
+msgid "xmp:Advisory"
+msgstr "DESC_xmp:Advisory"
+
+#. XMP tags / xmp:BaseURL
+msgid "xmp:BaseURL"
+msgstr "DESC_xmp:BaseURL"
+
+#. XMP tags / xmp:CreateDate
+msgid "xmp:CreateDate"
+msgstr "DESC_xmp:CreateDate"
+
+#. XMP tags / xmp:CreatorTool
+msgid "xmp:CreatorTool"
+msgstr "DESC_xmp:CreatorTool"
+
+#. XMP tags / xmp:Identifier
+msgid "xmp:Identifier"
+msgstr "DESC_xmp:Identifier"
+
+#. XMP tags / xmp:Label
+msgid "xmp:Label"
+msgstr "DESC_xmp:Label"
+
+#. XMP tags / xmp:MetadataDate
+msgid "xmp:MetadataDate"
+msgstr "DESC_xmp:MetadataDate"
+
+#. XMP tags / xmp:ModifyDate
+msgid "xmp:ModifyDate"
+msgstr "DESC_xmp:ModifyDate"
+
+#. XMP tags / xmp:Nickname
+msgid "xmp:Nickname"
+msgstr "DESC_xmp:Nickname"
+
+#. XMP tags / xmp:Rating
+msgid "xmp:Rating"
+msgstr "DESC_xmp:Rating"
+
+#. XMP tags / xmp:Thumbnails
+msgid "xmp:Thumbnails"
+msgstr "DESC_xmp:Thumbnails"
+
+#. XMP tags / xmpBJ:JobRef
+msgid "xmpBJ:JobRef"
+msgstr "DESC_xmpBJ:JobRef"
+
+#. XMP tags / xmpMM:DerivedFrom
+msgid "xmpMM:DerivedFrom"
+msgstr "DESC_xmpMM:DerivedFrom"
+
+#. XMP tags / xmpMM:DocumentID
+msgid "xmpMM:DocumentID"
+msgstr "DESC_xmpMM:DocumentID"
+
+#. XMP tags / xmpMM:History
+msgid "xmpMM:History"
+msgstr "DESC_xmpMM:History"
+
+#. XMP tags / xmpMM:InstanceID
+msgid "xmpMM:InstanceID"
+msgstr "DESC_xmpMM:InstanceID"
+
+#. XMP tags / xmpMM:LastURL
+msgid "xmpMM:LastURL"
+msgstr "DESC_xmpMM:LastURL"
+
+#. XMP tags / xmpMM:ManageTo
+msgid "xmpMM:ManageTo"
+msgstr "DESC_xmpMM:ManageTo"
+
+#. XMP tags / xmpMM:ManageUI
+msgid "xmpMM:ManageUI"
+msgstr "DESC_xmpMM:ManageUI"
+
+#. XMP tags / xmpMM:ManagedFrom
+msgid "xmpMM:ManagedFrom"
+msgstr "DESC_xmpMM:ManagedFrom"
+
+#. XMP tags / xmpMM:Manager
+msgid "xmpMM:Manager"
+msgstr "DESC_xmpMM:Manager"
+
+#. XMP tags / xmpMM:ManagerVariant
+msgid "xmpMM:ManagerVariant"
+msgstr "DESC_xmpMM:ManagerVariant"
+
+#. XMP tags / xmpMM:RenditionClass
+msgid "xmpMM:RenditionClass"
+msgstr "DESC_xmpMM:RenditionClass"
+
+#. XMP tags / xmpMM:RenditionParams
+msgid "xmpMM:RenditionParams"
+msgstr "DESC_xmpMM:RenditionParams"
+
+#. XMP tags / xmpMM:VersionID
+msgid "xmpMM:VersionID"
+msgstr "DESC_xmpMM:VersionID"
+
+#. XMP tags / xmpMM:Versions
+msgid "xmpMM:Versions"
+msgstr "DESC_xmpMM:Versions"
+
+#. XMP tags / xmpRights:Certificate
+msgid "xmpRights:Certificate"
+msgstr "DESC_xmpRights:Certificate"
+
+#. XMP tags / xmpRights:Marked
+msgid "xmpRights:Marked"
+msgstr "DESC_xmpRights:Marked"
+
+#. XMP tags / xmpRights:Owner
+msgid "xmpRights:Owner"
+msgstr "DESC_xmpRights:Owner"
+
+#. XMP tags / xmpRights:UsageTerms
+msgid "xmpRights:UsageTerms"
+msgstr "DESC_xmpRights:UsageTerms"
+
+#. XMP tags / xmpRights:WebStatement
+msgid "xmpRights:WebStatement"
+msgstr "DESC_xmpRights:WebStatement"
+
+#. XMP tags / xmpTPg:Colorants
+msgid "xmpTPg:Colorants"
+msgstr "DESC_xmpTPg:Colorants"
+
+#. XMP tags / xmpTPg:Fonts
+msgid "xmpTPg:Fonts"
+msgstr "DESC_xmpTPg:Fonts"
+
+#. XMP tags / xmpTPg:MaxPageSize
+msgid "xmpTPg:MaxPageSize"
+msgstr "DESC_xmpTPg:MaxPageSize"
+
+#. XMP tags / xmpTPg:NPages
+msgid "xmpTPg:NPages"
+msgstr "DESC_xmpTPg:NPages"
+
+#. XMP tags / xmpTPg:PlateNames
+msgid "xmpTPg:PlateNames"
+msgstr "DESC_xmpTPg:PlateNames"
+
