@@ -294,9 +294,9 @@
       {
         $tagProperties=$this->tagDef->getTagById($name);
 
-        $tag->setIsKnown(true);
-        $tag->setIsImplemented($tagProperties['implemented']);
-        $tag->setIsTranslatable($tagProperties['translatable']);
+        $tag->setKnown(true);
+        $tag->setImplemented($tagProperties['implemented']);
+        $tag->setTranslatable($tagProperties['translatable']);
 
 
         if(array_key_exists('name', $tagProperties))

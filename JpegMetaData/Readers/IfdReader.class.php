@@ -218,10 +218,10 @@
       {
         $tag=$this->tagDef->getTagById($entry->getTagId());
 
-        $entry->getTag()->setIsKnown(true);
+        $entry->getTag()->setKnown(true);
         $entry->getTag()->setName($tag['tagName']);
-        $entry->getTag()->setIsImplemented($tag['implemented']);
-        $entry->getTag()->setIsTranslatable($tag['translatable']);
+        $entry->getTag()->setImplemented($tag['implemented']);
+        $entry->getTag()->setTranslatable($tag['translatable']);
 
         /*
          * if there is values defined for the tag, analyze it

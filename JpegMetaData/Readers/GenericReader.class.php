@@ -110,12 +110,16 @@
 
     /**
      * returns a Tag object from a sequential index
+     * return null if index is out of range
      *
      * @return Tag
      */
     public function getTag($index)
     {
-      return($this->entries[$index]);
+      if($index>=0 and $index<=count($this->entries))
+        return($this->entries[$index]);
+      else
+        return(null);
     }
 
     /**
@@ -139,9 +143,19 @@
     {
       for($i=0;$i<count($this->entries);$i++)
       {
-        if($this->entries[$i]->getId()==$tagId)
+        if($this->entries[$i] instanceof IfdEntryReader)
         {
-          return($i);
+          if($this->entries[$i]->getTagId()==$tagId)
+          {
+            return($i);
+          }
+        }
+        elseif($this->entries[$i] instanceof Tag)
+        {
+          if($this->entries[$i]->getId()==$tagId)
+          {
+            return($i);
+          }
         }
       }
       return(-1);
@@ -175,9 +189,19 @@
     {
       for($i=0;$i<count($this->entries);$i++)
       {
-        if($this->entries[$i]->getName()==$name)
+        if($this->entries[$i] instanceof IfdEntryReader)
         {
-          return($this->entries[$i]);
+          if($this->entries[$i]->getTag()->getName()==$name)
+          {
+            return($this->entries[$i]->getTag());
+          }
+        }
+        elseif($this->entries[$i] instanceof Tag)
+        {
+          if($this->entries[$i]->getName()==$name)
+          {
+            return($this->entries[$i]);
+          }
         }
       }
       return(null);

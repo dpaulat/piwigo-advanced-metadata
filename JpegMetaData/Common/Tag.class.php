@@ -57,18 +57,18 @@
  *  - getName
  *  - getValue
  *  - getLabel
- *  - getIsKnown
- *  - getIsImplemented
  *  - getNote
- *  - getIsTranslatable
+ *  - isKnown
+ *  - isImplemented
+ *  - isTranslatable
  *  - setId
  *  - setName
  *  - setValue
  *  - setLabel
- *  - setIsKnown
- *  - setIsImplemented
  *  - setNote
- *  - setIsTranslatable
+ *  - setKnown
+ *  - setImplemented
+ *  - setTranslatable
  *
  * -----------------------------------------------------------------------------
  */
@@ -163,7 +163,7 @@
      *
      * @return Boolean
      */
-    public function getIsKnown()
+    public function isKnown()
     {
       return($this->tagIsKnown);
     }
@@ -173,7 +173,7 @@
      *
      * @return Boolean
      */
-    public function getIsImplemented()
+    public function isImplemented()
     {
       return($this->tagIsImplemented);
     }
@@ -193,7 +193,7 @@
      *
      * @return Boolean
      */
-    public function getIsTranslatable()
+    public function isTranslatable()
     {
       return($this->tagIsTranslatable);
     }
@@ -206,7 +206,7 @@
      */
     public function setId($value)
     {
-      if($value>=0x0000 and $value <= 0xffff) $this->tagId=$value;
+      $this->tagId=$value;
       return($this->tagId);
     }
 
@@ -252,7 +252,7 @@
      * @param Boolean $value
      * @return Boolean
      */
-    public function setIsKnown($value)
+    public function setKnown($value)
     {
       $this->tagIsKnown=($value===true)?true:false;
       return($this->tagIsKnown);
@@ -264,7 +264,7 @@
      * @param Boolean $value
      * @return Boolean
      */
-    public function setIsImplemented($value)
+    public function setImplemented($value)
     {
       $this->tagIsImplemented=($value===true)?true:false;
       return($this->tagIsImplemented);
@@ -288,7 +288,7 @@
      * @param Boolean $value
      * @return Boolean
      */
-    public function setIsTranslatable($value)
+    public function setTranslatable($value)
     {
       $this->tagIsTranslatable=($value===true)?true:false;
       return($this->tagIsTranslatable);

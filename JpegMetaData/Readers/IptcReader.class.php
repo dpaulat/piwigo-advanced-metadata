@@ -219,10 +219,10 @@
       {
         $tagProperties=$this->tagDef->getTagById($tag->getId());
 
-        $tag->setIsKnown(true);
+        $tag->setKnown(true);
         $tag->setName($tagProperties['tagName']);
-        $tag->setIsImplemented($tagProperties['implemented']);
-        $tag->setIsTranslatable($tagProperties['translatable']);
+        $tag->setImplemented($tagProperties['implemented']);
+        $tag->setTranslatable($tagProperties['translatable']);
 
         /*
          * if there is values defined for the tag, analyze it

@@ -32,8 +32,15 @@
  *
  * -----------------------------------------------------------------------------
  *
- * The MakerNotesReader class is dedicated to read tags from the maker note sub
- * IFD structure
+ * The exif tag 0x927C "MakerNote" is a tag used by the camera maker to manage
+ * their own data.
+ *
+ * In most of case, this tags gives an offset to an extra data block.
+ * And in most of case, this data block is a sub-IFD block
+ *
+ * The MakerNotesReader is a generic class dedicated to read tags from the maker
+ * note sub IFD structure
+ *
  *
  * ======> See IfdReader.class.php to know more about an IFD structure <========
  *

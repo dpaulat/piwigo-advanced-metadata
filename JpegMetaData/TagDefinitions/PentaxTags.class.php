@@ -8,17 +8,46 @@
  *
  *   << May the Little SpaceFrog be with you ! >>
  *
+ *
+ * +-----------------------------------------------------------------------+
+ * | JpegMetaData - a PHP based Jpeg Metadata manager                      |
+ * +-----------------------------------------------------------------------+
+ * | Copyright(C) 2010  Grum - http://www.grum.fr                          |
+ * +-----------------------------------------------------------------------+
+ * | This program is free software; you can redistribute it and/or modify  |
+ * | it under the terms of the GNU General Public License as published by  |
+ * | the Free Software Foundation                                          |
+ * |                                                                       |
+ * | This program is distributed in the hope that it will be useful, but   |
+ * | WITHOUT ANY WARRANTY; without even the implied warranty of            |
+ * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU      |
+ * | General Public License for more details.                              |
+ * |                                                                       |
+ * | You should have received a copy of the GNU General Public License     |
+ * | along with this program; if not, write to the Free Software           |
+ * | Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, |
+ * | USA.                                                                  |
+ * +-----------------------------------------------------------------------+
+ *
+ *
  * -----------------------------------------------------------------------------
+ *
+ * The PentaxTags is the definition of the specific Pentax Exif tags
+ *
+ * -----------------------------------------------------------------------------
+ *
+ * .. Notes ..
+ *
+ * The PentaxTags class is derived from the KnownTags class.
+ *
+ * ======> See KnownTags.class.php to know more about the tag definitions <=====
+ *
  *
  * Pentax values from
- * - ExifTool / Copyright - Phil Harvey <phil at owl.phy.queensu.ca>
- * - Exiv2    / Copyright - Andreas Huggel <ahuggel at gmx.net>
+ *  - Exiftool by Phil Harvey    => http://www.sno.phy.queensu.ca/~phil/exiftool/
+ *                                  http://owl.phy.queensu.ca/~phil/exiftool/TagNames
+ *  - Exiv2 by Andreas Huggel    => http://www.exiv2.org/
  *
- *
- *
- * -----------------------------------------------------------------------------
- * Pentax tags definition & Pentax reader class
- * -----------------------------------------------------------------------------
  */
 
   require_once(JPEG_METADATA_DIR."TagDefinitions/KnownTags.class.php");
@@ -37,7 +66,7 @@
       // ShootingMode, tag 0x0001
       0x0001 => Array(
         'tagName'     => "ShootingMode",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -51,7 +80,7 @@
       // CameraModel, tag 0x0005
       0x0005 => Array(
         'tagName'     => "CameraModel",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true,
@@ -147,7 +176,7 @@
       // Quality, tag 0x0008
       0x0008 => Array(
         'tagName'     => "Quality",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -165,7 +194,7 @@
       // Size, tag 0x0009
       0x0009 => Array(
         'tagName'     => "Size",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -195,7 +224,7 @@
       // PictureMode, tag 0x000b, from exiftool
       0x000b => Array(
         'tagName'     => "PictureMode",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -243,7 +272,7 @@
       // Flash, tag 0x000c
       0x000c => Array(
         'tagName'     => "Flash",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -282,7 +311,7 @@
       // Focus, tag 0x000d
       0x000d => Array(
         'tagName'     => "Focus",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -302,7 +331,7 @@
       // AFPoint, tag 0x000e
       0x000e => Array(
         'tagName'     => "AFPoint",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -328,7 +357,7 @@
       // AFPointsInFocus, tag 0x000f, from exiftool
       0x000f => Array(
         'tagName'     => "AFPointsInFocus",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -350,7 +379,7 @@
       // ISO, tag 0x0014
       0x0014 => Array(
         'tagName'     => "ISO",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true,
@@ -404,7 +433,7 @@
       // MeteringMode, tag 0x0017
       0x0017 => Array(
         'tagName'     => "MeteringMode",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -418,7 +447,7 @@
       // WhiteBallance, tag 0x0019
       0x0019 => Array(
         'tagName'     => "WhiteBallance",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -443,7 +472,7 @@
       // WhiteBallanceMode, tag 0x001a
       0x001a => Array(
         'tagName'     => "WhiteBallanceMode",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -464,7 +493,7 @@
       // Saturation, tag 0x001f
       0x001f => Array(
         'tagName'     => "Saturation",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -483,7 +512,7 @@
       // Contrast, tag 0x0020
       0x0020 => Array(
         'tagName'     => "Contrast",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -501,7 +530,7 @@
       // Sharpness, tag 0x0021
       0x0021 => Array(
         'tagName'     => "Sharpness",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -519,7 +548,7 @@
       // WorldTimeLocation, tag 0x0022
       0x0022 => Array(
         'tagName'     => "WorldTimeLocation",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -532,7 +561,7 @@
       // HomeCityName, tag 0x0023
       0x0023 => Array(
         'tagName'     => "HomeCityName",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -615,7 +644,7 @@
       // DestinationCityName, tag 0x0024
       0x0024 => Array(
         'tagName'     => "DestinationCityName",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -699,7 +728,7 @@
       // ImageProcessing, tag 0x0032, combi-tag 4 bytes
       0x0032 => Array(
         'tagName'     => "ImageProcessing",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 4,
         'implemented' => true,
@@ -716,7 +745,7 @@
       // PictureMode, tag 0x0033, combi-tag 3 bytes
       0x0033 => Array(
         'tagName'     => "PictureMode",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 3,
         'implemented' => true,
@@ -792,7 +821,7 @@
       // DriveMode, tag 0x0034, combi-tag 4 bytes
       0x0034 => Array(
         'tagName'     => "DriveMode",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 4,
         'implemented' => true,
@@ -816,7 +845,7 @@
       // ColorSpace, tag 0x0037
       0x0037 => Array(
         'tagName'     => "ColorSpace",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true,
@@ -829,7 +858,7 @@
       // LensType, tag 0x003f, combi-tag 2 bytes
       0x003f => Array(
         'tagName'     => "LensType",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 2,
         'implemented' => true,
@@ -992,7 +1021,7 @@
       // ImageTone, tag 0x004f
       0x004f => Array(
         'tagName'     => "ImageTone",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -1010,7 +1039,7 @@
       // DynamicRangeExpansion, tag 0x0069
       0x0069 => Array(
         'tagName'     => "DynamicRangeExpansion",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 4,
         'implemented' => true,
@@ -1024,7 +1053,7 @@
       // HighISONoiseReduction, tag 0x0071
       0x0071 => Array(
         'tagName'     => "HighISONoiseReduction",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
@@ -1044,7 +1073,7 @@
       // Version, tag 0x0000, "Pentax Makernote version"
       0x0000 => Array(
         'tagName'     => "Version",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1053,7 +1082,7 @@
       // PreviewResolution, tag 0x0002, "Resolution of a preview image"
       0x0002 => Array(
         'tagName'     => "PreviewResolution",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1062,7 +1091,7 @@
       // PreviewLength, tag 0x0003, "Size of an IFD containing a preview image"
       0x0003 => Array(
         'tagName'     => "PreviewLength",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1071,7 +1100,7 @@
       // PreviewOffset, tag 0x0004, "Offset to an IFD containing a preview image"
       0x0004 => Array(
         'tagName'     => "PreviewOffset",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1080,7 +1109,7 @@
       // Date, tag 0x0006
       0x0006 => Array(
         'tagName'     => "Date",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1089,7 +1118,7 @@
       // Date, tag 0x0007
       0x0007 => Array(
         'tagName'     => "Time",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1098,7 +1127,7 @@
       // FocusPosition, tag 0x0010, from exiftool, "related to focus distance but affected by focal length"
       0x0010 => Array(
         'tagName'     => "FocusPosition",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1107,7 +1136,7 @@
       // ExposureTime, tag 0x0012, "Exposure time"
       0x0012 => Array(
         'tagName'     => "ExposureTime",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1116,7 +1145,7 @@
       // FNumber, tag 0x0013, "F-Number"
       0x0013 => Array(
         'tagName'     => "FNumber",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1125,7 +1154,7 @@
       // LightReading, tag 0x0015, from exiftool
       0x0015 => Array(
         'tagName'     => "LightReading",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1135,7 +1164,7 @@
       // ExposureCompensation, tag 0x0016, "Exposure compensation"
       0x0016 => Array(
         'tagName'     => "ExposureCompensation",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1144,7 +1173,7 @@
       // AutoBracketing, tag 0x0018, "AutoBracketing"
       0x0018 => Array(
         'tagName'     => "AutoBracketing",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true
@@ -1153,7 +1182,7 @@
       // BlueBalance, tag 0x001b, "BlueBalance", from exiftool
       0x001b => Array(
         'tagName'     => "BlueBalance",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1162,7 +1191,7 @@
       // RedBalance, tag 0x001c, "RedBalance"
       0x001c => Array(
         'tagName'     => "RedBalance",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1171,7 +1200,7 @@
       // FocalLength, tag 0x001d, "FocalLength"
       0x001d => Array(
         'tagName'     => "FocalLength",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1180,7 +1209,7 @@
       // DigitalZoom, tag 0x001e, "DigitalZoom", from exiftool
       0x001e => Array(
         'tagName'     => "DigitalZoom",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1190,7 +1219,7 @@
       // HometownDST, tag 0x0025, "Whether day saving time is active in home town"
       0x0025 => Array(
         'tagName'     => "HometownDST",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1199,7 +1228,7 @@
       // DestinationDST, tag 0x0026, "Whether day saving time is active in destination"
       0x0026 => Array(
         'tagName'     => "DestinationDST",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1208,7 +1237,7 @@
       // DSPFirmwareVersion, tag 0x0027, "DSPFirmwareVersion"
       0x0027 => Array(
         'tagName'     => "DSPFirmwareVersion",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1217,7 +1246,7 @@
       // CPUFirmwareVersion, tag 0x0028, "CPUFirmwareVersion"
       0x0028 => Array(
         'tagName'     => "CPUFirmwareVersion",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1226,7 +1255,7 @@
       // FrameNumber, tag 0x0029, "FrameNumber"
       0x0029 => Array(
         'tagName'     => "FrameNumber",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1235,7 +1264,7 @@
       // EffectiveLV, tag 0x002d, "Camera calculated light value, includes exposure compensation"
       0x002d => Array(
         'tagName'     => "EffectiveLV",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1244,7 +1273,7 @@
       // ImageAreaOffset, tag 0x0038, "ImageAreaOffset"
       0x0038 => Array(
         'tagName'     => "ImageAreaOffset",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1253,7 +1282,7 @@
       // RawImageSize, tag 0x0039, "RawImageSize"
       0x0039 => Array(
         'tagName'     => "RawImageSize",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1262,7 +1291,7 @@
       // AFPointsInFocus, tag 0x003e, "AFPointsInFocus"
       0x003c => Array(
         'tagName'     => "AFPointsInFocus",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1271,7 +1300,7 @@
       // PreviewImageBorders, tag 0x003e, "'top, bottom, left, right'"
       0x003e => Array(
         'tagName'     => "PreviewImageBorders",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1280,7 +1309,7 @@
       // SensitivityAdjust, tag 0x0040, "SensitivityAdjust"
       0x0040 => Array(
         'tagName'     => "SensitivityAdjust",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1289,7 +1318,7 @@
       // DigitalFilter, tag 0x0041, "Digital filter"
       0x0041 => Array(
         'tagName'     => "DigitalFilter",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1298,7 +1327,7 @@
       // Temperature, tag 0x0047, "Camera temperature"
       0x0047 => Array(
         'tagName'     => "Temperature",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1307,7 +1336,7 @@
       // AELock, tag 0x0048, "AELock"
       0x0048 => Array(
         'tagName'     => "AELock",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true
@@ -1316,7 +1345,7 @@
       // NoiseReduction, tag 0x0049, "NoiseReduction"
       0x0049 => Array(
         'tagName'     => "NoiseReduction",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true
@@ -1325,7 +1354,7 @@
       // FlashExposureCompensation, tag 0x004d, "FlashExposureCompensation"
       0x004d => Array(
         'tagName'     => "FlashExposureCompensation",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1334,7 +1363,7 @@
       // ColorTemperature, tag 0x0050, "ColorTemperature"
       0x0050 => Array(
         'tagName'     => "ColorTemperature",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
@@ -1343,7 +1372,7 @@
       // ShakeReduction, tag 0x005c, "ShakeReduction"
       0x005c => Array(
         'tagName'     => "ShakeReduction",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1352,7 +1381,7 @@
       // ShutterCount, tag 0x005d, "ShutterCount"
       0x005d => Array(
         'tagName'     => "ShutterCount",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1361,7 +1390,7 @@
       // AFAdjustment, tag 0x0072, "AFAdjustment", from exiftool
       0x0072 => Array(
         'tagName'     => "AFAdjustment",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1371,7 +1400,7 @@
       // BlackPoint, tag 0x0200, "BlackPoint"
       0x0200 => Array(
         'tagName'     => "BlackPoint",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1380,7 +1409,7 @@
       // WhitePoint, tag 0x0201, "WhitePoint"
       0x0201 => Array(
         'tagName'     => "WhitePoint",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1389,7 +1418,7 @@
       // ColorMatrixA, tag 0x0203, "ColorMatrixA" //from exiftool
       0x0203 => Array(
         'tagName'     => "ColorMatrixA",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1398,7 +1427,7 @@
       // ColorMatrixB, tag 0x0204, "ColorMatrixB" //from exiftool
       0x0204 => Array(
         'tagName'     => "ColorMatrixB",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1407,7 +1436,7 @@
       // ShotInfo, tag 0x0205, "ShotInfo"
       0x0205 => Array(
         'tagName'     => "ShotInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1416,7 +1445,7 @@
       // AEInfo, tag 0x0206, "AEInfo"
       0x0206 => Array(
         'tagName'     => "AEInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1425,7 +1454,7 @@
       // AEInfo, tag 0x0207, "LensInfo"
       0x0207 => Array(
         'tagName'     => "LensInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1434,7 +1463,7 @@
       // FlashInfo, tag 0x0208, "FlashInfo"
       0x0208 => Array(
         'tagName'     => "FlashInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1443,7 +1472,7 @@
       // FlashInfo, tag 0x0209, "AEMeteringSegments"
       0x0209 => Array(
         'tagName'     => "AEMeteringSegments",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1452,7 +1481,7 @@
       // FlashADump, tag 0x020a, "FlashADump"
       0x020a => Array(
         'tagName'     => "FlashADump",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1461,7 +1490,7 @@
       // FlashBDump, tag 0x020b, "FlashBDump"
       0x020b => Array(
         'tagName'     => "FlashBDump",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1470,7 +1499,7 @@
       // WB_RGGBLevelsDaylight, tag 0x020d, "WB_RGGBLevelsDaylight"
       0x020d => Array(
         'tagName'     => "WB_RGGBLevelsDaylight",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1479,7 +1508,7 @@
       // WB_RGGBLevelsShade, tag 0x020e, "WB_RGGBLevelsShade"
       0x020e => Array(
         'tagName'     => "WB_RGGBLevelsShade",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1488,7 +1517,7 @@
       // WB_RGGBLevelsCloudy, tag 0x020f, "WB_RGGBLevelsCloudy"
       0x020f => Array(
         'tagName'     => "WB_RGGBLevelsCloudy",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1497,7 +1526,7 @@
       // WB_RGGBLevelsTungsten, tag 0x0210, "WB_RGGBLevelsTungsten"
       0x0210 => Array(
         'tagName'     => "WB_RGGBLevelsTungsten",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1506,7 +1535,7 @@
       // WB_RGGBLevelsFluorescentD, tag 0x0211, "WB_RGGBLevelsFluorescentD"
       0x0211 => Array(
         'tagName'     => "WB_RGGBLevelsFluorescentD",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1515,7 +1544,7 @@
       // WB_RGGBLevelsFluorescentN, tag 0x0212, "WB_RGGBLevelsFluorescentN"
       0x0212 => Array(
         'tagName'     => "WB_RGGBLevelsFluorescentN",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1524,7 +1553,7 @@
       // WB_RGGBLevelsFluorescentW, tag 0x0213, "WB_RGGBLevelsFluorescentW"
       0x0213 => Array(
         'tagName'     => "WB_RGGBLevelsFluorescentW",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1533,7 +1562,7 @@
       // WB_RGGBLevelsFlash, tag 0x0214, "WB_RGGBLevelsFlash"
       0x0214 => Array(
         'tagName'     => "WB_RGGBLevelsFlash",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1542,7 +1571,7 @@
       // CameraInfo, tag 0x0215, "CameraInfo"
       0x0215 => Array(
         'tagName'     => "CameraInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1551,7 +1580,7 @@
       // BatteryInfo, tag 0x0216, "BatteryInfo"
       0x0216 => Array(
         'tagName'     => "BatteryInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1560,7 +1589,7 @@
       // SaturationInfo, tag 0x021b, "SaturationInfo"
       0x021b => Array(
         'tagName'     => "SaturationInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1569,7 +1598,7 @@
       // AFInfo, tag 0x021f, "AFInfo"
       0x021f => Array(
         'tagName'     => "AFInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1578,7 +1607,7 @@
       // HuffmanTable, tag 0x0220, "HuffmanTable" from exiftool
       0x0220 => Array(
         'tagName'     => "HuffmanTable",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1587,7 +1616,7 @@
       // ColorInfo, tag 0x0222, "ColorInfo"
       0x0222 => Array(
         'tagName'     => "ColorInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1596,7 +1625,7 @@
       // EVStepInfo, tag 0x0224, "EVStepInfo"
       0x0224 => Array(
         'tagName'     => "EVStepInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1605,7 +1634,7 @@
       // SerialNumber, tag 0x0229, "SerialNumber"
       0x0229 => Array(
         'tagName'     => "SerialNumber",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1614,7 +1643,7 @@
       // FirmwareVersion, tag 0x0230, "FirmwareVersion" from exiftool
       0x0230 => Array(
         'tagName'     => "FirmwareVersion",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1623,7 +1652,7 @@
       // DataDump, tag 0x03fe, "DataDump" from exiftool
       0x03fe => Array(
         'tagName'     => "DataDump",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1632,7 +1661,7 @@
       // UnknownInfo, tag 0x03ff, "UnknownInfo" from exiftool
       0x03ff => Array(
         'tagName'     => "UnknownInfo",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1641,7 +1670,7 @@
       // ToneCurve, tag 0x0402, "ToneCurve" from exiftool
       0x0402 => Array(
         'tagName'     => "ToneCurve",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1650,7 +1679,7 @@
       // ToneCurves, tag 0x0403, "ToneCurves" from exiftool
       0x0403 => Array(
         'tagName'     => "ToneCurves",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1659,7 +1688,7 @@
       // PrintIM, tag 0x0e00, "PrintIM" from exiftool
       0x0e00 => Array(
         'tagName'     => "PrintIM",
-        'group' => Array("Pentax"),
+        'schema'      => "Pentax",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false

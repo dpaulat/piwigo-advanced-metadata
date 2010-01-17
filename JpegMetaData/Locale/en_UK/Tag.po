@@ -1276,7 +1276,7 @@ msgstr "****Language Identifier"
 #. Pentax specific tags / 0x000f (AFPointsInFocus)
 #. Pentax specific tags / 0x000e (AFPoint)
 msgid "Left"
-msgstr "****Left"
+msgstr "Left"
 
 #. Pentax specific tags / 0x0207 (LensInfo)
 msgid "LensInfo"

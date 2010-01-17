@@ -432,7 +432,7 @@
       $returned=Array();
       foreach($this->tags as $key => $val)
       {
-        if(self::filter($val->getIsKnown(), $val->getIsImplemented(), $tagFilter))
+        if(self::filter($val->isKnown(), $val->isImplemented(), $tagFilter))
         {
           $returned[$key]=$val;
         }
@@ -476,7 +476,7 @@
     {
       foreach($ifd->getTags() as $key => $tag)
       {
-        if(self::filter($tag->getTag()->getIsKnown(), $tag->getTag()->getIsImplemented(), $this->options['filter']))
+        if(self::filter($tag->getTag()->isKnown(), $tag->getTag()->isImplemented(), $this->options['filter']))
         {
           if($tag->getTag()->getLabel() instanceof IfdReader)
           {
@@ -518,7 +518,7 @@
     {
       foreach($tags as $key => $tag)
       {
-        if(self::filter($tag->getIsKnown(), $tag->getIsImplemented(), $this->options['filter']))
+        if(self::filter($tag->isKnown(), $tag->isImplemented(), $this->options['filter']))
         {
           $this->tags[$tagKey.".".$tag->getName()]=$tag;
         }
