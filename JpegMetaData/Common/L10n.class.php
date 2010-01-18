@@ -32,7 +32,7 @@
  *
  * -----------------------------------------------------------------------------
  *
- * The Locale class is used for tag translation, reading the .mo files
+ * The L10n class is used for tag translation, reading the .mo files
  *
  * There is one directory per language, the directories tree must respect this
  * structure
@@ -84,10 +84,10 @@ $supported_locales = array();
 /**
  * assume a default language is set in any case...
  */
-Locale::setLanguage();
+L10n::setLanguage();
 
 
-class Locale
+class L10n
 {
   const JMD_TAG = "Tag";
   const JMD_TAGDESC = "TagDesc";

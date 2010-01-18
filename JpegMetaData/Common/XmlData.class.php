@@ -97,10 +97,20 @@
       $this->level=$level;
     }
 
+    /**
+     * free memory before destroying the object...
+     */
     function __destruct()
     {
+      $this->previousNode=null;
+      $this->nextNode=null;
+      unset($this->previousNode);
+      unset($this->nextNode);
       unset($this->attributes);
       unset($this->childs);
+      unset($this->value);
+      unset($this->name);
+      unset($this->level);
     }
 
     /**
@@ -368,6 +378,9 @@
 
     function __destruct()
     {
+      unset($this->xml);
+      unset($this->isValid);
+      unset($this->isLoaded);
       unset($this->nodes);
     }
 
@@ -463,6 +476,7 @@
       xml_parser_set_option($xmlParser, XML_OPTION_SKIP_WHITE, 1);
       $result=xml_parse_into_struct($xmlParser, $this->xml, $values);
       xml_parser_free($xmlParser);
+      unset($xmlParser);
 
       //an error has occured while parsing the xml structure
       if($result===0) return(false);
@@ -516,6 +530,7 @@
             break;
         }
       }
+      unset($values);
       unset($tree);
       return(true);
     }

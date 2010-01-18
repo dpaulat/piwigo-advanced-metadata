@@ -34,10 +34,17 @@
  *
  * Define the maker notes signatures for the EXIF "MakerNote" tag
  *
+ * This class provides theses public functions :
+ *  - (static) getMaker
+ *  - (static) setExifMaker
+ *  - (static) getExifMaker
+ *
  * -----------------------------------------------------------------------------
  */
 
   define("MAKER_PENTAX", "Pentax");
+  define("MAKER_NIKON", "Nikon");
+  define("MAKER_CANON", "Canon");
 
   Class MakerNotesSignatures
   {
@@ -50,7 +57,7 @@
     /** Nikon 2 signature */
     const Nikon2Header = "Nikon\x00\x01\x00";
     /** Nikon 3 signature */
-    const Nikon3Header = "Nikon\x00\x02\x10\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    const Nikon3Header = "Nikon\x00\x02";
     /** Panasonic signature  */
     const PanasonicHeader = "Panasonic\x00\x00\x00";
     /** Pentax MM signature  */
@@ -73,7 +80,7 @@
     const Olympus2HeaderSize  = 12;
     const FujiFilmHeaderSize  = 12;
     const Nikon2HeaderSize    = 8;
-    const Nikon3HeaderSize    = 18;
+    const Nikon3HeaderSize    = 7;
     const PanasonicHeaderSize = 12;
     const PentaxHeaderSize    = 6;
     const Pentax2HeaderSize   = 6;
@@ -81,8 +88,9 @@
     const Sigma2HeaderSize    = 8;
     const SonyHeaderSize      = 12;
     const CanonHeaderSize     = 0;
-    const UnknownHeaderSize     = 0;
+    const UnknownHeaderSize   = 0;
 
+    static private $exifMaker = "";
 
     static public function getMaker($datas)
     {
@@ -110,8 +118,47 @@
        { return(self::SonyHeader); }
       else
        { return(self::UnknownHeader); }
-
     }
+
+    /**
+     * this function is used by IFD Reader to store all information about maker
+     * and camera model
+     *
+     * the stored value if used within a grep like "/canon/i" to determine the
+     * maker note.
+     * For more information about this tricks see the how the tag 0x927c is
+     * managed in the function "processSpecialTag" of the file
+     * IfdReader.class.php
+     *
+     * @param String $value : the maker or the camera model
+     */
+    static public function setExifMaker($value)
+    {
+      if(is_array($value))
+      {
+        foreach($value as $val)
+        {
+          self::$exifMaker.=$val." ";
+        }
+      }
+      else
+      {
+        self::$exifMaker.=$value." ";
+      }
+      return(self::$exifMaker);
+    }
+
+    /**
+     * this function is used by IFD Reader to store all information about maker
+     * and camera model
+     *
+     * @return String
+     */
+    static public function getExifMaker()
+    {
+      return(self::$exifMaker);
+    }
+
   }
 
   ?>

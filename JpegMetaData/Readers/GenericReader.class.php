@@ -69,6 +69,7 @@
   {
     protected $nbEntries = 0;
     protected $entries = Array();
+    protected $headerSize = 0;
 
     protected $data = null;
 

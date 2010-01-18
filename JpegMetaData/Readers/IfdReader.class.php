@@ -105,7 +105,7 @@
       $this->byteOrder=$byteOrder;
       $this->dataOffset=$offset;
 
-      $this->skipHeader();
+      $this->skipHeader($this->headerSize);
 
       $dataPointer = $this->data->offset();
       /*
@@ -337,8 +337,6 @@
         case 0x000b: // ProcessingSoftware, tag 0x000b
         case 0x010D: // DocumentName, tag 0x010D
         case 0x010E: // ImageDescription, tag 0x010E
-        case 0x010F: // Make, tag 0x010F
-        case 0x0110: // Model, tag 0x0110
         case 0x0131: // Software, tag 0x0131
         case 0x013B: // Artist, tag 0x013B
         case 0x8298: // Copyright, tag 0x8298
@@ -350,6 +348,15 @@
            * null terminated strings
            */
           $returned=ConvertData::toStrings($values);
+          break;
+        case 0x010F: // Make, tag 0x010F
+        case 0x0110: // Model, tag 0x0110
+          /* Make and Model are null terminated strings
+           * memorize the maker & camera from the exif tag : it's used to
+           * recognize the Canon camera (no header in the maker note)
+           */
+          $returned=ConvertData::toStrings($values);
+          MakerNotesSignatures::setExifMaker($returned);
           break;
         case 0x011A: // XResolution, tag 0x011A
         case 0x011B: // YResolution, tag 0x011B
@@ -486,17 +493,18 @@
           {
             case MakerNotesSignatures::OlympusHeader:
             case MakerNotesSignatures::Olympus2Header:
-              $returned="Olympus";
+              $returned="Olympus is not implemented yet";
               break;
             case MakerNotesSignatures::FujiFilmHeader:
-              $returned="FujiFilm";
+              $returned="FujiFilm is not implemented yet";
               break;
             case MakerNotesSignatures::Nikon2Header:
             case MakerNotesSignatures::Nikon3Header:
-              $returned="Nikon";
+              require_once(JPEG_METADATA_DIR."Readers/NikonReader.class.php");
+              $returned=new NikonReader($values, $valuesOffset, $this->byteOrder, $makerSignature);
               break;
             case MakerNotesSignatures::PanasonicHeader:
-              $returned="Panasonic";
+              $returned="Panasonic is not implemented yet";
               break;
             case MakerNotesSignatures::PentaxHeader:
             case MakerNotesSignatures::Pentax2Header:
@@ -505,13 +513,27 @@
               break;
             case MakerNotesSignatures::SigmaHeader:
             case MakerNotesSignatures::Sigma2Header:
-              $returned="Sigma";
+              $returned="Sigma is not implemented yet";
               break;
             case MakerNotesSignatures::SonyHeader:
-              $returned="Sony";
+              $returned="Sony is not implemented yet";
               break;
             default:
-              $returned="unknown maker => ".ConvertData::toHexDump($values, $type, 16);
+              /*
+               * Canon maker notes don't have any header
+               * So, the only method to know if the maker note is from a Canon
+               * camera is looking the exif maker value equals "Canon" or
+               * the camera model contains "Canon"
+               */
+              if(preg_match("/.*canon.*/i",MakerNotesSignatures::getExifMaker()))
+              {
+                require_once(JPEG_METADATA_DIR."Readers/CanonReader.class.php");
+                $returned=new CanonReader($values, $valuesOffset, $this->byteOrder, "");
+              }
+              else
+              {
+                $returned="unknown maker => ".ConvertData::toHexDump($values, $type, 16);
+              }
               break;
           }
           break;

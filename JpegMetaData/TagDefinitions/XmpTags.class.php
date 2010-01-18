@@ -1870,6 +1870,7 @@
       unset($tmpTags[0]);
       unset($tmpTags[1]);
       unset($tmpTags[2]);
+      unset($tmpTags);
     }
 
   }

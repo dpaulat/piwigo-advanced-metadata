@@ -32,78 +32,37 @@
  *
  * -----------------------------------------------------------------------------
  *
- * The SegmentReader is a generic class providing methods to manage datas
- * segments
+ * The NikonTags is the definition of the specific Nikon Exif tags
  *
  * -----------------------------------------------------------------------------
  *
  * .. Notes ..
  *
- * This class is not declared as an abstract class, but it's not recommanded to
- * create object with it.
+ * The NikonTags class is derived from the KnownTags class.
+ *
+ * ======> See KnownTags.class.php to know more about the tag definitions <=====
  *
  *
- * Derived classes :
- *  - TiffReader        (for Tiff data block)
+ * Pentax values from
+ *  - Exiftool by Phil Harvey    => http://www.sno.phy.queensu.ca/~phil/exiftool/
+ *                                  http://owl.phy.queensu.ca/~phil/exiftool/TagNames
+ *  - Exiv2 by Andreas Huggel    => http://www.exiv2.org/
  *
- * This class provides theses public functions :
- *  - getIsValid
- *  - getIsLoaded
- *
- * -----------------------------------------------------------------------------
  */
 
-  class SegmentReader
+  require_once(JPEG_METADATA_DIR."TagDefinitions/KnownTags.class.php");
+
+  /**
+   * Define the tags for Nikon camera
+   */
+  class NikonTags extends KnownTags
   {
-    protected $data = null;
-    protected $isValid = false;
-    protected $isLoaded = false;
+    protected $label = "Nikon specific tags";
+    protected $tags = Array(
+    );
 
-    /**
-     * The constructor need the segment's datas
-     *
-     * @param Data $data : a Data object
-     */
-    function __construct(Data $data)
-    {
-      $this->data = $data;
-      $this->data->seek();
-    }
+  } // NikonTags
 
-    function __destruct()
-    {
-      unset($this->data);
-      unset($this->isValid);
-      unset($this->isLoaded);
-    }
-
-    /**
-     * return true if the segment is valid
-     *
-     * @return Boolean
-     */
-    public function getIsValid()
-    {
-      return($this->isValid);
-    }
-
-    /**
-     * return true if the segment is loaded
-     *
-     * @return Boolean
-     */
-    public function getIsLoaded()
-    {
-      return($this->isLoaded);
-    }
-
-    public function toString()
-    {
-      $returned="";
-      return($returned);
-    }
-
-  }
 
 
 ?>

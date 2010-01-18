@@ -96,6 +96,7 @@
 
     function __destruct()
     {
+      unset($this->xmlData);
       unset($this->xmpTag2Exif);
       parent::__destruct();
     }

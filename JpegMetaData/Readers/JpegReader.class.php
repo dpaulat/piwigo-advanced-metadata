@@ -110,6 +110,7 @@
     function __destruct()
     {
       unset($this->appMarkerSegmentReader);
+      unset($this->fileHandler);
     }
 
     /**

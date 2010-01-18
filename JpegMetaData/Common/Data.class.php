@@ -96,6 +96,16 @@
       $this->byteOrder = $byteOrder;
     }
 
+    function __destruct()
+    {
+      unset($this->byteOrder);
+      unset($this->offset);
+      unset($this->length);
+      unset($this->startOffset);
+      unset($this->data);
+      unset($this->currentPos);
+    }
+
     /**
      * returns the datas length
      *

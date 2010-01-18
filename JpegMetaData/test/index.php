@@ -46,7 +46,7 @@
   require_once("./../JpegMetaData.class.php");
   require_once(JPEG_METADATA_DIR."Readers/JpegReader.class.php");
   require_once(JPEG_METADATA_DIR."Common/XmlData.class.php");
-  require_once(JPEG_METADATA_DIR."Common/Locale.class.php");
+  require_once(JPEG_METADATA_DIR."Common/L10n.class.php");
 
   require_once(JPEG_METADATA_DIR."TagDefinitions/IfdTags.class.php");
   require_once(JPEG_METADATA_DIR."TagDefinitions/PentaxTags.class.php");
@@ -334,11 +334,12 @@
 
   $page.="<span style='font-family:monospace;'>";
 
-  $memory=memory_get_usage();
   $time=microtime(true);
 
+  $memory=memory_get_usage();
   $jpeg = new JpegReader($file);
   $time2=microtime(true);
+
 
   $page2="JpegReader extraction<br>";
   $page2.="fileName=".$jpeg->getFileName()."<br>";
@@ -418,14 +419,14 @@
       $style="color:#000000";
 
     if(is_string($txt) and $val->isTranslatable())
-      $txt=Locale::get($txt);
+      $txt=L10n::get($txt);
     if($txt instanceof DateTime)
       $txt=$txt->format("Y-m-d H:i:s");
     if(is_array($txt))
       $txt=print_r($txt, true);
     if(is_array($value))
       $value=print_r($value, true);
-    $page2.="<tr><td>".$key."</td><td>".Locale::get($val->getName())."</td><td>".$value."</td><td style='$style'>".$txt."</td></tr>";
+    $page2.="<tr><td>".$key."</td><td>".L10n::get($val->getName())."</td><td>".$value."</td><td style='$style'>".$txt."</td></tr>";
     $i++;
   }
   $page2.="</table>Total tags: $i</div><hr>";
@@ -439,7 +440,7 @@
   foreach(JpegMetaData::getTagList(Array('filter' => JpegMetaData::TAGFILTER_ALL, 'xmp' => true, 'maker' => true, 'iptc' => true)) as $key => $val)
   {
     $val['implemented']?$i++:$j++;
-    $page2.="<tr><td>".$key."</td><td>".Locale::get($val['name'])."</td><td>".($val['implemented']?"yes":"no")."</td></tr>";
+    $page2.="<tr><td>".$key."</td><td>".L10n::get($val['name'])."</td><td>".($val['implemented']?"yes":"no")."</td></tr>";
   }
   $page2.="</table>Total tags ; implemented: $i - not implemented: $j</span><hr>";
 
@@ -454,4 +455,6 @@
   $page.="<br/></body></html>";
 
   echo $page;
+  unset($page2);
+  unset($page);
 ?>
