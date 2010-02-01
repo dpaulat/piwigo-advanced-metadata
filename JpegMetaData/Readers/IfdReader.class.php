@@ -450,7 +450,28 @@
           break;
         case 0x9201: // ShutterSpeedValue, tag0x9201
           if($values[1]==0) $values[1]=1;
-          $returned=ConvertData::toExposureTime(1/round(pow(2, $values[0]/$values[1]),0));
+          /*
+           * the formula to compute the shutter speed value is 1/pow(2, x)
+           *
+           * Because of rounding errors, the result obtained using this formula
+           * is sometimes incorrect.
+           *
+           * We consider that if the result is greater than the second, the
+           * result is rounded to 2 hundredths of a second (to avoid something
+           * like 3.0000124500015s)
+           *
+           * in other case (result is less than 1 second) there is no rules
+           * result can be strange, but for now I don't know how to resolve this
+           * problem
+           *
+           */
+
+          $value=1/pow(2, $values[0]/$values[1]);
+          if($value>1)
+          {
+            $value=round($value,2);
+          }
+          $returned=ConvertData::toExposureTime($value);
           break;
         case 0x9202: // ApertureValue, tag0x9202
         case 0x9205: // MaxApertureValue, tag0x9205
