@@ -77,7 +77,7 @@
 
     private $isValid = false;
 
-    private $entries = null;
+    private $entries = array();
 
     private $data = null;
 

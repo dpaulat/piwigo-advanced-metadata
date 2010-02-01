@@ -231,7 +231,7 @@
           /*
            * if the combiTag value equals 0 exploit it as this
            */
-          if($tag['combiTag']==0)
+          if($tag['combiTag']==0 and !is_array($entry->getValue()))
           {
             if(array_key_exists($entry->getValue(), $tag['tagValues']))
             {
@@ -247,7 +247,7 @@
             /*
              * the combiTag value does not equals 0, so exploit it as a combi tag
              */
-            $combiValue=$this->processCombiTag($entry->getValue(), $tag['combiTag']);
+            $combiValue=$this->processCombiTag($entry->getValue(), ($tag['combiTag']==0)?1:$tag['combiTag'] );
             if(array_key_exists($combiValue, $tag['tagValues']))
             {
               $entry->getTag()->setLabel($tag['tagValues'][$combiValue]);

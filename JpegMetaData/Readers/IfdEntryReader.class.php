@@ -117,11 +117,11 @@
         {
           $this->isOffset = true;
           $this->extraDataOffset = ConvertData::toULong(substr($data, 8), $this->byteOrder);
-          $this->tag->setValue($this->extractExtraData(new Data($segmentData->readASCII($this->size*ByteType::$typeSizes[$this->type], $this->extraDataOffset - $segmentDataOffset)), $this->byteOrder));
+          $this->tag->setValue($this->extractExtraData(new Data($segmentData->readASCII($this->size*ByteType::$typeSizes[$this->type], $this->extraDataOffset - $segmentDataOffset), $this->byteOrder), $this->byteOrder));
         }
         else
         {
-          $this->tag->setValue($this->value = $this->extractExtraData(new Data(substr($data,8), $this->byteOrder)));
+          $this->tag->setValue($this->extractExtraData(new Data(substr($data,8), $this->byteOrder)));
         }
 
         switch($this->type)
