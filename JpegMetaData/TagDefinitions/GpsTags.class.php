@@ -350,6 +350,12 @@
 
     );
 
+
+    function __destruct()
+    {
+      parent::__destruct();
+    }
+
   }
 
 

@@ -156,6 +156,11 @@
       $this->nextIFDOffset=$this->data->readULong();
     }
 
+    function __destruct()
+    {
+      parent::__destruct();
+    }
+
     /**
      * return the offset for the next IFD block
      * offset of next IFD is relative to the current TIFF block, not the Jpeg

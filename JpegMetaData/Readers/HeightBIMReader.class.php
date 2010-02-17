@@ -216,6 +216,7 @@
 
         $tag=new Tag($tagId, $tagValue);
         $this->entries[]=$tag;
+        unset($tag);
       }
     }
 
@@ -223,4 +224,3 @@
 
 
 ?>
-

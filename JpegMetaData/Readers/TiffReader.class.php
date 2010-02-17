@@ -178,6 +178,7 @@
         $IFD = new IfdReader($this->data->readASCII(), $nextIFD, $this->byteOrder);
         $this->IFDs[]=$IFD;
         $nextIFD = $IFD->getNextIFDOffset();
+        unset($IFD);
       }
     }
   }

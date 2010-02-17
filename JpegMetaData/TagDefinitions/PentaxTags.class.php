@@ -443,9 +443,9 @@
         )
       ), // < MeteringMode
 
-      // WhiteBallance, tag 0x0019
+      // WhiteBalance, tag 0x0019
       0x0019 => Array(
-        'tagName'     => "WhiteBallance",
+        'tagName'     => "WhiteBalance",
         'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
@@ -466,11 +466,11 @@
           65534 => "Unknown",
           65535 => "User Selected"
         )
-      ), // < WhiteBallance
+      ), // < WhiteBalance
 
-      // WhiteBallanceMode, tag 0x001a
+      // WhiteBalanceMode, tag 0x001a
       0x001a => Array(
-        'tagName'     => "WhiteBallanceMode",
+        'tagName'     => "WhiteBalanceMode",
         'schema'      => "Pentax",
         'translatable'=> true,
         'combiTag'    => 0,
@@ -487,7 +487,7 @@
           0xffff => "User-Selected",
           0xfffe => "Preset (Fireworks?)"
         )
-      ), // < < WhiteBallanceMode
+      ), // < < WhiteBalanceMode
 
       // Saturation, tag 0x001f
       0x001f => Array(
@@ -1694,6 +1694,11 @@
       ),
 
     );
+
+    function __destruct()
+    {
+      parent::__destruct();
+    }
   } // PentaxTags
 
 

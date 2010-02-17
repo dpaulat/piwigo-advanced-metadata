@@ -61,6 +61,11 @@
     protected $tags = Array(
     );
 
+    function __destruct()
+    {
+      parent::__destruct();
+    }
+
   } // NikonTags
 
 

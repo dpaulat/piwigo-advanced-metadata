@@ -102,6 +102,7 @@
 
     function __destruct()
     {
+      unset($this->label);
       unset($this->tags);
     }
 

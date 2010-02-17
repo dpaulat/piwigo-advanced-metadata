@@ -710,6 +710,11 @@
     {
       unset($this->workData);
       unset($this->data);
+      unset($this->header);
+      unset($this->offset);
+      unset($this->length);
+      unset($this->subType);
+      unset($this->dataLoaded);
     }
 
     /**

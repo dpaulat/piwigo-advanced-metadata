@@ -74,6 +74,12 @@
   {
     protected $maker = "UNKNOWN";
 
+    function __destruct()
+    {
+      unset($this->maker);
+      parent::__destruct();
+    }
+
     /**
      * this function return the name of the camera maker
      *

@@ -86,6 +86,12 @@
       }
     }
 
+    function __destruct()
+    {
+      parent::__destruct();
+    }
+
+
     public function toString()
     {
       $returned="IPTC ; NbEntries: ".sprintf("%02d", $this->nbEntries);
@@ -131,6 +137,8 @@
           );
           array_splice($this->entries, $tagT, 1);
         }
+        unset($tagD);
+        unset($tagT);
       }
     }
 
@@ -198,6 +206,7 @@
         }
         unset($block);
       }
+      unset($blocks);
 
       foreach($this->entries as $key => $tag)
       {
@@ -295,6 +304,7 @@
         case 0x0114: // 1:20  - File Format
           $tag=$this->tagDef->getTagById(0x0114);
           $returned=$tag['tagValues.special'][ConvertData::toUShort($values, BYTE_ORDER_BIG_ENDIAN)];
+          unset($tag);
           break;
         case 0x0203: // 2:03  - Object Type Reference
         case 0x0204: // 2:04  - Intellectual Genre

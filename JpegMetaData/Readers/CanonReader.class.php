@@ -85,6 +85,11 @@
       parent::__construct($data, $offset, $byteOrder);
     }
 
+    function __destruct()
+    {
+      parent::__destruct();
+    }
+
 
     /**
      * initialize the definition for Pentax exif tags

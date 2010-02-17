@@ -2094,6 +2094,10 @@
       return($returned);
     }
 
+    function __destruct()
+    {
+      parent::__destruct();
+    }
   }
 
 ?>

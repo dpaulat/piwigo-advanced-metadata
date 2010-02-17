@@ -111,6 +111,7 @@
     {
       unset($this->appMarkerSegmentReader);
       unset($this->fileHandler);
+      unset($this->fileName);
     }
 
     /**
@@ -207,6 +208,7 @@
            */
           $this->appMarkerSegmentReader[]=$marker;
           $offset+=$marker->getLength();
+          unset($marker);
         }
         else
         {

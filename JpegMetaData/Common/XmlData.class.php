@@ -213,7 +213,7 @@
     {
       if(array_key_exists($name, $this->attributes))
       {
-        $this->attributes[$name];
+        $this->attributes[$name]=$value;
         return(true);
       }
       else

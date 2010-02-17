@@ -117,6 +117,18 @@
       $this->tagIsTranslatable=$tagIsTranslatable;
     }
 
+    function __destruct()
+    {
+      unset($this->tagId);
+      unset($this->tagName);
+      unset($this->tagNote);
+      unset($this->tagValue);
+      unset($this->valueLabel);
+      unset($this->tagIsKnown);
+      unset($this->tagIsImplemented);
+      unset($this->tagIsTranslatable);
+    }
+
     /**
      * returns the Tag Id
      *

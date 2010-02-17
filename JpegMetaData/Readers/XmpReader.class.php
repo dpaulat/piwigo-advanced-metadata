@@ -272,6 +272,7 @@
             }
             $this->addTag($node->getName(), $value);
           }
+          unset($child);
           break;
         default:
           $this->processNode($node->getFirstChild());
@@ -335,9 +336,11 @@
           }
 
         }
+        unset($tagProperties);
       }
 
       $this->entries[]=$tag;
+      unset($tag);
     }
 
     /**
@@ -498,6 +501,7 @@
             if(array_key_exists($val, $tag['tagValues.special']))
               $returned['values'][$key]=$tag['tagValues.special'][$val];
           }
+          unset($tag);
           break;
         case "Iptc4xmpCore:SubjectCode": //bag
           $returned=$value;
@@ -521,6 +525,8 @@
 
             if(count($tmp)>=5)
               $returned['values'][$key]['subjectDetailName']=$tmp[4];
+
+            unset($tmp);
           }
           break;
         default:
@@ -626,6 +632,7 @@
           $computed=explode("/", $xmpValue);
           $returned=Array((int)$computed[0], (int)$computed[1]);
           $type=ByteType::URATIONAL;
+          unset($computed);
           break;
         /* dates & texts */
         case "tiff:DateTime":
@@ -704,4 +711,3 @@
   }
 
 ?>
-

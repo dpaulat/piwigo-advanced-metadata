@@ -1863,6 +1863,8 @@
               {
                 $this->tags[$key]['implemented'] = false;
               }
+
+              unset($tmpTag);
             }
           }
         }
@@ -1873,6 +1875,11 @@
       unset($tmpTags);
     }
 
+
+    function __destruct()
+    {
+      parent::__destruct();
+    }
   }
 
 

@@ -53,6 +53,10 @@
 
   class GpsReader extends IfdReader
   {
+    function __destruct()
+    {
+      parent::__destruct();
+    }
 
     /**
      * initialize the definition of the GPS tags

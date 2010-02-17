@@ -167,7 +167,10 @@
      *  'name'        => String, the tag name translated in locale language
      *
      * @Param Array $options  (optional)
-     * @return Array(keyName => Array('implemented' => Boolean, 'name' => String))
+     * @return Array(keyName => Array(
+     *                            'implemented' => Boolean,
+     *                            'translatable' => Boolean,
+     *                            'name' => String))
      */
     static public function getTagList($options=Array())
     {
@@ -229,6 +232,7 @@
             $schema="xmp";
             break;
           case MAKER_PENTAX:
+            include_once(JPEG_METADATA_DIR."TagDefinitions/PentaxTags.class.php");
             $tmp=new PentaxTags();
             $schema="exif.".MAKER_PENTAX;
             break;
@@ -259,6 +263,7 @@
                 $keyName=$schema.$subSchema.".".$name;
               $returned[$keyName]=Array(
                 'implemented' => $tag['implemented'],
+                'translatable' => $tag['translatable'],
                 'name' => $name
               );
             }
@@ -344,9 +349,9 @@
      */
     public function load($file, $options = Array())
     {
-      $this->initializeOptions($options);
-
       $this->unsetAll();
+
+      $this->initializeOptions($options);
       $this->tags = Array();
       $this->jpeg = new JpegReader($file);
 
@@ -529,10 +534,10 @@
     {
       unset($this->tags);
       unset($this->jpeg);
+      unset($this->options);
     }
 
 
   } // class JpegMetaData
 
 ?>
-

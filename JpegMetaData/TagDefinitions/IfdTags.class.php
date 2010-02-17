@@ -1571,6 +1571,11 @@
       ), // < ImageUniqueID
 
     );
+
+    function __destruct()
+    {
+      parent::__destruct();
+    }
   }
 
 
