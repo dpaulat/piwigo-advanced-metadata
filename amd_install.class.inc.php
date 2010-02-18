@@ -62,7 +62,7 @@
   `nbTags` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY (`imageId`)
 );",
-"CREATE TABLE `".$this->tables['selected_tag']."` (
+"CREATE TABLE `".$this->tables['selected_tags']."` (
   `tagId` VARCHAR(80)  NOT NULL,
   `order` INTEGER UNSIGNED NOT NULL DEFAULT 0,
   `groupId` INTEGER  NOT NULL DEFAULT -1,
