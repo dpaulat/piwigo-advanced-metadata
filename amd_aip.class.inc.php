@@ -149,9 +149,6 @@ class AMD_AIP extends AMD_root
         case 'makeStatsDoAnalyze':
           $result=$this->ajax_amd_makeStatsDoAnalyze($_REQUEST['imagesList']);
           break;
-        case 'makeStatsConsolidate':
-          $result=$this->ajax_amd_makeStatsConsolidate($_REQUEST['step']);
-          break;
         case 'makeStatsGetStatus':
           $result=$this->ajax_amd_makeStatsGetStatus();
           break;
@@ -476,26 +473,6 @@ class AMD_AIP extends AMD_root
 
   /**
    * display and manage the database page
-   */
-  private function displayDatabase()
-  {
-    global $template, $page;
-
-    $template->set_filename('body_page', dirname(__FILE__).'/admin/amd_database.tpl');
-
-    $datas=array(
-      'urlRequest' => $this->page_link,
-      'NumberOfItemsPerRequest' => $this->my_config['amd_NumberOfItemsPerRequest'],
-    );
-
-    $template->assign("datas", $datas);
-
-    $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
-  } // display_config
-
-
-  /**
-   * display and manage the status page on the stat page
    *
    * the function automatically update the AMD tables :
    *  - add new pictures in the AMD image table (assuming image is not analyzed
@@ -504,11 +481,9 @@ class AMD_AIP extends AMD_root
    *
    * @return String : the content of the page
    */
-  protected function displayStatStatus()
+  private function displayDatabase()
   {
-    $local_tpl = new Template(AMD_PATH."admin/", "");
-    $local_tpl->set_filename('body_page',
-                  dirname($this->filelocation).'/admin/amd_stat_status.tpl');
+    global $template, $page;
 
     /*
      * insert new image (from piwigo images table) in the AMD images table, with
@@ -537,14 +512,19 @@ class AMD_AIP extends AMD_root
             WHERE imageId NOT IN (SELECT imageId FROM ".$this->tables['images'].")";
     pwg_query($sql);
 
+
+    $template->set_filename('body_page', dirname(__FILE__).'/admin/amd_database.tpl');
+
     $datas=array(
       'urlRequest' => $this->page_link,
+      'NumberOfItemsPerRequest' => $this->my_config['amd_NumberOfItemsPerRequest'],
     );
 
-    $local_tpl->assign('datas', $datas);
+    $template->assign("datas", $datas);
 
-    return($local_tpl->parse('body_page', true));
-  }
+    $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
+  } // displayDatabase
+
 
 
   /**
@@ -749,11 +729,6 @@ class AMD_AIP extends AMD_root
             'numId' => $numId,
             'value' => addslashes($value)
           );
-
-          $sql="UPDATE ".$this->tables['used_tags']."
-                  SET numOfImg = numOfImg+1
-                  WHERE numId=$numId;";
-          pwg_query($sql);
         }
       }
     }
@@ -858,6 +833,14 @@ class AMD_AIP extends AMD_root
         }
       }
     }
+
+    $sql="UPDATE ".$this->tables['used_tags']." ut,
+            (SELECT COUNT(imageId) AS nb, numId
+              FROM ".$this->tables['images_tags']."
+              GROUP BY numId) nb
+          SET ut.numOfImg = nb.nb
+          WHERE ut.numId = nb.numId;";
+    pwg_query($sql);
 
     return(trim($returned).";");
   }
@@ -965,41 +948,6 @@ class AMD_AIP extends AMD_root
     return(sprintf(l10n("g003_numberOfAnalyzedPictures"), $numOfPictures, $numOfMetaData).";".
               sprintf(l10n("g003_numberOfNotAnalyzedPictures"), $numOfPicturesNotAnalyzed).";".
               sprintf(l10n("g003_numberOfPicturesWithoutTags"), $numOfPicturesWithoutTags));
-  }
-
-
-  /**
-   * make some stat consolidation
-   *  "0" : consolidate "exif.%" tags
-   *  "1" : consolidate "iptc.%" tags
-   *  "2" : consolidate "xmp.%" tags
-   *
-   * @param String $step
-   */
-  private function ajax_amd_makeStatsConsolidate($step)
-  {/*
-    $sql="INSERT INTO ".$this->tables['used_tags']."
-            SELECT tagId, count(distinct imageId)
-              FROM ".$this->tables['images_tags']."
-              WHERE tagId LIKE '%s'
-              GROUP BY tagId";
-
-    switch($step)
-    {
-      case "0":
-        pwg_query("DELETE FROM ".$this->tables['used_tags']);
-        $sql=sprintf($sql, "exif.%");
-        pwg_query($sql);
-        break;
-      case "1":
-        $sql=sprintf($sql, "iptc.%");
-        pwg_query($sql);
-        break;
-      case "2":
-        $sql=sprintf($sql, "xmp.%");
-        pwg_query($sql);
-        break;
-    }*/
   }
 
 

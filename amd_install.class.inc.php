@@ -25,13 +25,11 @@
   class AMD_install extends AMD_root
   {
     private $tablef;
-    private $exportfile;
 
     public function AMD_install($prefixeTable, $filelocation)
     {
       parent::__construct($prefixeTable, $filelocation);
       $this->tablef= new manage_tables($this->tables);
-      $this->exportfile=dirname($this->filelocation).'/'.$this->plugin_name_files.'.sql';
     }
 
     /*
@@ -102,7 +100,6 @@
     */
     public function uninstall()
     {
-      $this->tablef->export($this->exportfile);
       $this->delete_config();
       $this->tablef->drop_tables();
     }
