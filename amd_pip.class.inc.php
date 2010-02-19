@@ -91,10 +91,10 @@ class AMD_PIP extends AMD_root
 
     $tagsList=Array();
     $sql="SELECT st.tagId, gn.name as gName
-          FROM (phpwebgallery_amd_selected_tags st
-            LEFT JOIN phpwebgallery_amd_groups gr
+          FROM (".$this->tables['selected_tags']." st
+            LEFT JOIN ".$this->tables['groups']." gr
               ON gr.groupId = st.groupId)
-            LEFT JOIN phpwebgallery_amd_groups_names gn
+            LEFT JOIN ".$this->tables['groups_names']." gn
               ON st.groupId = gn.groupId
           WHERE gn.lang='".$user['language']."'
             AND st.groupId <> -1
