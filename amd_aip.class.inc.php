@@ -149,6 +149,9 @@ class AMD_AIP extends AMD_root
         case 'makeStatsDoAnalyze':
           $result=$this->ajax_amd_makeStatsDoAnalyze($_REQUEST['imagesList']);
           break;
+        case 'makeStatsConsolidation':
+          $result=$this->ajax_amd_makeStatsConsolidation();
+          break;
         case 'makeStatsGetStatus':
           $result=$this->ajax_amd_makeStatsGetStatus();
           break;
@@ -833,15 +836,6 @@ class AMD_AIP extends AMD_root
         }
       }
     }
-
-    $sql="UPDATE ".$this->tables['used_tags']." ut,
-            (SELECT COUNT(imageId) AS nb, numId
-              FROM ".$this->tables['images_tags']."
-              GROUP BY numId) nb
-          SET ut.numOfImg = nb.nb
-          WHERE ut.numId = nb.numId;";
-    pwg_query($sql);
-
     return(trim($returned).";");
   }
 
@@ -892,6 +886,24 @@ class AMD_AIP extends AMD_root
         }
       }
     }
+    return($returned);
+  }
+
+  /**
+   * do some consolidation on database to optimize other requests
+   *
+   */
+  private function ajax_amd_makeStatsConsolidation()
+  {
+
+    $sql="UPDATE ".$this->tables['used_tags']." ut,
+            (SELECT COUNT(imageId) AS nb, numId
+              FROM ".$this->tables['images_tags']."
+              GROUP BY numId) nb
+          SET ut.numOfImg = nb.nb
+          WHERE ut.numId = nb.numId;";
+    pwg_query($sql);
+
     return($returned);
   }
 

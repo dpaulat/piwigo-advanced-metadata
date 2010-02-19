@@ -137,24 +137,18 @@
         data: { ajaxfct:"makeStatsDoAnalyze", imagesList:list[i] }
        }).responseText;
 
-      pct=100*(i+1)/(list.length+2);
+      pct=100*(i+1)/list.length;
       $("#iprogressbar_bg").css("width", pct+"%");
       $("#iprogressbar_fg").html(Math.round(pct)+"%");
     }
 
-    for(j=0;j<3;j++)
-    {
-      tmp = $.ajax({
-        type: "POST",
-        url: "{/literal}{$datas.urlRequest}{literal}",
-        async: false,
-        data: { ajaxfct:"makeStatsConsolidate", step:j }
-       }).responseText;
+    tmp = $.ajax({
+      type: "POST",
+      url: "{/literal}{$datas.urlRequest}{literal}",
+      async: false,
+      data: { ajaxfct:"makeStatsConsolidation" }
+     }).responseText;
 
-      pct=100*(i+j+1)/(list.length+2);
-      $("#iprogressbar_bg").css("width", pct+"%");
-      $("#iprogressbar_fg").html(Math.round(pct)+"%");
-    }
 
     timeEnd = new Date();
     timeElapsed=timeEnd.getTime()-timeStart.getTime();
