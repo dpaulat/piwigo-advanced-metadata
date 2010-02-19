@@ -544,10 +544,10 @@ class AMD_AIP extends AMD_root
     $statTabsheet->select($tab);
     $statTabsheet->add('select',
                           l10n('g003_select'),
-                          $this->page_link.'&amp;fAMD_tabsheet=stat&amp;fAMD_page=select');
+                          $this->page_link.'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=select');
     $statTabsheet->add('display',
                           l10n('g003_display'),
-                          $this->page_link.'&amp;fAMD_tabsheet=stat&amp;fAMD_page=display');
+                          $this->page_link.'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=display');
     $statTabsheet->assign();
 
 
