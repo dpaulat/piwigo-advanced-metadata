@@ -201,6 +201,7 @@
       {
         $list[]=MAKER_PENTAX;
         $list[]=MAKER_NIKON;
+        $list[]=MAKER_CANON;
       }
 
       if($default['iptc'])
@@ -240,6 +241,11 @@
             include_once(JPEG_METADATA_DIR."TagDefinitions/NikonTags.class.php");
             $tmp=new NikonTags();
             $schema="exif.".MAKER_NIKON;
+            break;
+          case MAKER_CANON:
+            include_once(JPEG_METADATA_DIR."TagDefinitions/CanonTags.class.php");
+            $tmp=new CanonTags();
+            $schema="exif.".MAKER_CANON;
             break;
           default:
             $tmp=null;
@@ -486,7 +492,10 @@
     {
       foreach($ifd->getTags() as $key => $tag)
       {
-        if(self::filter($tag->getTag()->isKnown(), $tag->getTag()->isImplemented(), $this->options['filter']))
+        if((self::filter($tag->getTag()->isKnown(), $tag->getTag()->isImplemented(), $this->options['filter'])) or
+           ($tag->getTag()->getName()=='Exif IFD Pointer' or
+            $tag->getTag()->getName()=='MakerNote' or
+            $tag->getTag()->getName()=='GPS IFD Pointer'))
         {
           if($tag->getTag()->getLabel() instanceof IfdReader)
           {
