@@ -82,15 +82,6 @@
       $tables_def = create_table_add_character_set($tables_def);
       $result=$this->tablef->create_tables($tables_def);
 
-      /*
-       * fill the 'used_tags' table with default values
-       */
-      foreach(JpegMetaData::getTagList(Array('filter' => JpegMetaData::TAGFILTER_IMPLEMENTED, 'xmp' => true, 'maker' => true, 'iptc' => true)) as $key => $val)
-      {
-        $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0);";
-        pwg_query($sql);
-      }
-
       return($result);
     }
 
@@ -107,6 +98,19 @@
     public function activate()
     {
       global $template;
+
+
+      pwg_query("DELETE FROM ".$this->tables['used_tags']);
+      pwg_query("DELETE FROM ".$this->tables['images_tags']);
+      pwg_query("UPDATE ".$this->tables['images']." SET analyzed='n', nbTags=0;");
+      /*
+       * fill the 'used_tags' table with default values
+       */
+      foreach(JpegMetaData::getTagList(Array('filter' => JpegMetaData::TAGFILTER_IMPLEMENTED, 'xmp' => true, 'maker' => true, 'iptc' => true)) as $key => $val)
+      {
+        $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0);";
+        pwg_query($sql);
+      }
 
       $this->init_config();
       $this->load_config();

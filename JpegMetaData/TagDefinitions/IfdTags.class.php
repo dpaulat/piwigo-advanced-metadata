@@ -416,7 +416,7 @@
       // FreeOffsets, tag 0x0120
       0x0120 => Array(
         'tagName'     => "FreeOffsets",
-        'schema'      => "",
+        'schema'      => "tiff",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -425,7 +425,7 @@
       // FreeByteCounts, tag 0x0121
       0x0121 => Array(
         'tagName'     => "FreeByteCounts",
-        'schema'      => "",
+        'schema'      => "unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -450,7 +450,7 @@
       // GrayResponseCurve, tag 0x0123
       0x0123 => Array(
         'tagName'     => "GrayResponseCurve",
-        'schema'      => "",
+        'schema'      => "unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -459,7 +459,7 @@
       // T4Options, tag 0x0124
       0x0124 => Array(
         'tagName'     => "T4Options",
-        'schema'      => "",
+        'schema'      => "unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -469,7 +469,7 @@
       // T6Options, tag 0x0125
       0x0125 => Array(
         'tagName'     => "T6Options",
-        'schema'      => "",
+        'schema'      => "unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -502,7 +502,7 @@
       // ColorResponseUnit, tag 0x012c
       0x012c => Array(
         'tagName'     => "ColorResponseUnit",
-        'schema'      => "",
+        'schema'      => "unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -591,7 +591,7 @@
       // JPEGInterchangeFormat, tag 0x0201, see EXIF2.2 documentation to implement
       0x0201 => Array(
         'tagName'     => "JPEGInterchangeFormat",
-        'schema'      => Array("tiff", "IFD1", "MAKERNOTES", "IFD2"),
+        'schema'      => "tiff",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true,
@@ -600,7 +600,7 @@
       // JPEGInterchangeFormatLength, tag 0x0202, see EXIF2.2 documentation to implement
       0x0202 => Array(
         'tagName'     => "JPEGInterchangeFormatLength",
-        'schema'      => Array("tiff", "IFD1", "MAKERNOTES", "IFD2"),
+        'schema'      => "tiff",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true,
@@ -720,7 +720,7 @@
       // AFCP_IPTC, tag 0x8568
       0x8568 => Array(
         'tagName'     => "AFCP_IPTC",
-        'schema'      => "",
+        'schema'      => "unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -729,16 +729,16 @@
       // Exif IFD Pointer, tag 0x8769
       0x8769 => Array(
         'tagName'     => "Exif IFD Pointer",
-        'schema'      => "",
+        'schema'      => "tiff",
         'translatable'=> false,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => false
       ), // < Exif IFD Pointer
 
       // ICC_Profile, tag 0x8773
       0x8773 => Array(
         'tagName'     => "ICC_Profile",
-        'schema'      => "",
+        'schema'      => "unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -777,10 +777,10 @@
       // GPS IFD Pointer, tag 0x8825
       0x8825 => Array(
         'tagName'     => "GPS IFD Pointer",
-        'schema'      => "",
+        'schema'      => "tiff",
         'translatable'=> false,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => false
       ), // < GPS IFD Pointer
 
       // ISOSpeedRatings, tag 0x8827
@@ -1096,7 +1096,7 @@
       // TIFF-EPStandardID, tag 0x9216
       0x9216 => Array(
         'tagName'     => "TIFF-EPStandardID",
-        'schema'      => "",
+        'schema'      => "unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1109,7 +1109,7 @@
         'schema'      => "exif",
         'translatable'=> false,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => false //implemented but can't be used as a tag value
       ), // < MakerNote
 
       // UserComment, tag 0x9286, see EXIF2.2 for documentation
@@ -1247,7 +1247,7 @@
       // Interoperability IFD Pointer, tag 0xA005
       0xA005 => Array(
         'tagName'     => "Interoperability IFD Pointer",
-        'schema'      => "",
+        'schema'      => "exif",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1265,7 +1265,7 @@
       // SpatialFrequencyResponse, tag 0xA20C
       0xA20C => Array(
         'tagName'     => "SpatialFrequencyResponse",
-        'schema'      => "",
+        'schema'      => "exif",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1275,7 +1275,7 @@
       // Noise, tag 0xA20D
       0xA20D => Array(
         'tagName'     => "Noise",
-        'schema'      => "",
+        'schema'      => "exif",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false

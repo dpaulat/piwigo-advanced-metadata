@@ -895,7 +895,6 @@ class AMD_AIP extends AMD_root
    */
   private function ajax_amd_makeStatsConsolidation()
   {
-
     $sql="UPDATE ".$this->tables['used_tags']." ut,
             (SELECT COUNT(imageId) AS nb, numId
               FROM ".$this->tables['images_tags']."
@@ -903,8 +902,6 @@ class AMD_AIP extends AMD_root
           SET ut.numOfImg = nb.nb
           WHERE ut.numId = nb.numId;";
     pwg_query($sql);
-
-    return($returned);
   }
 
   /**

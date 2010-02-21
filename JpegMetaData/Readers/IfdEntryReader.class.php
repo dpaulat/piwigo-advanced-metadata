@@ -268,7 +268,6 @@
       return($this->tag);
     }
 
-
     public function toString()
     {
       $returned="raw: ".ConvertData::toHexDump($this->raw, ByteType::ASCII);

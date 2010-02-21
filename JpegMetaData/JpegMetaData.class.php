@@ -164,13 +164,12 @@
      * each keys is a tag name and the associated value is a 2-level array
      *  'implemented' => Boolean, allowing to know if the tags is implemented or
      *                   not
+     *  'translatable'=> Boolean, allowing to know if the tag value can be
+     *                   translated
      *  'name'        => String, the tag name translated in locale language
      *
      * @Param Array $options  (optional)
-     * @return Array(keyName => Array(
-     *                            'implemented' => Boolean,
-     *                            'translatable' => Boolean,
-     *                            'name' => String))
+     * @return Array(keyName => Array('implemented' => Boolean, 'name' => String))
      */
     static public function getTagList($options=Array())
     {
@@ -201,6 +200,7 @@
       if($default['maker'])
       {
         $list[]=MAKER_PENTAX;
+        $list[]=MAKER_NIKON;
       }
 
       if($default['iptc'])
@@ -235,6 +235,11 @@
             include_once(JPEG_METADATA_DIR."TagDefinitions/PentaxTags.class.php");
             $tmp=new PentaxTags();
             $schema="exif.".MAKER_PENTAX;
+            break;
+          case MAKER_NIKON:
+            include_once(JPEG_METADATA_DIR."TagDefinitions/NikonTags.class.php");
+            $tmp=new NikonTags();
+            $schema="exif.".MAKER_NIKON;
             break;
           default:
             $tmp=null;

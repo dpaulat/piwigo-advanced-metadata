@@ -41,6 +41,9 @@
  * .. Notes ..
  *
  *
+ * ****             All known tags are not implemented !!                   ****
+ *
+ *
  * The PentaxReader class is derived from the MakerNotesReader class.
  *
  * ======> See MakerNotesReader.class.php to know more about common methods <======
@@ -167,12 +170,12 @@
            *  [1] : bracketing mode
            */
           if($values[0]<10)
-            $returned=($values[0]/3)." EV";
+            $returned=Array(($values[0]/3)." EV");
           else
-            $returned=($values[0]-9.5)." EV";
+            $returned=Array(($values[0]-9.5)." EV");
 
           if($values[1]==0)
-            $returned.=";No extended bracketing";
+            $returned[]="No extended bracketing";
           else
           {
             $type = $values[1] >> 8;
@@ -180,25 +183,25 @@
             switch ($type)
             {
               case 1:
-                $returned.=";WB-BA";
+                $returned[]="WB-BA";
                 break;
               case 2:
-                $returned.=";WB-GM";
+                $returned[]="WB-GM";
                 break;
               case 3:
-                $returned.=";Saturation";
+                $returned[]="Saturation";
                 break;
               case 4:
-                $returned.=";Sharpness";
+                $returned[]="Sharpness";
                 break;
               case 5:
-                $returned.=";Contrast";
+                $returned[]="Contrast";
                 break;
               default:
-                $returned.=";Unknown;".ConvertData::toHexDump($type, ByteType::USHORT);
+                $returned[]="Unknown;".ConvertData::toHexDump($type, ByteType::USHORT);
                 break;
             }
-            $returned.=", ".$range;
+            $returned[]=$range;
           }
           break;
         case 0x001b: // "BlueBalance",

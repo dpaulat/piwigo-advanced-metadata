@@ -365,6 +365,7 @@
         case "dc:relation":
         case "dc:source":
         case "dc:title":
+        case "dc:CreatorTool":
         case "xmp:BaseURL":
         case "xmp:CreatorTool":
         case "xmp:Label":
@@ -394,6 +395,7 @@
         case "photoshop:Source":
         case "photoshop:State":
         case "photoshop:TransmissionReference":
+        case "photoshop:ICCProfile":
         case "crs:AutoBrightness":
         case "crs:AutoContrast":
         case "crs:AutoExposure":

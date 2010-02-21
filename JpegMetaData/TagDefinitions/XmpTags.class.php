@@ -189,6 +189,16 @@
         'schema'       => "dc",
       ),
 
+      // not present in specification, but found in some files
+      'dc:CreatorTool' => Array(
+        'implemented'  => true,
+        'translatable' => false,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "dc",
+      ),
+
+
+
       /*
        * XMP Basic schema
        */
@@ -613,6 +623,19 @@
            '9' => 'none',
         ),
       ),
+      // not present in specification but found in some files
+      'photoshop:ICCProfile' => Array(
+        'implemented'  => true,
+        'translatable' => false,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "photoshop",
+      ),
+      'photoshop:ColorMode' => Array(
+        'implemented'  => false,
+        'translatable' => false,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "photoshop",
+      ),
 
 
       /*
@@ -875,6 +898,24 @@
         'schema'       => "crs",
       ),
       'crs:Balance' => Array(
+        'implemented'  => true,
+        'translatable' => true,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "crs",
+        'tagValues'    => Array(
+           'As Shot'     => "As Shot",
+           'Auto'        => "Auto",
+           'Daylight'    => "Daylight",
+           'Cloudy'      => "Cloudy",
+           'Shade'       => "Shade",
+           'Tungsten'    => "Tungsten",
+           'Fluorescent' => "Fluorescent",
+           'Flash'       => "Flash",
+           'Custom'      => "Custom",
+        ),
+      ),
+      // not present in specifications, but found in some files
+      'crs:WhiteBalance' => Array(
         'implemented'  => true,
         'translatable' => true,
         'type'         => self::TYPE_SIMPLE,
@@ -1391,6 +1432,13 @@
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "exif",
       ),
+      'exif:WhiteBalance' => Array(
+        'exifTag'      => 0xA403,
+        'implemented'  => true,
+        'translatable' => false,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "exif",
+      ),
       'exif:DigitalZoomRatio' => Array(
         'exifTag'      => 0xA404,
         'implemented'  => true,
@@ -1837,10 +1885,6 @@
              * for all the tags from the exif & tiff schema, try to copy properties
              */
             if($val[$schema]!=0xFFFF and $tags->tagIdExists($val[$schema]))
-            {
-              $tmpTag=$tags->getTagById($val[$schema]);
-            }
-            elseif($val[$schema]!=0xFFFF and $tags->tagIdExists($val[$schema]))
             {
               $tmpTag=$tags->getTagById($val[$schema]);
             }

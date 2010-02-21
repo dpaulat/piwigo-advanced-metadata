@@ -1468,7 +1468,7 @@
         'implemented' => false
       ),
 
-      // FlashInfo, tag 0x0209, "AEMeteringSegments"
+      // AEMeteringSegments, tag 0x0209, "AEMeteringSegments"
       0x0209 => Array(
         'tagName'     => "AEMeteringSegments",
         'schema'      => "Pentax",
