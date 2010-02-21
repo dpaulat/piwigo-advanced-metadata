@@ -264,6 +264,7 @@
 
           if(($values & 0x0008) == 0x0008)
             $returned[]=$tag['tagValues.specialValues'][0x0008];
+          unset($tag);
           break;
         case 0x0084: // "Lens"
           /* array of 4 rationnal
@@ -334,6 +335,7 @@
                 $returned['AFPointsInFocus'][]=$val;
             }
           }
+          unset($tag);
           break;
         case 0x0089: // "ShootingMode"
           $returned=Array();
@@ -370,6 +372,7 @@
               }
             }
           }
+          unset($tag);
           break;
         case 0x0098: // "LensData"
           if($this->shutterCount==-1 or $this->serialNumber=="")

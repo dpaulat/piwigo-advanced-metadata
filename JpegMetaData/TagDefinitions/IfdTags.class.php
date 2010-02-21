@@ -732,7 +732,9 @@
         'schema'      => "tiff",
         'translatable'=> false,
         'combiTag'    => 0,
-        'implemented' => false
+        'implemented' => false  // set to false even if the tag management is
+                                // implemented, the IFD pointer can't be
+                                // exploited as a classic metadata
       ), // < Exif IFD Pointer
 
       // ICC_Profile, tag 0x8773
@@ -780,7 +782,9 @@
         'schema'      => "tiff",
         'translatable'=> false,
         'combiTag'    => 0,
-        'implemented' => false
+        'implemented' => false  // set to false even if the tag management is
+                                // implemented, the IFD pointer can't be
+                                // exploited as a classic metadata
       ), // < GPS IFD Pointer
 
       // ISOSpeedRatings, tag 0x8827
@@ -1109,7 +1113,9 @@
         'schema'      => "exif",
         'translatable'=> false,
         'combiTag'    => 0,
-        'implemented' => false //implemented but can't be used as a tag value
+        'implemented' => false  // set to false even if the tag management is
+                                // implemented, the IFD pointer can't be
+                                // exploited as a classic metadata
       ), // < MakerNote
 
       // UserComment, tag 0x9286, see EXIF2.2 for documentation

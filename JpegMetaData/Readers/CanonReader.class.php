@@ -122,11 +122,96 @@
     {
       switch($tagId)
       {
+        case 0x0001: // "CanonImageType"
+          $this->processSubTag0x0001($values);
+          $returned=$values;
+          break;
+        case 0x0006: // "CanonImageType"
+        case 0x0007: // "CanonFirmwareVersion"
+        case 0x0009: // "OwnerName"
+        case 0x0095: // "LensModel"
+        case 0x0096: // "InternalSerialNumber"
+          /*
+           * null terminated strings
+           */
+          $tmp=ConvertData::toStrings($values);
+          if(is_array($tmp))
+          {
+            $returned=$tmp[0];
+          }
+          else
+          {
+            $returned=$tmp;
+          }
+          break;
+        case 0x000c: // "SerialNumber"
+          $returned=$values;
+          break;
+        case 0x0010: // "CanonModelID"
+          $tag=$this->tagDef->getTagById(0x0010);
+          $returned=$tag['tagValues.special'][sprintf("0x%08x", $values)];
+          unset($tag);
+          break;
+        case 0x0015: // "SerialNumberFormat"
+          $tag=$this->tagDef->getTagById(0x0015);
+          $returned=$tag['tagValues.special'][sprintf("0x%08x", $values)];
+          unset($tag);
+          break;
         default:
           $returned="Not yet implemented;".ConvertData::toHexDump($tagId, ByteType::USHORT)." => ".ConvertData::toHexDump($values, $type);
           break;
       }
       return($returned);
+    }
+
+    /**
+     * this function process the subtag of the 0x0001 "CanonCameraSettings" tag
+     */
+    protected function processSubTag0x0001($values)
+    {
+      foreach($values as $key => $val)
+      {
+        $tagDef=$this->tagDef->getTagById("0001.$key");
+
+        if(is_array($tagDef))
+        {
+          // make a fake IFDEntry
+          $entry=new IfdEntryReader("\x01\x00\x00\x00\x00\x00\x00\x00\xFF\xFF\xFF".chr($key), $this->byteOrder, "", 0, null);
+
+          $entry->getTag()->setId("0001.$key");
+          $entry->getTag()->setName($tagDef['tagName']);
+          $entry->getTag()->setValue($val);
+          $entry->getTag()->setKnown(true);
+          $entry->getTag()->setImplemented($tagDef['implemented']);
+          $entry->getTag()->setTranslatable($tagDef['translatable']);
+
+          if(array_key_exists('tagValues', $tagDef))
+          {
+            if(array_key_exists($val, $tagDef['tagValues']))
+            {
+              $entry->getTag()->setLabel($tagDef['tagValues'][$val]);
+            }
+            else
+            {
+              $entry->getTag()->setLabel("unknown (".$val.")");
+            }
+          }
+          else
+          {
+            switch($key)
+            {
+              default:
+                $entry->getTag()->setLabel("not yet implemented");
+                break;
+            }
+          }
+
+          $this->entries[]=$entry;
+
+          unset($entry);
+        }
+        unset($tagDef);
+      }
     }
   }
 

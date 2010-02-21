@@ -497,6 +497,13 @@
             $tag->getTag()->getName()=='MakerNote' or
             $tag->getTag()->getName()=='GPS IFD Pointer'))
         {
+          /*
+           * only tag responding to the filter are selected
+           * note the tags 'Exif IFD Pointer', 'MakerNote' & 'GPS IFD Pointer'
+           * are not declared as implemented (otherwise they are visible with
+           * the static 'getTagList' function) but must be selected even if
+           * filter says "implemented only"
+           */
           if($tag->getTag()->getLabel() instanceof IfdReader)
           {
             switch($tag->getTag()->getName())
