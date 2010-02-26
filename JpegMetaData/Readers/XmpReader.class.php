@@ -359,6 +359,9 @@
       switch($name)
       {
         case "x:xmptk":
+        case "aux:Lens":
+        case "aux:Firmware":
+        case "aux:SerialNumber":
         case "dc:coverage":
         case "dc:format":
         case "dc:identifier":

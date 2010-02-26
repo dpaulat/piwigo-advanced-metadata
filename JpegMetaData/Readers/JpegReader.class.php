@@ -151,6 +151,7 @@
           if($this->isValid)
           {
             $this->readAppMarkerSegments();
+            $this->processSpecialAppMarkerSegments();
             $this->isLoaded=true;
           }
 
@@ -219,6 +220,73 @@
         }
       }
 
+    }
+
+
+    /**
+     *
+     * This function process special APP marker segment
+     *
+     * At now, only the extendedXmp segment are managed
+     *
+     */
+    protected function processSpecialAppMarkerSegments()
+    {
+      /*
+       * process APP extendedXmp segment
+       *
+       * 1/ read all APP segment and find APP1/EXTENDEDXMP segments
+       * 2/ sort APP1/EXTENDEDXMP segments by UID+OFFSET
+       * 3/ merge segment data
+       * 4/ build a new AppMarkerSegmentReader (as an APP1_XMP segement)
+       */
+      $extendedXmp=Array();
+      foreach($this->appMarkerSegmentReader as $marker)
+      {
+        if($marker->getHeader()==AppMarkerSegmentReader::SEGMENT_APP1 and
+           $marker->getSubType()==AppMarkerSegmentReader::APP1_EXTENDEDXMP)
+        {
+          $extendedXmp[]=$marker->getData();
+        }
+      }
+      usort($extendedXmp, Array(&$this, "sortExtendedXmp"));
+
+      $xmp="";
+      foreach($extendedXmp as $marker)
+      {
+        $xmp.=$marker['data'];
+      }
+
+      $marker=new AppMarkerSegmentReader(
+        AppMarkerSegmentReader::SEGMENT_APP1,
+        0,
+        strlen($xmp),
+        AppMarkerSegmentReader::APP1_XMP,
+        "http://ns.adobe.com/xap/1.0/\x00".$xmp
+      );
+
+      if($marker)
+      {
+        /*
+         * if there is a marker returned, push it on the markers array
+         */
+        $this->appMarkerSegmentReader[]=$marker;
+        unset($marker);
+      }
+      unset($extendedXmp);
+      unset($xmp);
+    }
+
+    /**
+     * This function is used to sort the extendedXmp segments
+     */
+    protected function sortExtendedXmp($a, $b)
+    {
+      if (($a['uid'].$a['offset']) == ($b['uid'].$b['offset']))
+      {
+        return(0);
+      }
+      return((($a['uid'].$a['offset']) < ($b['uid'].$b['offset'])) ? -1 : 1);
     }
 
 

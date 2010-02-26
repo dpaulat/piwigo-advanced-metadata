@@ -859,8 +859,38 @@
           $this->data = new XmpReader($this->workData->readASCII());
           $this->dataLoaded=true;
           break;
-        case self::APP1_EXTENDED:
-          $this->data = $this->workData->readASCII();
+        case self::APP1_EXTENDEDXMP:
+          /* When Xmp data size exceed 65458 bytes, the Xmp tree is splited.
+           * Each chunk is written into the JPEG file within a separate APP1
+           * marker segment.
+           *
+           * Each ExtendedXMP marker segment contains:
+           *  - A null-terminated signature string of "http://ns.adobe.com/xmp/extension/".
+           *  - A 128-bit GUID stored as a 32-byte ASCII hex string, capital A-F,
+           *    no null termination. The GUID is a 128-bit MD5 digest of the
+           *    full ExtendedXMP serialization
+           *  - The full length of the ExtendedXMP serialization as a 32-bit
+           *    unsigned integer
+           *  - The offset of this portion as a 32-bit unsigned integer.
+           *  - The portion of the ExtendedXMP
+           *
+           * Each chunck is returned as an array :
+           *  - 'uid'    => the 128-bit GUID
+           *  - 'offset' => the offset
+           *  - 'data'   => xmp data packet
+           *
+           * Xmp Tree is rebuilded after all extendedXmp chunks are loaded, by
+           * the class calling the AppMarkerSegmentReader class (the JpegReader
+           * class)
+           */
+
+          $this->workData->setByteOrder(BYTE_ORDER_BIG_ENDIAN);
+          $this->data=Array(
+            'uid'    => $this->workData->readASCII(32, 35),
+            'offset' => $this->workData->readULong(71),
+            'data'   => $this->workData->readASCII(-1, 75)
+          );
+
           $this->dataLoaded=true;
           break;
         default:

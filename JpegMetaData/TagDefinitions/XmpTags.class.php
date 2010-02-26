@@ -1701,14 +1701,32 @@
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "xmlns",
       ),
+      'aux:Firmware' => Array(
+        'implemented'  => true,
+        'translatable' => false,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "aux",
+      ),
       'aux:Lens' => Array(
+        'implemented'  => true,
+        'translatable' => false,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "aux",
+      ),
+      'aux:LensID' => Array(
+        'implemented'  => false,
+        'translatable' => false,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "aux",
+      ),
+      'aux:LensInfo' => Array(
         'implemented'  => false,
         'translatable' => false,
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "aux",
       ),
       'aux:SerialNumber' => Array(
-        'implemented'  => false,
+        'implemented'  => true,
         'translatable' => false,
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "aux",
@@ -1860,6 +1878,24 @@
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "Iptc4xmpCore",
       ),
+
+      /*
+       * Note Schema
+       */
+      'xmlns:xmpNote' => Array(
+        'implemented'  => false,
+        'translatable' => false,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "xmlns",
+      ),
+
+      'xmpNote:HasExtendedXMP' => Array(
+        'implemented'  => false,
+        'translatable' => false,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "xmpNote",
+      ),
+
     );
 
     /**

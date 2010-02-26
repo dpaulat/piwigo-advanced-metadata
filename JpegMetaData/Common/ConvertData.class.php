@@ -345,6 +345,7 @@
      * Convert a null terminated string into a string
      * or
      * Convert multiples null terminated string into an array of string
+     *    ==> if strings are null (eq. "\x00") nothing is added to the array
      *
      * Example:
      *  "test" => "test"
@@ -364,13 +365,28 @@
       {
         return("");
       }
-      elseif($occurs==1)
-      {
-        return($result[1][0]);
-      }
       else
       {
-        return($result[1]);
+        $returned=Array();
+        foreach($result[1] as $pop)
+        {
+          if($pop!="")
+          {
+            $returned[]=$pop;
+          }
+        }
+        if(count($returned)==1)
+        {
+          return($returned[0]);
+        }
+        elseif(count($returned)==0)
+        {
+          return("");
+        }
+        else
+        {
+          return($returned);
+        }
       }
     }
 

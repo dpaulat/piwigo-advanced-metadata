@@ -53,7 +53,7 @@
   require_once(JPEG_METADATA_DIR."TagDefinitions/KnownTags.class.php");
 
   /**
-   * Define the tags for Nikon camera
+   * Define the tags for Canon camera
    */
   class CanonTags extends KnownTags
   {
@@ -73,19 +73,26 @@
       ), // < CanonCameraSettings
 
       /*
-       * The 'CanonCameraSettings' tags is composed of 46 sub tags
+       * The 'CanonCameraSettings' tags is composed by an array of sub tags
        * Each subtag name is defined bu the class by the concatenation of
-       * "CanonCameraSettings" and the subtag nam
+       * "CanonCameraSettings" and the subtag name
        *
        * Giving something like :
        *  "CanonCameraSettings.MacroMode" for the subtag 0x01
        *
        * This kind of data needs a particular algorythm in the CanonReader class
+       * provided by the processSubTag0x0001 function
+       *
+       * Keys are defined by a string build with :
+       *  - the tag number in hexa "0x0001"
+       *  - a dot "."
+       *  - sub tag number in decimal "10"
+       *  ==> "0x0001.10" => "CanonCameraSettings.CanonImageSize"
        *
        * >>> Begin of CanonCameraSettings subtags
        *
        */
-      "0001.1" => Array(
+      "0x0001.1" => Array(
         'tagName'     => "CanonCameraSettings.MacroMode",
         'schema'      => "Canon",
         'translatable'=> true,
@@ -97,15 +104,15 @@
           ),
       ),
 
-      "0001.2" => Array(
+      "0x0001.2" => Array(
         'tagName'     => "CanonCameraSettings.SelfTimer",
         'schema'      => "Canon",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => false,
+        'implemented' => true,
       ),
 
-      "0001.3" => Array(
+      "0x0001.3" => Array(
         'tagName'     => "CanonCameraSettings.Quality",
         'schema'      => "Canon",
         'translatable'=> true,
@@ -121,7 +128,7 @@
           ),
       ),
 
-      "0001.4" => Array(
+      "0x0001.4" => Array(
         'tagName'     => "CanonCameraSettings.CanonFlashMode",
         'schema'      => "Canon",
         'translatable'=> true,
@@ -139,7 +146,7 @@
           ),
       ),
 
-      "0001.5" => Array(
+      "0x0001.5" => Array(
         'tagName'     => "CanonCameraSettings.ContinuousDrive",
         'schema'      => "Canon",
         'translatable'=> true,
@@ -155,7 +162,7 @@
           ),
       ),
 
-      "0001.7" => Array(
+      "0x0001.7" => Array(
         'tagName'     => "CanonCameraSettings.FocusMode",
         'schema'      => "Canon",
         'translatable'=> true,
@@ -173,7 +180,7 @@
           ),
       ),
 
-      "0001.9" => Array(
+      "0x0001.9" => Array(
         'tagName'     => "CanonCameraSettings.RecordMode",
         'schema'      => "Canon",
         'translatable'=> true,
@@ -190,7 +197,7 @@
           ),
       ),
 
-      "0001.10" => Array(
+      "0x0001.10" => Array(
         'tagName'     => "CanonCameraSettings.CanonImageSize",
         'schema'      => "Canon",
         'translatable'=> true,
@@ -210,6 +217,674 @@
           ),
       ),
 
+      "0x0001.11" => Array(
+        'tagName'     => "CanonCameraSettings.EasyMode",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Full auto",
+            0x01 => "Manual",
+            0x02 => "Landscape",
+            0x03 => "Fast shutter",
+            0x04 => "Slow shutter",
+            0x05 => "Night",
+            0x06 => "Gray Scale",
+            0x07 => "Sepia",
+            0x08 => "Portrait",
+            0x09 => "Sports",
+            0x0a => "Macro",
+            0x0b => "Black & White",
+            0x0c => "Pan focus",
+            0x0d => "Vivid",
+            0x0e => "Neutral",
+            0x0f => "Flash Off",
+            0x10 => "Long Shutter",
+            0x11 => "Super Macro",
+            0x12 => "Foliage",
+            0x13 => "Indoor",
+            0x14 => "Fireworks",
+            0x15 => "Beach",
+            0x16 => "Underwater",
+            0x17 => "Snow",
+            0x18 => "Kids & Pets",
+            0x19 => "Night Snapshot",
+            0x1a => "Digital Macro",
+            0x1b => "My Colors",
+            0x1c => "Still Image",
+            0x1d => "Color Accent",
+            0x1e => "Color Swap",
+            0x20 => "Aquarium",
+            0x21 => "ISO 3200",
+            0x26 => "Creative Auto",
+            0x105 => "Sunset",
+          ),
+      ),
+
+      "0x0001.12" => Array(
+        'tagName'     => "CanonCameraSettings.DigitalZoom",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0 => "None",
+            1 => "2x",
+            2 => "4x",
+            3 => "Other",
+          ),
+      ),
+
+      "0x0001.13" => Array(
+        'tagName'     => "CanonCameraSettings.Contrast",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0001.14" => Array(
+        'tagName'     => "CanonCameraSettings.Saturation",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0001.15" => Array(
+        'tagName'     => "CanonCameraSettings.Sharpness",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0001.16" => Array(
+        'tagName'     => "CanonCameraSettings.CameraISO",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0001.17" => Array(
+        'tagName'     => "CanonCameraSettings.MeteringMode",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Default",
+            0x01 => "Spot",
+            0x02 => "Average",
+            0x03 => "Evaluative",
+            0x04 => "Partial",
+            0x05 => "Center-weighted average",
+        ),
+      ),
+
+      "0x0001.18" => Array(
+        'tagName'     => "CanonCameraSettings.FocusRange",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Manual",
+            0x01 => "Auto",
+            0x02 => "Not Known",
+            0x03 => "Macro",
+            0x04 => "Very Close",
+            0x05 => "Close",
+            0x06 => "Middle Range",
+            0x07 => "Far Range",
+            0x08 => "Pan Focus",
+            0x09 => "Super Macro",
+            0x0a => "Infinity"
+        ),
+      ),
+
+      "0x0001.18" => Array(
+        'tagName'     => "CanonCameraSettings.FocusRange",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Manual",
+            0x01 => "Auto",
+            0x02 => "Not Known",
+            0x03 => "Macro",
+            0x04 => "Very Close",
+            0x05 => "Close",
+            0x06 => "Middle Range",
+            0x07 => "Far Range",
+            0x08 => "Pan Focus",
+            0x09 => "Super Macro",
+            0x0a => "Infinity"
+        ),
+      ),
+
+      "0x0001.19" => Array(
+        'tagName'     => "CanonCameraSettings.AFPoint",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x2005 => "Manual AF point selection",
+            0x3000 => "None (MF)",
+            0x3001 => "Auto AF point selection",
+            0x3002 => "Right",
+            0x3003 => "Center",
+            0x3004 => "Left",
+            0x4001 => "Auto AF point selection",
+            0x4006 => "Face Detect"
+        ),
+      ),
+
+      "0x0001.20" => Array(
+        'tagName'     => "CanonCameraSettings.CanonExposureMode",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0 => "Easy",
+            1 => "Program AE",
+            2 => "Shutter speed priority AE",
+            3 => "Aperture-priority AE",
+            4 => "Manual",
+            5 => "Depth-of-field AE",
+            6 => "M-Dep",
+            7 => "Bulb"
+        ),
+      ),
+
+      "0x0001.22" => Array(
+        'tagName'     => "CanonCameraSettings.LensType",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues.special' => Array(
+              /* some lenses have the same Id. In this case associated name is
+               * not a single string, but an Array
+               *
+               * the lens CanonReader->processSubTag0x0001 function try to find
+               * to good lens by looking in each name if the ShortFocal-LongFocal
+               * correspond
+               */
+         0xffff => "Unknown lens",
+              1 => "Canon EF 50mm f/1.8",
+              2 => "Canon EF 28mm f/2.8",
+              3 => "Canon EF 135mm f/2.8 Soft",
+              4 => Array(
+                      "Canon EF 35-105mm f/3.5-4.5",
+                      "Sigma UC Zoom 35-135mm f/4-5.6",
+                    ),
+              5 => "Canon EF 35-70mm f/3.5-4.5",
+              6 => Array(
+                      "Canon EF 28-70mm f/3.5-4.5",
+                      "Sigma 18-50mm f/3.5-5.6 DC",
+                      "Sigma 18-125mm f/3.5-5.6 DC IF ASP",
+                      "Tokina AF193-2 19-35mm f/3.5-4.5",
+                    ),
+              7 => "Canon EF 100-300mm f/5.6L",
+              8 => Array(
+                      "Canon EF 100-300mm f/5.6",
+                      "Sigma 70-300mm f/4-5.6 DG Macro",
+                      "Tokina AT-X242AF 24-200mm f/3.5-5.6",
+                    ),
+              9 => Array(
+                      "Canon EF 70-210mm f/4",
+                      "Sigma 55-200mm f/4-5.6 DC",
+                    ),
+              10 => Array(
+                      "Canon EF 50mm f/2.5 Macro",
+                      "Sigma 50mm f/2.8 EX",
+                      "Sigma 28mm f/1.8",
+                      "Sigma 105mm f/2.8 Macro EX",
+                    ),
+              11 => "Canon EF 35mm f/2",
+              13 => "Canon EF 15mm f/2.8 Fisheye",
+              14 => "Canon EF 50-200mm f/3.5-4.5L",
+              15 => "Canon EF 50-200mm f/3.5-4.5",
+              16 => "Canon EF 35-135mm f/3.5-4.5",
+              17 => "Canon EF 35-70mm f/3.5-4.5A",
+              18 => "Canon EF 28-70mm f/3.5-4.5",
+              20 => "Canon EF 100-200mm f/4.5A",
+              21 => "Canon EF 80-200mm f/2.8L",
+              22 => Array(
+                        "Canon EF 20-35mm f/2.8L",
+                        "Tokina AT-X280AF PRO 28-80mm f/2.8 Aspherical",
+                      ),
+              23 => "Canon EF 35-105mm f/3.5-4.5",
+              24 => "Canon EF 35-80mm f/4-5.6 Power Zoom",
+              25 => "Canon EF 35-80mm f/4-5.6 Power Zoom",
+              26 => Array(
+                        "Canon EF 100mm f/2.8 Macro",
+                        "Cosina 100mm f/3.5 Macro AF",
+                        "Tamron SP AF 90mm f/2.8 Di Macro",
+                        "Tamron SP AF 180mm f/3.5 Di Macro",
+                        "Carl Zeiss Planar T* 50mm f/1.4",
+                      ),
+              27 => "Canon EF 35-80mm f/4-5.6",
+              28 => Array(
+                        "Canon EF 80-200mm f/4.5-5.6",
+                        "Tamron SP AF 28-105mm f/2.8 LD Aspherical IF",
+                        "Tamron SP AF 28-75mm f/2.8 XR Di LD Aspherical [IF] Macro",
+                        "Tamron AF 70-300mm f/4.5-5.6 Di LD 1:2 Macro Zoom",
+                        "Tamron AF Aspherical 28-200mm f/3.8-5.6",
+                      ),
+              29 => "Canon EF 50mm f/1.8 MkII",
+              30 => "Canon EF 35-105mm f/4.5-5.6",
+              31 => Array(
+                        "Canon EF 75-300mm f/4-5.6",
+                        "Tamron SP AF 300mm f/2.8 LD IF",
+                      ),
+              32 => Array(
+                        "Canon EF 24mm f/2.8",
+                        "Sigma 15mm f/2.8 EX Fisheye",
+                      ),
+              33 => "Voigtlander Ultron 40mm f/2 SLII Aspherical",
+              35 => "Canon EF 35-80mm f/4-5.6",
+              36 => "Canon EF 38-76mm f/4.5-5.6",
+              37 => Array(
+                        "Canon EF 35-80mm f/4-5.6",
+                        "Tamron 70-200mm f/2.8 Di LD IF Macro",
+                        "Tamron AF 28-300mm f/3.5-6.3 XR Di VC LD Aspherical [IF] Macro Model A20",
+                      ),
+              38 => "Canon EF 80-200mm f/4.5-5.6",
+              39 => "Canon EF 75-300mm f/4-5.6",
+              40 => "Canon EF 28-80mm f/3.5-5.6",
+              41 => "Canon EF 28-90mm f/4-5.6",
+              42 => Array(
+                        "Canon EF 28-200mm f/3.5-5.6",
+                        "Tamron AF 28-300mm f/3.5-6.3 XR Di VC LD Aspherical [IF] Macro Model A20",
+                      ),
+              43 => "Canon EF 28-105mm f/4-5.6",
+              44 => "Canon EF 90-300mm f/4.5-5.6",
+              45 => "Canon EF-S 18-55mm f/3.5-5.6",
+              46 => "Canon EF 28-90mm f/4-5.6",
+              48 => "Canon EF-S 18-55mm f/3.5-5.6 IS",
+              49 => "Canon EF-S 55-250mm f/4-5.6 IS",
+              50 => "Canon EF-S 18-200mm f/3.5-5.6 IS",
+              51 => "Canon EF-S 18-135mm f/3.5-5.6 IS",
+              94 => "Canon TS-E 17mm f/4L",
+              95 => "Canon TS-E 24.0mm f/3.5 L II",
+              124 => "Canon MP-E 65mm f/2.8 1-5x Macro Photo",
+              125 => "Canon TS-E 24mm f/3.5L",
+              126 => "Canon TS-E 45mm f/2.8",
+              127 => "Canon TS-E 90mm f/2.8",
+              129 => "Canon EF 300mm f/2.8L",
+              130 => "Canon EF 50mm f/1.0L",
+              131 => Array(
+                        "Canon EF 28-80mm f/2.8-4L",
+                        "Sigma 8mm f/3.5 EX DG Circular Fisheye",
+                        "Sigma 17-35mm f/2.8-4 EX DG Aspherical HSM",
+                        "Sigma 17-70mm f/2.8-4.5 DC Macro",
+                        "Sigma APO 50-150mm f/2.8 [II] EX DC HSM",
+                        "Sigma APO 120-300mm f/2.8 EX DG HSM",
+                      ),
+              132 => "Canon EF 1200mm f/5.6L",
+              134 => "Canon EF 600mm f/4L IS",
+              135 => "Canon EF 200mm f/1.8L",
+              136 => "Canon EF 300mm f/2.8L",
+              137 => Array(
+                        "Canon EF 85mm f/1.2L",
+                        "Sigma 18-50mm f/2.8-4.5 DC OS HSM",
+                        "Sigma 50-200mm f/4-5.6 DC OS HSM",
+                        "Sigma 18-250mm f/3.5-6.3 DC OS HSM",
+                        "Sigma 24-70mm f/2.8 IF EX DG HSM",
+                        "Sigma 18-125mm f/3.8-5.6 DC OS HSM",
+                      ),
+              138 => "Canon EF 28-80mm f/2.8-4L",
+              139 => "Canon EF 400mm f/2.8L",
+              140 => "Canon EF 500mm f/4.5L",
+              141 => "Canon EF 500mm f/4.5L",
+              142 => "Canon EF 300mm f/2.8L IS",
+              143 => "Canon EF 500mm f/4L IS",
+              144 => "Canon EF 35-135mm f/4-5.6 USM",
+              145 => "Canon EF 100-300mm f/4.5-5.6 USM",
+              146 => "Canon EF 70-210mm f/3.5-4.5 USM",
+              147 => "Canon EF 35-135mm f/4-5.6 USM",
+              148 => "Canon EF 28-80mm f/3.5-5.6 USM",
+              149 => "Canon EF 100mm f/2 USM",
+              150 => Array(
+                        "Canon EF 14mm f/2.8L",
+                        "Sigma 20mm EX f/1.8",
+                        "Sigma 30mm f/1.4 DC HSM",
+                        "Sigma 24mm f/1.8 DG Macro EX",
+                      ),
+              151 => "Canon EF 200mm f/2.8L",
+              152 => Array(
+                        "Canon EF 300mm f/4L IS",
+                        "Sigma 12-24mm f/4.5-5.6 EX DG ASPHERICAL HSM",
+                        "Sigma 14mm f/2.8 EX Aspherical HSM",
+                        "Sigma 10-20mm f/4-5.6",
+                        "Sigma 100-300mm f/4",
+                      ),
+              153 => Array(
+                        "Canon EF 35-350mm f/3.5-5.6L",
+                        "Sigma 50-500mm f/4-6.3 APO HSM EX",
+                        "Tamron AF 28-300mm f/3.5-6.3 XR LD Aspherical [IF] Macro",
+                        "Tamron AF 18-200mm f/3.5-6.3 XR Di II LD Aspherical [IF] Macro Model A14",
+                        "Tamron 18-250mm f/3.5-6.3 Di II LD Aspherical [IF] Macro",
+                      ),
+              154 => "Canon EF 20mm f/2.8 USM",
+              155 => "Canon EF 85mm f/1.8 USM",
+              156 => "Canon EF 28-105mm f/3.5-4.5 USM",
+              160 => Array(
+                        "Canon EF 20-35mm f/3.5-4.5 USM",
+                        "Tamron AF 19-35mm f/3.5-4.5",
+                      ),
+              161 => Array(
+                        "Canon EF 28-70mm f/2.8L",
+                        "Sigma 24-70mm EX f/2.8",
+                        "Tamron 90mm f/2.8",
+                        "Tamron AF 17-50mm f/2.8 Di-II LD Aspherical",
+                      ),
+              162 => "Canon EF 200mm f/2.8L",
+              163 => "Canon EF 300mm f/4L",
+              164 => "Canon EF 400mm f/5.6L",
+              165 => "Canon EF 70-200mm f/2.8 L",
+              166 => "Canon EF 70-200mm f/2.8 L + 1.4x",
+              167 => "Canon EF 70-200mm f/2.8 L + 2x",
+              168 => "Canon EF 28mm f/1.8 USM",
+              169 => Array(
+                        "Canon EF 17-35mm f/2.8L",
+                        "Sigma 18-200mm f/3.5-6.3 DC OS",
+                        "Sigma 15-30mm f/3.5-4.5 EX DG Aspherical",
+                        "Sigma 18-50mm f/2.8 Macro",
+                        "Sigma 50mm f/1.4 EX DG HSM",
+                      ),
+              170 => "Canon EF 200mm f/2.8L II",
+              171 => "Canon EF 300mm f/4L",
+              172 => "Canon EF 400mm f/5.6L",
+              173 => Array(
+                        "Canon EF 180mm Macro f/3.5L",
+                        "Sigma 180mm EX HSM Macro f/3.5",
+                        "Sigma APO Macro 150mm f/2.8 EX DG HSM",
+                      ),
+              174 => "Canon EF 135mm f/2L",
+              175 => "Canon EF 400mm f/2.8L",
+              176 => "Canon EF 24-85mm f/3.5-4.5 USM",
+              177 => "Canon EF 300mm f/4L IS",
+              178 => "Canon EF 28-135mm f/3.5-5.6 IS",
+              179 => "Canon EF 24mm f/1.4L",
+              180 => "Canon EF 35mm f/1.4L",
+              181 => "Canon EF 100-400mm f/4.5-5.6L IS + 1.4x",
+              182 => "Canon EF 100-400mm f/4.5-5.6L IS + 2x",
+              183 => "Canon EF 100-400mm f/4.5-5.6L IS",
+              184 => "Canon EF 400mm f/2.8L + 2x",
+              185 => "Canon EF 600mm f/4L IS",
+              186 => "Canon EF 70-200mm f/4L",
+              187 => "Canon EF 70-200mm f/4L + 1.4x",
+              188 => "Canon EF 70-200mm f/4L + 2x",
+              189 => "Canon EF 70-200mm f/4L + 2.8x",
+              190 => "Canon EF 100mm f/2.8 Macro",
+              191 => "Canon EF 400mm f/4 DO IS",
+              193 => "Canon EF 35-80mm f/4-5.6 USM",
+              194 => "Canon EF 80-200mm f/4.5-5.6 USM",
+              195 => "Canon EF 35-105mm f/4.5-5.6 USM",
+              196 => "Canon EF 75-300mm f/4-5.6 USM",
+              197 => "Canon EF 75-300mm f/4-5.6 IS USM",
+              198 => "Canon EF 50mm f/1.4 USM",
+              199 => "Canon EF 28-80mm f/3.5-5.6 USM",
+              200 => "Canon EF 75-300mm f/4-5.6 USM",
+              201 => "Canon EF 28-80mm f/3.5-5.6 USM",
+              202 => "Canon EF 28-80mm f/3.5-5.6 USM IV",
+              208 => "Canon EF 22-55mm f/4-5.6 USM",
+              209 => "Canon EF 55-200mm f/4.5-5.6",
+              210 => "Canon EF 28-90mm f/4-5.6 USM",
+              211 => "Canon EF 28-200mm f/3.5-5.6 USM",
+              212 => "Canon EF 28-105mm f/4-5.6 USM",
+              213 => "Canon EF 90-300mm f/4.5-5.6 USM",
+              214 => "Canon EF-S 18-55mm f/3.5-4.5 USM",
+              215 => "Canon EF 55-200mm f/4.5-5.6 II USM",
+              224 => "Canon EF 70-200mm f/2.8L IS",
+              225 => "Canon EF 70-200mm f/2.8L IS + 1.4x",
+              226 => "Canon EF 70-200mm f/2.8L IS + 2x",
+              227 => "Canon EF 70-200mm f/2.8L IS + 2.8x",
+              228 => "Canon EF 28-105mm f/3.5-4.5 USM",
+              229 => "Canon EF 16-35mm f/2.8L",
+              230 => "Canon EF 24-70mm f/2.8L",
+              231 => "Canon EF 17-40mm f/4L",
+              232 => "Canon EF 70-300mm f/4.5-5.6 DO IS USM",
+              233 => "Canon EF 28-300mm f/3.5-5.6L IS",
+              234 => "Canon EF-S 17-85mm f4-5.6 IS USM",
+              235 => "Canon EF-S 10-22mm f/3.5-4.5 USM",
+              236 => "Canon EF-S 60mm f/2.8 Macro USM",
+              237 => "Canon EF 24-105mm f/4L IS",
+              238 => "Canon EF 70-300mm f/4-5.6 IS USM",
+              239 => "Canon EF 85mm f/1.2L II",
+              240 => "Canon EF-S 17-55mm f/2.8 IS USM",
+              241 => "Canon EF 50mm f/1.2L",
+              242 => "Canon EF 70-200mm f/4L IS",
+              243 => "Canon EF 70-200mm f/4L IS + 1.4x",
+              244 => "Canon EF 70-200mm f/4L IS + 2x",
+              245 => "Canon EF 70-200mm f/4L IS + 2.8x",
+              246 => "Canon EF 16-35mm f/2.8L II",
+              247 => "Canon EF 14mm f/2.8L II USM",
+              248 => "Canon EF 200mm f/2L IS",
+              249 => "Canon EF 800mm f/5.6L IS",
+              250 => "Canon EF 24 f/1.4L II",
+              254 => "Canon EF 100mm f/2.8L Macro IS USM",
+              488 => "Canon EF-S 15-85mm f/3.5-5.6 IS USM",
+        ),
+      ),
+
+      "0x0001.23" => Array(
+        'tagName'     => "CanonCameraSettings.LongFocal",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0001.24" => Array(
+        'tagName'     => "CanonCameraSettings.ShortFocal",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0001.25" => Array(
+        'tagName'     => "CanonCameraSettings.FocalUnits",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0001.26" => Array(
+        'tagName'     => "CanonCameraSettings.MaxAperture",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0001.27" => Array(
+        'tagName'     => "CanonCameraSettings.MinAperture",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0001.28" => Array(
+        'tagName'     => "CanonCameraSettings.FlashActivity",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Did not fire",
+            0x01 => "Fired",
+        ),
+      ),
+
+      "0x0001.29" => Array(
+        'tagName'     => "CanonCameraSettings.FlashBits",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues.special' => Array(
+            0x0001 => "Manual",                  //b0000000000000001
+            0x0002 => "TTL",                     //b0000000000000010
+            0x0004 => "A-TTL",                   //b0000000000000100
+            0x0008 => "E-TTL",                   //b0000000000001000
+            0x0010 => "FP sync enabled",         //b0000000000010000
+            0x0080 => "2nd-curtain sync used",   //b0000000010000000
+            0x0800 => "FP sync used",            //b0000100000000000
+            0x2000 => "Built-in",                //b0010000000000000
+            0x4000 => "External",                //b0100000000000000
+        ),
+      ),
+
+      "0x0001.32" => Array(
+        'tagName'     => "CanonCameraSettings.FocusContinuous",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Single",
+            0x01 => "Continuous",
+            0x08 => "Manual",
+            0xFFFF => "Unknown",
+        ),
+      ),
+
+      "0x0001.33" => Array(
+        'tagName'     => "CanonCameraSettings.AESetting",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Normal AE",
+            0x01 => "Exposure Compensation",
+            0x02 => "AE Lock",
+            0x03 => "AE Lock + Exposure Comp.",
+            0x04 => "No AE"
+        ),
+      ),
+
+      "0x0001.34" => Array(
+        'tagName'     => "CanonCameraSettings.ImageStabilization",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Off",
+            0x01 => "On",
+            0x02 => "On, Shot Only",
+            0x03 => "On, Panning",
+            0xFFFF => "Unknown",
+        ),
+      ),
+
+      "0x0001.35" => Array(
+        'tagName'     => "CanonCameraSettings.DisplayAperture",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0001.36" => Array(
+        'tagName'     => "CanonCameraSettings.ZoomSourceWidth",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0001.37" => Array(
+        'tagName'     => "CanonCameraSettings.ZoomTargetWidth",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0001.39" => Array(
+        'tagName'     => "CanonCameraSettings.SpotMeteringMode",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Center",
+            0x01 => "AF Point",
+            0xFFFF => "Unknown",
+        ),
+      ),
+
+      "0x0001.40" => Array(
+        'tagName'     => "CanonCameraSettings.PhotoEffect",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Off",
+            0x01 => "Vivid",
+            0x02 => "Neutral",
+            0x03 => "Smooth",
+            0x04 => "Sepia",
+            0x05 => "B&W",
+            0x06 => "Custom",
+            0x64 => "My Color Data",
+            0xFFFF => "Unknown",
+        ),
+      ),
+
+      "0x0001.41" => Array(
+        'tagName'     => "CanonCameraSettings.ManualFlashOutput",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x0000 => "n/a",
+            0x0500 => "Full",
+            0x0502 => "Medium",
+            0x0504 => "Low",
+            0x7fff => "n/a",
+        ),
+      ),
+
+      "0x0001.42" => Array(
+        'tagName'     => "CanonCameraSettings.ColorTone",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x0000 => "Normal",
+        ),
+      ),
+
+      "0x0001.46" => Array(
+        'tagName'     => "CanonCameraSettings.SRAWQuality",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "n/a",
+            0x01 => "sRAW1 (mRAW)",
+            0x02 => "sRAW2 (sRAW)"
+        ),
+      ),
 
       /*
        * <<< End of CanonCameraSettings subtags
@@ -241,6 +916,308 @@
         'combiTag'    => 0,
         'implemented' => false,
       ), // <
+
+      /*
+       * The 'CanonShotInfo' tags is composed by an array of sub tags
+       *
+       * Like the CanonCameraSettings tag, this kind of data needs a particular
+       * algorythm in the CanonReader class, provided by the processSubTag0x0004
+       * function
+       *
+       * >>> Begin of CanonShotInfo subtags
+       *
+       */
+      "0x0004.1" => Array(
+        'tagName'     => "CanonShotInfo.AutoISO",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0004.2" => Array(
+        'tagName'     => "CanonShotInfo.BaseISO",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0004.3" => Array(
+        'tagName'     => "CanonShotInfo.MeasuredEV",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0004.4" => Array(
+        'tagName'     => "CanonShotInfo.TargetAperture",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0004.5" => Array(
+        'tagName'     => "CanonShotInfo.TargetExposureTime",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0004.6" => Array(
+        'tagName'     => "CanonShotInfo.ExposureCompensation",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0004.7" => Array(
+        'tagName'     => "CanonShotInfo.WhiteBalance",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Auto",
+            0x01 => "Daylight",
+            0x02 => "Cloudy",
+            0x03 => "Tungsten",
+            0x04 => "Fluorescent",
+            0x05 => "Flash",
+            0x06 => "Custom",
+            0x07 => "Black & White",
+            0x08 => "Shade",
+            0x09 => "Manual Temperature (Kelvin)",
+            0x0A => "PC Set1",
+            0x0B => "PC Set2",
+            0x0C => "PC Set3",
+            0x0E => "Daylight Fluorescent",
+            0x0F => "Custom 1",
+            0x10 => "Custom 2",
+            0x11 => "Underwater",
+            0x12 => "Custom 3",
+            0x13 => "Custom 4",
+            0x14 => "PC Set4",
+            0x15 => "PC Set5",
+        ),
+      ),
+
+      "0x0004.8" => Array(
+        'tagName'     => "CanonShotInfo.SlowShutter",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0x00 => "Off",
+            0x01 => "Night Scene",
+            0x02 => "On",
+            0x03 => "None",
+        ),
+      ),
+
+      "0x0004.9" => Array(
+        'tagName'     => "CanonShotInfo.SequenceNumber",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0004.10" => Array(
+        'tagName'     => "CanonShotInfo.OpticalZoomCode",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0004.13" => Array(
+        'tagName'     => "CanonShotInfo.FlashGuideNumber",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0004.14" => Array(
+        'tagName'     => "CanonShotInfo.AFPointsInFocus",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'tagValues'   => Array(
+            // (used by D30, D60 and some PowerShot/Ixus models)
+            0x3000 => "None (MF)",
+            0x3001 => "Right",
+            0x3002 => "Center",
+            0x3003 => "Center+Right",
+            0x3004 => "Left",
+            0x3005 => "Left+Right",
+            0x3006 => "Left+Center",
+            0x3007 => "All",
+        ),
+      ),
+
+      "0x0004.15" => Array(
+        'tagName'     => "CanonShotInfo.FlashExposureComp",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0004.16" => Array(
+        'tagName'     => "CanonShotInfo.AutoExposureBracketing",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            -1 => "On",
+            0 => "Off",
+            1 => "On (shot 1)",
+            2 => "On (shot 2)",
+            3 => "On (shot 3)",
+        ),
+      ),
+
+      "0x0004.17" => Array(
+        'tagName'     => "CanonShotInfo.AEBBracketValue",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+      ),
+
+      "0x0004.18" => Array(
+        'tagName'     => "CanonShotInfo.ControlMode",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0 => "n/a",
+            1 => "Camera Local Control",
+            3 => "Computer Remote Control",
+        ),
+      ),
+
+      "0x0004.19" => Array(
+        'tagName'     => "CanonShotInfo.FocusDistanceUpper",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0004.20" => Array(
+        'tagName'     => "CanonShotInfo.FocusDistanceLower",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0004.21" => Array(
+        'tagName'     => "CanonShotInfo.FNumber",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0004.22" => Array(
+        'tagName'     => "CanonShotInfo.ExposureTime",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0004.23" => Array(
+        'tagName'     => "CanonShotInfo.MeasuredEV2",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0004.24" => Array(
+        'tagName'     => "CanonShotInfo.BulbDuration",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0004.26" => Array(
+        'tagName'     => "CanonShotInfo.CameraType",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            248 => "EOS High-end",
+            250 => "Compact",
+            252 => "EOS Mid-range",
+            255 => "DV Camera",
+        ),
+      ),
+
+      "0x0004.27" => Array(
+        'tagName'     => "CanonShotInfo.AutoRotate",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+       0xFFFF => "Unknown",
+            0 => "None",
+            1 => "Rotate 90 CW",
+            2 => "Rotate 180",
+            3 => "Rotate 270 CW",
+        ),
+      ),
+
+      "0x0004.28" => Array(
+        'tagName'     => "CanonShotInfo.NDFilter",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'tagValues'   => Array(
+            0 => "Off",
+            1 => "On",
+       0xFFFF => "Unknown",
+        ),
+      ),
+
+      "0x0004.29" => Array(
+        'tagName'     => "CanonShotInfo.SelfTimer2",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      "0x0004.33" => Array(
+        'tagName'     => "CanonShotInfo.FlashOutput",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+      ),
+
+      /*
+       * <<< Begin of CanonShotInfo subtags
+       *
+       */
+
 
       // CanonPanorama, tag 0x0005
       0x0005 => Array(
@@ -312,7 +1289,364 @@
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false,
+        'tagValues.special' => Array(
+          '40D'      => Array(3, 4, 6, 21, 24, 27, 29, 48, 67, 69, 111, 115, 214, 216, 218, 255, 307, 319, 2347),
+          '1DMarkIV' => Array(3, 4, 6, 7, 21, 25, 30, 53, 84, 86, 488, 493),
+        )
       ), // < CanonCameraInfo
+
+      /*
+       * The 'CanonCameraInfo' tags structure depends of the camera model
+       *
+       * Like the CanonCameraSettings tag, this kind of data needs a particular
+       * algorythm in the CanonReader class, provided by the processSubTag0x000d
+       * functions
+       *
+       * >>> Begin of CanonCameraInfo subtags
+       *
+       */
+
+      /*
+       * Canon EOS 40D CameraInfo tags
+       */
+      "0x000d.40D.3" => Array(
+        'tagName'     => "CanonCameraInfo.FNumber",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 3,
+        'type'        => ByteType::UBYTE,
+      ),
+
+      "0x000d.40D.4" => Array(
+        'tagName'     => "CanonCameraInfo.ExposureTime",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 4,
+        'type'        => ByteType::UBYTE,
+      ),
+
+      "0x000d.40D.6" => Array(
+        'tagName'     => "CanonCameraInfo.ISO",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 6,
+        'type'        => ByteType::UBYTE,
+      ),
+
+      "0x000d.40D.21" => Array(
+        'tagName'     => "CanonCameraInfo.FlashMeteringMode",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 21,
+        'type'        => ByteType::UBYTE,
+        'tagValues'   => Array(
+            0 => "E-TTL",
+            3 => "TTL",
+            4 => "External Auto",
+            5 => "External Manual",
+            6 => "Off",
+        )
+      ),
+
+      "0x000d.40D.24" => Array(
+        'tagName'     => "CanonCameraInfo.CameraTemperature",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 24,
+        'type'        => ByteType::UBYTE,
+      ),
+
+      "0x000d.40D.27" => Array(
+        'tagName'     => "CanonCameraInfo.MacroMagnification",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 29,
+        'type'        => ByteType::UBYTE,
+      ),
+
+      "0x000d.40D.29" => Array(
+        'tagName'     => "CanonCameraInfo.FocalLength",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 29,
+        'type'        => ByteType::USHORT,
+        'byteOrder'   => BYTE_ORDER_BIG_ENDIAN,
+      ),
+
+      "0x000d.40D.48" => Array(
+        'tagName'     => "CanonCameraInfo.CameraOrientation",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 48,
+        'type'        => ByteType::UBYTE,
+        'tagValues'   => Array(
+            0 => "Horizontal (normal)",
+            1 => "Rotate 90 CW",
+            2 => "Rotate 270 CW",
+        )
+      ),
+
+      "0x000d.40D.67" => Array(
+        'tagName'     => "CanonCameraInfo.FocusDistanceUpper",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 67,
+        'type'        => ByteType::USHORT,
+        'byteOrder'   => BYTE_ORDER_BIG_ENDIAN,
+      ),
+
+      "0x000d.40D.69" => Array(
+        'tagName'     => "CanonCameraInfo.FocusDistanceLower",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 69,
+        'type'        => ByteType::USHORT,
+        'byteOrder'   => BYTE_ORDER_BIG_ENDIAN,
+      ),
+
+      "0x000d.40D.111" => Array(
+        'tagName'     => "CanonCameraInfo.WhiteBalance",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 111,
+        'type'        => ByteType::USHORT,
+      ),
+
+      "0x000d.40D.115" => Array(
+        'tagName'     => "CanonCameraInfo.ColorTemperature",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 115,
+        'type'        => ByteType::USHORT,
+      ),
+
+      "0x000d.40D.214" => Array(
+        'tagName'     => "CanonCameraInfo.LensType",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 214,
+        'type'        => ByteType::USHORT,
+        'byteOrder'   => BYTE_ORDER_BIG_ENDIAN,
+      ),
+
+      "0x000d.40D.216" => Array(
+        'tagName'     => "CanonCameraInfo.ShortFocal",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 216,
+        'type'        => ByteType::USHORT,
+        'byteOrder'   => BYTE_ORDER_BIG_ENDIAN,
+      ),
+
+      "0x000d.40D.218" => Array(
+        'tagName'     => "CanonCameraInfo.LongFocal",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 218,
+        'type'        => ByteType::UBYTE,
+        'byteOrder'   => BYTE_ORDER_BIG_ENDIAN,
+      ),
+
+      "0x000d.40D.255" => Array(
+        'tagName'     => "CanonCameraInfo.FirmwareVersion",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 255,
+        'type'        => ByteType::ASCII,
+        'length'      => 6,
+      ),
+
+      "0x000d.40D.307" => Array(
+        'tagName'     => "CanonCameraInfo.FileIndex",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 307,
+        'type'        => ByteType::ULONG,
+      ),
+
+      "0x000d.40D.319" => Array(
+        'tagName'     => "CanonCameraInfo.DirectoryIndex",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 319,
+        'type'        => ByteType::ULONG,
+      ),
+
+      "0x000d.40D.2347" => Array(
+        'tagName'     => "CanonCameraInfo.LensModel",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 2347,
+        'type'        => ByteType::ASCII,
+        'length'      => 64,
+      ),
+
+
+      /*
+       * Canon EOS 40D CameraInfo tags
+       */
+      "0x000d.1DMarkIV.3" => Array(
+        'tagName'     => "CanonCameraInfo.FNumber",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 3,
+        'type'        => ByteType::UBYTE,
+      ),
+
+      "0x000d.1DMarkIV.4" => Array(
+        'tagName'     => "CanonCameraInfo.ExposureTime",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 4,
+        'type'        => ByteType::UBYTE,
+      ),
+
+      "0x000d.1DMarkIV.6" => Array(
+        'tagName'     => "CanonCameraInfo.ISO",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 6,
+        'type'        => ByteType::UBYTE,
+      ),
+
+      "0x000d.1DMarkIV.7" => Array(
+        'tagName'     => "CanonCameraInfo.HighlightTonePriority",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 7,
+        'type'        => ByteType::UBYTE,
+        'tagValues'   => Array(
+            0 => "Off",
+            1 => "On"
+        ),
+      ),
+
+      "0x000d.1DMarkIV.21" => Array(
+        'tagName'     => "CanonCameraInfo.FlashMeteringMode",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 21,
+        'type'        => ByteType::UBYTE,
+        'tagValues'   => Array(
+            0 => "E-TTL",
+            3 => "TTL",
+            4 => "External Auto",
+            5 => "External Manual",
+            6 => "Off",
+        )
+      ),
+
+      "0x000d.1DMarkIV.25" => Array(
+        'tagName'     => "CanonCameraInfo.CameraTemperature",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 25,
+        'type'        => ByteType::UBYTE,
+      ),
+
+      "0x000d.1DMarkIV.30" => Array(
+        'tagName'     => "CanonCameraInfo.FocalLength",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 30,
+        'type'        => ByteType::USHORT,
+        'byteOrder'   => BYTE_ORDER_BIG_ENDIAN,
+      ),
+
+      "0x000d.1DMarkIV.53" => Array(
+        'tagName'     => "CanonCameraInfo.CameraOrientation",
+        'schema'      => "Canon",
+        'translatable'=> true,
+        'combiTag'    => 0,
+        'implemented' => true,
+        'pos'         => 53,
+        'type'        => ByteType::UBYTE,
+        'tagValues'   => Array(
+            0 => "Horizontal (normal)",
+            1 => "Rotate 90 CW",
+            2 => "Rotate 270 CW",
+        )
+      ),
+
+      "0x000d.1DMarkIV.84" => Array(
+        'tagName'     => "CanonCameraInfo.FocusDistanceUpper",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 84,
+        'type'        => ByteType::USHORT,
+        'byteOrder'   => BYTE_ORDER_BIG_ENDIAN,
+      ),
+
+      "0x000d.1DMarkIV.86" => Array(
+        'tagName'     => "CanonCameraInfo.FocusDistanceLower",
+        'schema'      => "Canon",
+        'translatable'=> false,
+        'combiTag'    => 0,
+        'implemented' => false,
+        'pos'         => 86,
+        'type'        => ByteType::USHORT,
+        'byteOrder'   => BYTE_ORDER_BIG_ENDIAN,
+      ),
+
+
+      /*
+       * <<< end of CanonCameraInfo subtags
+       *
+       */
 
       // CanonFileLength, tag 0x000e
       0x000e => Array(
@@ -929,7 +2263,7 @@
       parent::__destruct();
     }
 
-  } // NikonTags
+  } // CanonTags
 
 
 
