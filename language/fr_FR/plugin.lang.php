@@ -50,6 +50,8 @@ $lang['g003_selected_tags_only'] = "Ne restituer que les métadonnées sélectio
 
 $lang['g003_select_metadata'] = "Sélection des métadonnées";
 $lang['g003_display_management'] = "Gestion de l'affichage des métadonnées";
+$lang['g003_number_of_filtered_metadata'] = "Nombre de métadonnées :";
+$lang['g003_number_of_distinct_values'] = "Nombre de valeurs distinctes :";
 
 $lang['g003_click_to_edit_group'] = "Cliquer pour éditer les propriétés du groupe de métadonnées";
 $lang['g003_click_to_delete_group'] = "Cliquer pour supprimer le groupe de métadonnées";

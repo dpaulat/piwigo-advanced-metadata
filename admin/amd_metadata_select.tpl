@@ -19,6 +19,9 @@
         data: { ajaxfct:"showStatsGetListTags", orderType:order, filterType:filter, excludeUnusedTag:unusedTag, selectedTagOnly:selectedOnly }
        }).responseText
     );
+    $("#iListTagsNb").html(
+      "{/literal}{'g003_number_of_filtered_metadata'|@translate}{literal} "+$("#iListTags table tr").length
+    );
     $("body").css("cursor", "default");
   }
 
@@ -27,6 +30,7 @@
     globalTagId=tag;
     order=$('#iSelectOrderImageList').val();
     $("#iListImages").html("<br>{/literal}{'g003_loading'|@translate}{literal}");
+    $("#iHeaderListImagesTagName").html("["+tag+"]");
 
     $.ajax(
       {
@@ -38,6 +42,9 @@
           function(msg)
           {
             $("#iListImages").html(msg);
+            $("#iListImagesNb").html(
+              "{/literal}{'g003_number_of_distinct_values'|@translate}{literal} "+$("#iListImages table tr").length
+            );
           }
       }
     );
@@ -105,6 +112,7 @@
 </table>
 <div id='iListTags'>
 </div>
+<div id="iListTagsNb"></div>
 
 
 <form>
@@ -118,7 +126,7 @@
 
 <table id='iHeaderListImages' class="littlefont">
   <tr>
-    <th>{'g003_Value'|@translate}</th>
+    <th>{'g003_Value'|@translate}&nbsp;<span id="iHeaderListImagesTagName"></span></th>
     <th width="80px">{'g003_NumOfImage'|@translate}</th>
     <th width="40px">{'g003_Pct'|@translate}</th>
     <th width="110px">&nbsp;</th>
@@ -128,6 +136,7 @@
 <div id='iListImages'>
   <div style="width:100%;text-align:center;padding-top:20px;">{'g003_no_items_selected'|@translate}</div>
 </div>
+<div id="iListImagesNb"></div>
 
 
 <script type="text/javascript">
