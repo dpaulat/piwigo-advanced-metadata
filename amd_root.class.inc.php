@@ -88,12 +88,12 @@ class AMD_root extends common_plugin
       #iprogressbar_contener { border:1px solid #606060; margin:0px; padding:0px; display:block; height:20px; }
       #iprogressbar_bg { background:#606060; display:block; z-index:100; position:relative; height:20px; }
       #iprogressbar_fg { color:#FF3363; width:100%; text-align:center; display: block; z-index:200; position:relative; top:-18px;  }
-      #iHeaderListTags { width:100%; border:1px solid; border-collapse: collapse; }
+      #iHeaderListTags { width:100%; border:1px solid; border-collapse: collapse; margin-top:3px; }
       #iListTags, #iListImages { width:100%; border:1px solid; margin-bottom:20px; height:120px; border-top:0px; overflow:auto;}
       #iListTags table, #iListImages table, table.listTags { width:100%; text-align:left; border-collapse: collapse; }
       #iListTags table tr:hover { cursor:pointer; background:#303030; }
       #iListImages table tr:hover, table.listTags tr:hover { background:#303030; cursor:default; }
-      #iHeaderListImages { width:100%; border:1px solid; }
+      #iHeaderListImages { width:100%; border:1px solid; margin-top:3px; }
       .warning { color:#dd0000; border:1px solid #dd0000; margin-bottom:8px; margin-top:8px; padding:8px; }
       .warning p { margin-top:0.5em; margin-bottom:0em; }
       .warning ul { margin-top:0em; margin-bottom:0.5em; }

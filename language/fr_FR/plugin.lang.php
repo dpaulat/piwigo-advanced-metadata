@@ -43,6 +43,7 @@ $lang['g003_tagOrder'] = "Métadonnée";
 $lang['g003_numOrder'] = "Nombre d'images";
 $lang['g003_valueOrder'] = "Valeur";
 $lang['g003_no_filter'] = "Aucun filtre";
+$lang['g003_magic_filter'] = "Magic (métadonnées calculées)";
 $lang['g003_exclude_unused_tags'] = "Exclure les métadonnées inutilisées";
 $lang['g003_Value'] = "Valeur";
 $lang['g003_selected_tags_only'] = "Ne restituer que les métadonnées sélectionnées";

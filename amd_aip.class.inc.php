@@ -301,6 +301,7 @@ class AMD_AIP extends AMD_root
 
       if($_REQUEST['ajaxfct']=="showStatsGetListTags" and
          !($_REQUEST['filterType']=="" or
+           $_REQUEST['filterType']=="magic" or
            $_REQUEST['filterType']=="exif" or
            $_REQUEST['filterType']=="xmp" or
            $_REQUEST['filterType']=="iptc"))
