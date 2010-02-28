@@ -110,8 +110,8 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-          0x00 => "above sea level",
-          0x01 => "under sea level"
+          0x00 => "+",
+          0x01 => "-"
         )
       ), // < GPSAltitudeRef
 
@@ -146,18 +146,28 @@
       0x0009 => Array(
         'tagName'     => "GPSStatus",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special' => Array(
+          'A' => "measurement in progress",
+          'V' => "measurement interoperability",
+          'unknown' => "Unknown",
+        )
       ), // < GPSStatus
 
       // GPSMeasureMode, tag 0x000a
       0x000A => Array(
         'tagName'     => "GPSMeasureMode",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special' => Array(
+          '2' => "2-dimensional measurement",
+          '3' => "3-dimensional measurement",
+          'unknown' => "Unknown",
+        )
       ), // < GPSMeasureMode
 
       // GPSDOP, tag 0x000b
@@ -173,9 +183,15 @@
       0x000C => Array(
         'tagName'     => "GPSSpeedRef",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special' => Array(
+          'K' => "kilometers per hour",
+          'M' => "miles per hour",
+          'N' => "knots",
+          'unknown' => "Unknown",
+        )
       ), // < GPSSpeedRef
 
       // GPSSpeed, tag 0x000d
@@ -191,9 +207,14 @@
       0x000E => Array(
         'tagName'     => "GPSTrackRef",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special' => Array(
+          'T' => "true direction",
+          'M' => "magnetic direction",
+          'unknown' => "Unknown",
+        )
       ), // < GPSTrackRef
 
       // GPSTrack, tag 0x000f
@@ -209,9 +230,14 @@
       0x0010 => Array(
         'tagName'     => "GPSImgDirectionRef",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special' => Array(
+          'T' => "true direction",
+          'M' => "magnetic direction",
+          'unknown' => "Unknown",
+        )
       ), // < GPSImgDirectionRef
 
       // GPSImgDirection, tag 0x0011
@@ -272,9 +298,14 @@
       0x0017 => Array(
         'tagName'     => "GPSDestBearingRef",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special' => Array(
+          'T' => "true direction",
+          'M' => "magnetic direction",
+          'unknown' => "Unknown",
+        )
       ), // < GPSDestBearingRef
 
       // GPSDestBearing, tag 0x0018
@@ -290,9 +321,15 @@
       0x0019=> Array(
         'tagName'     => "GPSDestDistanceRef",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special' => Array(
+          'K' => "kilometers per hour",
+          'M' => "miles per hour",
+          'N' => "knots",
+          'unknown' => "Unknown",
+        )
       ), // < GPSDestDistanceRef
 
       // GPSDestDistance, tag 0x001A
@@ -337,7 +374,7 @@
       0x001E=> Array(
         'tagName'     => "GPSDifferential",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(

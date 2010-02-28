@@ -82,13 +82,13 @@
           switch(substr($values,0,1))
           {
             case "N" :
-              $returned="north";
+              $returned="N";
               break;
             case "S" :
-              $returned="south";
+              $returned="S";
               break;
             default:
-              $returned="unknown";
+              $returned="";
               break;
           }
           break;
@@ -106,13 +106,13 @@
           switch(substr($values,0,1))
           {
             case "E" :
-              $returned="east";
+              $returned="E";
               break;
             case "W" :
-              $returned="west";
+              $returned="W";
               break;
             default:
-              $returned="unknown";
+              $returned="";
               break;
           }
           break;
@@ -132,65 +132,21 @@
           $returned=ConvertData::toStrings($values);
           break;
         case 0x0009: // GPSStatus
-          switch(substr($values,0,1))
-          {
-            case "A" :
-              $returned="measurement in progress";
-              break;
-            case "V" :
-              $returned="measurement interoperability";
-              break;
-            default:
-              $returned="unknown";
-              break;
-          }
-          break;
         case 0x000A: // GPSMeasureMode
-          switch(substr($values,0,1))
-          {
-            case "2" :
-              $returned="2-dimensional measurement";
-              break;
-            case "3" :
-              $returned="3-dimensional measurement";
-              break;
-            default:
-              $returned="unknown";
-              break;
-          }
-          break;
         case 0x000C: // GPSSpeedRef
         case 0x0019: // GPSDestDistanceRef
-          switch(substr($values,0,1))
-          {
-            case "K" :
-              $returned="kilometers per hour";
-              break;
-            case "M" :
-              $returned="miles per hour";
-              break;
-            case "N" :
-              $returned="knots";
-              break;
-            default:
-              $returned="unknown";
-              break;
-          }
-          break;
         case 0x000E: // GPSTrackRef
         case 0x0010: // GPSImgDirectionRef
         case 0x0017: // GPSDestBearingRef
-          switch(substr($values,0,1))
+          $tag=$this->tagDef->getTagById(0x0009);
+          $key=substr($values,0,1);
+          if(array_key_exists($key, $tag['tagValues.special']))
           {
-            case "T" :
-              $returned="true direction";
-              break;
-            case "M" :
-              $returned="magnetic direction";
-              break;
-            default:
-              $returned="unknown";
-              break;
+            $returned=$tag['tagValues.special'][$key];
+          }
+          else
+          {
+            $returned=$tag['tagValues.special']['unknown'];
           }
           break;
         case 0x001D: // GPSDateStamp

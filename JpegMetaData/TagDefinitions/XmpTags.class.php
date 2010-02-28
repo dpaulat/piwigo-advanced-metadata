@@ -86,7 +86,14 @@
     static private function lang($lang)
     {
       $result=preg_match("/([a-z]*)([-|_])([a-z]*)/i", $lang, $arr);
-      return($arr[1]."_".strtoupper($arr[3]));
+      if(is_array($arr) and count($arr))
+      {
+        return($arr[1]."_".strtoupper($arr[3]));
+      }
+      else
+      {
+        return($lang);
+      }
     }
 
     const TYPE_SIMPLE = 0x00;

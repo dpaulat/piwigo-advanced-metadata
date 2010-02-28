@@ -88,7 +88,6 @@
         )
       ),
 
-
       'ShotInfo.Aperture' => Array(
         'implemented'  => true,
         'translatable' => false,
@@ -116,9 +115,8 @@
         'translatable' => false,
         'tagValues'    => Array(
           "{exif.exif.ISOSpeedRatings}",
-          "{exif.Pentax.ISO}",
-          "{exif.Canon.CanonShotInfo.BaseISO}",
           "{xmp.exif:ISOSpeedRatings}",
+          "{exif.Pentax.ISO}",
         )
       ),
 
@@ -137,8 +135,8 @@
         'implemented'  => true,
         'translatable' => false,
         'tagValues'    => Array(
-          "{exif.exif.FocalLengthIn35mm}",
-          "{xmp.exif:FocalLengthIn35mm}",
+          "{exif.exif.FocalLengthIn35mmFilm}",
+          "{xmp.exif:FocalLengthIn35mmFilm}",
         )
       ),
 
@@ -295,6 +293,33 @@
         'tagValues' => Array(
           "{exif.tiff.DateTime}",
           "{xmp.xmp:ModifyDate}",
+        )
+      ),
+
+      'GPS.Altitude' => Array(
+        'implemented'  => true,
+        'translatable' => false,
+        'tagValues' => Array(
+          "{exif.gps.GPSAltitudeRef}{exif.gps.GPSAltitude}m",
+          "{xmp.exif:GPSAltitudeRef}{xmp.exif:GPSAltitude}m",
+        )
+      ),
+
+      'GPS.Latitude' => Array(
+        'implemented'  => true,
+        'translatable' => false,
+        'tagValues' => Array(
+          "{exif.gps.GPSLatitude} {exif.gps.GPSLatitudeRef}",
+          "{xmp.exif:GPSLatitude}",
+        )
+      ),
+
+      'GPS.Longitude' => Array(
+        'implemented'  => true,
+        'translatable' => false,
+        'tagValues' => Array(
+          "{exif.gps.GPSLongitude} {exif.gps.GPSLongitudeRef}",
+          "{xmp.exif:GPSLongitude}",
         )
       ),
 
