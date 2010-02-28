@@ -112,6 +112,7 @@
   define("JPEG_METADATA_DIR", dirname(__FILE__)."/");
 
   require_once(JPEG_METADATA_DIR."Readers/JpegReader.class.php");
+  require_once(JPEG_METADATA_DIR."TagDefinitions/MagicTags.class.php");
 
   class JpegMetaData
   {
@@ -122,9 +123,10 @@
     const KEY_EXIF_TIFF = "exif.tiff";
     const KEY_EXIF_EXIF = "exif.exif";
     const KEY_EXIF_GPS  = "exif.gps";
-    const KEY_EXIF = "exif";
-    const KEY_IPTC = "iptc";
-    const KEY_XMP  = "xmp";
+    const KEY_EXIF  = "exif";
+    const KEY_IPTC  = "iptc";
+    const KEY_XMP   = "xmp";
+    const KEY_MAGIC = "magic";
 
     private $jpeg = null;
     private $tags = Array();
@@ -156,7 +158,7 @@
      *                      | known for the specified type tag
      * xmp                  |
      * maker                | maker => returns specifics tags from all the known
-     *                      |          makers
+     * magic                |          makers
      *                      |
      * ---------------------+---------------------------------------------------
      *
@@ -179,7 +181,8 @@
         'exif'  => true,
         'iptc'  => true,
         'xmp'   => true,
-        'maker' => true
+        'maker' => true,
+        'magic' => true,
       );
 
       foreach($default as $key => $val)
@@ -210,6 +213,9 @@
       if($default['xmp'])
         $list[]="xmp";
 
+      if($default['magic'])
+        $list[]="magic";
+
       foreach($list as $val)
       {
         unset($tmp);
@@ -231,6 +237,10 @@
           case "xmp":
             $tmp=new XmpTags();
             $schema="xmp";
+            break;
+          case "magic":
+            $tmp=new MagicTags();
+            $schema="magic";
             break;
           case MAKER_PENTAX:
             include_once(JPEG_METADATA_DIR."TagDefinitions/PentaxTags.class.php");
@@ -280,6 +290,8 @@
             }
           }
       }
+
+      ksort($returned);
 
       return($returned);
     }
@@ -331,7 +343,7 @@
      * exif                 | Boolean
      * iptc                 | If set to true, the function returns all the tags
      * xmp                  | known for the specified type tag
-     *                      | the exif parameter include the maker tags
+     * magic                | the exif parameter include the maker tags
      *                      |
      * ---------------------+---------------------------------------------------
      *
@@ -403,6 +415,13 @@
             }
           }
         }
+
+        if($this->options['magic'])
+        {
+          $this->processMagicTags();
+        }
+
+        ksort($this->tags);
       }
     }
 
@@ -467,9 +486,10 @@
       $this->options = Array(
         'filter' => self::TAGFILTER_ALL,
         'optimizeIptcDateTime' => false,
-        'exif' => true,
-        'iptc' => true,
-        'xmp'  => true
+        'exif'  => true,
+        'iptc'  => true,
+        'xmp'   => true,
+        'magic' => true
       );
 
       foreach($this->options as $key => $val)
@@ -551,6 +571,111 @@
       }
     }
 
+    /**
+     * MagicTags are build with this function
+     */
+    private function processMagicTags()
+    {
+      $magicTags=new MagicTags();
+
+      foreach($magicTags->getTags() as $key => $val)
+      {
+        $tag=new Tag($key,0,$key);
+
+        for($i=0; $i<count($val['tagValues']); $i++)
+        {
+          $found=true;
+          preg_match_all('/{([a-z0-9:\.\s\/]*)(\[.*\])?}/i', $val['tagValues'][$i], $returned, PREG_PATTERN_ORDER);
+          foreach($returned[1] as $testKey)
+          {
+            $found=$found & array_key_exists($testKey, $this->tags);
+          }
+          if(count($returned[1])==0) $found=false;
+
+          if($found)
+          {
+            $returned=trim(preg_replace_callback(
+                '/{([a-z0-9:\.\s\/\[\]]*)}/i',
+                Array(&$this, "processMagicTagsCB"),
+                $val['tagValues'][$i]
+            ));
+
+            $tag->setValue($returned);
+            $tag->setLabel($returned);
+            $tag->setKnown(true);
+            $tag->setImplemented($val['implemented']);
+            $tag->setTranslatable($val['translatable']);
+
+            $i=count($val['tagValues']);
+          }
+        }
+
+        if($tag->isImplemented() and $found)
+        {
+          $this->tags["magic.".$key]=$tag;
+        }
+
+        unset($tag);
+      }
+      unset($magicTags);
+    }
+
+    /**
+     * this function is called by the processMagicTags to replace tagId by the
+     * tag values
+     *
+     * @param Array $matches : array[1] = the tagId
+     * @return String : the tag value
+     */
+    private function processMagicTagsCB($matches)
+    {
+      $label="";
+      preg_match_all('/([a-z0-9:\.\s\/]*)\[(.*)\]/i', $matches[1], $result, PREG_PATTERN_ORDER);
+      if(count($result[0])>0)
+      {
+
+        if(array_key_exists($result[1][0], $this->tags))
+        {
+          $tag=$this->tags[$result[1][0]]->getLabel();
+
+          preg_match_all('/([a-z0-9:\.\s\/]*)\[(.*)\]/i', $result[2][0], $result2, PREG_PATTERN_ORDER);
+
+          if(count($result2[0])>0)
+          {
+            if(array_key_exists($result2[2][0], $tag[$result2[1][0]] ))
+              $label=$tag[$result2[1][0]][$result2[2][0]];
+          }
+          else
+          {
+            if(array_key_exists($result[2][0], $tag))
+              $label=$tag[$result[2][0]];
+          }
+        }
+      }
+      else
+      {
+        if(array_key_exists($matches[1], $this->tags))
+        {
+          $label=$this->tags[$matches[1]]->getLabel();
+        }
+      }
+
+      if($label instanceof DateTime)
+        return($label->format("Y-m-d H:i:s"));
+
+      $label=XmpTags::getAltValue($label, L10n::getLanguage());
+
+      if(is_array($label))
+        return(implode(", ", $label));
+
+      return(trim($label));
+    }
+
+
+
+    /**
+     * used by the destructor to clean variables
+     */
     private function unsetAll()
     {
       unset($this->tags);

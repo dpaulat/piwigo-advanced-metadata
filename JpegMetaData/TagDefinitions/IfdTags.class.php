@@ -976,7 +976,7 @@
 
       // flash, tag 0x9209, see EXIF 2.2 documentation
       0x9209 => Array(
-        'tagName'     => "flash",
+        'tagName'     => "Flash",
         'schema'      => "exif",
         'translatable'=> true,
         'combiTag'    => 0,
@@ -989,27 +989,27 @@
                   0x40 => "red-eye mode"
                 ),
         'tagValues.specialValues' => Array(
-          0x0000 => Array( // b00000001
+          0x0001 => Array( // b00000001 => 'fired'
                   0x00 => "flash did not fire",
                   0x01 => "flash fired"
                 ),
-          0x0006 => Array( // b00000110
+          0x0006 => Array( // b00000110 => 'return'
                   0x00 => "no strobe",                        // 00
                   0x01 => "reserved",                         // 01
                   0x02 => "strobe return light not detected", // 10
                   0x03 => "strobe return light detected"      // 11
                 ),
-          0x0018 => Array( // b00011000
+          0x0018 => Array( // b00011000 => 'mode'
                   0x00 => "unknown",
                   0x01 => "compulsory flash firing",
-                  0x10 => "compulsory flash suppression",
-                  0x11 => "auto mode"
+                  0x02 => "compulsory flash suppression",
+                  0x03 => "auto mode"
                 ),
-          0x0020 => Array( // b00100000
+          0x0020 => Array( // b00100000 => 'function'
                   0x00 => "flash function present",
                   0x01 => "no flash function"
                 ),
-          0x0040 => Array( // b01000000
+          0x0040 => Array( // b01000000 => 'red-eye'
                   0x00 => "no red-eye reduction mode or unknown",
                   0x01 => "red-eye reduction supported"
                 ),

@@ -495,15 +495,24 @@
           $tag=$this->tagDef->getTagById(0x9209);
           $returned=Array(
             "computed" => (isset($tag['tagValues.computed'][$values])?$tag['tagValues.computed'][$values]:"unknown"),
-            "detail" => Array() );
-          foreach($tag['tagValues.specialNames'] as $key => $value)
-          {
-            $filter = $values & $key;
-            if(isset($tag['tagValues.specialValues'][$key][$filter]))
-              $returned["detail"][]=$tag['tagValues.specialValues'][$key][$filter];
-            else
-              $returned["detail"][]="unknown";
-          }
+            "detail" => Array()
+          );
+
+          $value=$values & 0x0001;
+          $returned["detail"][]=$tag['tagValues.specialValues'][0x0001][$value];
+
+          $value=($values & 0x0006)>>1;
+          $returned["detail"][]=$tag['tagValues.specialValues'][0x0006][$value];
+
+          $value=($values & 0x0018)>>3;
+          $returned["detail"][]=$tag['tagValues.specialValues'][0x0018][$value];
+
+          $value=($values & 0x0020)>>5;
+          $returned["detail"][]=$tag['tagValues.specialValues'][0x0020][$value];
+
+          $value=($values & 0x0040)>>6;
+          $returned["detail"][]=$tag['tagValues.specialValues'][0x0040][$value];
+
           break;
         case 0x920A: // FocalLength, tag 0x920A
           if($values[1]==0) $values[1]=1;

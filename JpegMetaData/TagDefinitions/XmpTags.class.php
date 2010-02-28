@@ -47,6 +47,48 @@
    */
   class XmpTags extends KnownTags
   {
+    /**
+     * this function extract from an Xmp Alt structure, the value in the given
+     * lang
+     *
+     * @param Array $tagValues :
+     * @param String $lang : the needed lang
+     * @return String : the value in the specified lang, or in the default lang
+     *                  if there is no specific value for the specified lang
+     */
+    static public function getAltValue($tagValues, $lang="x-default")
+    {
+      /*
+       * test if the $tagValues is valid, otherwise return the $tagValues as
+       * result
+       */
+      if(!is_array($tagValues)) return($tagValues);
+      if(!array_key_exists("type", $tagValues) or
+         !array_key_exists("values", $tagValues) )
+         return($tagValues);
+      if($tagValues['type']!="alt") return($tagValues);
+
+      $returned="";
+      foreach($tagValues['values'] as $key => $val)
+      {
+        if($val['type']['value']==$lang or
+           XmpTags::lang($val['type']['value'])==$lang or
+           $val['type']['value']=="x-default")
+          $returned=$val['value'];
+      }
+      return($returned);
+    }
+
+    /**
+     * this function tries to format the lang Id
+     * something like "fr-fr" is returned as "fr_FR"
+     */
+    static private function lang($lang)
+    {
+      $result=preg_match("/([a-z]*)([-|_])([a-z]*)/i", $lang, $arr);
+      return($arr[1]."_".strtoupper($arr[3]));
+    }
+
     const TYPE_SIMPLE = 0x00;
     const TYPE_SEQ = 0x01;
     const TYPE_BAG = 0x02;
@@ -1307,7 +1349,8 @@
       ),
 /*
  * The Flash is a sequence of Flash structure
- * Not yet implemented
+ * Don't use the exif:Flash, but the associated tags :
+ *  exif:Fired, exif:Return, exif:Mode, exif:Function, exif:RedEyeMode
  */
       'exif:Flash' => Array(
         'exifTag'      => 0x9209,
@@ -1316,6 +1359,66 @@
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "exif",
       ),
+
+      'exif:Fired' => Array(
+        'implemented'  => true,
+        'translatable' => true,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "exif",
+        'tagValues' => Array(
+            'False' => "flash did not fire",
+            'True'  => "flash fired"
+        ),
+      ),
+
+      'exif:Return' => Array(
+        'implemented'  => true,
+        'translatable' => true,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "exif",
+        'tagValues' => Array(
+            0x00 => "no strobe",
+            0x01 => "reserved",
+            0x02 => "strobe return light not detected",
+            0x03 => "strobe return light detected"
+        ),
+      ),
+
+      'exif:Mode' => Array(
+        'implemented'  => true,
+        'translatable' => true,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "exif",
+        'tagValues' => Array(
+            0x00 => "unknown",
+            0x01 => "compulsory flash firing",
+            0x02 => "compulsory flash suppression",
+            0x03 => "auto mode"
+        ),
+      ),
+
+      'exif:Function' => Array(
+        'implemented'  => true,
+        'translatable' => true,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "exif",
+        'tagValues' => Array(
+            'False' => "flash function present",
+            'True'  => "no flash function"
+        ),
+      ),
+
+      'exif:RedEyeMode' => Array(
+        'implemented'  => true,
+        'translatable' => true,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "exif",
+        'tagValues' => Array(
+            'False' => "no red-eye reduction mode or unknown",
+            'True'  => "red-eye reduction supported"
+          ),
+      ),
+
       'exif:FocalLength' => Array(
         'exifTag'      => 0x920A,
         'implemented'  => true,
