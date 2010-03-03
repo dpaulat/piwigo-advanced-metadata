@@ -70,6 +70,7 @@
  */
 
   require_once(JPEG_METADATA_DIR."Common/Data.class.php");
+  require_once(JPEG_METADATA_DIR."Common/GlobalTags.class.php");
   require_once(JPEG_METADATA_DIR."Common/MakerNotesSignatures.class.php");
   require_once(JPEG_METADATA_DIR."Readers/GenericReader.class.php");
   require_once(JPEG_METADATA_DIR."Readers/IfdEntryReader.class.php");
@@ -361,7 +362,7 @@
            * recognize the Canon camera (no header in the maker note)
            */
           $returned=ConvertData::toStrings($values);
-          MakerNotesSignatures::setExifMaker($returned);
+          GlobalTags::setExifMaker($returned);
           break;
         case 0x011A: // XResolution, tag 0x011A
         case 0x011B: // YResolution, tag 0x011B
@@ -413,7 +414,7 @@
           break;
         case 0x829D: // FNumber, tag 0x829D
           if($values[1]==0) $values[1]=1;
-          $returned=ConvertData::toFNumber($values[0]/$values[1]);
+          $returned=ConvertData::toFNumber(GlobalTags::setExifAperture($values[0]/$values[1]));
           break;
         case 0x8769: // Exif IFD Pointer, tag 0x8769
           /*
@@ -479,6 +480,14 @@
           $returned=ConvertData::toExposureTime($value);
           break;
         case 0x9202: // ApertureValue, tag0x9202
+          if($values[1]==0) $values[1]=1;
+          if(GlobalTags::getExifAperture()=="")
+          {
+            // set only if empty (if not empty, it means the value was already
+            // set with the FNumber tag)
+            GlobalTags::setExifAperture(pow(1.414213562, $values[0]/$values[1]));
+          }
+          //no break, $returned value is the same than the 0x9205 tag
         case 0x9205: // MaxApertureValue, tag0x9205
           if($values[1]==0) $values[1]=1;
           $returned=ConvertData::toFNumber(pow(1.414213562, $values[0]/$values[1]));
@@ -516,7 +525,7 @@
           break;
         case 0x920A: // FocalLength, tag 0x920A
           if($values[1]==0) $values[1]=1;
-          $returned=ConvertData::toFocalLength($values[0]/$values[1]);
+          $returned=ConvertData::toFocalLength(GlobalTags::setExifFocal($values[0]/$values[1]));
           break;
         case 0x927c: // MakerNote, tag 0x927c
           /* try to return a specific maker sub ifd
@@ -560,7 +569,7 @@
                * camera is looking the exif maker value equals "Canon" or
                * the camera model contains "Canon"
                */
-              if(preg_match("/.*canon.*/i",MakerNotesSignatures::getExifMaker()))
+              if(preg_match("/.*canon.*/i",GlobalTags::getExifMaker()))
               {
                 require_once(JPEG_METADATA_DIR."Readers/CanonReader.class.php");
                 $returned=new CanonReader($values, $valuesOffset, $this->byteOrder, "");

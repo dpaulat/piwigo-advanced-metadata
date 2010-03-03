@@ -36,8 +36,6 @@
  *
  * This class provides theses public functions :
  *  - (static) getMaker
- *  - (static) setExifMaker
- *  - (static) getExifMaker
  *
  * -----------------------------------------------------------------------------
  */
@@ -90,7 +88,6 @@
     const CanonHeaderSize     = 0;
     const UnknownHeaderSize   = 0;
 
-    static private $exifMaker = "";
 
     static public function getMaker($datas)
     {
@@ -118,45 +115,6 @@
        { return(self::SonyHeader); }
       else
        { return(self::UnknownHeader); }
-    }
-
-    /**
-     * this function is used by IFD Reader to store all information about maker
-     * and camera model
-     *
-     * the stored value if used within a grep like "/canon/i" to determine the
-     * maker note.
-     * For more information about this tricks see the how the tag 0x927c is
-     * managed in the function "processSpecialTag" of the file
-     * IfdReader.class.php
-     *
-     * @param String $value : the maker or the camera model
-     */
-    static public function setExifMaker($value)
-    {
-      if(is_array($value))
-      {
-        foreach($value as $val)
-        {
-          self::$exifMaker.=$val." ";
-        }
-      }
-      else
-      {
-        self::$exifMaker.=$value." ";
-      }
-      return(self::$exifMaker);
-    }
-
-    /**
-     * this function is used by IFD Reader to store all information about maker
-     * and camera model
-     *
-     * @return String
-     */
-    static public function getExifMaker()
-    {
-      return(self::$exifMaker);
     }
 
   }

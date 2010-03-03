@@ -346,7 +346,7 @@
             $returned[]=$tag['tagValues.specialValues'][0x00];
           }
 
-          if(preg_match("/.*d70.*/i",MakerNotesSignatures::getExifMaker()))
+          if(preg_match("/.*d70.*/i",GlobalTags::getExifMaker()))
           {
             $bit5=1;
           }
@@ -375,15 +375,12 @@
           unset($tag);
           break;
         case 0x0098: // "LensData"
-          if($this->shutterCount==-1 or $this->serialNumber=="")
+          if(($this->shutterCount==-1 or $this->serialNumber=="") and
+            ( substr($values,0,2)=="02" ))
           {
             $this->toDecode[0x0098]=Array($values, $type);
-            $returned="";
           }
-          else
-          {
-            $returned=$this->readLensData($values);
-          }
+          $returned=$this->readLensData($values);
           break;
         case 0x0099: // "RawImageCenter"
           $returned=Array(
@@ -480,6 +477,8 @@
         $returned = $tag['tagValues.lenses']['unknown']." (".$keyLens." / ".$nfo['LensDataVersion'].")";
       }
 
+      if(is_array($returned))
+        $returned=$returned[0];
 
       unset($data);
       unset($nfo);
@@ -566,7 +565,7 @@
       {
         return(0+$this->serialNumber);
       }
-      elseif(preg_match("/.*d50.*/i",MakerNotesSignatures::getExifMaker()))
+      elseif(preg_match("/.*d50.*/i",GlobalTags::getExifMaker()))
       {
         //D50
         return(0x22);

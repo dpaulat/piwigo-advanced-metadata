@@ -411,7 +411,7 @@
      */
     protected function processSubTag0x000d($values, $add=true)
     {
-      $name=MakerNotesSignatures::getExifMaker();
+      $name=GlobalTags::getExifMaker();
 
       if(preg_match("/\b1DS?$/", $name))
       {

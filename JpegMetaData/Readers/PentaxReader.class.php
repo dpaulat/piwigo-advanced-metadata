@@ -53,6 +53,7 @@
 
 
 
+  require_once(JPEG_METADATA_DIR."Common/GlobalTags.class.php");
   require_once(JPEG_METADATA_DIR."TagDefinitions/PentaxTags.class.php");
   require_once(JPEG_METADATA_DIR."Readers/MakerNotesReader.class.php");
 
@@ -231,6 +232,84 @@
           break;
         case 0x003e: // "PreviewImageBorders",
           $returned=ConvertData::toHexDump($values, ByteType::UBYTE);
+          break;
+        case 0x003f: // "LensType",
+          $tag=$this->tagDef->getTagById(0x003f);
+          $id=$values[1]+($values[0]<<8);
+          if(!array_key_exists($id, $tag['tagValues.special'])) $id=0xffff;
+
+          $returned="";
+
+          $lensesList=$tag['tagValues.special'][$id];
+          if(is_array($lensesList))
+          {
+            foreach($lensesList as $lens)
+            {
+              /*
+               * If there is more than one lens associated with a lens id
+               *
+               * 1/ try to found the min/max focals of the lens
+               * 2/ try to found the min/max aperture of the lens
+               * 3/ if focal is fixed, make min = max
+               * 4/ if aperture is constant, make min)max
+               * 5/ look if : min focal <= photo focal <= max focal  and
+               *              photo aperture >= min aperture
+               *            if yes, the lens is returned, otherwise test next
+               *            lens
+               */
+              preg_match("/.*\s(?:([0-9]+){1}(?:-([0-9]+))?)mm.*/i", $lens, $focals);
+              preg_match("/.*\sF(?:([0-9\.]+){1}(?:-([0-9\.]+))?).*/i", $lens, $apertures);
+
+              if(count($focals)==2)
+              {
+                //focal is not a zoom, min = max
+                $focals[]=$focal[1];
+              }
+              elseif(count($focals)==0)
+              {
+                $focal=Array(0,0,0);
+              }
+
+
+              if(count($apertures)==2)
+              {
+                //aperture is constant, min = max
+                $apertures[]=$apertures[1];
+              }
+              elseif(count($apertures)==0)
+              {
+                $apertures=Array(0,0,0);
+              }
+
+              $focal=GlobalTags::getExifFocal();
+              if($focal=="") $focal=-1;
+
+              $aperture=GlobalTags::getExifAperture();
+              if($aperture=="") $aperture=-1;
+
+              if($focals[1]<=$focal && $focal<=$focals[2] && $aperture>=$apertures[1] && $returned=="")
+              {
+                $returned=$lens;
+              }
+
+              unset($lens);
+              unset($focals);
+              unset($apertures);
+            }
+            if($returned=="")
+            {
+              // no lens seems to be valid, returns the lens list
+              $returned=$lensesList;
+            }
+          }
+          else
+          {
+            // not a list, just a single lens
+            $returned=$lensesList;
+          }
+
+          unset($tag);
+          unset($id);
           break;
         case 0x0040: // "SensitivityAdjust", from exiftool
           /* is the conversion perl => php is good !? */

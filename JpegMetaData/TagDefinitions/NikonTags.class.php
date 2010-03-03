@@ -678,7 +678,7 @@
       0x0098 => Array(
         'tagName'     => "LensData",
         'schema'      => "Nikon",
-        'translatable'=> true,
+        'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues.lenses' => Array(
@@ -733,13 +733,31 @@
           '2C 48 6A 6A 18 18 27 02' => 'AF DC-Nikkor 105mm f/2D',
           '2D 48 80 80 30 30 21 02' => 'AF Micro-Nikkor 200mm f/4D IF-ED',
           '2E 48 5C 82 30 3C 28 02' => 'AF Nikkor 70-210mm f/4-5.6D',
-          '2F 48 30 44 24 24 29 02' => 'AF Zoom-Nikkor 20-35mm f/2.8D IF',  //doublon?
+          '2F 48 30 44 24 24 29 02' => Array(
+            /*
+             * Different lenses can have the same Id.
+             * The Nikon Id are made with the focal min/max and the aperture
+             * min/max values.
+             *
+             * So, it's not possible to apply the method used with the Canon
+             * lens Id.
+             *
+             * For multiple lenses with the same key, the method used is to
+             * return the first lens
+             */
+                                          'AF Zoom-Nikkor 20-35mm f/2.8D IF',
+                                          'Tokina AT-X 235 AF PRO (AF 20-35mm f/2.8)',
+                                       ),
           '30 48 98 98 24 24 24 02' => 'AF-I Nikkor 400mm f/2.8D IF-ED',
           '30 48 98 98 24 24 F1 02' => 'AF-I Nikkor 400mm f/2.8D IF-ED + TC-14E',
           '30 48 98 98 24 24 E1 02' => 'AF-I Nikkor 400mm f/2.8D IF-ED + TC-17E',
           '30 48 98 98 24 24 F2 02' => 'AF-I Nikkor 400mm f/2.8D IF-ED + TC-20E',
           '31 54 56 56 24 24 25 02' => 'AF Micro-Nikkor 60mm f/2.8D',
-          '32 54 6A 6A 24 24 35 02' => 'AF Micro-Nikkor 105mm f/2.8D', //doublon?
+
+          '32 54 6A 6A 24 24 35 02' => Array(
+                                          'AF Micro-Nikkor 105mm f/2.8D',
+                                          'Sigma Macro 105mm f/2.8 EX DG',
+                                       ),
           '33 48 2D 2D 24 24 31 02' => 'AF Nikkor 18mm f/2.8D',
           '34 48 29 29 24 24 32 02' => 'AF Fisheye Nikkor 16mm f/2.8D',
           '35 3C A0 A0 30 30 33 02' => 'AF-I Nikkor 500mm f/4D IF-ED',
@@ -815,7 +833,10 @@
           '77 48 5C 80 24 24 7B 0E' => 'AF-S VR Zoom-Nikkor 70-200mm f/2.8G IF-ED',
           '78 40 37 6E 2C 3C 7C 0E' => 'AF-S VR Zoom-Nikkor 24-120mm f/3.5-5.6G IF-ED',
           '79 40 3C 80 2C 3C 7F 06' => 'AF Zoom-Nikkor 28-200mm f/3.5-5.6G IF-ED',
-          '7A 3C 1F 37 30 30 7E 06' => 'AF-S DX Zoom-Nikkor 12-24mm f/4G IF-ED', //doublon ?
+          '7A 3C 1F 37 30 30 7E 06' => Array(
+                                        'AF-S DX Zoom-Nikkor 12-24mm f/4G IF-ED',
+                                        'Tokina AT-X 124 AF PRO DX II (AF 12-24mm f/4)',
+                                       ),
           '7B 48 80 98 30 30 80 0E' => 'AF-S VR Zoom-Nikkor 200-400mm f/4G IF-ED',
           '7D 48 2B 53 24 24 82 06' => 'AF-S DX Zoom-Nikkor 17-55mm f/2.8G IF-ED',
           '7F 40 2D 5C 2C 34 84 06' => 'AF-S DX Zoom-Nikkor 18-70mm f/3.5-4.5G IF-ED',
@@ -873,7 +894,6 @@
           '32 54 50 50 24 24 35 02' => 'Sigma Macro 50mm F2.8 EX DG',
           '79 48 5C 5C 24 24 1C 06' => 'Sigma Macro 70mm F2.8 EX DG',
           '02 48 65 65 24 24 02 00' => 'Sigma 90mm F2.8 Macro',
-          '32 54 6A 6A 24 24 35 02' => 'Sigma Macro 105mm F2.8 EX DG', //doublon ?
           'E5 54 6A 6A 24 24 35 02' => 'Sigma Macro 105mm F2.8 EX DG',
           '48 48 76 76 24 24 4B 06' => 'Sigma 150mm F2.8 EX DG APO Macro HSM',
           'F5 48 76 76 24 24 4B 06' => 'Sigma 150mm F2.8 EX DG APO Macro HSM',
@@ -1004,10 +1024,8 @@
           '00 40 18 2B 2C 34 00 06' => 'Tokina AT-X 107 DX Fisheye (AF 10-17mm f/3.5-4.5)',
           '00 48 1C 29 24 24 00 06' => 'Tokina AT-X 116 PRO DX (AF 11-16mm f/2.8)',
           '00 3C 1F 37 30 30 00 06' => 'Tokina AT-X 124 AF PRO DX (AF 12-24mm f/4)',
-          '7A 3C 1F 37 30 30 7E 06' => 'Tokina AT-X 124 AF PRO DX II (AF 12-24mm f/4)', //doublon ?
           '00 48 29 50 24 24 00 06' => 'Tokina AT-X 165 PRO DX (AF 16-50mm f/2.8)',
           '00 40 2A 72 2C 3C 00 06' => 'Tokina AT-X 16.5-135 DX (AF 16.5-135mm F3.5-5.6)',
-          '2F 48 30 44 24 24 29 02' => 'Tokina AT-X 235 AF PRO (AF 20-35mm f/2.8)', //doublon ?
           '2F 40 30 44 2C 34 29 02' => 'Tokina AF 235 II (AF 20-35mm f/3.5-4.5)',
           '25 48 3C 5C 24 24 1B 02' => 'Tokina AT-X 270 AF PRO II (AF 28-70mm f/2.6-2.8)',
           '07 48 3C 5C 24 24 03 00' => 'Tokina AT-X 287 AF (AF 28-70mm f/2.8)',
@@ -1080,7 +1098,7 @@
 
       // SerialNumber, tag 0x00a0
       0x00a0 => Array(
-        'tagName'     => "SerialNumber",
+        'tagName'     => "SerialNumber2",
         'schema'      => "Nikon",
         'translatable'=> false,
         'combiTag'    => 0,

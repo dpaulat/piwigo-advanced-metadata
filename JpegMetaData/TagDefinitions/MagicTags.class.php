@@ -145,6 +145,7 @@
         'translatable' => false,
         'tagValues'    => Array(
           "{exif.Pentax.LensType}",
+          "{exif.Nikon.LensData}",
           "{exif.Nikon.Lens}",
           "{exif.Canon.CanonCameraSettings.LensType}",
           "{exif.Canon.CanonCameraInfo.LensType}",
