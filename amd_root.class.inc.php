@@ -52,8 +52,8 @@ class AMD_root extends common_plugin
     $this->my_config=array(
       'amd_NumberOfItemsPerRequest' => 25,
       'amd_GetListTags_OrderType' => "tag",
-      'amd_GetListTags_FilterType' => "",
-      'amd_GetListTags_ExcludeUnusedTag' => "n",
+      'amd_GetListTags_FilterType' => "magic",
+      'amd_GetListTags_ExcludeUnusedTag' => "y",
       'amd_GetListTags_SelectedTagOnly' => "n",
       'amd_GetListImages_OrderType' => "value"
     );

@@ -65,6 +65,7 @@ $lang['g003_new_group'] = "Nouveau groupe de métadonnées";
 $lang['g003_name'] = "Nom";
 $lang['g003_add_delete_tags'] = "Ajouter/Supprimer des métadonnées";
 $lang['g003_confirm_group_delete'] = "Etes-vous sur de vouloir supprimer le groupe de métadonnées %s ?";
+$lang['g003_default_group_name'] = "Conditions de la prise de vue";
 
 $lang['g003_ok'] = "Ok";
 $lang['g003_cancel'] = "Annuler";

@@ -1031,7 +1031,7 @@ class AMD_AIP extends AMD_root
           "tagId" => $row['tagId'],
           "label" => L10n::get($row['name']),
           "nb"    => $row['numOfImg'],
-          "pct"   => ($numOfPictures!=0)?sprintf("%.2f", 100*$row['numOfImg']/$numOfPictures):"-",
+          "pct"   => ($numOfPictures!=0)?sprintf("%.2f", 100*$row['numOfImg']/$numOfPictures):"0",
           "tagChecked" => ($row['checked']=='y')?"checked":""
         );
       }
@@ -1271,7 +1271,7 @@ class AMD_AIP extends AMD_root
             'name'  => L10n::get($row['name']),
             'numId' => $row['numId'],
             'nbItems' => $row['numOfImg'],
-            'pct'   => sprintf("%.2f", 100*$row['numOfImg']/$numOfPictures)
+            'pct'   => ($numOfPictures==0)?"0":sprintf("%.2f", 100*$row['numOfImg']/$numOfPictures)
           );
         }
 

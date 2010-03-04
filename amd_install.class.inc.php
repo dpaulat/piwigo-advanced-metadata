@@ -38,6 +38,8 @@
      */
     public function install()
     {
+      global $user, $lang;
+
       $tables_def=array(
 "CREATE TABLE `".$this->tables['used_tags']."` (
   `numId` int(10) unsigned NOT NULL auto_increment,
@@ -81,6 +83,26 @@
       //$table_def array
       $tables_def = create_table_add_character_set($tables_def);
       $result=$this->tablef->create_tables($tables_def);
+      unset($tables_def);
+
+      $tables_insert=array(
+"INSERT INTO `".$this->tables['groups']."` VALUES(1, 0)",
+"INSERT INTO `".$this->tables['groups_names']."` VALUES(1, '".$user['language']."', '".$lang['g003_default_group_name']."')",
+"INSERT INTO `".$this->tables['selected_tags']."` VALUES
+    ('magic.Camera.Make', 0, 1),
+    ('magic.Camera.Model', 1, 1),
+    ('magic.ShotInfo.Lens', 2, 1),
+    ('magic.ShotInfo.Aperture', 3, 1),
+    ('magic.ShotInfo.Exposure', 4, 1),
+    ('magic.ShotInfo.ISO', 5, 1),
+    ('magic.ShotInfo.FocalLength', 6, 1),
+    ('magic.ShotInfo.FocalLengthIn35mm', 7, 1),
+    ('magic.ShotInfo.Flash.Fired', 8, 1)"
+      );
+      foreach($tables_insert as $sql)
+      {
+        pwg_query($sql);
+      }
 
       return($result);
     }
