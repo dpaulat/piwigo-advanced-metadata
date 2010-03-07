@@ -52,9 +52,9 @@ class AMD_AIP extends AMD_root
     $this->tabsheet->add('metadata',
                           l10n('g003_metadata'),
                           $this->page_link.'&amp;fAMD_tabsheet=metadata');
-    $this->tabsheet->add('database',
-                          l10n('g003_database'),
-                          $this->page_link.'&amp;fAMD_tabsheet=database');
+    $this->tabsheet->add('help',
+                          l10n('g003_help'),
+                          $this->page_link.'&amp;fAMD_tabsheet=help');
     $this->ajax = new Ajax();
     $this->jpegMD=new JpegMetaData();
   }
@@ -98,9 +98,9 @@ class AMD_AIP extends AMD_root
 
     $template->assign('plugin', $template_plugin);
 
-    if($_REQUEST['fAMD_tabsheet']=='database')
+    if($_REQUEST['fAMD_tabsheet']=='help')
     {
-      $this->displayDatabase();
+      //$this->displayHelp();
     }
     elseif($_REQUEST['fAMD_tabsheet']=='metadata')
     {
@@ -212,7 +212,7 @@ class AMD_AIP extends AMD_root
     }
     else
     {
-      $defautTabsheet="metadata";
+      $defautTabsheet="select";
     }
 
     if(!isset($_REQUEST['fAMD_tabsheet']))
@@ -221,21 +221,22 @@ class AMD_AIP extends AMD_root
     }
 
     if($_REQUEST['fAMD_tabsheet']!="metadata" and
-       $_REQUEST['fAMD_tabsheet']!="database")
+       $_REQUEST['fAMD_tabsheet']!="help")
     {
-      $_REQUEST['fAMD_tabsheet']=$defautTabsheet;
+      $_REQUEST['fAMD_tabsheet']="metadata";
     }
 
     if($_REQUEST['fAMD_tabsheet']=="metadata" and !isset($_REQUEST['fAMD_page']))
     {
-      $_REQUEST['fAMD_page']="select";
+      $_REQUEST['fAMD_page']=$defautTabsheet;
     }
 
     if($_REQUEST['fAMD_tabsheet']=="metadata" and
        !($_REQUEST['fAMD_page']=="select" or
+         $_REQUEST['fAMD_page']=="database" or
          $_REQUEST['fAMD_page']=="display"))
     {
-      $_REQUEST['fAMD_page']="select";
+      $_REQUEST['fAMD_page']=$defautTabsheet;
     }
 
     /*
@@ -248,14 +249,16 @@ class AMD_AIP extends AMD_root
        */
       if($_REQUEST['ajaxfct']=="makeStatsGetList" and !isset($_REQUEST['selectMode']))
       {
-        $_REQUEST['selectMode']="notAnalyzed";
+        $_REQUEST['selectMode']="caddieAdd";
       }
 
       if($_REQUEST['ajaxfct']=="makeStatsGetList" and
          !($_REQUEST['selectMode']=="notAnalyzed" or
+           $_REQUEST['selectMode']=="caddieAdd" or
+           $_REQUEST['selectMode']=="caddieReplace" or
            $_REQUEST['selectMode']=="all"))
       {
-        $_REQUEST['selectMode']="notAnalyzed";
+        $_REQUEST['selectMode']="caddieAdd";
       }
 
       if($_REQUEST['ajaxfct']=="makeStatsGetList" and !isset($_REQUEST['numOfItems']))
@@ -476,62 +479,6 @@ class AMD_AIP extends AMD_root
 
 
   /**
-   * display and manage the database page
-   *
-   * the function automatically update the AMD tables :
-   *  - add new pictures in the AMD image table (assuming image is not analyzed
-   *    yet)
-   *  - remove deleted pictures in the AMD image & image_tags table
-   *
-   * @return String : the content of the page
-   */
-  private function displayDatabase()
-  {
-    global $template, $page;
-
-    /*
-     * insert new image (from piwigo images table) in the AMD images table, with
-     * statut 'not analyzed'
-     */
-    $sql="INSERT INTO ".$this->tables['images']."
-            SELECT id, 'n', 0
-              FROM ".IMAGES_TABLE."
-              WHERE id NOT IN (SELECT imageId FROM ".$this->tables['images'].")";
-    pwg_query($sql);
-
-
-    /*
-     * delete image who are in the AMD images table and not in the piwigo image
-     * table
-     */
-    $sql="DELETE FROM ".$this->tables['images']."
-            WHERE imageId NOT IN (SELECT id FROM ".IMAGES_TABLE.")";
-    pwg_query($sql);
-
-
-    /*
-     * delete metdata for images that are not in the AMD image table
-     */
-    $sql="DELETE FROM ".$this->tables['images_tags']."
-            WHERE imageId NOT IN (SELECT imageId FROM ".$this->tables['images'].")";
-    pwg_query($sql);
-
-
-    $template->set_filename('body_page', dirname(__FILE__).'/admin/amd_database.tpl');
-
-    $datas=array(
-      'urlRequest' => $this->page_link,
-      'NumberOfItemsPerRequest' => $this->my_config['amd_NumberOfItemsPerRequest'],
-    );
-
-    $template->assign("datas", $datas);
-
-    $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
-  } // displayDatabase
-
-
-
-  /**
    * display and manage the metadata page
    * the page have two tabsheet :
    *  - select tag management, to manage tags to be selected on the galerie
@@ -546,6 +493,9 @@ class AMD_AIP extends AMD_root
 
     $statTabsheet = new tabsheet('statTabsheet', $this->tabsheet->get_titlename());
     $statTabsheet->select($tab);
+    $statTabsheet->add('database',
+                          l10n('g003_database'),
+                          $this->page_link.'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=database');
     $statTabsheet->add('select',
                           l10n('g003_select'),
                           $this->page_link.'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=select');
@@ -560,9 +510,13 @@ class AMD_AIP extends AMD_root
     {
       $template->assign('sheetContent', $this->displayMetaDataSelect());
     }
-    else
+    elseif($tab=="display")
     {
       $template->assign('sheetContent', $this->displayMetaDataDisplay());
+    }
+    else
+    {
+      $template->assign('sheetContent', $this->displayDatabase());
     }
 
     $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
@@ -669,6 +623,62 @@ class AMD_AIP extends AMD_root
   }
 
 
+  /**
+   * display and manage the database page
+   *
+   * the function automatically update the AMD tables :
+   *  - add new pictures in the AMD image table (assuming image is not analyzed
+   *    yet)
+   *  - remove deleted pictures in the AMD image & image_tags table
+   *
+   * @return String : the content of the page
+   */
+  private function displayDatabase()
+  {
+    global $template, $page;
+
+    /*
+     * insert new image (from piwigo images table) in the AMD images table, with
+     * statut 'not analyzed'
+     */
+    $sql="INSERT INTO ".$this->tables['images']."
+            SELECT id, 'n', 0
+              FROM ".IMAGES_TABLE."
+              WHERE id NOT IN (SELECT imageId FROM ".$this->tables['images'].")";
+    pwg_query($sql);
+
+
+    /*
+     * delete image who are in the AMD images table and not in the piwigo image
+     * table
+     */
+    $sql="DELETE FROM ".$this->tables['images']."
+            WHERE imageId NOT IN (SELECT id FROM ".IMAGES_TABLE.")";
+    pwg_query($sql);
+
+
+    /*
+     * delete metdata for images that are not in the AMD image table
+     */
+    $sql="DELETE FROM ".$this->tables['images_tags']."
+            WHERE imageId NOT IN (SELECT imageId FROM ".$this->tables['images'].")";
+    pwg_query($sql);
+
+
+    $template->set_filename('sheet_page', dirname(__FILE__).'/admin/amd_metadata_database.tpl');
+
+    $datas=array(
+      'urlRequest' => $this->page_link,
+      'NumberOfItemsPerRequest' => $this->my_config['amd_NumberOfItemsPerRequest'],
+    );
+
+    $template->assign("datas", $datas);
+
+    return($template->parse('sheet_page', true));
+  } // displayDatabase
+
+
+
 
   /**
    * this function analyze tags from a picture, and insert the result into the
@@ -728,21 +738,14 @@ class AMD_AIP extends AMD_root
           $nbTags++;
           if($sqlInsert!="") $sqlInsert.=", ";
           $sqlInsert.="($imageId, '$numId', '".addslashes($value)."')";
-          $massInsert[]=array(
-            'imageId' => $imageId,
-            'numId' => $numId,
-            'value' => addslashes($value)
-          );
+          $massInsert[]="('$imageId', '$numId', '".addslashes($value)."') ";
         }
       }
     }
 
-    /*if($sqlInsert!="")
-    {
-      $sqlInsert="INSERT INTO ".$this->tables['images_tags']." VALUES ".$sqlInsert;
-      pwg_query($sqlInsert);
-    }*/
-    mass_inserts($this->tables['images_tags'], array('imageId', 'numId', 'value'), $massInsert);
+    $sql="REPLACE INTO ".$this->tables['images_tags']." (imageId, numId, value)
+          VALUES ".implode(", ", $massInsert);
+    //mass_inserts($this->tables['images_tags'], array('imageId', 'numId', 'value'), $massInsert);
 
     $sql="UPDATE ".$this->tables['images']."
             SET analyzed = 'y', nbTags=".$nbTags."
@@ -802,16 +805,25 @@ class AMD_AIP extends AMD_root
    */
   private function ajax_amd_makeStatsGetList($mode, $nbOfItems)
   {
+    global $user;
+
     $returned="";
     $this->my_config['amd_NumberOfItemsPerRequest']=$nbOfItems;
     $this->save_config();
 
-    $sql="SELECT imageId FROM ".$this->tables['images'];
+    $sql="SELECT ait.imageId FROM ".$this->tables['images']." ait";
     if($mode=="notAnalyzed")
     {
-      $sql.=" WHERE analyzed='n'";
+      $sql.=" WHERE ait.analyzed='n'";
     }
-    else
+    elseif($mode=="caddieAdd" or $mode=="caddieReplace")
+    {
+
+      $sql.=" LEFT JOIN ".CADDIE_TABLE." ct ON ait.imageId = ct.element_id
+            WHERE ct.user_id = ".$user['id'].";";
+    }
+
+    if($mode=="all" or $mode=="caddieReplace")
     {
       pwg_query("UPDATE ".$this->tables['images']." SET analyzed='n', nbTags=0");
       pwg_query("UPDATE ".$this->tables['used_tags']." SET numOfImg=0");

@@ -19,8 +19,10 @@ $lang['g003_apply'] = "Appliquer";
 
 $lang['g003_numberOfAnalyzedPictures'] = "%d images ont fait l'objet d'une analyse et représentent %d métadonnées";
 $lang['g003_numberOfNotAnalyzedPictures'] = "%d images n'ont pas fait l'objet d'une analyse";
-$lang['g003_analyze_not_analyzed_pictures'] = "Analyser les images manquantes";
-$lang['g003_analyze_all_pictures'] = "Analyser toutes les images";
+$lang['g003_analyze_not_analyzed_pictures'] = "L'analyse porte sur les images n'ayant jamais été analysées et vient s'ajouter au référentiel actuel";
+$lang['g003_analyze_all_pictures'] = "L'analyse porte sur toutes les images de la galerie et vient remplacer le référentiel actuel";
+$lang['g003_analyze_caddie_add_pictures'] = "L'analyse porte sur les images du panier et vient s'ajouter au référentiel actuel";
+$lang['g003_analyze_caddie_replace_pictures'] = "L'analyse porte sur les images du panier et vient remplacer le référentiel actuel";
 $lang['g003_analyze'] = "Analyser";
 $lang['g003_update_metadata'] = "Mettre à jour le référentiel de métadonnées";
 $lang['g003_status_of_database'] = "Etat du référentiel";
@@ -77,9 +79,9 @@ $lang['g003_invalid_group_id'] = "Identifiant de groupe de métadonnées invalid
 $lang['g003_no_tag_can_be_selected'] = "Aucune métadonnée n'est disponible";
 
 $lang['g003_warning_on_analyze_0'] = "Attention !";
-$lang['g003_warning_on_analyze_1'] = "En fonction du nombre de photos dans votre galerie, l'alimentation du référentiel est un processus qui peut s'avérer être long (jusqu'à plusieurs minutes de traitement), et gourmand en ressources sur le serveur.";
+$lang['g003_warning_on_analyze_1'] = "L'alimentation du référentiel est un processus qui peut s'avérer être long (jusqu'à plusieurs minutes de traitement) et gourmand en ressources sur le serveur en fonction du nombre de photos sélectionnées pour l'analyse.";
 $lang['g003_warning_on_analyze_2'] = "Certains hébergeurs peuvent sanctionner ce type d'usage.";
-$lang['g003_warning_on_analyze_3'] = "L'alimentation du référentiel n'est pas nécessaire pour que le plugin puisse exploiter les métadonnées de vos photos : il n'est nécessaire que pour les analyses statistiques";
+$lang['g003_warning_on_analyze_3'] = "Il est fortement recommandé de remplir le panier avec une cinquantaine de photos représentatives de la galerie pour procéder au traitement.";
 
 
 ?>

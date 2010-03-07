@@ -63,12 +63,29 @@
     $("body").css("cursor", "wait");
 
     mode="all";
-    modeLabel="{/literal}{'g003_analyze_all_pictures'|@translate}{literal}";
+    modeLabel="";
+
     if($("#ianalyze_action0").get(0).checked)
     {
       mode="notAnalyzed";
       modeLabel="{/literal}{'g003_analyze_not_analyzed_pictures'|@translate}{literal}";
     }
+    else if($("#ianalyze_action1").get(0).checked)
+    {
+      mode="all";
+      modeLabel="{/literal}{'g003_analyze_all_pictures'|@translate}{literal}";
+    }
+    else if($("#ianalyze_action2").get(0).checked)
+    {
+      mode="caddieAdd";
+      modeLabel="{/literal}{'g003_analyze_caddie_add_pictures'|@translate}{literal}";
+    }
+    else if($("#ianalyze_action3").get(0).checked)
+    {
+      mode="caddieReplace";
+      modeLabel="{/literal}{'g003_analyze_caddie_replace_pictures'|@translate}{literal}";
+    }
+
 
     doAnalyze="<br><form id='iDialogProgress' class='formtable'>"+
       "<div id='iprogressbar_contener'>"+
@@ -222,7 +239,18 @@
         </div>
 
         <label>
-          <input type="radio" value="notAnalayzed" name="fAMD_analyze_action" id="ianalyze_action0" checked>&nbsp;
+          <input type="radio" value="caddieAdd" name="fAMD_analyze_action" id="ianalyze_action2" checked>&nbsp;
+          {'g003_analyze_caddie_add_pictures'|@translate}
+        </label><br>
+
+        <label>
+          <input type="radio" value="caddieReplace" name="fAMD_analyze_action" id="ianalyze_action3">&nbsp;
+          {'g003_analyze_caddie_replace_pictures'|@translate}
+        </label><br>
+
+
+        <label>
+          <input type="radio" value="notAnalayzed" name="fAMD_analyze_action" id="ianalyze_action0">&nbsp;
           {'g003_analyze_not_analyzed_pictures'|@translate}
         </label><br>
 
