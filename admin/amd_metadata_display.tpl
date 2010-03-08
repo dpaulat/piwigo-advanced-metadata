@@ -50,6 +50,11 @@
           }
       }
     );
+
+    if($("#iGroups li").length == 1)
+    {
+      manageGroup('1', 'y');
+    }
   }
 
   function initSubList(groupId)

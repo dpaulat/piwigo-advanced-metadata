@@ -3,6 +3,43 @@
 
   var globalTagId;
 
+  function init()
+  {
+    computedWidth=$("#content").get(0).clientWidth;
+    computedHeight=$("#content").get(0).clientHeight;
+    $("#dialogViewDetail")
+    .dialog(
+      {
+        autoOpen: false,
+        resizable: false,
+        width:computedWidth,
+        height:computedHeight,
+        modal: true,
+        draggable:false,
+        title: '{/literal}{"g003_metadata_detail"|@translate}{literal}',
+        overlay:
+        {
+          backgroundColor: '#000',
+          opacity: 0.5
+        },
+        open: function(event, ui)
+        {
+          bH=$("div.ui-dialog-buttonpane").get(0).clientHeight;
+          $("#dialogViewDetail").css('height', (this.clientHeight-bH)+"px");
+          $("#iListImages").css('height', (this.clientHeight-bH-$("#iListImagesNb").get(0).clientHeight-$("#iHeaderListImages").get(0).clientHeight)+"px");
+        },
+        buttons:
+        {
+          '{/literal}{"g003_ok"|@translate}{literal}':
+            function()
+            {
+              $(this).dialog('close');
+            }
+        }
+      }
+    );
+  }
+
   function loadTagList()
   {
     $("body").css("cursor", "wait");
@@ -10,6 +47,8 @@
     filter=$("#iSelectFilterTagList").val();
     unusedTag=($("#iExcludeUnusedTagList").get(0).checked)?"y":"n";
     selectedOnly=($("#iSelectedTagOnly").get(0).checked)?"y":"n";
+
+    displayTagListOrder();
 
     $("#iListTags").html(
       $.ajax({
@@ -22,11 +61,36 @@
     $("#iListTagsNb").html(
       "{/literal}{'g003_number_of_filtered_metadata'|@translate}{literal} "+$("#iListTags table tr").length
     );
+
+    //onclick="updateTagSelect('iNumId{$data.numId}', '')"
+    $("input.cbiListTags")
+      .bind('click',
+        function(event)
+        {
+          event.stopPropagation();
+          updateTagSelect($(this).get(0).id, '');
+        }
+      );
+
+    $("a.cbiListTags")
+      .bind('click',
+        function(event)
+        {
+          event.stopPropagation();
+          loadTagDetail($(this).get(0).id.substr(7));
+        }
+      );
+
+
+
+
     $("body").css("cursor", "default");
   }
 
   function loadTagDetail(tag)
   {
+    $("#dialogViewDetail").dialog('open');
+
     globalTagId=tag;
     order=$('#iSelectOrderImageList').val();
     $("#iListImages").html("<br>{/literal}{'g003_loading'|@translate}{literal}");
@@ -50,9 +114,15 @@
     );
   }
 
-  function updateTagSelect(numId)
+  function updateTagSelect(numId, mode)
   {
     $("body").css("cursor", "wait");
+
+    if(mode=='switch')
+    {
+      $("#"+numId).get(0).checked=!$("#"+numId).get(0).checked;
+    }
+
     selected=($("#"+numId).get(0).checked)?"y":"n";
 
     $("#iListImages").html(
@@ -66,6 +136,48 @@
     $("body").css("cursor", "default");
   }
 
+  function sortTagList(by)
+  {
+    $("#iSelectOrderTagList").val(by);
+    displayTagListOrder();
+    loadTagList();
+  }
+
+  function sortTagDetail(by, tag)
+  {
+    $("#iSelectOrderImageList").val(by);
+    displayTagDetailOrder();
+    loadTagDetail(tag);
+  }
+
+  function displayTagListOrder()
+  {
+    if($("#iSelectOrderTagList").val()=="tag")
+    {
+      $("#iHLTOrderTag").html("&#8593;");
+      $("#iHLTOrderNum").html("");
+    }
+    else
+    {
+      $("#iHLTOrderTag").html("");
+      $("#iHLTOrderNum").html("&#8593;");
+    }
+  }
+
+  function displayTagDetailOrder()
+  {
+    if($("#iSelectOrderImageList").val()=="value")
+    {
+      $("#iHLIOrderValue").html("&#8593;");
+      $("#iHLIOrderNum").html("");
+    }
+    else
+    {
+      $("#iHLIOrderValue").html("");
+      $("#iHLIOrderNum").html("&#8593;");
+    }
+  }
+
 
 </script>
 {/literal}
@@ -74,12 +186,7 @@
 <h3>{'g003_select_metadata'|@translate}</h3>
 
 <form>
-  <label>{'g003_order'|@translate}
-    <select id="iSelectOrderTagList" onchange="loadTagList();">
-      <option value="tag" {if $datas.config_GetListTags_OrderType=="tag"}selected{/if}>{'g003_tagOrder'|@translate}</option>
-      <option value="num" {if $datas.config_GetListTags_OrderType=="num"}selected{/if}>{'g003_numOrder'|@translate}</option>
-    </select>
-  </label>
+  <input type="hidden" id="iSelectOrderTagList" value="{$datas.config_GetListTags_OrderType}"/>
 
   <label>{'g003_filter'|@translate}
     <select id="iSelectFilterTagList" onchange="loadTagList();">
@@ -103,9 +210,9 @@
 
 <table id='iHeaderListTags' class="littlefont">
   <tr>
-    <th style="width:35%;min-width:340px;">{'g003_TagId'|@translate}</th>
+    <th style="width:35%;min-width:340px;"><span id="iHLTOrderTag"></span><a onclick="sortTagList('tag');">{'g003_TagId'|@translate}</a></th>
     <th>{'g003_TagLabel'|@translate}</th>
-    <th width="80px">{'g003_NumOfImage'|@translate}</th>
+    <th width="80px"><span id="iHLTOrderNum"></span><a onclick="sortTagList('num');">{'g003_NumOfImage'|@translate}</a></th>
     <th width="40px">{'g003_Pct'|@translate}</th>
     <th width="110px">&nbsp;</th>
   </tr>
@@ -115,30 +222,29 @@
 <div id="iListTagsNb"></div>
 
 
-<form>
-  <label>{'g003_order'|@translate}
-    <select id="iSelectOrderImageList" onchange="loadTagDetail(globalTagId);">
-      <option value="value"  {if $datas.config_GetListImages_OrderType=="value"}selected{/if}>{'g003_valueOrder'|@translate}</option>
-      <option value="num"  {if $datas.config_GetListImages_OrderType=="num"}selected{/if}>{'g003_numOrder'|@translate}</option>
-    </select>
-  </label>
-</form>
+<div id="dialogViewDetail">
+  <form>
+    <input type="hidden" id="iSelectOrderImageList" value="{$datas.config_GetListImages_OrderType}"/>
+  </form>
 
-<table id='iHeaderListImages' class="littlefont">
-  <tr>
-    <th>{'g003_Value'|@translate}&nbsp;<span id="iHeaderListImagesTagName"></span></th>
-    <th width="80px">{'g003_NumOfImage'|@translate}</th>
-    <th width="40px">{'g003_Pct'|@translate}</th>
-    <th width="110px">&nbsp;</th>
-  </tr>
-</table>
+  <table id='iHeaderListImages' class="littlefont">
+    <tr>
+      <th><span id="iHLIOrderValue"></span><a onclick="sortTagDetail('value', globalTagId);">{'g003_Value'|@translate}</a>&nbsp;<span id="iHeaderListImagesTagName"></span></th>
+      <th width="80px"><span id="iHLIOrderNum"></span><a onclick="sortTagDetail('num', globalTagId);">{'g003_NumOfImage'|@translate}</a></th>
+      <th width="40px">{'g003_Pct'|@translate}</th>
+      <th width="110px">&nbsp;</th>
+    </tr>
+  </table>
 
-<div id='iListImages'>
-  <div style="width:100%;text-align:center;padding-top:20px;">{'g003_no_items_selected'|@translate}</div>
+  <div id='iListImages'>
+    <div style="width:100%;text-align:center;padding-top:20px;">{'g003_no_items_selected'|@translate}</div>
+  </div>
+  <div id="iListImagesNb"></div>
 </div>
-<div id="iListImagesNb"></div>
 
 
 <script type="text/javascript">
+  init();
   loadTagList();
+  displayTagDetailOrder();
 </script>
