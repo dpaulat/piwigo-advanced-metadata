@@ -745,6 +745,7 @@ class AMD_AIP extends AMD_root
 
     $sql="REPLACE INTO ".$this->tables['images_tags']." (imageId, numId, value)
           VALUES ".implode(", ", $massInsert);
+    pwg_query($sql);
     //mass_inserts($this->tables['images_tags'], array('imageId', 'numId', 'value'), $massInsert);
 
     $sql="UPDATE ".$this->tables['images']."
