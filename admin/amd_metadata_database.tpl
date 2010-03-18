@@ -232,7 +232,7 @@
     <legend>{'g003_update_metadata'|@translate}</legend>
       <form class="formtable">
         <div class="warning">
-          <p style="font-weight:bold; font-size:+1;">{'g003_warning_on_analyze_0'|@translate}</p>
+          <p style="font-weight:bold; font-size:+2;">{'g003_warning_on_analyze_0'|@translate}</p>
           <p>{'g003_warning_on_analyze_1'|@translate}</p>
           <p  style="font-weight:bold;">{'g003_warning_on_analyze_2'|@translate}</p>
           <p>{'g003_warning_on_analyze_3'|@translate}</p>
@@ -270,6 +270,7 @@
 
       </form>
   </fieldset>
+
 </div>
 
 

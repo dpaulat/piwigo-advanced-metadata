@@ -32,7 +32,6 @@ class AMD_AIP extends AMD_root
 {
   protected $tabsheet;
   protected $ajax;
-  protected $jpegMD;
 
   /**
    *
@@ -41,7 +40,7 @@ class AMD_AIP extends AMD_root
    * @param String $prefixeTable
    * @param String $filelocation
    */
-  function __construct($prefixeTable, $filelocation)
+  public function __construct($prefixeTable, $filelocation)
   {
     parent::__construct($prefixeTable, $filelocation);
 
@@ -56,14 +55,13 @@ class AMD_AIP extends AMD_root
                           l10n('g003_help'),
                           $this->page_link.'&amp;fAMD_tabsheet=help');
     $this->ajax = new Ajax();
-    $this->jpegMD=new JpegMetaData();
   }
 
-  function __destruct()
+  public function __destruct()
   {
     unset($this->tabsheet);
     unset($this->ajax);
-    unset($this->jpegMD);
+    parent::__destruct();
   }
 
 
@@ -680,104 +678,6 @@ class AMD_AIP extends AMD_root
 
 
 
-  /**
-   * this function analyze tags from a picture, and insert the result into the
-   * database
-   *
-   * NOTE : only implemented tags are analyzed and stored
-   *
-   * @param String $fileName : filename of picture to analyze
-   * @param Integer $imageId : id of image in piwigo's database
-   */
-  protected function analyzeImageFile($fileName, $imageId)
-  {
-    /*
-     * the JpegMetaData object is instancied in the constructor
-     */
-    $this->jpegMD->load($fileName, Array(
-      'filter' => JpegMetaData::TAGFILTER_IMPLEMENTED,
-      'optimizeIptcDateTime' => true)
-    );
-
-    $sqlInsert="";
-    $massInsert=array();
-    $nbTags=0;
-    foreach($this->jpegMD->getTags() as $key => $val)
-    {
-      $value=$val->getLabel();
-
-      if($val->isTranslatable())
-        $translatable="y";
-      else
-        $translatable="n";
-
-      if($value instanceof DateTime)
-      {
-        $value=$value->format("Y-m-d H:i:s");
-      }
-      elseif(is_array($value))
-      {
-        /*
-         * array values are stored in a serialized string
-         */
-        $value=serialize($value);
-      }
-
-      $sql="SELECT numId FROM ".$this->tables['used_tags']." WHERE tagId = '$key'";
-      $result=pwg_query($sql);
-      if($result)
-      {
-        $numId=-1;
-        while($row=mysql_fetch_assoc($result))
-        {
-          $numId=$row['numId'];
-        }
-
-        if($numId>0)
-        {
-          $nbTags++;
-          if($sqlInsert!="") $sqlInsert.=", ";
-          $sqlInsert.="($imageId, '$numId', '".addslashes($value)."')";
-          $massInsert[]="('$imageId', '$numId', '".addslashes($value)."') ";
-        }
-      }
-    }
-
-    $sql="REPLACE INTO ".$this->tables['images_tags']." (imageId, numId, value)
-          VALUES ".implode(", ", $massInsert);
-    pwg_query($sql);
-    //mass_inserts($this->tables['images_tags'], array('imageId', 'numId', 'value'), $massInsert);
-
-    $sql="UPDATE ".$this->tables['images']."
-            SET analyzed = 'y', nbTags=".$nbTags."
-            WHERE imageId=$imageId;";
-    pwg_query($sql);
-
-
-    return("$imageId=$nbTags;");
-  }
-
-
-  /**
-   * returns the number of pictures analyzed
-   *
-   * @return Integer
-   */
-  protected function getNumOfPictures()
-  {
-    $numOfPictures=0;
-    $sql="SELECT COUNT(imageId) FROM ".$this->tables['images']."
-            WHERE analyzed='y';";
-    $result=pwg_query($sql);
-    if($result)
-    {
-      while($row=mysql_fetch_row($result))
-      {
-        $numOfPictures=$row[0];
-      }
-    }
-    return($numOfPictures);
-  }
 
 
   /*
@@ -909,13 +809,7 @@ class AMD_AIP extends AMD_root
    */
   private function ajax_amd_makeStatsConsolidation()
   {
-    $sql="UPDATE ".$this->tables['used_tags']." ut,
-            (SELECT COUNT(imageId) AS nb, numId
-              FROM ".$this->tables['images_tags']."
-              GROUP BY numId) nb
-          SET ut.numOfImg = nb.nb
-          WHERE ut.numId = nb.numId;";
-    pwg_query($sql);
+    $this->makeStatsConsolidation();
   }
 
   /**

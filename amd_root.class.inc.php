@@ -29,8 +29,9 @@ include_once(JPEG_METADATA_DIR."Common/L10n.class.php");
 class AMD_root extends common_plugin
 {
   protected $css;   //the css object
+  protected $jpegMD;
 
-  function AMD_root($prefixeTable, $filelocation)
+  public function __construct($prefixeTable, $filelocation)
   {
     $this->plugin_name="AMetaData";
     $this->plugin_name_files="amd";
@@ -40,7 +41,16 @@ class AMD_root extends common_plugin
     $this->set_tables_list($tableList);
 
     $this->css = new css(dirname($this->filelocation).'/'.$this->plugin_name_files.".css");
+    $this->jpegMD=new JpegMetaData();
   }
+
+  public function __destruct()
+  {
+    unset($this->jpegMD);
+    unset($this->css);
+    //parent::__destruct();
+  }
+
 
   /* ---------------------------------------------------------------------------
   common AIP & PIP functions
@@ -55,78 +65,210 @@ class AMD_root extends common_plugin
       'amd_GetListTags_FilterType' => "magic",
       'amd_GetListTags_ExcludeUnusedTag' => "y",
       'amd_GetListTags_SelectedTagOnly' => "n",
-      'amd_GetListImages_OrderType' => "value"
+      'amd_GetListImages_OrderType' => "value",
+      'amd_FillDataBaseContinuously' => "y",
+      'amd_AllPicturesAreAnalyzed' => "n",
     );
   }
 
   public function load_config()
   {
     parent::load_config();
-    if(!$this->css->css_file_exists())
-    {
-      $this->css->make_CSS($this->generate_CSS());
-    }
   }
 
   public function init_events()
   {
     parent::init_events();
+
+
+    if(!isset($_REQUEST['ajaxfct']) and
+       $this->my_config['amd_FillDataBaseContinuously']=='y' and
+       $this->my_config['amd_AllPicturesAreAnalyzed']=='n')
+    {
+      /* do analyze for a random picture only if :
+       *  - config is set to fill database continuously
+       *  - we are not in an ajax call
+       */
+      add_event_handler('init', array(&$this, 'doRandomAnalyze'));
+    }
   }
 
-  /*
-   * generate the css code
+
+  /**
+   * returns the number of pictures analyzed
+   *
+   * @return Integer
    */
-  function generate_CSS()
+  protected function getNumOfPictures()
   {
-    $text = "
-      .formtable, .formtable P { text-align:left; display:block; }
-      .formtable tr { vertical-align:top; }
-      .littlefont { font-size:90%; }
-      .littlefont td { padding:1px; }
-      table.littlefont th { padding:3px; text-align:left;}
-      table.littlefont td { padding:1px 3px; }
-      #iprogressbar_contener { border:1px solid #606060; margin:0px; padding:0px; display:block; height:20px; }
-      #iprogressbar_bg { background:#606060; display:block; z-index:100; position:relative; height:20px; }
-      #iprogressbar_fg { color:#FF3363; width:100%; text-align:center; display: block; z-index:200; position:relative; top:-18px;  }
-      #iHeaderListTags { width:100%; border:1px solid; border-collapse: collapse; margin-top:3px; }
-      #iListTags { width:100%; border:1px solid; height:280px; border-top:0px; overflow:auto;}
-      #iListImages { width:100%; border-bottom:1px solid; overflow:auto;}
-      #iListTagsNb, #iListImagesNb { width:99%; text-align:right; margin-bottom:8px; padding:2px; font-size:80%; }
-      #iListTags table, #iListImages table, table.listTags { width:100%; text-align:left; border-collapse: collapse; }
-      #iListTags table tr:hover { cursor:pointer; background:#303030; }
-      #iListImages table tr:hover, table.listTags tr:hover { background:#303030; cursor:default; }
-      #iHeaderListImages { width:100%; border-bottom:1px solid; }
-      .warning { color:#dd0000; border:1px solid #dd0000; margin-bottom:8px; margin-top:8px; padding:8px; }
-      .warning p { margin-top:0.5em; margin-bottom:0em; }
-      .warning ul { margin-top:0em; margin-bottom:0.5em; }
-      .pctBar { height:6px; background:#FF7700; }
-      li.groupItems { border:1px solid #666666; margin-bottom:5px; padding:0 5px; width:90%; cursor:move; padding:4px; }
-      div.addGroup { padding-left:40px; text-align:left; }
-      #iGroups { list-style: none; }
-      .ui-dialog { background: #222222; border:2px solid #FF3363; }
-      .ui-dialog-buttonpane { padding:4px; }
-      .ui-dialog-buttonpane button { margin-right:8px; }
-      .ui-dialog-titlebar { background:#111111; font-weight:bold; }
-      .ui-dialog-title-dialog { text-align: left; }
-      .ui-dialog-titlebar-close { float: right; }
-      .ui-dialog-content { overflow:auto; }
-      .ui-dialog-container { }
-      .ui-dialog-titlebar-close { display:none; }
-      .tagListOrder { list-style: none; padding:0px; margin-right:8px; margin-left:35px; }
-      .tagListOrder li { border:none; background:#333333; padding:1px; margin-bottom:2px; width:100%; }
-      .groupTags { padding-top:8px; }
-      .editGroupListButton { margin-left:8px; position:absolute; z-index:1000; }
-      table.tagListOrderItem { width:100%; border-collapse:collapse; }
-      .dialogForm { text-align:left; margin:8px; }
-      #ianalyzestatus { background: #333333; margin:8px; padding:8px; }
-      #ianalyzestatus ul { margin:0px; padding:0 0 0 20px; }
-      #iamd_nb_item_per_request_display { display:inline-block; width:70px; }
-      #iamd_nb_item_per_request_slider { display:inline-block; width:350px; }
-      #iDialogProgress { margin:16px 8px 8px; }
-    ";
-
-    return($text);
+    $numOfPictures=0;
+    $sql="SELECT COUNT(imageId) FROM ".$this->tables['images']."
+            WHERE analyzed='y';";
+    $result=pwg_query($sql);
+    if($result)
+    {
+      while($row=mysql_fetch_row($result))
+      {
+        $numOfPictures=$row[0];
+      }
+    }
+    return($numOfPictures);
   }
+
+
+  /**
+   * this function randomly choose a picture in the list of pictures not
+   * analyzed, and analyze it
+   *
+   */
+  public function doRandomAnalyze()
+  {
+    $sql="SELECT tai.imageId, ti.path FROM ".$this->tables['images']." tai
+            LEFT JOIN ".IMAGES_TABLE." ti ON tai.imageId = ti.id
+          WHERE tai.analyzed = 'n'
+          ORDER BY RAND() LIMIT 1;";
+    $result=pwg_query($sql);
+    if($result)
+    {
+      // $path = path of piwigo's on the server filesystem
+      $path=dirname(dirname(dirname(__FILE__)));
+
+      while($row=mysql_fetch_assoc($result))
+      {
+        $this->analyzeImageFile($path."/".$row['path'], $row['imageId']);
+      }
+
+      $this->makeStatsConsolidation();
+    }
+  }
+
+
+  /**
+   * this function analyze tags from a picture, and insert the result into the
+   * database
+   *
+   * NOTE : only implemented tags are analyzed and stored
+   *
+   * @param String $fileName : filename of picture to analyze
+   * @param Integer $imageId : id of image in piwigo's database
+   * @param Boolean $loaded  : default = false
+   *                            WARNING
+   *                            if $loaded is set to TRUE, the function assume
+   *                            that the metadata have been alreay loaded
+   *                            do not use the TRUE value if you are not sure
+   *                            of the consequences
+   */
+  protected function analyzeImageFile($fileName, $imageId, $loaded=false)
+  {
+    /*
+     * the JpegMetaData object is instancied in the constructor
+     */
+    if(!$loaded)
+    {
+      $this->jpegMD->load(
+        $fileName,
+        Array(
+          'filter' => JpegMetaData::TAGFILTER_IMPLEMENTED,
+          'optimizeIptcDateTime' => true,
+          'exif' => true,
+          'iptc' => true,
+          'xmp' => true
+        )
+      );
+    }
+
+    $sqlInsert="";
+    $massInsert=array();
+    $nbTags=0;
+    foreach($this->jpegMD->getTags() as $key => $val)
+    {
+      $value=$val->getLabel();
+
+      if($val->isTranslatable())
+        $translatable="y";
+      else
+        $translatable="n";
+
+      if($value instanceof DateTime)
+      {
+        $value=$value->format("Y-m-d H:i:s");
+      }
+      elseif(is_array($value))
+      {
+        /*
+         * array values are stored in a serialized string
+         */
+        $value=serialize($value);
+      }
+
+      $sql="SELECT numId FROM ".$this->tables['used_tags']." WHERE tagId = '$key'";
+
+      $result=pwg_query($sql);
+      if($result)
+      {
+        $numId=-1;
+        while($row=mysql_fetch_assoc($result))
+        {
+          $numId=$row['numId'];
+        }
+
+        if($numId>0)
+        {
+          $nbTags++;
+          if($sqlInsert!="") $sqlInsert.=", ";
+          $sqlInsert.="($imageId, '$numId', '".addslashes($value)."')";
+          $massInsert[]="('$imageId', '$numId', '".addslashes($value)."') ";
+        }
+      }
+    }
+
+    if(count($massInsert)>0)
+    {
+      $sql="REPLACE INTO ".$this->tables['images_tags']." (imageId, numId, value) VALUES ".implode(", ", $massInsert).";";
+      pwg_query($sql);
+    }
+    //mass_inserts($this->tables['images_tags'], array('imageId', 'numId', 'value'), $massInsert);
+
+    $sql="UPDATE ".$this->tables['images']."
+            SET analyzed = 'y', nbTags=".$nbTags."
+            WHERE imageId=$imageId;";
+    pwg_query($sql);
+
+
+    return("$imageId=$nbTags;");
+  }
+
+
+  /**
+   * do some consolidations on database to optimize other requests
+   *
+   */
+  protected function makeStatsConsolidation()
+  {
+    $sql="UPDATE ".$this->tables['used_tags']." ut,
+            (SELECT COUNT(imageId) AS nb, numId
+              FROM ".$this->tables['images_tags']."
+              GROUP BY numId) nb
+          SET ut.numOfImg = nb.nb
+          WHERE ut.numId = nb.numId;";
+    pwg_query($sql);
+
+
+    $sql="SELECT COUNT(imageId) AS nb
+          FROM ".$this->tables['images']."
+          WHERE analyzed = 'n';";
+    $result=pwg_query($sql);
+    if($result)
+    {
+      while($row=mysql_fetch_assoc($result))
+      {
+        $this->my_config['amd_AllPicturesAreAnalyzed']=($row['nb']==0)?'y':'n';
+      }
+
+    }
+    $this->save_config();
+  }
+
 
 } // amd_root  class
 

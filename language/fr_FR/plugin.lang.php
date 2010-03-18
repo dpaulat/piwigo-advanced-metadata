@@ -83,5 +83,8 @@ $lang['g003_warning_on_analyze_1'] = "L'alimentation du référentiel est un pro
 $lang['g003_warning_on_analyze_2'] = "Certains hébergeurs peuvent sanctionner ce type d'usage.";
 $lang['g003_warning_on_analyze_3'] = "Il est fortement recommandé de remplir le panier avec une cinquantaine de photos représentatives de la galerie pour procéder au traitement.";
 
+$lang['g003_metadata_detail'] = "Domaine de valeurs pour la métadonnée";
+
+$lang['g003_help'] = "Aide sur les métadonnées";
 
 ?>

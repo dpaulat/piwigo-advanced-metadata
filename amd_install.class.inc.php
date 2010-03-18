@@ -26,10 +26,16 @@
   {
     private $tablef;
 
-    public function AMD_install($prefixeTable, $filelocation)
+    public function __construct($prefixeTable, $filelocation)
     {
       parent::__construct($prefixeTable, $filelocation);
       $this->tablef= new manage_tables($this->tables);
+    }
+
+    public function __destruct()
+    {
+      unset($this->tablef);
+      parent::__destruct();
     }
 
     /*
@@ -125,6 +131,10 @@
       pwg_query("DELETE FROM ".$this->tables['used_tags']);
       pwg_query("DELETE FROM ".$this->tables['images_tags']);
       pwg_query("UPDATE ".$this->tables['images']." SET analyzed='n', nbTags=0;");
+      pwg_query("INSERT INTO ".$this->tables['images']."
+                  SELECT id, 'n', 0
+                    FROM ".IMAGES_TABLE."
+                    WHERE id NOT IN (SELECT imageId FROM ".$this->tables['images'].")");
       /*
        * fill the 'used_tags' table with default values
        */
@@ -132,6 +142,66 @@
       {
         $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0);";
         pwg_query($sql);
+      }
+
+      $listToAnalyze=Array(Array(), Array());
+      /*
+       * select 25 pictures into the caddie
+       */
+      $sql="SELECT ti.id, ti.path
+            FROM ".CADDIE_TABLE." tc
+              LEFT JOIN ".IMAGES_TABLE." ti ON ti.id = tc.element_id
+            ORDER BY RAND() LIMIT 25;";
+      $result=pwg_query($sql);
+      if($result)
+      {
+        while($row=mysql_fetch_assoc($result))
+        {
+          $listToAnalyze[0][]=$row;
+          $listToAnalyze[1][]=$row['id'];
+        }
+      }
+      /*
+       * if caddie is empty, of is have less than 25 pictures, select other
+       * pictures from the gallery
+       */
+      if(count($listToAnalyze[0])<25)
+      {
+        if(count($listToAnalyze[0])>0)
+        {
+          $excludeList="WHERE ti.id NOT IN(".implode(",", $listToAnalyze[1]).") ";
+        }
+        else
+        {
+          $excludeList="";
+        }
+        $sql="SELECT ti.id, ti.path
+              FROM ".IMAGES_TABLE." ti ".$excludeList."
+              ORDER BY RAND() LIMIT ".(25-count($listToAnalyze[0])).";";
+        $result=pwg_query($sql);
+        if($result)
+        {
+          while($row=mysql_fetch_assoc($result))
+          {
+            $listToAnalyze[0][]=$row;
+          }
+        }
+      }
+
+      /*
+       * analyze the 25 selected pictures
+       */
+      if(count($listToAnalyze[0])>0)
+      {
+        // $path = path of piwigo's on the server filesystem
+        $path=dirname(dirname(dirname(__FILE__)));
+
+        foreach($listToAnalyze[0] as $val)
+        {
+          $this->analyzeImageFile($path."/".$val['path'], $val['id']);
+        }
+
+        $this->makeStatsConsolidation();
       }
 
       $this->init_config();

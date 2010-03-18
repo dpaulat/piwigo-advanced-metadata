@@ -63,19 +63,23 @@ class AMD_PIP extends AMD_root
 
     $path=dirname(dirname(dirname(__FILE__)));
     $filename="";
+    $analyzed='n';
 
-    $sql="SELECT path FROM ".IMAGES_TABLE." WHERE id=".$page['image_id'].";";
+    $sql="SELECT ti.path, tai.analyzed FROM ".IMAGES_TABLE." ti
+            LEFT JOIN ".$this->tables['images']." tai ON tai.imageId = ti.id
+          WHERE ti.id=".$page['image_id'].";";
     $result=pwg_query($sql);
     if($result)
     {
       while($row=mysql_fetch_assoc($result))
       {
         $filename=$row['path'];
+        $analyzed=$row['analyzed'];
       }
       $filename=$path."/".$filename;
     }
 
-    $JpegMD = new JpegMetaData(
+    $this->jpegMD->load(
       $filename,
       Array(
         'filter' => JpegMetaData::TAGFILTER_IMPLEMENTED,
@@ -112,7 +116,7 @@ class AMD_PIP extends AMD_root
     $md=null;
     $group=null;
 
-    $picturesTags=$JpegMD->getTags();
+    $picturesTags=$this->jpegMD->getTags();
 
     foreach($tagsList as $key => $val)
     {
@@ -159,7 +163,21 @@ class AMD_PIP extends AMD_root
       $metadata[]=$md;
     }
 
-    unset($JpegMD);
+
+    if($analyzed=='n' and
+       $this->my_config['amd_FillDataBaseContinuously']=='y' and
+       $this->my_config['amd_AllPicturesAreAnalyzed']=='n')
+    {
+      /* if picture is not analyzed, do analyze
+       *
+       * note : the $loaded parameter is set to true, in this case the function
+       *        analyzeImageFile uses data from the $this->jpegMD object which
+       *        have data already loaded => the picture is not analyzed twice,
+       *        the function only do the database update
+       */
+      $this->analyzeImageFile($filename, $page['image_id'], true);
+      $this->makeStatsConsolidation();
+    }
 
     $template->assign('metadata', $metadata);
   }
