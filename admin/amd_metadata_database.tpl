@@ -25,7 +25,7 @@
   function init()
   {
     formatNbItemPerRequest({/literal}{$datas.NumberOfItemsPerRequest}{literal});
-    $("#iamd_nb_item_per_request_slider").slider(
+    /*$("#iamd_nb_item_per_request_slider").slider(
       {
         min:5,
         max:150,
@@ -33,7 +33,7 @@
         startValue:{/literal}{$datas.NumberOfItemsPerRequest}{literal},
         slide: function(event, ui) { formatNbItemPerRequest(ui.value); }
       }
-    );
+    );*/
     getStatus();
   }
 
@@ -219,6 +219,7 @@
 
 <div id="dialog"></div>
 
+
 <div id="ianalyzestatus">
   <ul>
     <li>{'g003_loading'|@translate}</li>
@@ -227,15 +228,26 @@
   </ul>
 </div>
 
+<div class="nfo">
+  <ul>
+    <li>{'g003_warning_on_analyze_4a'|@translate}</li>
+    <li>{'g003_warning_on_analyze_4b'|@translate}</li>
+  </ul>
+</div>
+
+
 <div id='ianalyzearea'>
   <fieldset>
     <legend>{'g003_update_metadata'|@translate}</legend>
       <form class="formtable">
-        <div class="warning">
-          <p style="font-weight:bold; font-size:+2;">{'g003_warning_on_analyze_0'|@translate}</p>
-          <p>{'g003_warning_on_analyze_1'|@translate}</p>
-          <p  style="font-weight:bold;">{'g003_warning_on_analyze_2'|@translate}</p>
+        <div class="nfo">
           <p>{'g003_warning_on_analyze_3'|@translate}</p>
+          <ul>
+            <li>{'g003_warning_on_analyze_3a'|@translate}</li>
+            <li>{'g003_warning_on_analyze_3b'|@translate}</li>
+          </ul>
+
+          <p>{'g003_warning_on_analyze_5'|@translate}</p>
         </div>
 
         <label>
@@ -259,12 +271,21 @@
           {'g003_analyze_all_pictures'|@translate}
         </label><br>
 
+        <div class="warning">
+          <p style="font-weight:bold; font-size:+2;">{'g003_warning_on_analyze_0'|@translate}</p>
+          <p>{'g003_warning_on_analyze_1'|@translate}</p>
+          <p  style="font-weight:bold;">{'g003_warning_on_analyze_2'|@translate}</p>
+        </div>
+
+
         <br>
-        {'g003_setting_nb_items_per_request'|@translate}&nbsp;
         <input type="hidden" id="iamd_NumberOfItemsPerRequest" value="{$datas.NumberOfItemsPerRequest}">
+        <!--
+        {'g003_setting_nb_items_per_request'|@translate}&nbsp;
         <div id="iamd_nb_item_per_request_slider"></div>
         <div id="iamd_nb_item_per_request_display"></div>
         <br><br>
+        -->
 
         <input type="button" value="{'g003_analyze'|@translate}" onclick="doAnalyze();">
 

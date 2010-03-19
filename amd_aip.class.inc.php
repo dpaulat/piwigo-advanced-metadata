@@ -98,7 +98,7 @@ class AMD_AIP extends AMD_root
 
     if($_REQUEST['fAMD_tabsheet']=='help')
     {
-      //$this->displayHelp();
+      $this->displayHelp($_REQUEST['fAMD_page']);
     }
     elseif($_REQUEST['fAMD_tabsheet']=='metadata')
     {
@@ -236,6 +236,22 @@ class AMD_AIP extends AMD_root
     {
       $_REQUEST['fAMD_page']=$defautTabsheet;
     }
+
+
+    if($_REQUEST['fAMD_tabsheet']=="help" and !isset($_REQUEST['fAMD_page']))
+    {
+      $_REQUEST['fAMD_page']="exif";
+    }
+
+    if($_REQUEST['fAMD_tabsheet']=="help" and
+       !($_REQUEST['fAMD_page']=="exif" or
+         $_REQUEST['fAMD_page']=="iptc" or
+         $_REQUEST['fAMD_page']=="xmp" or
+         $_REQUEST['fAMD_page']=="magic"))
+    {
+      $_REQUEST['fAMD_page']="exif";
+    }
+
 
     /*
      * check ajax
@@ -478,9 +494,10 @@ class AMD_AIP extends AMD_root
 
   /**
    * display and manage the metadata page
-   * the page have two tabsheet :
+   * the page have three tabsheet :
    *  - select tag management, to manage tags to be selected on the galerie
    *  - display tag management, to choose how the tags are displayed
+   *  - manage database
    *
    * @param String $tab : the selected tab on the stat page
    */
@@ -514,7 +531,7 @@ class AMD_AIP extends AMD_root
     }
     else
     {
-      $template->assign('sheetContent', $this->displayDatabase());
+      $template->assign('sheetContent', $this->displayMetaDataDatabase());
     }
 
     $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
@@ -631,7 +648,7 @@ class AMD_AIP extends AMD_root
    *
    * @return String : the content of the page
    */
-  private function displayDatabase()
+  private function displayMetaDataDatabase()
   {
     global $template, $page;
 
@@ -678,6 +695,84 @@ class AMD_AIP extends AMD_root
 
 
 
+
+  /**
+   * display and manage the help page
+   *
+   * @param String $tab : the selected tab on the help page
+   */
+  protected function displayHelp($tab)
+  {
+    global $template, $user, $lang;
+    $template->set_filename('body_page', dirname(__FILE__).'/admin/amd_help.tpl');
+
+    $statTabsheet = new tabsheet('statTabsheet', $this->tabsheet->get_titlename());
+    $statTabsheet->select($tab);
+    $statTabsheet->add('exif',
+                          l10n('g003_help_tab_exif'),
+                          $this->page_link.'&amp;fAMD_tabsheet=help&amp;fAMD_page=exif');
+    $statTabsheet->add('iptc',
+                          l10n('g003_help_tab_iptc'),
+                          $this->page_link.'&amp;fAMD_tabsheet=help&amp;fAMD_page=iptc');
+    $statTabsheet->add('xmp',
+                          l10n('g003_help_tab_xmp'),
+                          $this->page_link.'&amp;fAMD_tabsheet=help&amp;fAMD_page=xmp');
+    $statTabsheet->add('magic',
+                          l10n('g003_help_tab_magic'),
+                          $this->page_link.'&amp;fAMD_tabsheet=help&amp;fAMD_page=magic');
+    $statTabsheet->assign();
+
+    $data=Array(
+      'sheetContent' => $this->BBtoHTML($lang['g003_help_'.$tab]),
+      'title' => l10n('g003_help_tab_'.$tab),
+    );
+
+    $template->assign('data', $data);
+
+    $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
+  }
+
+
+
+  /**
+   * convert (light) BB tag to HTML tag
+   *
+   * all BB codes are not recognized, only :
+   *  - [ul] [/ul]
+   *  - [li] [/li]
+   *  - [b] [/b]
+   *  - [i] [/i]
+   *  - [url] [/url]
+   *  - carriage return is replaced by a <br>
+   *
+   * @param String $text : text to convert
+   * @return String : BB to HTML text
+   */
+  protected function BBtoHTML($text)
+  {
+    $patterns = Array(
+      '/\[li\](.*?)\[\/li\]\n*/im',
+      '/\[b\](.*?)\[\/b\]/ism',
+      '/\[i\](.*?)\[\/i\]/ism',
+      '/\[url\]([\w]+?:\/\/[^ \"\n\r\t<]*?)\[\/url\]/ism',
+      '/\[url=([\w]+?:\/\/[^ \"\n\r\t<]*?)\](.*?)\[\/url\]/ism',
+      '/\n{0,1}\[ul\]\n{0,1}/im',
+      '/\n{0,1}\[\/ul\]\n{0,1}/im',
+      '/\n/im',
+    );
+    $replacements = Array(
+      '<li>\1</li>',
+      '<b>\1</b>',
+      '<i>\1</i>',
+      '<a href="\1">\1</a>',
+      '<a href="\1">\2</a>',
+      '<ul>',
+      '</ul>',
+      '<br>',
+    );
+
+    return(preg_replace($patterns, $replacements, $text));
+  }
 
 
   /*

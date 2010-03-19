@@ -125,7 +125,7 @@
 
     public function activate()
     {
-      global $template;
+      global $template, $user;
 
 
       pwg_query("DELETE FROM ".$this->tables['used_tags']);
@@ -151,6 +151,7 @@
       $sql="SELECT ti.id, ti.path
             FROM ".CADDIE_TABLE." tc
               LEFT JOIN ".IMAGES_TABLE." ti ON ti.id = tc.element_id
+            WHERE tc.user_id = ".$user['id']."
             ORDER BY RAND() LIMIT 25;";
       $result=pwg_query($sql);
       if($result)
