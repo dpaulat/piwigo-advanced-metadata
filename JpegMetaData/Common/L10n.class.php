@@ -102,9 +102,10 @@ class L10n
    * default "en_UK" language
    *
    * @param String $language : the language
+   * @param String $charset  : charset encoding (UTF-8)
    * @return String : the defined language
    */
-  static function setLanguage($language="en_UK")
+  static function setLanguage($language="en_UK", $charset="UTF-8")
   {
     global $supported_locales;
 
@@ -145,6 +146,15 @@ class L10n
     T_bindtextdomain(self::JMD_TAG, dirname(dirname(__FILE__))."/Locale");
     T_bindtextdomain(self::JMD_TAGDESC, dirname(dirname(__FILE__))."/Locale");
 
+    /*
+     * set the charsets
+     */
+    if($charset!="")
+    {
+      T_bind_textdomain_codeset(self::JMD_TAG, $charset);
+      T_bind_textdomain_codeset(self::JMD_TAGDESC, $charset);
+    }
+
     return(self::$language);
   }
 
@@ -165,6 +175,7 @@ class L10n
    */
   static function get($key)
   {
+    T_textdomain(self::JMD_TAG);
     return(@T_dgettext(self::JMD_TAG, $key));
   }
 
@@ -175,6 +186,7 @@ class L10n
    */
   static function getDesc($tagName)
   {
+    T_textdomain(self::JMD_TAGDESC);
     return(@T_dgettext(self::JMD_TAGDESC, $tagName));
   }
 
