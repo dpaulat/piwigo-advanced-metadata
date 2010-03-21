@@ -263,6 +263,7 @@
                 {
                   $focalUnit=1;
                 }
+                if($focalUnit==0) $focalUnit=1;
 
                 $returned=ConvertData::toFocalLength($val/$focalUnit);
                 break;

@@ -317,7 +317,7 @@
           }
           else
           {
-            $tag->setLabel("[unknow value '".$value."']");
+            $tag->setLabel("[unknown value '".$value."']");
           }
         }
         else

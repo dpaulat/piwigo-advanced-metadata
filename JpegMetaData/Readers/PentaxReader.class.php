@@ -152,7 +152,7 @@
           if(array_key_exists($values[0], $tag['tagValues.special'][0]))
             $returned[]=$tag['tagValues.special'][0][$values[0]];
           if(array_key_exists($values[1], $tag['tagValues.special'][1]))
-            $returned[]=";".$tag['tagValues.special'][1][$values[1]];
+            $returned[]=$tag['tagValues.special'][1][$values[1]];
           unset($tag);
           break;
         case 0x0012: // "ExposureTime", from exiftool

@@ -232,15 +232,15 @@
           1  => "Shutter Speed Priority",
           2  => "Program AE",
           3  => "Manual",
-          5  => "Portrait",
+          5  => "portrait",
           6  => "Landscape",
           8  => "Sport",
-          9  => "Night Scene",
+          9  => "night scene",
           11 => "Soft",
           12 => "Surf & Snow",
           13 => "Candlelight",
           14 => "Autumn",
-          15 => "Macro",
+          15 => "macro",
           17 => "Fireworks",
           18 => "Text",
           19 => "Panorama",
@@ -277,32 +277,32 @@
         'implemented' => true,
         'tagValues.special'   => Array(
           Array(
-            0x000 => "Auto, Did not fire",
-            0x001 => "Off, Did not fire",
-            0x002 => "On, Did not fire", //from exiftool
-            0x003 => "Auto, Did not fire, Red-eye reduction",
-            0x100 => "Auto, Fired",
-            0x102 => "On, Fired",
-            0x103 => "Auto, Fired, Red-eye reduction",
-            0x104 => "On, Red-eye reduction",
-            0x105 => "On, Wireless (Master)", // from exiftool
-            0x106 => "On, Wireless (Control)", // from exiftool
-            0x108 => "On, Soft",
-            0x109 => "On, Slow-sync",
-            0x10a => "On, Slow-sync, Red-eye reduction",
-            0x10b => "On, Trailing-curtain Sync"
+            0x000 => "auto, did not fire",
+            0x001 => "off, did not fire",
+            0x002 => "on, did not fire", //from exiftool
+            0x003 => "auto, did not fire, red-eye reduction",
+            0x100 => "auto, fired",
+            0x102 => "on, fired",
+            0x103 => "auto, fired, red-eye reduction",
+            0x104 => "on, red-eye reduction",
+            0x105 => "on, wireless (master)", // from exiftool
+            0x106 => "on, wireless (control)", // from exiftool
+            0x108 => "on, soft",
+            0x109 => "on, slow-sync",
+            0x10a => "on, slow-sync, red-eye reduction",
+            0x10b => "on, trailing-curtain sync"
           ),
           Array( //from exiftool
-            0x0000 => "n/a - Off-Auto-Aperture",
-            0x003f => "Internal",
-            0x0100 => "External, Auto",
-            0x023f => "External, Flash Problem",
-            0x0300 => "External, Manual",
-            0x0304 => "External, P-TTL Auto",
-            0x0305 => "External, Contrast-control Sync",
-            0x0306 => "External, High-speed Sync",
-            0x030c => "External, Wireless",
-            0x030d => "External, Wireless, High-speed Sync"
+            0x0000 => "n/a - off-auto-aperture",
+            0x003f => "internal",
+            0x0100 => "external, auto",
+            0x023f => "external, flash problem",
+            0x0300 => "external, manual",
+            0x0304 => "external, p-ttl auto",
+            0x0305 => "external, contrast-control sync",
+            0x0306 => "external, high-speed sync",
+            0x030c => "external, wireless",
+            0x030d => "external, wireless, high-speed sync"
           )
         )
       ), // < Flash
@@ -315,12 +315,12 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-          0 => "Normal",
-          1 => "Macro",
-          2 => "Infinity",
+          0 => "normal",
+          1 => "macro",
+          2 => "infinity",
           3 => "Manual",
-          4 => "Super Macro", // from exiftool
-          5 => "Pan Focus",
+          4 => "super macro", // from exiftool
+          5 => "pan focus",
           16 => "AF-S",
           17 => "AF-C",
           18 => "AF-A", // from exiftool
@@ -361,7 +361,7 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-          0xffff => "None",
+          0xffff => "none",
           0 => "Fixed Center or Multiple",
           1 => "Top-left",
           2 => "Top-center",
@@ -439,7 +439,7 @@
         'tagValues'   => Array(
           0 => "Multi Segment",
           1 => "Center Weighted",
-          2 => "Spot"
+          2 => "spot"
         )
       ), // < MeteringMode
 
@@ -497,14 +497,14 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-          0 => "Low",
-          1 => "Normal",
-          2 => "High",
+          0 => "low",
+          1 => "normal",
+          2 => "high",
           3 => "Med Low",
           4 => "Med High",
           5 => "Very Low",
           6 => "Very High",
-          65535 => "None", //from exiftool
+          65535 => "none", //from exiftool
         )
       ), // < Saturation
 
@@ -516,9 +516,9 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-          0 => "Low",
-          1 => "Normal",
-          2 => "High",
+          0 => "low",
+          1 => "normal",
+          2 => "high",
           3 => "Med Low",
           4 => "Med High",
           5 => "Very Low",
@@ -535,7 +535,7 @@
         'implemented' => true,
         'tagValues'   => Array(
           0 => "Soft",
-          1 => "Normal",
+          1 => "normal",
           2 => "Hard",
           3 => "Med Soft",
           4 => "Med Hard",
@@ -753,15 +753,15 @@
           0x000100 => "Hi-speed Program", // from exiftool
           0x000200 => "DOF Program", // from exiftool
           0x000300 => "MTF Program",
-          0x000400 => "Standard",
-          0x000500 => "Portrait",
+          0x000400 => "standard",
+          0x000500 => "portrait",
           0x000600 => "Landscape",
-          0x000700 => "Macro",
+          0x000700 => "macro",
           0x000800 => "Sport",
           0x000900 => "Night Scene Portrait",
-          0x000a00 => "No Flash",
+          0x000a00 => "no flash",
         /* SCN modes (menu-selected) */
-          0x000b00 => "Night Scene",
+          0x000b00 => "night scene",
           0x000c00 => "Surf & Snow",
           0x000d00 => "Text",
           0x000e00 => "Sunset",
@@ -801,7 +801,7 @@
           0x0b0001 => "Manual (Off-Auto-Aperture)",
           0x0c0001 => "Bulb (Off-Auto-Aperture)",
         /* K10D modes */
-          0x060000 => "Shutter Priority",
+          0x060000 => "shutter priority",
           0x0d0000 => "Shutter & Aperture Priority AE, 1/2 EV steps",
           0x0d0001 => "Shutter & Aperture Priority AE, 1/3 EV steps",
           0x0f0000 => "Sensitivity Priority AE, 1/2 EV steps",
@@ -832,7 +832,7 @@
           0xff000000 => "Video", // from exiftool
           0x00010000 => "Self-timer (12 sec)",
           0x00020000 => "Self-timer (2 sec)",
-          0x00ff0000 => "N/A", //from exiftool (K-x ?)
+          0x00ff0000 => "n/a", //from exiftool (K-x ?)
           0x00000100 => "Remote Control (3 sec)",
           0x00000200 => "Remote Control",
           0x00000001 => "Multiple Exposure",
@@ -1087,7 +1087,7 @@
         'tagValues'   => Array(
           0 => "Natural",
           1 => "Bright",
-          2 => "Portrait",
+          2 => "portrait",
           3 => "Landscape",
           4 => "Vibrant",
           5 => "Monochrome"

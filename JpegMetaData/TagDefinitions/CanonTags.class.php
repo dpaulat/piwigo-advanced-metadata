@@ -99,8 +99,8 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-            1 => "Macro",
-            2 => "Normal",
+            1 => "macro",
+            2 => "normal",
           ),
       ),
 
@@ -120,7 +120,7 @@
         'implemented' => true,
         'tagValues'   => Array(
             0x01 => "Economy",
-            0x02 => "Normal",
+            0x02 => "normal",
             0x03 => "Fine",
             0x04 => "RAW",
             0x05 => "Superfine",
@@ -176,7 +176,7 @@
             0x04 => "Single",
             0x05 => "Continuous",
             0x06 => "Manual Focus (6)",
-            0x10 => "Pan Focus",
+            0x10 => "pan focus",
           ),
       ),
 
@@ -232,16 +232,16 @@
             0x05 => "Night",
             0x06 => "Gray Scale",
             0x07 => "Sepia",
-            0x08 => "Portrait",
+            0x08 => "portrait",
             0x09 => "Sports",
-            0x0a => "Macro",
+            0x0a => "macro",
             0x0b => "Black & White",
-            0x0c => "Pan focus",
+            0x0c => "pan focus",
             0x0d => "Vivid",
             0x0e => "Neutral",
             0x0f => "Flash Off",
             0x10 => "Long Shutter",
-            0x11 => "Super Macro",
+            0x11 => "super macro",
             0x12 => "Foliage",
             0x13 => "Indoor",
             0x14 => "Fireworks",
@@ -269,10 +269,10 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-            0 => "None",
+            0 => "none",
             1 => "2x",
             2 => "4x",
-            3 => "Other",
+            3 => "other",
           ),
       ),
 
@@ -315,12 +315,12 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-            0x00 => "Default",
-            0x01 => "Spot",
-            0x02 => "Average",
-            0x03 => "Evaluative",
-            0x04 => "Partial",
-            0x05 => "Center-weighted average",
+            0x00 => "default",
+            0x01 => "spot",
+            0x02 => "average",
+            0x03 => "evaluative",
+            0x04 => "partial",
+            0x05 => "center-weighted average",
         ),
       ),
 
@@ -333,36 +333,15 @@
         'tagValues'   => Array(
             0x00 => "Manual",
             0x01 => "Auto",
-            0x02 => "Not Known",
-            0x03 => "Macro",
-            0x04 => "Very Close",
-            0x05 => "Close",
-            0x06 => "Middle Range",
-            0x07 => "Far Range",
-            0x08 => "Pan Focus",
-            0x09 => "Super Macro",
-            0x0a => "Infinity"
-        ),
-      ),
-
-      "0x0001.18" => Array(
-        'tagName'     => "CanonCameraSettings.FocusRange",
-        'schema'      => "Canon",
-        'translatable'=> true,
-        'combiTag'    => 0,
-        'implemented' => true,
-        'tagValues'   => Array(
-            0x00 => "Manual",
-            0x01 => "Auto",
-            0x02 => "Not Known",
-            0x03 => "Macro",
-            0x04 => "Very Close",
-            0x05 => "Close",
-            0x06 => "Middle Range",
-            0x07 => "Far Range",
-            0x08 => "Pan Focus",
-            0x09 => "Super Macro",
-            0x0a => "Infinity"
+            0x02 => "not known",
+            0x03 => "macro",
+            0x04 => "very close",
+            0x05 => "close",
+            0x06 => "middle range",
+            0x07 => "far range",
+            0x08 => "pan focus",
+            0x09 => "super macro",
+            0x0a => "infinity"
         ),
       ),
 
@@ -405,7 +384,7 @@
       "0x0001.22" => Array(
         'tagName'     => "CanonCameraSettings.LensType",
         'schema'      => "Canon",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues.special' => Array(
@@ -724,7 +703,7 @@
         'implemented' => true,
         'tagValues'   => Array(
             0x00 => "Did not fire",
-            0x01 => "Fired",
+            0x01 => "fired",
         ),
       ),
 
@@ -857,7 +836,7 @@
             0x0000 => "n/a",
             0x0500 => "Full",
             0x0502 => "Medium",
-            0x0504 => "Low",
+            0x0504 => "low",
             0x7fff => "n/a",
         ),
       ),
@@ -869,7 +848,7 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-            0x0000 => "Normal",
+            0x0000 => "normal",
         ),
       ),
 
@@ -1014,9 +993,9 @@
         'implemented' => true,
         'tagValues'   => Array(
             0x00 => "Off",
-            0x01 => "Night Scene",
+            0x01 => "night scene",
             0x02 => "On",
-            0x03 => "None",
+            0x03 => "none",
         ),
       ),
 
@@ -1177,7 +1156,7 @@
         'implemented' => true,
         'tagValues'   => Array(
        0xFFFF => "Unknown",
-            0 => "None",
+            0 => "none",
             1 => "Rotate 90 CW",
             2 => "Rotate 180",
             3 => "Rotate 270 CW",
@@ -1894,15 +1873,6 @@
         'combiTag'    => 0,
         'implemented' => false,
       ), // < MyColors
-
-      // , tag 0x0000
-      0x0000 => Array(
-        'tagName'     => "",
-        'schema'      => "Canon",
-        'translatable'=> false,
-        'combiTag'    => 0,
-        'implemented' => false,
-      ), // <
 
       // FirmwareRevision, tag 0x001e
       0x001e => Array(

@@ -400,12 +400,12 @@
             }
             else
             {
-              $returned="unknown";
+              $returned="Unknown";
             }
           }
           else
           {
-            $returned="unknown";
+            $returned="Unknown";
           }
           break;
         case 0x829A: // ExposureTime, tag 0x829A
@@ -445,7 +445,7 @@
               $returned="RGB";
               break;
             default:
-              $returned="unknown";
+              $returned="Unknown";
               break;
           }
           break;

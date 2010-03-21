@@ -126,12 +126,21 @@
 
     foreach($val2->getTags() as $key3 => $val3)
     {
-      $returned.=dump_tag($key3, $val3->getTag(), "<span style='color:#804080;'>".sprintf("[%02d] ", $key3).$val3->toString()."</span><br>");
+      if($val3 instanceof Tag)
+      {
+        $tmpTag=$val3;
+      }
+      else
+      {
+        $tmpTag=$val3->getTag();
+      }
 
-      if($val3->getTag()->getLabel() instanceof IfdReader)
+      $returned.=dump_tag($key3, $tmpTag, "<span style='color:#804080;'>".sprintf("[%02d] ", $key3).$val3->toString()."</span><br>");
+
+      if($tmpTag->getLabel() instanceof IfdReader)
       {
         $returned.="<div style='padding:1px;margin-bottom:2px;margin-right:4px;margin-left:25px;border:1px dotted #6060FF;'>";
-        $returned.=dump_ifd($key3, $val3->getTag()->getLabel());
+        $returned.=dump_ifd($key3, $tmpTag->getLabel());
         $returned.="</div>";
       }
     }
@@ -192,114 +201,7 @@
     return($returned);
   }
 
-  /*
-  function cmp($a, $b)
-  {
-      if ($a['value'] == $b['value']) {
-          return 0;
-      }
-      return ($a['value'] < $b['value']) ? -1 : 1;
-  }
-
-  function list_for_po()
-  {
-
-    $tmpTagName=Array();
-    $tmpValues=Array();
-
-    $tagList=Array(
-      new IfdTags(),
-      new XmpTags(),
-      new IptcTags(),
-      new GpsTags(),
-      new PentaxTags(),
-    );
-
-
-    foreach($tagList as $key => $tag)
-    {
-
-      foreach($tag->getTags() as $key => $val)
-      {
-        if(array_key_exists('tagName', $val))
-          $name=$val['tagName'];
-        else
-          $name="";
-
-        if(is_string($key))
-          $tKey=$key;
-        else
-          $tKey=sprintf("0x%04x", $key);
-
-        if($name!="")
-          $tKey.=" ($name)";
-
-        if($name!="")
-        {
-          $tmpTagName[]=Array('group' => $tag->getLabel()." / ".$tKey, 'value' => $name);
-        }
-        else
-        {
-          $tmpTagName[]=Array('group' => $tag->getLabel()." / ".$tKey, 'value' => $key);
-        }
-
-        if(array_key_exists('tagValues', $val) and $val['translatable'])
-        {
-          foreach($val['tagValues'] as $key2 => $val2)
-          {
-            $tmpValues[]=Array('group' => $tag->getLabel()." / ".$tKey, 'value' => $val2);
-          }
-        }
-
-        if(array_key_exists('tagValues.special', $val) and $val['translatable'])
-        {
-          foreach($val['tagValues.special'] as $key2 => $val2)
-          {
-            $tmpValues[]=Array('group' => $tag->getLabel()." / ".$tKey, 'value' => $val2);
-          }
-        }
-
-        if(array_key_exists('tagValues.specialNames', $val) and $val['translatable'])
-        {
-          foreach($val['tagValues.specialNames'] as $key2 => $val2)
-          {
-            $tmpValues[]=Array('group' => $tag->getLabel()." / ".$tKey, 'value' => $val2);
-          }
-        }
-
-        if(array_key_exists('tagValues.specialValues', $val) and $val['translatable'])
-        {
-          foreach($val['tagValues.specialValues'] as $key2 => $val2)
-          {
-            $tmpValues[]=Array('group' => $tag->getLabel()." / ".$tKey, 'value' => $val2);
-          }
-        }
-
-        if(array_key_exists('tagValues.computed', $val) and $val['translatable'])
-        {
-          foreach($val['tagValues.computed'] as $key2 => $val2)
-          {
-            $tmpValues[]=Array('group' => $tag->getLabel()." / ".$tKey, 'value' => $val2);
-          }
-        }
-
-
-      }
-
-    }
-
-    $tmp=array_merge($tmpTagName, $tmpValues);
-    usort($tmp, "cmp");
-
-    foreach($tmp as $key => $val)
-    {
-      echo "#. ".$val['group']."<br>";
-      echo "msgid \"".$val['value']."\"<br>";
-      echo "msgstr \"".$val['value']."\"<br><br>";
-    }
-
-  }
-  */
+  L10n::setLanguage("fr_FR");
 
 
   $page="<html><header><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></header><body>";
@@ -334,12 +236,7 @@
 
   $page.="<span style='font-family:monospace;'>";
 
-  $time=microtime(true);
-
-  $memory=memory_get_usage();
   $jpeg = new JpegReader($file);
-  $time2=microtime(true);
-
 
   $page2="JpegReader extraction<br>";
   $page2.="fileName=".$jpeg->getFileName()."<br>";
@@ -388,6 +285,10 @@
           $page2.="</div>";
         }
       }
+      elseif(is_array($data))
+      {
+        $page2.=print_r($val->getData(), true)."<br>";
+      }
       else
       {
        $page2.=htmlentities($val->getData())."<br>";
@@ -397,15 +298,19 @@
     $page2.="</div>";
   }
   $page2.="</span><hr>";
+  unset($jpeg);
 
   $page2.="<div style='font-family:monospace;'>JpegMetaData - tag from test file<br>";
   $page2.="<table style='border:1px solid #000000;width:100%;'>";
   $page2.="<tr style='border-bottom:1x solid #000000;'><th>Key</th><th>Name</th><th>Value</th><th>Computed Value</th></tr>";
 
+
+  $time=microtime(true);
   $jpegmd = new JpegMetaData($file, Array(
     'filter' => JpegMetaData::TAGFILTER_IMPLEMENTED,
     'optimizeIptcDateTime' => true)
   );
+  $time2=microtime(true);
 
   $i=0;
   foreach($jpegmd->getTags() as $key => $val)
@@ -431,7 +336,6 @@
   }
   $page2.="</table>Total tags: $i</div><hr>";
 
-
   $i=0;
   $j=0;
   $page2.="<div style='font-family:monospace;'>JpegMetaData - known tags<br>";
@@ -445,11 +349,18 @@
   $page2.="</table>Total tags ; implemented: $i - not implemented: $j</span><hr>";
 
   unset($jpegmd);
-  unset($jpeg);
+
+  $memory=memory_get_usage();
+  $jpegmd = new JpegMetaData($file, Array(
+    'filter' => JpegMetaData::TAGFILTER_IMPLEMENTED,
+    'optimizeIptcDateTime' => true)
+  );
+  unset($jpegmd);
   $memory2=memory_get_usage();
+
   $page.="parsing time : ".($time2-$time)."<br>";
   $page.="memory on start : ".$memory."<br>";
-  $page.="memory on end : ".$memory2." (memory leak ? = ".($memory2-$memory).")<br><br>";
+  $page.="memory on end : ".$memory2." (memory leak ? = ".($memory2-$memory).")<br>";
 
   $page.=$page2;
   $page.="<br/></body></html>";

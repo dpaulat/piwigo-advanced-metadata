@@ -91,7 +91,7 @@
           0x0018 => "Audio Interchange File Format AIFF (Apple Computer Inc)",
           0x0019 => "RIFF Wave (Microsoft Corporation)",
           0x0020 => "Freehand (Macromedia/Aldus)",
-          0x0021 => "Hypertext Markup Language \"HTML\" (The Internet Society)",
+          0x0021 => "Hypertext Markup Language 'HTML' (The Internet Society)",
           0x0022 => "MPEG 2 Audio Layer 2 (Musicom), ISO/IEC",
           0x0023 => "MPEG 2 Audio Layer 3, ISO/IEC",
           0x0024 => "Portable Document File (*.PDF) Adobe",
@@ -511,7 +511,7 @@
         'translatable' => true,
         'tagValues'    => Array(
           'P' => "portrait",
-          'L' => "landscape",
+          'L' => "Landscape",
           'S' => "square",
         )
       ),

@@ -72,9 +72,15 @@
       foreach($tagValues['values'] as $key => $val)
       {
         if($val['type']['value']==$lang or
-           XmpTags::lang($val['type']['value'])==$lang or
-           $val['type']['value']=="x-default")
+           XmpTags::lang($val['type']['value'])==$lang)
+        {
+          return($val['value']);
+        }
+
+        if($val['type']['value']=="x-default")
+        {
           $returned=$val['value'];
+        }
       }
       return($returned);
     }
@@ -1397,7 +1403,7 @@
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "exif",
         'tagValues' => Array(
-            0x00 => "unknown",
+            0x00 => "Unknown",
             0x01 => "compulsory flash firing",
             0x02 => "compulsory flash suppression",
             0x03 => "auto mode"
@@ -1890,7 +1896,7 @@
           '010800' => "two",
           '010900' => "group",
           '010700' => "couple",
-          '010600' => "single",
+          '010600' => "Single",
           '010400' => "profile",
           '010500' => "rear view",
           '010300' => "full-length",
@@ -2042,7 +2048,7 @@
 
             if(!is_null($tmpTag))
             {
-              $this->tags[$key]['tagName'] = $tmpTag['tagName'];
+              //$this->tags[$key]['tagName'] = $tmpTag['tagName'];
 
               if(array_key_exists('tagValues', $tmpTag))
               {

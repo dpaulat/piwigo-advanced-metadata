@@ -186,7 +186,7 @@
           0x0001 => "BlackIsZero",
           0x0002 => "RGB",
           0x0003 => "RGB Palette",
-          0x0004 => "Transparency Mask",
+          0x0004 => "transparency mask",
           0x0005 => "CMYK",
           0x0006 => "YCbCr",
           0x0008 => "CIELab",
@@ -425,7 +425,7 @@
       // FreeByteCounts, tag 0x0121
       0x0121 => Array(
         'tagName'     => "FreeByteCounts",
-        'schema'      => "unknown",
+        'schema'      => "Unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -450,7 +450,7 @@
       // GrayResponseCurve, tag 0x0123
       0x0123 => Array(
         'tagName'     => "GrayResponseCurve",
-        'schema'      => "unknown",
+        'schema'      => "Unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -459,7 +459,7 @@
       // T4Options, tag 0x0124
       0x0124 => Array(
         'tagName'     => "T4Options",
-        'schema'      => "unknown",
+        'schema'      => "Unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -469,7 +469,7 @@
       // T6Options, tag 0x0125
       0x0125 => Array(
         'tagName'     => "T6Options",
-        'schema'      => "unknown",
+        'schema'      => "Unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -502,7 +502,7 @@
       // ColorResponseUnit, tag 0x012c
       0x012c => Array(
         'tagName'     => "ColorResponseUnit",
-        'schema'      => "unknown",
+        'schema'      => "Unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -720,7 +720,7 @@
       // AFCP_IPTC, tag 0x8568
       0x8568 => Array(
         'tagName'     => "AFCP_IPTC",
-        'schema'      => "unknown",
+        'schema'      => "Unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -740,7 +740,7 @@
       // ICC_Profile, tag 0x8773
       0x8773 => Array(
         'tagName'     => "ICC_Profile",
-        'schema'      => "unknown",
+        'schema'      => "Unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -756,9 +756,9 @@
         'implemented' => true,
         'tagValues'   => Array(
           0x00 => "not defined",
-          0x01 => "manual",
+          0x01 => "Manual",
           0x02 => "normal program",
-          0x03 => "aperture priority",
+          0x03 => "Aperture Priority",
           0x04 => "shutter priority",
           0x05 => "creative program",
           0x06 => "action program",
@@ -931,7 +931,7 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-          0x0000 => "unknown",
+          0x0000 => "Unknown",
           0x0001 => "average",
           0x0002 => "CenterWeightedAverage",
           0x0003 => "spot",
@@ -950,14 +950,14 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-          0x0000 => "unknown",
-          0x0001 => "daylight",
-          0x0002 => "fluorescent",
+          0x0000 => "Unknown",
+          0x0001 => "Daylight",
+          0x0002 => "Fluorescent",
           0x0003 => "tungsten (incandescent light)",
-          0x0004 => "flash",
+          0x0004 => "Flash",
           0x0009 => "fine weather",
           0x000a => "cloudy weather",
-          0x000b => "shade",
+          0x000b => "Shade",
           0x000c => "daylight fluorescent (D 5700 - 7100K)",
           0x000d => "day white fluorescent (N 4600 - 5400K)",
           0x000e => "cool white fluorescent (W 3900 - 4500K)",
@@ -1000,7 +1000,7 @@
                   0x03 => "strobe return light detected"      // 11
                 ),
           0x0018 => Array( // b00011000 => 'mode'
-                  0x00 => "unknown",
+                  0x00 => "Unknown",
                   0x01 => "compulsory flash firing",
                   0x02 => "compulsory flash suppression",
                   0x03 => "auto mode"
@@ -1100,7 +1100,7 @@
       // TIFF-EPStandardID, tag 0x9216
       0x9216 => Array(
         'tagName'     => "TIFF-EPStandardID",
-        'schema'      => "unknown",
+        'schema'      => "Unknown",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => false
@@ -1261,7 +1261,7 @@
 
       // FlashEnergy, tag 0xA20B
       0xA20B => Array(
-        'tagName'     => "exif",
+        'tagName'     => "FlashEnergy",
         'schema'      => "tiff",
         'translatable'=> false,
         'combiTag'    => 0,
@@ -1460,7 +1460,7 @@
         'implemented' => true,
         'tagValues'   => Array(
           0x00 => "standard",
-          0x01 => "landscape",
+          0x01 => "Landscape",
           0x02 => "portrait",
           0x03 => "night scene"
         )
@@ -1541,7 +1541,7 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-          0x00 => "unknown",
+          0x00 => "Unknown",
           0x01 => "macro",
           0x02 => "close",
           0x03 => "distant"

@@ -70,9 +70,13 @@
       0x0001 => Array(
         'tagName'     => "GPSLatitudeRef",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special'   => Array(
+          'N' => "North",
+          'S' => "South",
+        ),
       ), // < GPSLatitudeRef
 
       // GPSLatitude, tag 0x0002
@@ -82,15 +86,19 @@
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true
-      ), // < GPSLatitudeRef
+      ), // < GPSLatitude
 
       // GPSLongitudeRef, tag 0x0003
       0x0003 => Array(
         'tagName'     => "GPSLongitudeRef",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special'   => Array(
+          'E' => "East",
+          'W' => "West",
+        ),
       ), // < GPSLongitudeRef
 
       // GPSLongitude, tag 0x0004
@@ -106,12 +114,12 @@
       0x0005 => Array(
         'tagName'     => "GPSAltitudeRef",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-          0x00 => "+",
-          0x01 => "-"
+          0x00 => "over the sea",
+          0x01 => "under the sea"
         )
       ), // < GPSAltitudeRef
 
@@ -262,9 +270,13 @@
       0x0013 => Array(
         'tagName'     => "GPSDestLatitudeRef",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special'   => Array(
+          'N' => "North",
+          'S' => "South",
+        ),
       ), // < GPSDestLatitudeRef
 
       // GPSDestLatitude, tag 0x0014
@@ -280,9 +292,13 @@
       0x0015 => Array(
         'tagName'     => "GPSDestLongitudeRef",
         'schema'      => "GPS",
-        'translatable'=> false,
+        'translatable'=> true,
         'combiTag'    => 0,
-        'implemented' => true
+        'implemented' => true,
+        'tagValues.special'   => Array(
+          'E' => "East",
+          'W' => "West",
+        ),
       ), // < GPSDestLongitudeRef
 
       // GPSDestLongitude, tag 0x0016

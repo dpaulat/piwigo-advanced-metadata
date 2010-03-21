@@ -350,9 +350,9 @@
         'implemented' => true,
         'tagValues'   => Array(
           0 => "Off",
-          1 => "Low",
-          3 => "Normal",
-          5 => "High",
+          1 => "low",
+          3 => "normal",
+          5 => "high",
           0xffff => "Auto"
         )
       ), // < ActiveD-Lighting
@@ -393,9 +393,9 @@
         'implemented' => true,
         'tagValues'   => Array(
           0 => "Off",
-          1 => "Low",
-          3 => "Normal",
-          5 => "High",
+          1 => "low",
+          3 => "normal",
+          5 => "high",
         )
       ), // < VignetteControl
 
@@ -485,12 +485,12 @@
         'combiTag'    => 0,
         'implemented' => true,
         'tagValues'   => Array(
-          0 => "Did Not Fire",
-          1 => "Fired, Manual",
-          3 => "Not Ready",
-          7 => "Fired, External",
-          8 => "Fired, Commander Mode",
-          9 => "Fired, TTL Mode",
+          0 => "Did not fire",
+          1 => "Fired, manual",
+          3 => "Not ready",
+          7 => "Fired, external",
+          8 => "Fired, commander mode",
+          9 => "Fired, TTL mode",
         )
       ), // < FlashMode
 
@@ -677,7 +677,7 @@
       //  LensData, tag 0x0098
       0x0098 => Array(
         'tagName'     => "LensData",
-        'schema'      => "Nikon",
+        'schema'      => "true",
         'translatable'=> false,
         'combiTag'    => 0,
         'implemented' => true,
@@ -1214,9 +1214,9 @@
         'tagValues'   => Array(
           0 => "Off",
           1 => "Minimal",
-          2 => "Low",
-          4 => "Normal",
-          6 => "High",
+          2 => "low",
+          4 => "normal",
+          6 => "high",
         )
       ), // < HighISONoiseReduction
 

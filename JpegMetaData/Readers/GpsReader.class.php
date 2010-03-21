@@ -78,18 +78,18 @@
           $returned=sprintf("%d.%d.%d.%d", $values[0], $values[1], $values[2], $values[3]);
           break;
         case 0x0001: // GPSLatitudeRef
+        case 0x0003: // GPSLongitudeRef
         case 0x0013: // GPSDestLatitudeRef
-          switch(substr($values,0,1))
+        case 0x0015: // GPSDestLongitudeRef
+          $tag=$this->tagDef->getTagById($tagId);
+          $key=substr($values, 0, 1);
+          if(array_key_exists($key, $tag['tagValues.special']))
           {
-            case "N" :
-              $returned="N";
-              break;
-            case "S" :
-              $returned="S";
-              break;
-            default:
-              $returned="";
-              break;
+            $returned=$tag['tagValues.special'][$key];
+          }
+          else
+          {
+            $returned="";
           }
           break;
         case 0x0002: // GPSLatitude
@@ -100,21 +100,6 @@
            * converted in degrees, minutes and seconds
            */
           $returned=ConvertData::toDMS($values[0], $values[1], $values[2]);
-          break;
-        case 0x0003: // GPSLongitudeRef
-        case 0x0015: // GPSDestLongitudeRef
-          switch(substr($values,0,1))
-          {
-            case "E" :
-              $returned="E";
-              break;
-            case "W" :
-              $returned="W";
-              break;
-            default:
-              $returned="";
-              break;
-          }
           break;
         case 0x0006: // GPSAltitude
         case 0x000D: // GPSSpeed

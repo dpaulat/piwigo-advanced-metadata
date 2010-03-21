@@ -299,27 +299,27 @@
 
       'GPS.Altitude' => Array(
         'implemented'  => true,
-        'translatable' => false,
+        'translatable' => true,
         'tagValues' => Array(
-          "{exif.gps.GPSAltitudeRef}{exif.gps.GPSAltitude}m",
-          "{xmp.exif:GPSAltitudeRef}{xmp.exif:GPSAltitude}m",
+          "{exif.gps.GPSAltitudeRef}|{exif.gps.GPSAltitude}m",
+          "{xmp.exif:GPSAltitudeRef}|{xmp.exif:GPSAltitude}m",
         )
       ),
 
       'GPS.Latitude' => Array(
         'implemented'  => true,
-        'translatable' => false,
+        'translatable' => true,
         'tagValues' => Array(
-          "{exif.gps.GPSLatitude} {exif.gps.GPSLatitudeRef}",
+          "{exif.gps.GPSLatitude}| |{exif.gps.GPSLatitudeRef}",
           "{xmp.exif:GPSLatitude}",
         )
       ),
 
       'GPS.Longitude' => Array(
         'implemented'  => true,
-        'translatable' => false,
+        'translatable' => true,
         'tagValues' => Array(
-          "{exif.gps.GPSLongitude} {exif.gps.GPSLongitudeRef}",
+          "{exif.gps.GPSLongitude}| |{exif.gps.GPSLongitudeRef}",
           "{xmp.exif:GPSLongitude}",
         )
       ),
