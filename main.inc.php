@@ -3,7 +3,7 @@
 Plugin Name: Advanced MetaData
 Version: 0.1b
 Description: An advanced metadata manager
-Plugin URI: http://piwigo.org
+Plugin URI: http://phpwebgallery.net/ext/extension_view.php?eid=364
 Author: Piwigo team
 Author URI: http://piwigo.org
 */
@@ -21,8 +21,8 @@ Author URI: http://piwigo.org
 :: HISTORY
 
 | release | date       |
-| 0.0b    | 2010/01/21 | * initial release
-|         |            |
+| 0.0     | 2010/01/21 | * start coding
+| 0.1b    | 2010/03/21 | * beta release
 |         |            |
 |         |            |
 |         |            |
