@@ -155,12 +155,21 @@
     if($("#iSelectOrderTagList").val()=="tag")
     {
       $("#iHLTOrderTag").html("&#8593;");
+      $("#iHLTOrderLabel").html("");
       $("#iHLTOrderNum").html("");
+    }
+    else if($("#iSelectOrderTagList").val()=="num")
+    {
+      $("#iHLTOrderTag").html("");
+      $("#iHLTOrderLabel").html("");
+      $("#iHLTOrderNum").html("&#8593;");
     }
     else
     {
+      // by label
       $("#iHLTOrderTag").html("");
-      $("#iHLTOrderNum").html("&#8593;");
+      $("#iHLTOrderLabel").html("&#8593;");
+      $("#iHLTOrderNum").html("");
     }
   }
 
@@ -193,6 +202,9 @@
       <option value="" {if $datas.config_GetListTags_FilterType==""}selected{/if}>{'g003_no_filter'|@translate}</option>
       <option value="magic" {if $datas.config_GetListTags_FilterType=="magic"}selected{/if}>{'g003_magic_filter'|@translate}</option>
       <option value="exif" {if $datas.config_GetListTags_FilterType=="exif"}selected{/if}>Exif</option>
+      <option value="exif.Canon" {if $datas.config_GetListTags_FilterType=="exif.Canon"}selected{/if}>Exif [Canon]</option>
+      <option value="exif.Nikon" {if $datas.config_GetListTags_FilterType=="exif.Nikon"}selected{/if}>Exif [Nikon]</option>
+      <option value="exif.Pentax" {if $datas.config_GetListTags_FilterType=="exif.Pentax"}selected{/if}>Exif [Pentax]</option>
       <option value="xmp" {if $datas.config_GetListTags_FilterType=="xmp"}selected{/if}>Xmp</option>
       <option value="iptc" {if $datas.config_GetListTags_FilterType=="iptc"}selected{/if}>Iptc</option>
     </select>
@@ -211,7 +223,7 @@
 <table id='iHeaderListTags' class="littlefont">
   <tr>
     <th style="width:35%;min-width:340px;"><span id="iHLTOrderTag"></span><a onclick="sortTagList('tag');">{'g003_TagId'|@translate}</a></th>
-    <th>{'g003_TagLabel'|@translate}</th>
+    <th><span id="iHLTOrderLabel"></span><a onclick="sortTagList('label');">{'g003_TagLabel'|@translate}</a></th>
     <th width="80px"><span id="iHLTOrderNum"></span><a onclick="sortTagList('num');">{'g003_NumOfImage'|@translate}</a></th>
     <th width="40px">{'g003_Pct'|@translate}</th>
     <th width="110px">&nbsp;</th>

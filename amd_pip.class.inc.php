@@ -124,11 +124,6 @@ class AMD_PIP extends AMD_root
       {
         $value=$picturesTags[$key]->getLabel();
 
-        if($picturesTags[$key]->isTranslatable())
-          $translatable="y";
-        else
-          $translatable="n";
-
         if($value instanceof DateTime)
         {
           $value=$value->format("Y-m-d H:i:s");
@@ -154,7 +149,7 @@ class AMD_PIP extends AMD_root
             'lines' => Array()
           );
         }
-        $md['lines'][L10n::get($picturesTags[$key]->getName())]=$value;
+        $md['lines'][L10n::get($picturesTags[$key]->getName())]=$this->prepareValueForDisplay($value, $picturesTags[$key]->isTranslatable());
       }
     }
 

@@ -25,6 +25,7 @@ include_once(PHPWG_PLUGINS_PATH.'grum_plugins_classes-2/css.class.inc.php');
 
 include_once('JpegMetaData/JpegMetaData.class.php');
 include_once(JPEG_METADATA_DIR."Common/L10n.class.php");
+include_once(JPEG_METADATA_DIR."TagDefinitions/XmpTags.class.php");
 
 class AMD_root extends common_plugin
 {
@@ -33,6 +34,7 @@ class AMD_root extends common_plugin
 
   public function __construct($prefixeTable, $filelocation)
   {
+    global $user;
     $this->plugin_name="AMetaData";
     $this->plugin_name_files="amd";
     parent::__construct($prefixeTable, $filelocation);
@@ -42,6 +44,11 @@ class AMD_root extends common_plugin
 
     $this->css = new css(dirname($this->filelocation).'/'.$this->plugin_name_files.".css");
     $this->jpegMD=new JpegMetaData();
+
+    if(isset($user['language']))
+    {
+      L10n::setLanguage($user['language']);
+    }
   }
 
   public function __destruct()
@@ -269,6 +276,154 @@ class AMD_root extends common_plugin
     $this->save_config();
   }
 
+
+  /**
+   * This function :
+   *  - convert arrays (stored as a serialized string) into human readable string
+   *  - translate value in user language (if value is translatable)
+   *
+   * @param String $value         : value to prepare
+   * @param Boolean $translatable : set to tru if the value can be translated in
+   *                                the user language
+   * @param String $separator     : separator for arrays items
+   * @return String               : the value prepared
+   */
+  protected function prepareValueForDisplay($value, $translatable=true, $separator=", ")
+  {
+    global $user;
+
+    if(preg_match('/^a:\d+:\{.*\}$/is', $value))
+    {
+      // $value is a serialized array
+      $tmp=unserialize($value);
+
+      if(count($tmp)==0)
+      {
+        return(L10n::get("Unknown"));
+      }
+
+      if(array_key_exists("computed", $tmp) and array_key_exists("detail", $tmp))
+      {
+        /* keys 'computed' and 'detail' are present
+         *
+         * assume this is the 'exif.exif.Flash' metadata and return the computed
+         * value only
+         */
+        return(L10n::get($tmp['computed']));
+      }
+      elseif(array_key_exists("type", $tmp) and array_key_exists("values", $tmp))
+      {
+        /* keys 'computed' and 'detail' are present
+         *
+         * assume this is an Xmp 'ALT', 'BAG' or 'SEQ' metadata and return the
+         * values only
+         */
+        if($tmp['type']=='alt')
+        {
+          /* 'ALT' structure
+           *
+           * ==> assuming the structure is used only for multi language values
+           *
+           * Array(
+           *    'type'   => 'ALT'
+           *    'values' =>
+           *        Array(
+           *            Array(
+           *                'type'  => Array(
+           *                            'name'  =>'xml:lang',
+           *                            'value' => ''           // language code
+           *                           )
+           *               'value' => ''         //value in the defined language
+           *            ),
+           *
+           *            Array(
+           *                // data2
+           *            ),
+           *
+           *        )
+           * )
+           */
+          $tmp=XmpTags::getAltValue($tmp, $user['language']);
+          if(trim($tmp)=="") $tmp="(".L10n::get("not defined").")";
+
+          return($tmp);
+        }
+        else
+        {
+          /* 'SEQ' or 'BAG' structure
+           *
+           *  Array(
+           *    'type'   => 'XXX',
+           *    'values' => Array(val1, val2, .., valN)
+           *  )
+           */
+          $tmp=$tmp['values'];
+
+          if(trim(implode("", $tmp))=="")
+          {
+            return("(".L10n::get("not defined").")");
+          }
+        }
+      }
+
+
+      foreach($tmp as $key=>$val)
+      {
+        if(is_array($val))
+        {
+          if($translatable)
+          {
+            foreach($val as $key2=>$val2)
+            {
+              $tmp[$key][$key2]=L10n::get($val2);
+            }
+            if(count($val)>0)
+            {
+              $tmp[$key]="[".implode($separator, $val)."]";
+            }
+            else
+            {
+              unset($tmp[$key]);
+            }
+          }
+        }
+        else
+        {
+          if($translatable)
+          {
+            $tmp[$key]=L10n::get($val);
+          }
+        }
+      }
+      return(implode($separator, $tmp));
+    }
+    else
+    {
+      if(trim($value)=="")
+      {
+        return("(".L10n::get("not defined").")");
+      }
+
+      if(strpos($value, "|")>0)
+      {
+        $value=explode("|", $value);
+        if($translatable)
+        {
+          foreach($value as $key=>$val)
+          {
+            $value[$key]=L10n::get($val);
+          }
+        }
+        return(implode("", $value));
+      }
+
+      if($translatable)
+      {
+        return(L10n::get($value));
+      }
+      return($value);
+    }
+  }
 
 } // amd_root  class
 

@@ -1,5 +1,6 @@
 <?php
 
+
 $lang['Grum Plugin Classes is not installed'] = 'Le plugin <b>Grum Plugin Classes</b> n\'est pas installé';
 
 $lang['amd_title_page'] = 'Gestion avancée des métadonnées';

@@ -306,6 +306,7 @@ class AMD_AIP extends AMD_root
 
       if($_REQUEST['ajaxfct']=="showStatsGetListTags" and
          !($_REQUEST['orderType']=="tag" or
+           $_REQUEST['orderType']=="label" or
            $_REQUEST['orderType']=="num"))
       {
         $_REQUEST['orderType']="tag";
@@ -320,6 +321,9 @@ class AMD_AIP extends AMD_root
          !($_REQUEST['filterType']=="" or
            $_REQUEST['filterType']=="magic" or
            $_REQUEST['filterType']=="exif" or
+           $_REQUEST['filterType']=="exif.Canon" or
+           $_REQUEST['filterType']=="exif.Nikon" or
+           $_REQUEST['filterType']=="exif.Pentax" or
            $_REQUEST['filterType']=="xmp" or
            $_REQUEST['filterType']=="iptc"))
       {
@@ -775,6 +779,8 @@ class AMD_AIP extends AMD_root
   }
 
 
+
+
   /*
    * ---------------------------------------------------------------------------
    * ajax functions
@@ -988,7 +994,7 @@ class AMD_AIP extends AMD_root
     $numOfPictures=$this->getNumOfPictures();
 
     $datas=array();
-    $sql="SELECT ut.numId, ut.tagId, ut.translatable, ut.name, ut.numOfImg, if(st.tagId IS NULL, 'n', 'y') as checked
+    $sql="SELECT ut.numId, ut.tagId, ut.translatable, ut.name, ut.numOfImg, if(st.tagId IS NULL, 'n', 'y') as checked, ut.translatedName
             FROM ".$this->tables['used_tags']." ut
               LEFT JOIN ".$this->tables['selected_tags']." st
                 ON st.tagId = ut.tagId ";
@@ -996,7 +1002,16 @@ class AMD_AIP extends AMD_root
 
     if($filterType!='')
     {
-      $where.=" WHERE ut.tagId LIKE '".$filterType.".%' ";
+      if($filterType=='exif')
+      {
+        $where.=" WHERE ut.tagId LIKE 'exif.tiff.%'
+                    OR ut.tagId LIKE 'exif.exif.%'
+                    OR ut.tagId LIKE 'exif.gps.%'  ";
+      }
+      else
+      {
+        $where.=" WHERE ut.tagId LIKE '".$filterType.".%' ";
+      }
     }
 
     if($excludeUnusedTag=='y')
@@ -1020,6 +1035,9 @@ class AMD_AIP extends AMD_root
         break;
       case 'num':
         $sql.=" ORDER BY numOfImg DESC, tagId ASC";
+        break;
+      case 'label':
+        $sql.=" ORDER BY translatedName ASC, tagId ASC";
         break;
     }
 
@@ -1085,7 +1103,7 @@ class AMD_AIP extends AMD_root
       while($row=mysql_fetch_assoc($result))
       {
         $datas[]=array(
-          "value" => ($row['translatable']=='y')?L10n::get($row['value']):$row['value'],
+          "value" => $this->prepareValueForDisplay($row['value'], ($row['translatable']=='y'), ", "),
           "nb"    => $row['Nb'],
           "pct"   => ($row['numOfImg']!=0)?sprintf("%.2f", 100*$row['Nb']/$row['numOfImg']):"-"
         );

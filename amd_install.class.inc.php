@@ -53,13 +53,14 @@
   `translatable` char(1) NOT NULL default 'n',
   `name` varchar(200) NOT NULL default '',
   `numOfImg` int(10) unsigned NOT NULL default '0',
+  `translatedName` varchar(200) NOT NULL default '',
   PRIMARY KEY  (`numId`),
   KEY `by_tag` (`tagId`)
 );",
 "CREATE TABLE `".$this->tables['images_tags']."` (
   `imageId` mediumint(8) unsigned NOT NULL default '0',
   `numId` int(10) unsigned NOT NULL default '0',
-  `value` varchar(255) default NULL,
+  `value` text default NULL,
   PRIMARY KEY  USING BTREE (`imageId`,`numId`)
 );",
 "CREATE TABLE `".$this->tables['images']."` (
@@ -126,7 +127,7 @@
     public function activate()
     {
       global $template, $user;
-
+      L10n::setLanguage('en_UK');
 
       pwg_query("DELETE FROM ".$this->tables['used_tags']);
       pwg_query("DELETE FROM ".$this->tables['images_tags']);
@@ -140,7 +141,7 @@
        */
       foreach(JpegMetaData::getTagList(Array('filter' => JpegMetaData::TAGFILTER_IMPLEMENTED, 'xmp' => true, 'maker' => true, 'iptc' => true)) as $key => $val)
       {
-        $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0);";
+        $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0, '".L10n::get($val['name'])."');";
         pwg_query($sql);
       }
 
