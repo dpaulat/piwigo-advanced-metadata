@@ -130,11 +130,14 @@
           /*
            * can't use the timestamp function because not compatible with php < 5.3
            */
-          $this->entries[$tagD]->getLabel()->setTime(
-            (int)$this->entries[$tagT]->getLabel()->format("H"),
-            (int)$this->entries[$tagT]->getLabel()->format("i"),
-            (int)$this->entries[$tagT]->getLabel()->format("s")
-          );
+          if($this->entries[$tagD]->getLabel() instanceof DateTime)
+          {
+            $this->entries[$tagD]->getLabel()->setTime(
+              (int)$this->entries[$tagT]->getLabel()->format("H"),
+              (int)$this->entries[$tagT]->getLabel()->format("i"),
+              (int)$this->entries[$tagT]->getLabel()->format("s")
+            );
+          }
           array_splice($this->entries, $tagT, 1);
         }
         unset($tagD);
