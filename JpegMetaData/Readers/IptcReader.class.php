@@ -130,7 +130,8 @@
           /*
            * can't use the timestamp function because not compatible with php < 5.3
            */
-          if($this->entries[$tagD]->getLabel() instanceof DateTime)
+          if($this->entries[$tagD]->getLabel() instanceof DateTime and
+             $this->entries[$tagT]->getLabel() instanceof DateTime)
           {
             $this->entries[$tagD]->getLabel()->setTime(
               (int)$this->entries[$tagT]->getLabel()->format("H"),

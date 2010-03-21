@@ -397,6 +397,20 @@ class AMD_root extends common_plugin
       }
       return(implode($separator, $tmp));
     }
+    elseif(preg_match('/\d{1,3}°\s\d{1,2}\'\s(\d{1,2}\.{0,1}\d{0,2}){0,1}.,\s(north|south|east|west)$/i', $value))
+    {
+      /* \d{1,3}°\s\d{1,2}\'\s(\d{1,2}\.{0,1}\d{0,2}){0,1}.
+       *
+       * keys 'coord' and 'card' are present
+       *
+       * assume this is a GPS coordinate
+       */
+        return(preg_replace(
+          Array('/, north$/i', '/, south$/i', '/, east$/i', '/, west$/i'),
+          Array(" ".L10n::get("North"), " ".L10n::get("South"), " ".L10n::get("East"), " ".L10n::get("West")),
+          $value)
+        );
+    }
     else
     {
       if(trim($value)=="")

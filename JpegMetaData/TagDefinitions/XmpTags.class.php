@@ -1635,14 +1635,14 @@
       'exif:GPSLatitude' => Array(
         'gpsTag'       => 0xFFFF, // combination of tags 0x02 & 0x01
         'implemented'  => true,
-        'translatable' => false,
+        'translatable' => true,
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "exif",
       ),
       'exif:GPSLongitude' => Array(
         'gpsTag'       => 0xFFFF, // combination of tags 0x04 & 0x03
         'implemented'  => true,
-        'translatable' => false,
+        'translatable' => true,
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "exif",
       ),
@@ -1747,14 +1747,14 @@
       'exif:GPSDestLatitude' => Array(
         'gpsTag'       => 0xFFFF,  // combination of tags 0x14 & 0x13
         'implemented'  => true,
-        'translatable' => false,
+        'translatable' => true,
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "exif",
       ),
       'exif:GPSDestLongitude' => Array(
         'gpsTag'       => 0xFFFF,  // combination of tags 0x16 & 0x15
         'implemented'  => true,
-        'translatable' => false,
+        'translatable' => true,
         'type'         => self::TYPE_SIMPLE,
         'schema'       => "exif",
       ),

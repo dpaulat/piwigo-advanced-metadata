@@ -450,6 +450,34 @@
         case "Iptc4xmpCore:IntellectualGenre":
           $returned=explode(":", $value);
           break;
+        case "exif:GPSLatitude":
+        case "exif:GPSLongitude":
+        case "exif:GPSDestLatitude":
+        case "exif:GPSDestLongitude":
+          $returned=Array('coord' => "", 'card'=>"");
+          preg_match_all('/(\d{1,3}),(\d{1,2})(?:\.(\d*)){0,1}(N|S|E|W)/', $value, $result);
+          $returned['coord']=$result[1][0]."° ".$result[2][0]."' ";
+          if(trim($result[3][0])!="")
+          {
+            $returned['coord'].= round(("0.".$result[3][0])*60,2)."\"";
+          }
+          switch($result[4][0])
+          {
+            case "N":
+              $returned['card']="North";
+              break;
+            case "S":
+              $returned['card']="South";
+              break;
+            case "E":
+              $returned['card']="East";
+              break;
+            case "W":
+              $returned['card']="West";
+              break;
+          }
+          $type=ByteType::UNDEFINED;
+          break;
         case "xmp:CreateDate":
         case "xmp:ModifyDate":
         case "xmp:MetadataDate":
@@ -603,10 +631,6 @@
         case "exif:SubjectLocation":
         case "exif:CFAPattern":
         case "exif:DeviceSettingDescription":
-        case "exif:GPSLatitude":
-        case "exif:GPSLongitude":
-        case "exif:GPSDestLatitude":
-        case "exif:GPSDestLongitude":
           $returned=$xmpValue;
           $type=ByteType::UNDEFINED;
           break;
