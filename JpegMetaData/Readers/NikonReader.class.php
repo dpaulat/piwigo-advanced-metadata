@@ -561,7 +561,7 @@
      */
     private function serialNumberInteger()
     {
-      if($this->serialNumber!="")
+      if(trim($this->serialNumber)!="")
       {
         return(0+$this->serialNumber);
       }
@@ -575,9 +575,6 @@
         //D200, D40X, ...
         return(0x60);
       }
-
-
-
     }
   }
 
