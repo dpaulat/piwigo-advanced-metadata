@@ -75,7 +75,7 @@ $lang['g003_no_tag_can_be_selected'] = "Aucune métadonnée n'est disponible";
 
 
 $lang['g003_warning_on_analyze_3'] = "Le référentiel s'alimente peu à peu chaque fois qu'une page de la galerie est visitée. La durée nécessaire pour l'alimentation complète du référentiel dépends donc :";
-$lang['g003_warning_on_analyze_3a'] = "du nombre de photos dans la gallerie";
+$lang['g003_warning_on_analyze_3a'] = "du nombre de photos dans la galerie";
 $lang['g003_warning_on_analyze_3b'] = "du nombre de pages visualisées quotidiennement";
 $lang['g003_warning_on_analyze_4a'] = "le référentiel n'est exploité qu'à des fins statistiques et facilite le choix des métadonnées sélectionnées pour affichage";
 $lang['g003_warning_on_analyze_4b'] = "une image non prise prise en compte pour l'alimentation du référentiel disposera quand même des métadonnées sur la galerie";
