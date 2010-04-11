@@ -324,6 +324,33 @@
         )
       ),
 
+      'GPS.Localization' => Array(
+        'implemented'  => true,
+        'translatable' => true,
+        'tagValues' => Array(
+          "{magic.GPS.Latitude}|, |{magic.GPS.Longitude}"
+        )
+      ),
+
+      'GPS.LatitudeNum' => Array(
+        'implemented'  => true,
+        'translatable' => false,
+        'tagValues' => Array(
+          "{magic.GPS.Latitude}"
+        )
+      ),
+
+      'GPS.LongitudeNum' => Array(
+        'implemented'  => true,
+        'translatable' => false,
+        'tagValues' => Array(
+          "{magic.GPS.Longitude}"
+        )
+      ),
+
+
+
+
     );
 
 

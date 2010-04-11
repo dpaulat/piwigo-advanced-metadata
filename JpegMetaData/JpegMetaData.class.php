@@ -129,7 +129,7 @@
     const KEY_MAGIC = "magic";
 
     private $jpeg = null;
-    private $tags = Array();
+    protected $tags = Array();
     private $options = Array();
 
     /**
@@ -574,7 +574,7 @@
     /**
      * MagicTags are build with this function
      */
-    private function processMagicTags()
+    protected function processMagicTags()
     {
       $magicTags=new MagicTags();
 
@@ -599,6 +599,8 @@
                 Array(&$this, "processMagicTagsCB"),
                 $val['tagValues'][$i]
             ));
+
+            $returned=$this->processSpecialMagicTag($key, $returned);
 
             $tag->setValue($returned);
             $tag->setLabel($returned);
@@ -627,7 +629,7 @@
      * @param Array $matches : array[1] = the tagId
      * @return String : the tag value
      */
-    private function processMagicTagsCB($matches)
+    protected function processMagicTagsCB($matches)
     {
       $label="";
       preg_match_all('/([a-z0-9:\.\s\/]*)\[(.*)\]/i', $matches[1], $result, PREG_PATTERN_ORDER);
@@ -671,6 +673,25 @@
       return(trim($label));
     }
 
+    /**
+     *
+     *
+     */
+    protected function processSpecialMagicTag($key, $value)
+    {
+      switch($key)
+      {
+        case "GPS.LatitudeNum":
+        case "GPS.LongitudeNum":
+          preg_match_all('/(\d{1,3})°\s*(\d{1,2})\'(?:\s*(\d+(?:\.\d+)?)")?[\s\|\.]*(N|S|E|W)/i', $value, $result);
+          $num=(float)$result[1][0] + ((float) $result[2][0])/60;
+          if($result[3][0]!="") $num+= ((float) $result[3][0])/3600;
+          if($result[4][0]=="W" or $result[4][0]=="S") $num=-$num;
+          return($num);
+        default:
+          return($value);
+      }
+    }
 
 
     /**
