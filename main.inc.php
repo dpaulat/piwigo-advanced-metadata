@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.1b
+Version: 0.3b
 Description: An advanced metadata manager
 Plugin URI: http://phpwebgallery.net/ext/extension_view.php?eid=364
 Author: Piwigo team
@@ -23,7 +23,8 @@ Author URI: http://piwigo.org
 | release | date       |
 | 0.0     | 2010/01/21 | * start coding
 | 0.1b    | 2010/03/21 | * beta release
-|         |            |
+| 0.2b    | 2010/03/23 | * beta release
+| 0.3b    | 2010/04/11 | * beta release
 |         |            |
 |         |            |
 |         |            |
@@ -52,7 +53,7 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 define('AMD_DIR' , basename(dirname(__FILE__)));
 define('AMD_PATH' , PHPWG_PLUGINS_PATH . AMD_DIR . '/');
 
-define('AMD_VERSION' , '0.1b'); //=> ne pas oublier la version dans l'entête !!
+define('AMD_VERSION' , '0.3b'); //=> ne pas oublier la version dans l'entête !!
 
 global $prefixeTable, $page;
 
