@@ -82,11 +82,12 @@ class AMD_PIP extends AMD_root
     $this->jpegMD->load(
       $filename,
       Array(
-        'filter' => JpegMetaData::TAGFILTER_IMPLEMENTED,
+        'filter' => AMD_JpegMetaData::TAGFILTER_IMPLEMENTED,
         'optimizeIptcDateTime' => true,
         'exif' => true,
         'iptc' => true,
-        'xmp' => true
+        'xmp' => true,
+        'magic' => true,
       )
     );
 

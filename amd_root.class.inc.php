@@ -23,7 +23,7 @@ if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
 include_once(PHPWG_PLUGINS_PATH.'grum_plugins_classes-2/common_plugin.class.inc.php');
 include_once(PHPWG_PLUGINS_PATH.'grum_plugins_classes-2/css.class.inc.php');
 
-include_once('JpegMetaData/JpegMetaData.class.php');
+include_once('amd_jpegmetadata.class.inc.php');
 include_once(JPEG_METADATA_DIR."Common/L10n.class.php");
 include_once(JPEG_METADATA_DIR."TagDefinitions/XmpTags.class.php");
 
@@ -43,7 +43,7 @@ class AMD_root extends common_plugin
     $this->set_tables_list($tableList);
 
     $this->css = new css(dirname($this->filelocation).'/'.$this->plugin_name_files.".css");
-    $this->jpegMD=new JpegMetaData();
+    $this->jpegMD=new AMD_JpegMetaData();
 
     if(isset($user['language']))
     {
@@ -175,7 +175,7 @@ class AMD_root extends common_plugin
       $this->jpegMD->load(
         $fileName,
         Array(
-          'filter' => JpegMetaData::TAGFILTER_IMPLEMENTED,
+          'filter' => AMD_JpegMetaData::TAGFILTER_IMPLEMENTED,
           'optimizeIptcDateTime' => true,
           'exif' => true,
           'iptc' => true,

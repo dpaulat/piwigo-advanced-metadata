@@ -139,7 +139,7 @@
       /*
        * fill the 'used_tags' table with default values
        */
-      foreach(JpegMetaData::getTagList(Array('filter' => JpegMetaData::TAGFILTER_IMPLEMENTED, 'xmp' => true, 'maker' => true, 'iptc' => true)) as $key => $val)
+      foreach(AMD_JpegMetaData::getTagList(Array('filter' => AMD_JpegMetaData::TAGFILTER_IMPLEMENTED, 'xmp' => true, 'maker' => true, 'iptc' => true)) as $key => $val)
       {
         $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0, '".L10n::get($val['name'])."');";
         pwg_query($sql);
