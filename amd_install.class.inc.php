@@ -29,7 +29,7 @@
     public function __construct($prefixeTable, $filelocation)
     {
       parent::__construct($prefixeTable, $filelocation);
-      $this->tablef= new manage_tables($this->tables);
+      $this->tablef= new GPCTables($this->tables);
     }
 
     public function __destruct()
@@ -45,6 +45,11 @@
     public function install()
     {
       global $user, $lang;
+
+      $this->initConfig();
+      $this->loadConfig();
+      $this->config['installed']=AMD_VERSION2;
+      $this->saveConfig();
 
       $tables_def=array(
 "CREATE TABLE `".$this->tables['used_tags']."` (
@@ -89,7 +94,7 @@
 );
       //$table_def array
       $tables_def = create_table_add_character_set($tables_def);
-      $result=$this->tablef->create_tables($tables_def);
+      $result=$this->tablef->create($tables_def);
       unset($tables_def);
 
       $tables_insert=array(
@@ -120,8 +125,8 @@
     */
     public function uninstall()
     {
-      $this->delete_config();
-      $this->tablef->drop_tables();
+      $this->deleteConfig();
+      $this->tablef->drop();
     }
 
     public function activate()
@@ -141,7 +146,7 @@
        */
       foreach(AMD_JpegMetaData::getTagList(Array('filter' => AMD_JpegMetaData::TAGFILTER_IMPLEMENTED, 'xmp' => true, 'maker' => true, 'iptc' => true)) as $key => $val)
       {
-        $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0, '".L10n::get($val['name'])."');";
+        $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0, '".addslashes(L10n::get($val['name']))."');";
         pwg_query($sql);
       }
 
@@ -153,6 +158,7 @@
             FROM ".CADDIE_TABLE." tc
               LEFT JOIN ".IMAGES_TABLE." ti ON ti.id = tc.element_id
             WHERE tc.user_id = ".$user['id']."
+              AND ti.id IS NOT NULL
             ORDER BY RAND() LIMIT 25;";
       $result=pwg_query($sql);
       if($result)
@@ -206,9 +212,10 @@
         $this->makeStatsConsolidation();
       }
 
-      $this->init_config();
-      $this->load_config();
-      $this->save_config();
+      $this->initConfig();
+      $this->loadConfig();
+      $this->config['installed']=AMD_VERSION2; //update the installed release number
+      $this->saveConfig();
     }
 
 

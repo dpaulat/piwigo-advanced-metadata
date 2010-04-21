@@ -33,10 +33,10 @@ class AMD_AIM extends AMD_root
   /*
     initialize events call for the plugin
   */
-  function init_events()
+  function initEvents()
   {
-    parent::init_events();
-    add_event_handler('get_admin_plugin_menu_links', array(&$this, 'plugin_admin_menu') );
+    parent::initEvents();
+    add_event_handler('get_admin_plugin_menu_links', array(&$this, 'pluginAdminMenu') );
   }
 
 } // amd_aim  class

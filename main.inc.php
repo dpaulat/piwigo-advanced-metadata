@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.3b
+Version: 0.4b
 Description: An advanced metadata manager
-Plugin URI: http://phpwebgallery.net/ext/extension_view.php?eid=364
-Author: Piwigo team
-Author URI: http://piwigo.org
+Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
+Author: grum@piwigo.org
+Author URI: http://photos.grum.fr/
 */
 
 /*
@@ -25,6 +25,7 @@ Author URI: http://piwigo.org
 | 0.1b    | 2010/03/21 | * beta release
 | 0.2b    | 2010/03/23 | * beta release
 | 0.3b    | 2010/04/11 | * beta release
+| 0.4b    | 2010/04/18 | * beta release for Piwigo 2.1
 |         |            |
 |         |            |
 |         |            |
@@ -45,15 +46,15 @@ Author URI: http://piwigo.org
 */
 
 // pour faciliter le debug - make debug easier :o)
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', true);
+// ini_set('error_reporting', E_ALL);
+// ini_set('display_errors', true);
 
 if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
 define('AMD_DIR' , basename(dirname(__FILE__)));
 define('AMD_PATH' , PHPWG_PLUGINS_PATH . AMD_DIR . '/');
 
-define('AMD_VERSION' , '0.3b'); //=> ne pas oublier la version dans l'entête !!
+include_once('amd_version.inc.php'); // => Don't forget to update this file !!
 
 global $prefixeTable, $page;
 
@@ -63,7 +64,7 @@ if(defined('IN_ADMIN'))
   //AMD admin part loaded and active only if in admin page
   include_once("amd_aim.class.inc.php");
   $obj = new AMD_AIM($prefixeTable, __FILE__);
-  $obj->init_events();
+  $obj->initEvents();
   set_plugin_data($plugin['id'], $obj);
 }
 else

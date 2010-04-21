@@ -20,14 +20,14 @@
 
 if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
 
-include_once(PHPWG_PLUGINS_PATH.'grum_plugins_classes-2/common_plugin.class.inc.php');
-include_once(PHPWG_PLUGINS_PATH.'grum_plugins_classes-2/css.class.inc.php');
+include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php');
+include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCCss.class.inc.php');
 
 include_once('amd_jpegmetadata.class.inc.php');
 include_once(JPEG_METADATA_DIR."Common/L10n.class.php");
 include_once(JPEG_METADATA_DIR."TagDefinitions/XmpTags.class.php");
 
-class AMD_root extends common_plugin
+class AMD_root extends CommonPlugin
 {
   protected $css;   //the css object
   protected $jpegMD;
@@ -35,14 +35,14 @@ class AMD_root extends common_plugin
   public function __construct($prefixeTable, $filelocation)
   {
     global $user;
-    $this->plugin_name="AMetaData";
-    $this->plugin_name_files="amd";
+    $this->setPluginName("AMetaData");
+    $this->setPluginNameFiles("amd");
     parent::__construct($prefixeTable, $filelocation);
 
     $tableList=array('used_tags', 'images_tags', 'images', 'selected_tags', 'groups_names', 'groups');
-    $this->set_tables_list($tableList);
+    $this->setTablesList($tableList);
 
-    $this->css = new css(dirname($this->filelocation).'/'.$this->plugin_name_files.".css");
+    $this->css = new GPCCss(dirname($this->getFileLocation()).'/'.$this->getPluginNameFiles().".css");
     $this->jpegMD=new AMD_JpegMetaData();
 
     if(isset($user['language']))
@@ -63,10 +63,10 @@ class AMD_root extends common_plugin
   common AIP & PIP functions
   --------------------------------------------------------------------------- */
 
-  /* this function initialize var $my_config with default values */
-  public function init_config()
+  /* this function initialize var $config with default values */
+  public function initConfig()
   {
-    $this->my_config=array(
+    $this->config=array(
       'amd_NumberOfItemsPerRequest' => 25,
       'amd_GetListTags_OrderType' => "tag",
       'amd_GetListTags_FilterType' => "magic",
@@ -78,19 +78,19 @@ class AMD_root extends common_plugin
     );
   }
 
-  public function load_config()
+  public function loadConfig()
   {
-    parent::load_config();
+    parent::loadConfig();
   }
 
-  public function init_events()
+  public function initEvents()
   {
-    parent::init_events();
+    parent::initEvents();
 
 
     if(!isset($_REQUEST['ajaxfct']) and
-       $this->my_config['amd_FillDataBaseContinuously']=='y' and
-       $this->my_config['amd_AllPicturesAreAnalyzed']=='n')
+       $this->config['amd_FillDataBaseContinuously']=='y' and
+       $this->config['amd_AllPicturesAreAnalyzed']=='n')
     {
       /* do analyze for a random picture only if :
        *  - config is set to fill database continuously
@@ -269,11 +269,11 @@ class AMD_root extends common_plugin
     {
       while($row=mysql_fetch_assoc($result))
       {
-        $this->my_config['amd_AllPicturesAreAnalyzed']=($row['nb']==0)?'y':'n';
+        $this->config['amd_AllPicturesAreAnalyzed']=($row['nb']==0)?'y':'n';
       }
 
     }
-    $this->save_config();
+    $this->saveConfig();
   }
 
 

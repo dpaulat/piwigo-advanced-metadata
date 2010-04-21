@@ -1,25 +1,9 @@
-{known_script id="jquery.ui" src=$ROOT_URL|@cat:"template-common/lib/ui/ui.core.packed.js"}
-{known_script id="jquery.ui.slider" src=$ROOT_URL|@cat:"template-common/lib/ui/ui.slider.packed.js"}
-{known_script id="jquery.ui.dialog" src=$ROOT_URL|@cat:"template-common/lib/ui/ui.dialog.packed.js"}
+{known_script id="jquery.ui" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.core.packed.js"}
+{known_script id="jquery.ui.slider" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.slider.packed.js"}
+{known_script id="jquery.ui.dialog" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.dialog.packed.js"}
+
 
 {literal}
-<style>
- .ui-slider {
-    width:350px;
-    height:10px;
-    border:1px solid;
-    margin-left:10px;
-  }
- .ui-slider-handle {
-    width:12px;
-    height:12px;
-    position:relative;
-    top:-2px;
-    border:1px solid;
-    background:#cccccc;
-  }
-</style>
-
 <script type="text/javascript">
 
   function init()
@@ -88,10 +72,12 @@
 
 
     doAnalyze="<br><form id='iDialogProgress' class='formtable'>"+
-      "<div id='iprogressbar_contener'>"+
-      "<span id='iprogressbar_bg' style='width:0%;'>&nbsp;</span>"+
-      "<span id='iprogressbar_fg'>0%</span>"+
-      "</div>{/literal}{'g003_analyze_in_progress'|@translate}{literal}</form>";
+      "<div id='iprogressbar_contener' class='gcBorderInput'>"+
+      "<span id='iprogressbar_bg' class='gcBgInput' style='width:0%;'>&nbsp;</span>"+
+      "<span id='iprogressbar_fg' class='gcLink'>0%</span>"+
+      "</div><p>{/literal}{'g003_analyze_in_progress'|@translate}{literal}"+
+      "<br><img src='./plugins/GrumPluginClasses/icons/processing.gif'>"
+      "</p></form>";
 
     $("#dialog")
     .html("")
@@ -101,13 +87,9 @@
         width:480,
         height:120,
         modal: true,
-        draggable:false,
+        draggable:true,
+        dialogClass: 'gcBgTabSheet gcBorder',
         title: '{/literal}{"g003_updating_metadata"|@translate}{literal}&nbsp;('+modeLabel+')',
-        overlay:
-        {
-          backgroundColor: '#000',
-          opacity: 0.5,
-        }
       }
     ).html(doAnalyze);
 
@@ -183,13 +165,10 @@
         width:480,
         height:120,
         modal: true,
-        draggable:false,
+        draggable:true,
+        dialogClass: 'gcBgTabSheet gcBorder',
         title: '{/literal}{"g003_updating_metadata"|@translate}{literal}',
-        overlay:
-        {
-          backgroundColor: '#000',
-          opacity: 0.5
-        },
+        dialogClass: 'gcBgTabSheet gcBorder',
         open: function(event, ui)
         {
           bH=$("div.ui-dialog-buttonpane").get(0).clientHeight;
@@ -204,7 +183,8 @@
             }
         }
       }
-    ).html("<br>{/literal}{'g003_analyze_is_finished'|@translate}{literal}&nbsp;("+displayTime(timeElapsed/1000)+")");
+    )
+    .html("<br>{/literal}{'g003_analyze_is_finished'|@translate}{literal}&nbsp;("+displayTime(timeElapsed/1000)+")");
 
     getStatus();
     $("body").css("cursor", "default");

@@ -8,7 +8,7 @@
 {/literal}
 
 
-<table class="littlefont listTags" style="width:100%;">
+<table class="littlefont listTags {$themeconf.name}" style="width:100%;">
   {foreach from=$datas key=name item=data}
   <tr>
     <td width="30px"><input type="checkbox" id="iTagId{$data.numId}" {$data.state}></td>

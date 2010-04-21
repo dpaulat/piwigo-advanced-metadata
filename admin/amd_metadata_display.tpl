@@ -1,6 +1,14 @@
 
 
 {literal}
+<style>
+ .ui-widget-overlay {
+    background:#000000;
+    opacity:0.88;
+    filter:alpha(opacity:88);
+ }
+</style>
+
 <script type="text/javascript">
 
   function init()
@@ -158,12 +166,8 @@
           height:120,
           modal: true,
           draggable:true,
+          dialogClass: 'gcBgTabSheet gcBorder',
           title: "{/literal}{'g003_deleting_a_group'|@translate}{literal}",
-          overlay:
-          {
-            backgroundColor: '#000',
-            opacity: 0.5
-          },
           buttons:
           {
             '{/literal}{"g003_yes"|@translate}{literal}':
@@ -221,12 +225,8 @@
         height:120,
         modal: true,
         draggable:true,
+        dialogClass: 'gcBgTabSheet gcBorder',
         title: dialogTitle,
-        overlay:
-        {
-          backgroundColor: '#000',
-          opacity: 0.5
-        },
         buttons:
         {
           '{/literal}{"g003_ok"|@translate}{literal}':
@@ -293,12 +293,8 @@
         height:320,
         modal: true,
         draggable:true,
+        dialogClass: 'gcBgTabSheet gcBorder',
         title: '{/literal}{"g003_add_delete_tags"|@translate}{literal}',
-        overlay:
-        {
-          backgroundColor: '#000',
-          opacity: 0.5
-        },
         open: function(event, ui)
         {
           bH=$("div.ui-dialog-buttonpane").get(0).clientHeight;
@@ -329,6 +325,7 @@
                   data: { ajaxfct:"groupSetTagList", id:groupId, listTag:list }
                 }
               ).responseText;
+
               $(this).dialog('destroy').html("").get(0).removeAttribute('style');
               loadGroupTags(groupId);
             },
@@ -340,15 +337,20 @@
         }
       }
     )
-    .html(
-      $.ajax(
-        {
-          type: "POST",
-          url: "{/literal}{$datas.urlRequest}{literal}",
-          async: false,
-          data: { ajaxfct:"groupGetTagList", id:groupId }
-        }
-      ).responseText
+    .html("<br>{/literal}{'g003_loading'|@translate}{literal}<br><img src='./plugins/GrumPluginClasses/icons/processing.gif'>");
+
+    $.ajax(
+      {
+        type: "POST",
+        url: "{/literal}{$datas.urlRequest}{literal}",
+        async: true,
+        data: { ajaxfct:"groupGetTagList", id:groupId },
+        success:
+          function(msg)
+          {
+            $("#dialog").html(msg);
+          }
+      }
     );
   }
 

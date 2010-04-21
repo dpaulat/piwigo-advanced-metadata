@@ -22,16 +22,15 @@
 if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
 
 include_once('amd_root.class.inc.php');
-include_once(PHPWG_ROOT_PATH.'admin/include/tabsheet.class.php');
-include_once(PHPWG_PLUGINS_PATH.'grum_plugins_classes-2/ajax.class.inc.php');
-include_once(PHPWG_PLUGINS_PATH.'grum_plugins_classes-2/genericjs.class.inc.php');
+include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCTabSheet.class.inc.php');
+include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCAjax.class.inc.php');
+include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/genericjs.class.inc.php');
 
 
 
 class AMD_AIP extends AMD_root
 {
   protected $tabsheet;
-  protected $ajax;
 
   /**
    *
@@ -44,17 +43,16 @@ class AMD_AIP extends AMD_root
   {
     parent::__construct($prefixeTable, $filelocation);
 
-    $this->load_config();
-    $this->init_events();
+    $this->loadConfig();
+    $this->initEvents();
 
     $this->tabsheet = new tabsheet();
     $this->tabsheet->add('metadata',
                           l10n('g003_metadata'),
-                          $this->page_link.'&amp;fAMD_tabsheet=metadata');
+                          $this->getAdminLink().'&amp;fAMD_tabsheet=metadata');
     $this->tabsheet->add('help',
                           l10n('g003_help'),
-                          $this->page_link.'&amp;fAMD_tabsheet=help');
-    $this->ajax = new Ajax();
+                          $this->getAdminLink().'&amp;fAMD_tabsheet=help');
   }
 
   public function __destruct()
@@ -90,7 +88,7 @@ class AMD_AIP extends AMD_root
     $selected_tab=$this->tabsheet->get_selected();
     $template->assign($this->tabsheet->get_titlename(), "[".$selected_tab['caption']."]");
 
-    $template_plugin["AMD_VERSION"] = "<i>".$this->plugin_name."</i> ".l10n('g003_version').AMD_VERSION;
+    $template_plugin["AMD_VERSION"] = "<i>".$this->getPluginName()."</i> ".l10n('g003_version').AMD_VERSION;
     $template_plugin["AMD_PAGE"] = $_REQUEST['fAMD_tabsheet'];
     $template_plugin["PATH"] = AMD_PATH;
 
@@ -110,10 +108,12 @@ class AMD_AIP extends AMD_root
 
   /**
    * initialize events call for the plugin
+   *
+   * don't inherits from its parent => it's normal
    */
-  public function init_events()
+  public function initEvents()
   {
-    add_event_handler('loc_end_page_header', array(&$this->css, 'apply_CSS'));
+    add_event_handler('loc_end_page_header', array(&$this->css, 'applyCSS'));
   }
 
   /**
@@ -190,7 +190,7 @@ class AMD_AIP extends AMD_root
           $result=$this->ajax_amd_groupSetOrderedTagList($_REQUEST['id'], $_REQUEST['listTag']);
           break;
       }
-      $this->ajax->return_result($result);
+      GPCAjax::returnResult($result);
     }
   }
 
@@ -510,17 +510,17 @@ class AMD_AIP extends AMD_root
     global $template, $user;
     $template->set_filename('body_page', dirname(__FILE__).'/admin/amd_metadata.tpl');
 
-    $statTabsheet = new tabsheet('statTabsheet', $this->tabsheet->get_titlename());
+    $statTabsheet = new GPCTabSheet('statTabsheet', $this->tabsheet->get_titlename(), 'tabsheet2 gcBorder', 'itab2');
     $statTabsheet->select($tab);
     $statTabsheet->add('database',
                           l10n('g003_database'),
-                          $this->page_link.'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=database');
+                          $this->getAdminLink().'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=database');
     $statTabsheet->add('select',
                           l10n('g003_select'),
-                          $this->page_link.'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=select');
+                          $this->getAdminLink().'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=select');
     $statTabsheet->add('display',
                           l10n('g003_display'),
-                          $this->page_link.'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=display');
+                          $this->getAdminLink().'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=display');
     $statTabsheet->assign();
 
 
@@ -548,18 +548,22 @@ class AMD_AIP extends AMD_root
    */
   protected function displayMetaDataSelect()
   {
-    global $template;
+    global $template, $theme, $themes, $themeconf;
+    /*echo "A".print_r($theme, true)."<br>";
+    echo "B".print_r($themes, true)."<br>";
+    echo "C".print_r($themeconf, true)."<br>";
+    echo "D".print_r($template->smarty->[], true)."<br>";*/
 
     $template->set_filename('sheet_page',
-                  dirname($this->filelocation).'/admin/amd_metadata_select.tpl');
+                  dirname($this->getFileLocation()).'/admin/amd_metadata_select.tpl');
 
     $datas=array(
-      'urlRequest' => $this->page_link,
-      'config_GetListTags_OrderType' => $this->my_config['amd_GetListTags_OrderType'],
-      'config_GetListTags_FilterType' => $this->my_config['amd_GetListTags_FilterType'],
-      'config_GetListTags_ExcludeUnusedTag' => $this->my_config['amd_GetListTags_ExcludeUnusedTag'],
-      'config_GetListTags_SelectedTagOnly' => $this->my_config['amd_GetListTags_SelectedTagOnly'],
-      'config_GetListImages_OrderType' => $this->my_config['amd_GetListImages_OrderType']
+      'urlRequest' => $this->getAdminLink(),
+      'config_GetListTags_OrderType' => $this->config['amd_GetListTags_OrderType'],
+      'config_GetListTags_FilterType' => $this->config['amd_GetListTags_FilterType'],
+      'config_GetListTags_ExcludeUnusedTag' => $this->config['amd_GetListTags_ExcludeUnusedTag'],
+      'config_GetListTags_SelectedTagOnly' => $this->config['amd_GetListTags_SelectedTagOnly'],
+      'config_GetListImages_OrderType' => $this->config['amd_GetListImages_OrderType']
     );
 
 
@@ -580,11 +584,11 @@ class AMD_AIP extends AMD_root
 
     //$local_tpl = new Template(AMD_PATH."admin/", "");
     $template->set_filename('sheet_page',
-                  dirname($this->filelocation).'/admin/amd_metadata_display.tpl');
+                  dirname($this->getFileLocation()).'/admin/amd_metadata_display.tpl');
 
 
     $datas=array(
-      'urlRequest' => $this->page_link,
+      'urlRequest' => $this->getAdminLink(),
       'selectedTags' => Array(),
       'groups' => Array(),
       'tagByGroup' => Array(),
@@ -687,8 +691,8 @@ class AMD_AIP extends AMD_root
     $template->set_filename('sheet_page', dirname(__FILE__).'/admin/amd_metadata_database.tpl');
 
     $datas=array(
-      'urlRequest' => $this->page_link,
-      'NumberOfItemsPerRequest' => $this->my_config['amd_NumberOfItemsPerRequest'],
+      'urlRequest' => $this->getAdminLink(),
+      'NumberOfItemsPerRequest' => $this->config['amd_NumberOfItemsPerRequest'],
     );
 
     $template->assign("datas", $datas);
@@ -710,20 +714,20 @@ class AMD_AIP extends AMD_root
     global $template, $user, $lang;
     $template->set_filename('body_page', dirname(__FILE__).'/admin/amd_help.tpl');
 
-    $statTabsheet = new tabsheet('statTabsheet', $this->tabsheet->get_titlename());
+    $statTabsheet = new GPCTabSheet('statTabsheet', $this->tabsheet->get_titlename(), 'tabsheet2 gcBorder', 'itab2');
     $statTabsheet->select($tab);
     $statTabsheet->add('exif',
                           l10n('g003_help_tab_exif'),
-                          $this->page_link.'&amp;fAMD_tabsheet=help&amp;fAMD_page=exif');
+                          $this->getAdminLink().'&amp;fAMD_tabsheet=help&amp;fAMD_page=exif');
     $statTabsheet->add('iptc',
                           l10n('g003_help_tab_iptc'),
-                          $this->page_link.'&amp;fAMD_tabsheet=help&amp;fAMD_page=iptc');
+                          $this->getAdminLink().'&amp;fAMD_tabsheet=help&amp;fAMD_page=iptc');
     $statTabsheet->add('xmp',
                           l10n('g003_help_tab_xmp'),
-                          $this->page_link.'&amp;fAMD_tabsheet=help&amp;fAMD_page=xmp');
+                          $this->getAdminLink().'&amp;fAMD_tabsheet=help&amp;fAMD_page=xmp');
     $statTabsheet->add('magic',
                           l10n('g003_help_tab_magic'),
-                          $this->page_link.'&amp;fAMD_tabsheet=help&amp;fAMD_page=magic');
+                          $this->getAdminLink().'&amp;fAMD_tabsheet=help&amp;fAMD_page=magic');
     $statTabsheet->assign();
 
     $data=Array(
@@ -810,8 +814,8 @@ class AMD_AIP extends AMD_root
     global $user;
 
     $returned="";
-    $this->my_config['amd_NumberOfItemsPerRequest']=$nbOfItems;
-    $this->save_config();
+    $this->config['amd_NumberOfItemsPerRequest']=$nbOfItems;
+    $this->saveConfig();
 
     $sql="SELECT ait.imageId FROM ".$this->tables['images']." ait";
     if($mode=="notAnalyzed")
@@ -981,15 +985,17 @@ class AMD_AIP extends AMD_root
    */
   private function ajax_amd_showStatsGetListTags($orderType, $filterType, $excludeUnusedTag, $selectedTagOnly)
   {
-    $this->my_config['amd_GetListTags_OrderType'] = $orderType;
-    $this->my_config['amd_GetListTags_FilterType'] = $filterType;
-    $this->my_config['amd_GetListTags_ExcludeUnusedTag'] = $excludeUnusedTag;
-    $this->my_config['amd_GetListTags_SelectedTagOnly'] = $selectedTagOnly;
-    $this->save_config();
+    global $template;
+
+    $this->config['amd_GetListTags_OrderType'] = $orderType;
+    $this->config['amd_GetListTags_FilterType'] = $filterType;
+    $this->config['amd_GetListTags_ExcludeUnusedTag'] = $excludeUnusedTag;
+    $this->config['amd_GetListTags_SelectedTagOnly'] = $selectedTagOnly;
+    $this->saveConfig();
 
     $local_tpl = new Template(AMD_PATH."admin/", "");
     $local_tpl->set_filename('body_page',
-                  dirname($this->filelocation).'/admin/amd_metadata_select_iListTags.tpl');
+                  dirname($this->getFileLocation()).'/admin/amd_metadata_select_iListTags.tpl');
 
     $numOfPictures=$this->getNumOfPictures();
 
@@ -1057,6 +1063,7 @@ class AMD_AIP extends AMD_root
       }
     }
 
+    $local_tpl->assign('themeconf', Array('name' => $template->get_themeconf('name')));
     $local_tpl->assign('datas', $datas);
 
     return($local_tpl->parse('body_page', true));
@@ -1069,12 +1076,14 @@ class AMD_AIP extends AMD_root
    */
   private function ajax_amd_showStatsGetListImages($tagId, $orderType)
   {
-    $this->my_config['amd_GetListImages_OrderType'] = $orderType;
-    $this->save_config();
+    global $template;
+
+    $this->config['amd_GetListImages_OrderType'] = $orderType;
+    $this->saveConfig();
 
     $local_tpl = new Template(AMD_PATH."admin/", "");
     $local_tpl->set_filename('body_page',
-                  dirname($this->filelocation).'/admin/amd_metadata_select_iListImages.tpl');
+                  dirname($this->getFileLocation()).'/admin/amd_metadata_select_iListImages.tpl');
 
 
 
@@ -1112,6 +1121,7 @@ class AMD_AIP extends AMD_root
 
     if(count($datas)>0)
     {
+      $local_tpl->assign('themeconf', Array('name' => $template->get_themeconf('name')));
       $local_tpl->assign('datas', $datas);
       return($local_tpl->parse('body_page', true));
     }
@@ -1152,8 +1162,8 @@ class AMD_AIP extends AMD_root
     elseif($selected=='n')
     {
       $sql="DELETE FROM ".$this->tables['selected_tags']." st
-              USING phpwebgallery_amd_used_tags ut
-                LEFT JOIN phpwebgallery_amd_selected_tags st
+              USING ".$this->tables['used_tags']." ut
+                LEFT JOIN ".$this->tables['selected_tags']." st
                   ON ut.tagID = st.tagId
               WHERE ut.numId = $numId;";
       pwg_query($sql);
@@ -1173,6 +1183,8 @@ class AMD_AIP extends AMD_root
    */
   private function ajax_amd_groupGetTagList($id)
   {
+    global $template;
+
     if($id!="")
     {
       $sql="SELECT st.tagId, st.groupId, ut.name, ut.numId
@@ -1212,7 +1224,8 @@ class AMD_AIP extends AMD_root
         {
           $local_tpl = new Template(AMD_PATH."admin/", "");
           $local_tpl->set_filename('body_page',
-                        dirname($this->filelocation).'/admin/amd_metadata_display_groupListTagSelect.tpl');
+                        dirname($this->getFileLocation()).'/admin/amd_metadata_display_groupListTagSelect.tpl');
+          $local_tpl->assign('themeconf', Array('name' => $template->get_themeconf('name')));
           $local_tpl->assign('datas', $datas);
           return($local_tpl->parse('body_page', true));
         }
@@ -1298,7 +1311,7 @@ class AMD_AIP extends AMD_root
         if(count($datas)>0)
         {
           $template->set_filename('list_page',
-                        dirname($this->filelocation).'/admin/amd_metadata_display_groupListTagOrder.tpl');
+                        dirname($this->getFileLocation()).'/admin/amd_metadata_display_groupListTagOrder.tpl');
           $template->assign('datas', $datas);
           $template->assign('group', $id);
           return($template->parse('list_page', true));
@@ -1431,7 +1444,7 @@ class AMD_AIP extends AMD_root
 
     $local_tpl = new Template(AMD_PATH."admin/", "");
     $local_tpl->set_filename('body_page',
-                  dirname($this->filelocation).'/admin/amd_metadata_display_groupEdit.tpl');
+                  dirname($this->getFileLocation()).'/admin/amd_metadata_display_groupEdit.tpl');
 
     $datasLang=array(
       'language_list' => Array(),
@@ -1489,7 +1502,7 @@ class AMD_AIP extends AMD_root
 
     //$local_tpl = new Template(AMD_PATH."admin/", "");
     $template->set_filename('group_list',
-                  dirname($this->filelocation).'/admin/amd_metadata_display_groupList.tpl');
+                  dirname($this->getFileLocation()).'/admin/amd_metadata_display_groupList.tpl');
 
 
     $datas=array(

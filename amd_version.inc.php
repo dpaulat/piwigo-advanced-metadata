@@ -12,22 +12,10 @@
  *
  * -----------------------------------------------------------------------------
  *
- * See main.inc.php for release information
- *
- * -----------------------------------------------------------------------------
-*/
+ */
 
-if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
+  if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
-include(AMD_PATH."amd_aip.class.inc.php");
-
-global $prefixeTable;
-
-load_language('plugin.lang', AMD_PATH);
-
-$main_plugin_object = get_plugin_data($plugin_id);
-
-$plugin_ai = new AMD_AIP($prefixeTable, $main_plugin_object->getFileLocation());
-$plugin_ai->manage();
-
+  define('AMD_VERSION',  '0.4.0');
+  define('AMD_VERSION2', '00.04.00');
 ?>

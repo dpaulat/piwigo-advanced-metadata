@@ -1,4 +1,13 @@
 {literal}
+<style>
+ .ui-widget-overlay {
+    background:#000000;
+    opacity:0.88;
+    filter:alpha(opacity:88);
+ }
+</style>
+
+
 <script type="text/javascript">
 
   var globalTagId;
@@ -15,13 +24,9 @@
         width:computedWidth,
         height:computedHeight,
         modal: true,
-        draggable:false,
+        draggable:true,
+        dialogClass: 'gcBgTabSheet gcBorder',
         title: '{/literal}{"g003_metadata_detail"|@translate}{literal}',
-        overlay:
-        {
-          backgroundColor: '#000',
-          opacity: 0.5
-        },
         open: function(event, ui)
         {
           bH=$("div.ui-dialog-buttonpane").get(0).clientHeight;
@@ -42,7 +47,6 @@
 
   function loadTagList()
   {
-    $("body").css("cursor", "wait");
     order=$('#iSelectOrderTagList').val();
     filter=$("#iSelectFilterTagList").val();
     unusedTag=($("#iExcludeUnusedTagList").get(0).checked)?"y":"n";
@@ -50,41 +54,45 @@
 
     displayTagListOrder();
 
-    $("#iListTags").html(
-      $.ajax({
+    $("#iListTags").html("<br>{/literal}{'g003_loading'|@translate}{literal}<br><img src='./plugins/GrumPluginClasses/icons/processing.gif'>");
+
+    $.ajax(
+      {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
-        async: false,
-        data: { ajaxfct:"showStatsGetListTags", orderType:order, filterType:filter, excludeUnusedTag:unusedTag, selectedTagOnly:selectedOnly }
-       }).responseText
+        async: true,
+        data: { ajaxfct:"showStatsGetListTags", orderType:order, filterType:filter, excludeUnusedTag:unusedTag, selectedTagOnly:selectedOnly },
+        success:
+          function(msg)
+          {
+            $("#iListTags").html(msg);
+
+            $("#iListTagsNb").html(
+              "{/literal}{'g003_number_of_filtered_metadata'|@translate}{literal} "+$("#iListTags table tr").length
+            );
+
+            //onclick="updateTagSelect('iNumId{$data.numId}', '')"
+            $("input.cbiListTags")
+              .bind('click',
+                function(event)
+                {
+                  event.stopPropagation();
+                  updateTagSelect($(this).get(0).id, '');
+                }
+              );
+
+            $("a.cbiListTags")
+              .bind('click',
+                function(event)
+                {
+                  event.stopPropagation();
+                  loadTagDetail($(this).get(0).id.substr(7));
+                }
+              );
+          }
+      }
     );
-    $("#iListTagsNb").html(
-      "{/literal}{'g003_number_of_filtered_metadata'|@translate}{literal} "+$("#iListTags table tr").length
-    );
 
-    //onclick="updateTagSelect('iNumId{$data.numId}', '')"
-    $("input.cbiListTags")
-      .bind('click',
-        function(event)
-        {
-          event.stopPropagation();
-          updateTagSelect($(this).get(0).id, '');
-        }
-      );
-
-    $("a.cbiListTags")
-      .bind('click',
-        function(event)
-        {
-          event.stopPropagation();
-          loadTagDetail($(this).get(0).id.substr(7));
-        }
-      );
-
-
-
-
-    $("body").css("cursor", "default");
   }
 
   function loadTagDetail(tag)
@@ -93,7 +101,7 @@
 
     globalTagId=tag;
     order=$('#iSelectOrderImageList').val();
-    $("#iListImages").html("<br>{/literal}{'g003_loading'|@translate}{literal}");
+    $("#iListImages").html("<br>{/literal}{'g003_loading'|@translate}{literal}<br><img src='./plugins/GrumPluginClasses/icons/processing.gif'>");
     $("#iHeaderListImagesTagName").html("["+tag+"]");
 
     $.ajax(
@@ -116,7 +124,6 @@
 
   function updateTagSelect(numId, mode)
   {
-    $("body").css("cursor", "wait");
 
     if(mode=='switch')
     {
@@ -133,7 +140,7 @@
         data: { ajaxfct:"updateTagSelect", tagSelected:selected, numId:numId.substr(6) }
        }).responseText
     );
-    $("body").css("cursor", "default");
+
   }
 
   function sortTagList(by)
@@ -167,9 +174,11 @@
     else
     {
       // by label
+      /* not fully implemented
       $("#iHLTOrderTag").html("");
       $("#iHLTOrderLabel").html("&#8593;");
       $("#iHLTOrderNum").html("");
+      */
     }
   }
 
@@ -223,13 +232,14 @@
 <table id='iHeaderListTags' class="littlefont">
   <tr>
     <th style="width:35%;min-width:340px;"><span id="iHLTOrderTag"></span><a onclick="sortTagList('tag');">{'g003_TagId'|@translate}</a></th>
-    <th><span id="iHLTOrderLabel"></span><a onclick="sortTagList('label');">{'g003_TagLabel'|@translate}</a></th>
+    {* <th><span id="iHLTOrderLabel"></span><a onclick="sortTagList('label');">{'g003_TagLabel'|@translate}</a></th> *}
+    <th>{'g003_TagLabel'|@translate}</th>
     <th width="80px"><span id="iHLTOrderNum"></span><a onclick="sortTagList('num');">{'g003_NumOfImage'|@translate}</a></th>
     <th width="40px">{'g003_Pct'|@translate}</th>
     <th width="110px">&nbsp;</th>
   </tr>
 </table>
-<div id='iListTags'>
+<div id='iListTags' class="{$themeconf.name}">
 </div>
 <div id="iListTagsNb"></div>
 
@@ -248,7 +258,7 @@
     </tr>
   </table>
 
-  <div id='iListImages'>
+  <div id='iListImages' class="{$themeconf.name}">
     <div style="width:100%;text-align:center;padding-top:20px;">{'g003_no_items_selected'|@translate}</div>
   </div>
   <div id="iListImagesNb"></div>

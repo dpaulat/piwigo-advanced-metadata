@@ -1,5 +1,5 @@
 {foreach from=$datas.groups key=name item=data}
-  <li id="iGroupId{$data.id}" class="groupItems">
+  <li id="iGroupId{$data.id}" class="groupItems gcBgPage">
     <img src="{$themeconf.admin_icon_dir}/cat_move.png" class="button drag_button" alt="{'Drag to re-order'|@translate}" title="{'Drag to re-order'|@translate}"/>
     <input type="hidden" id="iGroupName{$data.id}" value="{$data.name}">
     {$data.name}

@@ -21,19 +21,16 @@
 if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
 
 include_once('amd_root.class.inc.php');
-include_once(PHPWG_PLUGINS_PATH.'grum_plugins_classes-2/ajax.class.inc.php');
+include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCAjax.class.inc.php');
 
 class AMD_PIP extends AMD_root
 {
-  protected $ajax;
-
   function AMD_PIP($prefixeTable, $filelocation)
   {
     parent::__construct($prefixeTable, $filelocation);
-    $this->ajax = new Ajax();
 
-    $this->load_config();
-    $this->init_events();
+    $this->loadConfig();
+    $this->initEvents();
   }
 
 
@@ -45,9 +42,9 @@ class AMD_PIP extends AMD_root
   /*
     initialize events call for the plugin
   */
-  public function init_events()
+  public function initEvents()
   {
-    parent::init_events();
+    parent::initEvents();
     add_event_handler('loc_begin_picture', array(&$this, 'loadMetadata'));
   }
 
@@ -161,8 +158,8 @@ class AMD_PIP extends AMD_root
 
 
     if($analyzed=='n' and
-       $this->my_config['amd_FillDataBaseContinuously']=='y' and
-       $this->my_config['amd_AllPicturesAreAnalyzed']=='n')
+       $this->config['amd_FillDataBaseContinuously']=='y' and
+       $this->config['amd_AllPicturesAreAnalyzed']=='n')
     {
       /* if picture is not analyzed, do analyze
        *
