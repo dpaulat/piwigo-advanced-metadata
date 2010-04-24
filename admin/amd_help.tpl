@@ -1,6 +1,6 @@
 {$statTabsheet}
 
-<h3>{'g003_metadata'|@translate}&nbsp;{$data.title}</h3>
+<h2>{'g003_metadata'|@translate}&nbsp;{$data.title}</h2>
 
 <div id="helpBody">
 {$data.sheetContent}

@@ -114,7 +114,7 @@ class AMD_root extends CommonPlugin
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_row($result))
+      while($row=pwg_db_fetch_row($result))
       {
         $numOfPictures=$row[0];
       }
@@ -140,7 +140,7 @@ class AMD_root extends CommonPlugin
       // $path = path of piwigo's on the server filesystem
       $path=dirname(dirname(dirname(__FILE__)));
 
-      while($row=mysql_fetch_assoc($result))
+      while($row=pwg_db_fetch_assoc($result))
       {
         $this->analyzeImageFile($path."/".$row['path'], $row['imageId']);
       }
@@ -214,7 +214,7 @@ class AMD_root extends CommonPlugin
       if($result)
       {
         $numId=-1;
-        while($row=mysql_fetch_assoc($result))
+        while($row=pwg_db_fetch_assoc($result))
         {
           $numId=$row['numId'];
         }
@@ -267,7 +267,7 @@ class AMD_root extends CommonPlugin
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_assoc($result))
+      while($row=pwg_db_fetch_assoc($result))
       {
         $this->config['amd_AllPicturesAreAnalyzed']=($row['nb']==0)?'y':'n';
       }

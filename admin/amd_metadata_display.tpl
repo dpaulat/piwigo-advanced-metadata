@@ -358,7 +358,7 @@
 {/literal}
 
 
-<h3>{'g003_display_management'|@translate}</h3>
+<h2>{'g003_display_management'|@translate}</h2>
 
 <div class="addGroup">
   <a onclick="editGroup('');">{'g003_add_a_group'|@translate}</a>

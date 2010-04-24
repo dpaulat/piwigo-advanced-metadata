@@ -201,7 +201,7 @@
 {/literal}
 
 
-<h3>{'g003_select_metadata'|@translate}</h3>
+<h2>{'g003_select_metadata'|@translate}</h2>
 
 <form>
   <input type="hidden" id="iSelectOrderTagList" value="{$datas.config_GetListTags_OrderType}"/>

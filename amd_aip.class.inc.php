@@ -114,6 +114,7 @@ class AMD_AIP extends AMD_root
   public function initEvents()
   {
     add_event_handler('loc_end_page_header', array(&$this->css, 'applyCSS'));
+    GPCCss::applyGpcCss();
   }
 
   /**
@@ -602,7 +603,7 @@ class AMD_AIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_assoc($result))
+      while($row=pwg_db_fetch_assoc($result))
       {
         if($row['groupId']==-1)
         {
@@ -632,7 +633,7 @@ class AMD_AIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_assoc($result))
+      while($row=pwg_db_fetch_assoc($result))
       {
         $datas['groups'][]=Array(
           'id' => $row['groupId'],
@@ -731,7 +732,7 @@ class AMD_AIP extends AMD_root
     $statTabsheet->assign();
 
     $data=Array(
-      'sheetContent' => $this->BBtoHTML($lang['g003_help_'.$tab]),
+      'sheetContent' => GPCCore::BBtoHTML($lang['g003_help_'.$tab]),
       'title' => l10n('g003_help_tab_'.$tab),
     );
 
@@ -739,50 +740,6 @@ class AMD_AIP extends AMD_root
 
     $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
   }
-
-
-
-  /**
-   * convert (light) BB tag to HTML tag
-   *
-   * all BB codes are not recognized, only :
-   *  - [ul] [/ul]
-   *  - [li] [/li]
-   *  - [b] [/b]
-   *  - [i] [/i]
-   *  - [url] [/url]
-   *  - carriage return is replaced by a <br>
-   *
-   * @param String $text : text to convert
-   * @return String : BB to HTML text
-   */
-  protected function BBtoHTML($text)
-  {
-    $patterns = Array(
-      '/\[li\](.*?)\[\/li\]\n*/im',
-      '/\[b\](.*?)\[\/b\]/ism',
-      '/\[i\](.*?)\[\/i\]/ism',
-      '/\[url\]([\w]+?:\/\/[^ \"\n\r\t<]*?)\[\/url\]/ism',
-      '/\[url=([\w]+?:\/\/[^ \"\n\r\t<]*?)\](.*?)\[\/url\]/ism',
-      '/\n{0,1}\[ul\]\n{0,1}/im',
-      '/\n{0,1}\[\/ul\]\n{0,1}/im',
-      '/\n/im',
-    );
-    $replacements = Array(
-      '<li>\1</li>',
-      '<b>\1</b>',
-      '<i>\1</i>',
-      '<a href="\1">\1</a>',
-      '<a href="\1">\2</a>',
-      '<ul>',
-      '</ul>',
-      '<br>',
-    );
-
-    return(preg_replace($patterns, $replacements, $text));
-  }
-
-
 
 
   /*
@@ -826,7 +783,9 @@ class AMD_AIP extends AMD_root
     {
 
       $sql.=" LEFT JOIN ".CADDIE_TABLE." ct ON ait.imageId = ct.element_id
-            WHERE ct.user_id = ".$user['id'].";";
+            WHERE ct.user_id = ".$user['id']." ";
+
+      if($mode=="caddieAdd") $sql.=" AND ait.analyzed='n'";
     }
 
     if($mode=="all" or $mode=="caddieReplace")
@@ -840,7 +799,7 @@ class AMD_AIP extends AMD_root
     if($result)
     {
       $i=0;
-      while($row=mysql_fetch_row($result))
+      while($row=pwg_db_fetch_row($result))
       {
         $returned.=$row[0];
         $i++;
@@ -875,7 +834,7 @@ class AMD_AIP extends AMD_root
 
     $returned="";
 
-    if(count($list)>0)
+    if(count($list)>0 and trim($imagesList)!='')
     {
       // $path = path of piwigo's on the server filesystem
       $path=dirname(dirname(dirname(__FILE__)));
@@ -884,7 +843,7 @@ class AMD_AIP extends AMD_root
       $result=pwg_query($sql);
       if($result)
       {
-        while($row=mysql_fetch_assoc($result))
+        while($row=pwg_db_fetch_assoc($result))
         {
           /*
            * in some case (in a combination of some pictures), when there is too
@@ -937,7 +896,7 @@ class AMD_AIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_row($result))
+      while($row=pwg_db_fetch_row($result))
       {
         $numOfPictures=$row[0];
         $numOfMetaData=$row[1];
@@ -950,7 +909,7 @@ class AMD_AIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_row($result))
+      while($row=pwg_db_fetch_row($result))
       {
         $numOfPicturesNotAnalyzed=$row[0];
       }
@@ -961,7 +920,7 @@ class AMD_AIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_row($result))
+      while($row=pwg_db_fetch_row($result))
       {
         $numOfPicturesWithoutTags=$row[0];
       }
@@ -1050,7 +1009,7 @@ class AMD_AIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_assoc($result))
+      while($row=pwg_db_fetch_assoc($result))
       {
         $datas[]=array(
           "numId" => $row['numId'],
@@ -1109,7 +1068,7 @@ class AMD_AIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_assoc($result))
+      while($row=pwg_db_fetch_assoc($result))
       {
         $datas[]=array(
           "value" => $this->prepareValueForDisplay($row['value'], ($row['translatable']=='y'), ", "),
@@ -1147,7 +1106,7 @@ class AMD_AIP extends AMD_root
       $result=pwg_query($sql);
       if($result)
       {
-        if(mysql_num_rows($result)==0)
+        if(pwg_db_num_rows($result)==0)
         {
           $sql="INSERT INTO ".$this->tables['selected_tags']."
                   SELECT ut.tagId, 0, -1
@@ -1196,7 +1155,7 @@ class AMD_AIP extends AMD_root
       if($result)
       {
         $datas=Array();
-        while($row=mysql_fetch_assoc($result))
+        while($row=pwg_db_fetch_assoc($result))
         {
           if($row['groupId']==$id)
           {
@@ -1297,7 +1256,7 @@ class AMD_AIP extends AMD_root
       if($result)
       {
         $datas=Array();
-        while($row=mysql_fetch_assoc($result))
+        while($row=pwg_db_fetch_assoc($result))
         {
           $datas[]=Array(
             'tagId' => $row['tagId'],
@@ -1409,7 +1368,7 @@ class AMD_AIP extends AMD_root
     {
       $sql="INSERT INTO ".$this->tables['groups']." VALUES('', 9999)";
       $result=pwg_query($sql);
-      $groupId=mysql_insert_id();
+      $groupId=pwg_db_insert_id();
     }
 
     if(is_numeric($groupId) and count($names)>0)
@@ -1469,7 +1428,7 @@ class AMD_AIP extends AMD_root
       $result=pwg_query($sql);
       if($result)
       {
-        while($row=mysql_fetch_assoc($result))
+        while($row=pwg_db_fetch_assoc($result))
         {
           if(array_key_exists($row['lang'], $datasLang['language_list']))
           {
@@ -1518,7 +1477,7 @@ class AMD_AIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_assoc($result))
+      while($row=pwg_db_fetch_assoc($result))
       {
         $datas['groups'][]=Array(
           'id' => $row['groupId'],

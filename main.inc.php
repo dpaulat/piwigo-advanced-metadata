@@ -22,13 +22,19 @@ Author URI: http://photos.grum.fr/
 
 | release | date       |
 | 0.0     | 2010/01/21 | * start coding
+|         |            |
 | 0.1b    | 2010/03/21 | * beta release
+|         |            |
 | 0.2b    | 2010/03/23 | * beta release
+|         |            |
 | 0.3b    | 2010/04/11 | * beta release
-| 0.4b    | 2010/04/18 | * beta release for Piwigo 2.1
 |         |            |
-|         |            |
-|         |            |
+| 0.4b    | 2010/04/24 | * beta release for Piwigo 2.1
+|         |            | * uses some GPC 3.1.0 functions
+|         |            | * optimize ajax request to fill the metadata database
+|         |            | * replace all the 'mysql_*' functions with 'pwg_db_*'
+|         |            |   functions
+|         |            | * update some html/css
 |         |            |
 |         |            |
 

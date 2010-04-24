@@ -68,7 +68,7 @@ class AMD_PIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_assoc($result))
+      while($row=pwg_db_fetch_assoc($result))
       {
         $filename=$row['path'];
         $analyzed=$row['analyzed'];
@@ -104,7 +104,7 @@ class AMD_PIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
-      while($row=mysql_fetch_assoc($result))
+      while($row=pwg_db_fetch_assoc($result))
       {
         $tagsList[$row['tagId']]=$row['gName'];
       }

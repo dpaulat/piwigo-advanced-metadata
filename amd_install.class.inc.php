@@ -163,7 +163,7 @@
       $result=pwg_query($sql);
       if($result)
       {
-        while($row=mysql_fetch_assoc($result))
+        while($row=pwg_db_fetch_assoc($result))
         {
           $listToAnalyze[0][]=$row;
           $listToAnalyze[1][]=$row['id'];
@@ -189,7 +189,7 @@
         $result=pwg_query($sql);
         if($result)
         {
-          while($row=mysql_fetch_assoc($result))
+          while($row=pwg_db_fetch_assoc($result))
           {
             $listToAnalyze[0][]=$row;
           }

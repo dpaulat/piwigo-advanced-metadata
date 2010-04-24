@@ -1,10 +1,14 @@
 {known_script id="jquery.ui" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.core.packed.js"}
-{known_script id="jquery.ui.slider" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.slider.packed.js"}
 {known_script id="jquery.ui.dialog" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.dialog.packed.js"}
-
 
 {literal}
 <script type="text/javascript">
+var processAnalyze = {
+      step:0,
+      lists:new Array(),
+      timeStart:0,
+      timeEnd:0
+    }
 
   function init()
   {
@@ -44,8 +48,6 @@
 
   function doAnalyze()
   {
-    $("body").css("cursor", "wait");
-
     mode="all";
     modeLabel="";
 
@@ -71,7 +73,7 @@
     }
 
 
-    doAnalyze="<br><form id='iDialogProgress' class='formtable'>"+
+    doAnalyzeDialog="<br><form id='iDialogProgress' class='formtable'>"+
       "<div id='iprogressbar_contener' class='gcBorderInput'>"+
       "<span id='iprogressbar_bg' class='gcBgInput' style='width:0%;'>&nbsp;</span>"+
       "<span id='iprogressbar_fg' class='gcLink'>0%</span>"+
@@ -91,7 +93,7 @@
         dialogClass: 'gcBgTabSheet gcBorder',
         title: '{/literal}{"g003_updating_metadata"|@translate}{literal}&nbsp;('+modeLabel+')',
       }
-    ).html(doAnalyze);
+    ).html(doAnalyzeDialog);
 
     NumberOfItemsPerRequest=$("#iamd_NumberOfItemsPerRequest").val();
 
@@ -99,11 +101,14 @@
       {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
-        async: false,
+        async: true,
         data: { ajaxfct:"makeStatsGetList", selectMode:mode, numOfItems:NumberOfItemsPerRequest },
         success: function(msg)
           {
-            doStep_getList(msg);
+            processAnalyze.step=0;
+            processAnalyze.lists=msg.split(";");
+            processAnalyze.timeStart=new Date();
+            doStep_processList();
           },
         error: function()
           {
@@ -123,71 +128,77 @@
     return(returned);
   }
 
-  function doStep_getList(data)
+  function doStep_processList()
   {
-    timeStart = new Date();
-    list=data.split(";");
-    for(i=0;i<list.length-1;i++)
+    if(processAnalyze.step < processAnalyze.lists.length)
     {
       tmp = $.ajax({
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
-        async: false,
-        data: { ajaxfct:"makeStatsDoAnalyze", imagesList:list[i] }
-       }).responseText;
+        async: true,
+        data: { ajaxfct:"makeStatsDoAnalyze", imagesList:processAnalyze.lists[processAnalyze.step] },
+        success: function(msg)
+          {
+            processAnalyze.step++;
+            doStep_processList();
+          },
+       });
 
-      pct=100*(i+1)/list.length;
+      pct=100*(processAnalyze.step+1)/processAnalyze.lists.length;
       $("#iprogressbar_bg").css("width", pct+"%");
       $("#iprogressbar_fg").html(Math.round(pct)+"%");
     }
+    else
+    {
+      // list completely processed
 
-    tmp = $.ajax({
-      type: "POST",
-      url: "{/literal}{$datas.urlRequest}{literal}",
-      async: false,
-      data: { ajaxfct:"makeStatsConsolidation" }
-     }).responseText;
+      tmp = $.ajax({
+        type: "POST",
+        url: "{/literal}{$datas.urlRequest}{literal}",
+        async: false,
+        data: { ajaxfct:"makeStatsConsolidation" }
+       }).responseText;
 
 
-    timeEnd = new Date();
-    timeElapsed=timeEnd.getTime()-timeStart.getTime();
+      processAnalyze.timeEnd = new Date();
+      timeElapsed=processAnalyze.timeEnd.getTime()-processAnalyze.timeStart.getTime();
 
 
-    $("#dialog")
-    .dialog("destroy")
-    .html("")
-    .get(0).removeAttribute('style');
+      $("#dialog")
+      .dialog("destroy")
+      .html("")
+      .get(0).removeAttribute('style');
 
-    $("#dialog")
-    .dialog(
-      {
-        resizable: false,
-        width:480,
-        height:120,
-        modal: true,
-        draggable:true,
-        dialogClass: 'gcBgTabSheet gcBorder',
-        title: '{/literal}{"g003_updating_metadata"|@translate}{literal}',
-        dialogClass: 'gcBgTabSheet gcBorder',
-        open: function(event, ui)
+      $("#dialog")
+      .dialog(
         {
-          bH=$("div.ui-dialog-buttonpane").get(0).clientHeight;
-          $("#dialog").css('height', (this.clientHeight-bH)+"px");
-        },
-        buttons:
-        {
-          '{/literal}{"g003_ok"|@translate}{literal}':
-            function()
-            {
-              $(this).dialog('destroy').html("").get(0).removeAttribute('style');
-            }
+          resizable: false,
+          width:480,
+          height:120,
+          modal: true,
+          draggable:true,
+          dialogClass: 'gcBgTabSheet gcBorder',
+          title: '{/literal}{"g003_updating_metadata"|@translate}{literal}',
+          dialogClass: 'gcBgTabSheet gcBorder',
+          open: function(event, ui)
+          {
+            bH=$("div.ui-dialog-buttonpane").get(0).clientHeight;
+            $("#dialog").css('height', (this.clientHeight-bH)+"px");
+          },
+          buttons:
+          {
+            '{/literal}{"g003_ok"|@translate}{literal}':
+              function()
+              {
+                $(this).dialog('destroy').html("").get(0).removeAttribute('style');
+              }
+          }
         }
-      }
-    )
-    .html("<br>{/literal}{'g003_analyze_is_finished'|@translate}{literal}&nbsp;("+displayTime(timeElapsed/1000)+")");
+      )
+      .html("<br>{/literal}{'g003_analyze_is_finished'|@translate}{literal}&nbsp;("+displayTime(timeElapsed/1000)+")");
 
-    getStatus();
-    $("body").css("cursor", "default");
+      getStatus();
+    }
   }
 
 
@@ -195,7 +206,7 @@
 </script>
 {/literal}
 
-<h3>{'g003_status_of_database'|@translate}</h3>
+<h2>{'g003_status_of_database'|@translate}</h2>
 
 <div id="dialog"></div>
 
