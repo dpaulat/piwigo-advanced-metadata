@@ -21,7 +21,7 @@ table.tagListOrderItem { width:100%; border-collapse:collapse; }
 #ianalyzestatus ul { margin:0px; padding:0 0 0 20px; }
 #iamd_nb_item_per_request_display { display:inline-block; width:70px; }
 #iamd_nb_item_per_request_slider { display:inline-block; width:350px; }
-#helpBody { text-align: left; padding-top:30px; }
-#helpBody ul { padding:0px; margin:0px; }
-#helpBody li { margin-left:30px; }
+.helpBody { text-align: left; padding-top:30px; }
+.helpBody ul { padding:0px; margin:0px; }
+.helpBody li { margin-left:30px; }
 

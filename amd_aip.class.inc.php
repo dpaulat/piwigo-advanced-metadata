@@ -96,7 +96,7 @@ class AMD_AIP extends AMD_root
 
     if($_REQUEST['fAMD_tabsheet']=='help')
     {
-      $this->displayHelp($_REQUEST['fAMD_page']);
+      $this->displayHelp();
     }
     elseif($_REQUEST['fAMD_tabsheet']=='metadata')
     {
@@ -710,30 +710,35 @@ class AMD_AIP extends AMD_root
    *
    * @param String $tab : the selected tab on the help page
    */
-  protected function displayHelp($tab)
+  protected function displayHelp()
   {
     global $template, $user, $lang;
     $template->set_filename('body_page', dirname(__FILE__).'/admin/amd_help.tpl');
 
     $statTabsheet = new GPCTabSheet('statTabsheet', $this->tabsheet->get_titlename(), 'tabsheet2 gcBorder', 'itab2');
-    $statTabsheet->select($tab);
     $statTabsheet->add('exif',
                           l10n('g003_help_tab_exif'),
-                          $this->getAdminLink().'&amp;fAMD_tabsheet=help&amp;fAMD_page=exif');
+                          '', true, "displayHelp('exif');");
     $statTabsheet->add('iptc',
                           l10n('g003_help_tab_iptc'),
-                          $this->getAdminLink().'&amp;fAMD_tabsheet=help&amp;fAMD_page=iptc');
+                          '', false, "displayHelp('iptc');");
     $statTabsheet->add('xmp',
                           l10n('g003_help_tab_xmp'),
-                          $this->getAdminLink().'&amp;fAMD_tabsheet=help&amp;fAMD_page=xmp');
+                          '', false, "displayHelp('xmp');");
     $statTabsheet->add('magic',
                           l10n('g003_help_tab_magic'),
-                          $this->getAdminLink().'&amp;fAMD_tabsheet=help&amp;fAMD_page=magic');
+                          '', false, "displayHelp('magic');");
     $statTabsheet->assign();
 
     $data=Array(
-      'sheetContent' => GPCCore::BBtoHTML($lang['g003_help_'.$tab]),
-      'title' => l10n('g003_help_tab_'.$tab),
+      'sheetContent_exif' => GPCCore::BBtoHTML($lang['g003_help_exif']),
+      'sheetContent_xmp' => GPCCore::BBtoHTML($lang['g003_help_xmp']),
+      'sheetContent_iptc' => GPCCore::BBtoHTML($lang['g003_help_iptc']),
+      'sheetContent_magic' => GPCCore::BBtoHTML($lang['g003_help_magic']),
+      'title_exif' => l10n('g003_help_tab_exif'),
+      'title_xmp' => l10n('g003_help_tab_xmp'),
+      'title_iptc' => l10n('g003_help_tab_iptc'),
+      'title_magic' => l10n('g003_help_tab_magic')
     );
 
     $template->assign('data', $data);
