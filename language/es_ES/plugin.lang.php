@@ -84,4 +84,79 @@ $lang['g003_warning_on_analyze_2'] = "Algunos hospedadores pueden sancionar este
 $lang['g003_warning_on_analyze_3'] = "Es muy recomendable llenar la canasta con cerca de cincuenta imágenes representativas de la galería de fotos para proceder al tratamiento.";
 
 
+
+
+$lang['g003_help_exif'] = "Los metadatos son información EXIF que se almacena en la imagen por la cámara en el momento del disparo.
+
+Cualquier información que se encuentra allí son de carácter técnico:
+[ul]
+[li]equipo utilizado (modelo de cámara, fabricante)[/li]
+[li]las condiciones de disparo (apertura, tiempo de exposición, la distancia focal)[/li]
+[li]el momento de los disparos (fecha, hora)[/li]
+[li]la ubicación geográfica (datos GPS)[/li]
+[li]información sobre el formato de la foto (tamaño, resolución, compresión)[/li]
+
+La alimentación de los metadatos EXIF está normalizada ([url]http://www.exif.org/Exif2-2.PDF[/url]), sin embargo:
+[ul]
+[li]Este estándar adoptado por la [url=http://www.jeita.or.jp]JEITA[/url] Japan Electronics and Information Technology Industries Association) ya no cambia desde el 2002 [/li]
+[li]Todo metadatos definidos en la norma es opcional: todos los dispositivos no informan sobre todos los metadatos[/li]
+[li]hay un metadatos [i]MakerNote[/i], que es un campo abierto utilizados por los fabricantes y en el que se almacena información que no está presente en las condiciones (por ejemplo, las referencias al objetivo) esta información es única a cada empresa, ver cada dispositivo. El plugin puede interpretar parte de esta información para los aparatos [b]Pentax[/b], [b]Canon[/b], [b]Nikon[/b].[/Li]
+[/ul]";
+
+
+$lang['g003_help_iptc']="Los metadatos IPTC son informaciónes que son almacenada en la imagen, por el fotógrafo, con un programa adapdado.
+
+La naturaleza de la información contenida allí es esencialmente orientada hacia el mundo profesional
+[ul]
+[li]referencias del fotógrafo (nombre, contacto)[/li]
+[li]información sobre el derechos de autor[/li]
+[li]La descripción de la imagen (título, descripción, comentarios, palabras clave)[/li]
+[li]una variedad de información relacionada con el mundo profesionales[/li]
+[/ul]
+
+La alimentación de los metadatos IPTC esta normalizada ([url]http://www.iptc.org [/url]).
+Esta norma ha sido establecida por un consorcio de agencias de noticias más importantes del mundo, la [i]International Press Telecommunications Council[/i] (abreviado como IPTC).";
+
+$lang['g003_03_help_xmp'] = "Los metadatos XMP son esencialmente EXIF e IPTC almacenados en formato XML.
+
+La ventaja de los metadatos XMP es la provisión de flexibilidad:
+[ul]
+[li]información se pueden almacenar en varios idiomas [/li]
+[li]el uso del conjunto de caracteres Unicode permite (principalmente) utilizar caracteres no latinos[/li]
+[li]XML facilita la interpretación y el intercambio de información[/li]
+[/ul]
+
+La alimentación de los metadatos XMP está normalizado ([url]http://www.metadataworkinggroup.org/specs[/url]).
+Es aconsejado utilizar preferentemente el EXIF e IPTC si están presentes.
+
+La conversión de EXIF e IPTC de metadatos XMP se efectúa con el software de edición de fotos.
+
+El modelo XMP es más pobre que el modelo de EXIF, las consecuencias de esta conversión se traducirá en una pérdida de información en la foto. En general, la pérdida de información no es de gran importancia para la mayoría de los usuarios, sin embargo, la norma recomienda que el software que el almacena los metadatos XMP conserven las informaciónes originales: lamentablemente no es siempre el caso.";
+
+$lang['g003_help_magic '] = "La misma información puede ser almacenada en formatos múltiples dentro de una foto:
+[ul]
+[li]pueden estar presentes en todos los formatos[/li]
+[li]puede estar presente en un formato, pero no en otro [/li]
+[/ul]
+
+Ejemplo, la abertura puede estar presente en cuatro diferentes metadatos:
+[ul]
+[li][b]exif.exif.FNumber[/b][/li]
+[li][b]exif.exif.ApertureValue[/b][/li]
+[li][b]xmp.exif:aperturevalue[/b][/li]
+[li][b]xmp.exif:fnumber[/b][/li]
+[/ul]
+
+Para facilitar el retorno de la información que pueda estar disperso, el plugin ofrece una pequeña muestra de los metadatos más ampliamente utilizados y es responsable de analizar la presencia en las fotos, y restaurar la información más relevante.
+Estos metadatos se llaman [b]Magic[/b].
+
+Así, el [b]metadatos magic.ShotInfo.Aperture[/b] devuelve:
+[ul]
+[li]el valor de la metadatos [b]exif.exif.FNumber[/b] si está presente en la foto, de lo contrario[/li]
+[li]el valor de la metadatos [b]xmp.exif:fnumber[/b] si está presente en la foto, de lo contrario[/li]
+[li]el valor de la metadatos [b]exif.exif.ApertureValue[/b] si está presente en la foto, de lo contrario[/li]
+[li]el valor de la metadatos [b]xmp.exif:aperturevalue[/b] si está presente en la foto[/li]
+[/ul]";
+
+
 ?>
