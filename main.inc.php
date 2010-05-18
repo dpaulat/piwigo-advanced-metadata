@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.4b
+Version: 0.4
 Description: An advanced metadata manager
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
 Author: grum@piwigo.org
@@ -29,7 +29,7 @@ Author URI: http://photos.grum.fr/
 |         |            |
 | 0.3b    | 2010/04/11 | * beta release
 |         |            |
-| 0.4b    | 2010/04/24 | * beta release for Piwigo 2.1
+| 0.4     | 2010/04/24 | * release for Piwigo 2.1
 |         |            | * uses some GPC 3.1.0 functions
 |         |            | * optimize ajax request to fill the metadata database
 |         |            | * replace all the 'mysql_*' functions with 'pwg_db_*'
