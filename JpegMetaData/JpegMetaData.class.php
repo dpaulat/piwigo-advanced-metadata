@@ -2,8 +2,8 @@
 /**
  * --:: JPEG MetaDatas ::-------------------------------------------------------
  *
- * Version : 1.0.0
- * Date    : 2009/12/26
+ * Version : 1.0.1
+ * Date    : 2010-07-24
  *
  *  Author    : Grum
  *   email    : grum at piwigo.org
@@ -38,8 +38,20 @@
  * +---------+------------+-----------------------------------------------------
  * | 0.1.0a  | 2009-12-26 |
  * |         |            |
+ * | 1.0.0   |            | * first public release
  * |         |            |
- * |         |            |
+ * | 1.0.1   | 2010-07-24 | * mantis bug:1686
+ * |         |            |   . bug reported on IfdReader
+ * |         |            |     When sub IFD (0x8769) refers to a sub IFD with
+ * |         |            |     an offset lower than the current IFD, the reader
+ * |         |            |     loops on the current data block and terminate
+ * |         |            |     with an error 500 ; fix consist to ignore this
+ * |         |            |     kind of offset, but it's not the right solution
+ * |         |            |     (right solution: to be able to read negative
+ * |         |            |     offset)
+ * |         |            | * mantis feature : 1719
+ * |         |            |   . Coding a DateTime class ; used only if there is
+ * |         |            |     no PHP built-in DateTime class
  * |         |            |
  * |         |            |
  * |         |            |
@@ -111,6 +123,7 @@
 
   define("JPEG_METADATA_DIR", dirname(__FILE__)."/");
 
+  require_once(JPEG_METADATA_DIR."Common/DateTime.class.php");
   require_once(JPEG_METADATA_DIR."Readers/JpegReader.class.php");
   require_once(JPEG_METADATA_DIR."TagDefinitions/MagicTags.class.php");
 

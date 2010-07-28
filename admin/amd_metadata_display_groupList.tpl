@@ -5,24 +5,24 @@
     {$data.name}
 
     <a onclick="deleteGroup('{$data.id}');">
-      <img src="{$ROOT_URL}{$themeconf.admin_icon_dir}/delete.png"  class="button drag_button" alt="{'g003_click_to_delete_group'|@translate}" title="{'g003_click_to_delete_group'|@translate}"
+      <img src="{$themeconf.admin_icon_dir}/delete.png"  class="button drag_button" alt="{'g003_click_to_delete_group'|@translate}" title="{'g003_click_to_delete_group'|@translate}"
             style="float:right;"/>
     </a>
 
     <a onclick="editGroup('{$data.id}');">
-      <img src="{$ROOT_URL}{$themeconf.admin_icon_dir}/category_edit.png"  class="button drag_button" alt="{'g003_click_to_edit_group'|@translate}" title="{'g003_click_to_edit_group'|@translate}"
+      <img src="{$themeconf.admin_icon_dir}/category_edit.png"  class="button drag_button" alt="{'g003_click_to_edit_group'|@translate}" title="{'g003_click_to_edit_group'|@translate}"
             style="float:right;"/>
     </a>
 
     <a onclick="manageGroup('{$data.id}', '');">
-      <img src="{$ROOT_URL}{$themeconf.admin_icon_dir}/preferences.png"  class="button drag_button" alt="{'g003_click_to_manage_group'|@translate}" title="{'g003_click_to_manage_group'|@translate}"
+      <img src="{$themeconf.admin_icon_dir}/preferences.png"  class="button drag_button" alt="{'g003_click_to_manage_group'|@translate}" title="{'g003_click_to_manage_group'|@translate}"
             style="float:right;"/>
     </a>
 
 
     <div name="fGroupId{$data.id}_content" id="iGroupId{$data.id}_content" style="visibility:hidden;height:0px;" class="groupTags">
       <a onclick="editGroupList('{$data.id}');" class="button editGroupListButton">
-      <img src="{$ROOT_URL}{$themeconf.admin_icon_dir}/edit_s.png"  class="button drag_button" alt="{'g003_click_to_manage_list'|@translate}" title="{'g003_click_to_manage_list'|@translate}"/>
+      <img src="{$themeconf.admin_icon_dir}/edit_s.png"  class="button drag_button" alt="{'g003_click_to_manage_list'|@translate}" title="{'g003_click_to_manage_list'|@translate}"/>
       </a>
       <ul id="iGroupId{$data.id}_tags" class="tagListOrder g{$data.id}_connectedSortableTags">
       </ul>

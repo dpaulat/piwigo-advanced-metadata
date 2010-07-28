@@ -34,12 +34,12 @@ global $gpc_installed, $gpcNeeded, $lang; //needed for plugin manager compatibil
  * AMD needs the Grum Plugin Classe
  * -------------------------------------------------------------------------- */
 $gpc_installed=false;
-$gpcNeeded="3.1.0";
+$gpcNeeded="3.2.0";
 if(file_exists(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php'))
 {
   @include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php');
-  // need GPC release greater or equal than 3.1.0
-  if(CommonPlugin::checkGPCRelease(3,1,0))
+  // need GPC release greater or equal than 3.2.0
+  if(CommonPlugin::checkGPCRelease(3,2,0))
   {
     @include_once("amd_install.class.inc.php");
     $gpc_installed=true;
@@ -86,6 +86,7 @@ function plugin_activate($plugin_id, $plugin_version, &$errors)
 
   $amd=new AMD_install($prefixeTable, __FILE__);
   $result=$amd->activate();
+  GPCCore::register($amd->getPluginName(), AMD_VERSION, $gpcNeeded);
 }
 
 function plugin_deactivate($plugin_id)

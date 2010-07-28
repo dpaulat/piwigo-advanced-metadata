@@ -1,13 +1,4 @@
 {literal}
-<style>
- .ui-widget-overlay {
-    background:#000000;
-    opacity:0.88;
-    filter:alpha(opacity:88);
- }
-</style>
-
-
 <script type="text/javascript">
 
   var globalTagId;
@@ -61,7 +52,7 @@
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"showStatsGetListTags", orderType:order, filterType:filter, excludeUnusedTag:unusedTag, selectedTagOnly:selectedOnly },
+        data: { ajaxfct:"admin.showStats.getListTags", orderType:order, filterType:filter, excludeUnusedTag:unusedTag, selectedTagOnly:selectedOnly },
         success:
           function(msg)
           {
@@ -109,7 +100,7 @@
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"showStatsGetListImages", orderType:order, tagId:tag,  },
+        data: { ajaxfct:"admin.showStats.getListImages", orderType:order, tagId:tag,  },
         success:
           function(msg)
           {
@@ -137,7 +128,7 @@
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: false,
-        data: { ajaxfct:"updateTagSelect", tagSelected:selected, numId:numId.substr(6) }
+        data: { ajaxfct:"admin.updateTag.select", tagSelected:selected, numId:numId.substr(6) }
        }).responseText
     );
 
@@ -210,6 +201,7 @@
     <select id="iSelectFilterTagList" onchange="loadTagList();">
       <option value="" {if $datas.config_GetListTags_FilterType==""}selected{/if}>{'g003_no_filter'|@translate}</option>
       <option value="magic" {if $datas.config_GetListTags_FilterType=="magic"}selected{/if}>{'g003_magic_filter'|@translate}</option>
+      <option value="userDefined" {if $datas.config_GetListTags_FilterType=="userDefined"}selected{/if}>{'g003_userDefined_filter'|@translate}</option>
       <option value="exif" {if $datas.config_GetListTags_FilterType=="exif"}selected{/if}>Exif</option>
       <option value="exif.Canon" {if $datas.config_GetListTags_FilterType=="exif.Canon"}selected{/if}>Exif [Canon]</option>
       <option value="exif.Nikon" {if $datas.config_GetListTags_FilterType=="exif.Nikon"}selected{/if}>Exif [Nikon]</option>

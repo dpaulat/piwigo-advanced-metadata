@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.4
+Version: 0.5.0
 Description: An advanced metadata manager
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
 Author: grum@piwigo.org
@@ -29,12 +29,41 @@ Author URI: http://photos.grum.fr/
 |         |            |
 | 0.3b    | 2010/04/11 | * beta release
 |         |            |
-| 0.4     | 2010/04/24 | * release for Piwigo 2.1
+| 0.4.0   | 2010/04/24 | * release for Piwigo 2.1
 |         |            | * uses some GPC 3.1.0 functions
 |         |            | * optimize ajax request to fill the metadata database
 |         |            | * replace all the 'mysql_*' functions with 'pwg_db_*'
 |         |            |   functions
 |         |            | * update some html/css
+|         |            |
+| 0.5.0   | 2010/07/24 | * update to the JpegMetadata class 1.0.1 to fix the
+|         |            |   mantis bugs&features 1686, 1718 and 1719
+|         |            | * mantis : bug 1686
+|         |            |   . Picture analysis finish with an Error 500 or with a
+|         |            |     problem of memory limit
+|         |            | * mantis : feature 1719
+|         |            |   . Coding a DateTime class
+|         |            | * mantis : feature 1718
+|         |            |   . Make test images lighter
+|         |            |     The weight of tests images provided with the
+|         |            |     JpegMetadata class was to heavy ; the file size has
+|         |            |     been reduced from 9Mb to 230Kb
+|         |            | * mantis : feature 1688
+|         |            |   . Improve performance when the database is filled
+|         |            |     each time a page is displayed (now using an ajax
+|         |            |     call)
+|         |            | * mantis : feature 1692
+|         |            |   . Add possibility for user to build their own "magic"
+|         |            |     tags
+|         |            | * ajax management was entirely rewritted
+|         |            | * user interface reviewed
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
 |         |            |
 |         |            |
 

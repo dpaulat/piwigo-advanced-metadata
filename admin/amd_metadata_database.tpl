@@ -33,17 +33,18 @@ var processAnalyze = {
 
   function getStatus()
   {
-    data=$.ajax(
+    $.ajax(
       {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
-        async: false,
-        data: { ajaxfct:"makeStatsGetStatus" }
+        async: true,
+        data: { ajaxfct:"admin.makeStats.getStatus" },
+        success: function (msg) {
+          list=msg.split(";");
+          $("#ianalyzestatus").html("<ul><li>"+list[0]+"</li><li>"+list[1]+"</li><li>"+list[2]+"</li></ul>");
+        }
       }
-    ).responseText;
-
-    list=data.split(";");
-    $("#ianalyzestatus").html("<ul><li>"+list[0]+"</li><li>"+list[1]+"</li><li>"+list[2]+"</li></ul>");
+    );
   }
 
   function doAnalyze()
@@ -102,7 +103,7 @@ var processAnalyze = {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"makeStatsGetList", selectMode:mode, numOfItems:NumberOfItemsPerRequest },
+        data: { ajaxfct:"admin.makeStats.getList", selectMode:mode, numOfItems:NumberOfItemsPerRequest },
         success: function(msg)
           {
             processAnalyze.step=0;
@@ -132,11 +133,11 @@ var processAnalyze = {
   {
     if(processAnalyze.step < processAnalyze.lists.length)
     {
-      tmp = $.ajax({
+      $.ajax({
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"makeStatsDoAnalyze", imagesList:processAnalyze.lists[processAnalyze.step] },
+        data: { ajaxfct:"admin.makeStats.doAnalyze", imagesList:processAnalyze.lists[processAnalyze.step] },
         success: function(msg)
           {
             processAnalyze.step++;
@@ -151,18 +152,15 @@ var processAnalyze = {
     else
     {
       // list completely processed
-
       tmp = $.ajax({
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: false,
-        data: { ajaxfct:"makeStatsConsolidation" }
+        data: { ajaxfct:"admin.makeStats.consolidate" }
        }).responseText;
-
 
       processAnalyze.timeEnd = new Date();
       timeElapsed=processAnalyze.timeEnd.getTime()-processAnalyze.timeStart.getTime();
-
 
       $("#dialog")
       .dialog("destroy")

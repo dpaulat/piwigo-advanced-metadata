@@ -21,10 +21,13 @@
 if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
 
 include_once('amd_root.class.inc.php');
-include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCAjax.class.inc.php');
 
 class AMD_PIP extends AMD_root
 {
+  private $pictureProperties=array(
+    'id' => 0,
+    'analyzed' => 'n'
+  );
   function AMD_PIP($prefixeTable, $filelocation)
   {
     parent::__construct($prefixeTable, $filelocation);
@@ -46,6 +49,7 @@ class AMD_PIP extends AMD_root
   {
     parent::initEvents();
     add_event_handler('loc_begin_picture', array(&$this, 'loadMetadata'));
+    add_event_handler('loc_end_page_tail', array(&$this, 'applyJS'));
   }
 
   /**
@@ -60,7 +64,7 @@ class AMD_PIP extends AMD_root
 
     $path=dirname(dirname(dirname(__FILE__)));
     $filename="";
-    $analyzed='n';
+    $this->pictureProperties['id']=$page['image_id'];
 
     $sql="SELECT ti.path, tai.analyzed FROM ".IMAGES_TABLE." ti
             LEFT JOIN ".$this->tables['images']." tai ON tai.imageId = ti.id
@@ -71,7 +75,7 @@ class AMD_PIP extends AMD_root
       while($row=pwg_db_fetch_assoc($result))
       {
         $filename=$row['path'];
-        $analyzed=$row['analyzed'];
+        $this->pictureProperties['analyzed']=$row['analyzed'];
       }
       $filename=$path."/".$filename;
     }
@@ -91,13 +95,20 @@ class AMD_PIP extends AMD_root
     $conf['show_exif']=false;
     $conf['show_iptc']=false;
 
+    $picturesTags=$this->jpegMD->getTags();
     $tagsList=Array();
-    $sql="SELECT st.tagId, gn.name as gName
-          FROM (".$this->tables['selected_tags']." st
+    $userDefinedList=array(
+      'list' => array(),
+      'values' => array(),
+    );
+    $sql="SELECT st.tagId, gn.name as gName, ut.numId, ut.name
+          FROM ((".$this->tables['selected_tags']." st
             LEFT JOIN ".$this->tables['groups']." gr
               ON gr.groupId = st.groupId)
             LEFT JOIN ".$this->tables['groups_names']." gn
-              ON st.groupId = gn.groupId
+              ON st.groupId = gn.groupId)
+            LEFT JOIN ".$this->tables['used_tags']." ut
+              ON ut.tagId = st.tagId
           WHERE gn.lang='".$user['language']."'
             AND st.groupId <> -1
           ORDER BY gr.order, st.order;";
@@ -106,7 +117,31 @@ class AMD_PIP extends AMD_root
     {
       while($row=pwg_db_fetch_assoc($result))
       {
-        $tagsList[$row['tagId']]=$row['gName'];
+        $tagsList[$row['tagId']]=$row;
+        if(preg_match('/^userDefined\./i', $row['tagId']))
+        {
+          $userDefinedList['list'][]=$row['numId'];
+        }
+        else
+        {
+          if(array_key_exists($row['tagId'], $picturesTags))
+          {
+            $value=$picturesTags[$row['tagId']]->getLabel();
+
+            if($value instanceof DateTime)
+            {
+              $value=$value->format("Y-m-d H:i:s");
+            }
+            elseif(is_array($value))
+            {
+              /*
+               * array values are stored in a serialized string
+               */
+              $value=serialize($value);
+            }
+            $userDefinedList['values'][$row['numId']]=$this->prepareValueForDisplay($value, $picturesTags[$row['tagId']]->isTranslatable());;
+          }
+        }
       }
     }
 
@@ -114,11 +149,29 @@ class AMD_PIP extends AMD_root
     $md=null;
     $group=null;
 
-    $picturesTags=$this->jpegMD->getTags();
+    $userDefinedValues=$this->pictureGetUserDefinedTags($userDefinedList['list'], $userDefinedList['values']);
 
-    foreach($tagsList as $key => $val)
+    foreach($tagsList as $key => $tagProperties)
     {
-      if(array_key_exists($key, $picturesTags))
+      $keyExist=array_key_exists($key, $picturesTags);
+      $userDefined=preg_match('/^userDefined\./i', $key);
+
+      if(($group!=$tagProperties['gName']) and
+         ( $keyExist or $userDefined) )
+      {
+        $group=$tagProperties['gName'];
+        if(!is_null($md))
+        {
+          $metadata[]=$md;
+          unset($md);
+        }
+        $md=Array(
+          'TITLE' => $tagProperties['gName'],
+          'lines' => Array()
+        );
+      }
+
+      if($keyExist)
       {
         $value=$picturesTags[$key]->getLabel();
 
@@ -133,21 +186,11 @@ class AMD_PIP extends AMD_root
            */
           $value=serialize($value);
         }
-
-        if($group!=$val)
-        {
-          $group=$val;
-          if(!is_null($md))
-          {
-            $metadata[]=$md;
-            unset($md);
-          }
-          $md=Array(
-            'TITLE' => $val,
-            'lines' => Array()
-          );
-        }
         $md['lines'][L10n::get($picturesTags[$key]->getName())]=$this->prepareValueForDisplay($value, $picturesTags[$key]->isTranslatable());
+      }
+      elseif($userDefined)
+      {
+        $md['lines'][$tagProperties['name']]=$userDefinedValues[$tagProperties['numId']];
       }
     }
 
@@ -156,23 +199,32 @@ class AMD_PIP extends AMD_root
       $metadata[]=$md;
     }
 
+    $template->assign('metadata', $metadata);
+  }
 
-    if($analyzed=='n' and
-       $this->config['amd_FillDataBaseContinuously']=='y' and
+  /**
+   * used by the 'loc_end_page_tail' event
+   *
+   * on each public page viewed, add a script to do an ajax call to the "public.makeStats.doPictureAnalyze" function
+   */
+  public function applyJS()
+  {
+    global $template;
+
+    if($this->config['amd_FillDataBaseContinuously']=='y' and
        $this->config['amd_AllPicturesAreAnalyzed']=='n')
     {
-      /* if picture is not analyzed, do analyze
-       *
-       * note : the $loaded parameter is set to true, in this case the function
-       *        analyzeImageFile uses data from the $this->jpegMD object which
-       *        have data already loaded => the picture is not analyzed twice,
-       *        the function only do the database update
-       */
-      $this->analyzeImageFile($filename, $page['image_id'], true);
-      $this->makeStatsConsolidation();
-    }
+      $template->set_filename('applyJS',
+                    dirname($this->getFileLocation()).'/templates/doAnalyze.tpl');
 
-    $template->assign('metadata', $metadata);
+      $datas=array(
+        'urlRequest' => $this->getAdminLink('ajax'),
+        'id' => ($this->pictureProperties['analyzed']=='n')?$this->pictureProperties['id']:'0'
+      );
+
+      $template->assign('datas', $datas);
+      $template->append('footer_elements', $template->parse('applyJS', true));
+    }
   }
 
 } // AMD_PIP class

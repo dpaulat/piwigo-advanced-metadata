@@ -90,9 +90,29 @@
   `groupId` INTEGER  NOT NULL AUTO_INCREMENT,
   `order` INTEGER UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`groupId`)
-);"
-);
-      //$table_def array
+);",
+"CREATE TABLE `".$this->tables['user_tags_label']."` (
+  `numId` INTEGER UNSIGNED NOT NULL,
+  `lang` CHAR(5)  NOT NULL,
+  `label` VARCHAR(200)  NOT NULL,
+  PRIMARY KEY (`numId`, `lang`)
+);",
+"CREATE TABLE `".$this->tables['user_tags_def']."` (
+  `defId` int(10) unsigned NOT NULL auto_increment,
+  `parentId` int(10) unsigned NOT NULL default '0' COMMENT 'Id of the parent',
+  `numId` int(10) unsigned NOT NULL COMMENT 'Id of the tag',
+  `order` int(10) unsigned NOT NULL COMMENT 'Order, relative to the parent',
+  `type` char(1) NOT NULL default 'T' COMMENT 'T = static text ; M = metadata value ; C = condition',
+  `value` varchar(200) NOT NULL,
+  `conditionType` char(2) NOT NULL default 'E',
+  `conditionValue` varchar(200) NOT NULL,
+  PRIMARY KEY  (`defId`),
+  KEY `byTagNumId` (`numId`,`parentId`,`order`),
+  KEY `byTagParentId` (`parentId`,`order`)
+);",
+      );
+
+
       $tables_def = create_table_add_character_set($tables_def);
       $result=$this->tablef->create($tables_def);
       unset($tables_def);
@@ -132,6 +152,87 @@
     public function activate()
     {
       global $template, $user;
+
+      $this->initConfig();
+      $this->loadConfig();
+
+      /*
+       * if there is no version information available, assume the previous
+       *  installed release of the plugin is 0.4.0
+       */
+      if(!isset($this->config['installed'])) $this->config['installed']='00.04.00';
+
+      switch($this->config['installed'])
+      {
+        case '00.04.00':
+          $this->updateFrom_000400();
+          break;
+        default:
+          /*
+           * default is applied for fresh install, and consist to fill the
+           * database with default values
+           */
+          $this->initializeDatabase();
+          break;
+      }
+
+      $this->config['installed']=AMD_VERSION2; //update the installed release number
+      $this->saveConfig();
+    }
+
+
+    public function deactivate()
+    {
+    }
+
+    /**
+     * update the database from the release 0.4.0
+     */
+    private function updateFrom_000400()
+    {
+      /*
+       * create new tables
+       */
+      $tableDef=array(
+"CREATE TABLE `".$this->tables['user_tags_label']."` (
+  `numId` INTEGER UNSIGNED NOT NULL,
+  `lang` CHAR(5)  NOT NULL,
+  `label` VARCHAR(200)  NOT NULL,
+  PRIMARY KEY (`numId`, `lang`)
+);",
+"CREATE TABLE `".$this->tables['user_tags_def']."` (
+  `defId` int(10) unsigned NOT NULL auto_increment,
+  `parentId` int(10) unsigned NOT NULL default '0' COMMENT 'Id of the parent',
+  `numId` int(10) unsigned NOT NULL COMMENT 'Id of the tag',
+  `order` int(10) unsigned NOT NULL COMMENT 'Order, relative to the parent',
+  `type` char(1) NOT NULL default 'T' COMMENT 'T = static text ; M = metadata value ; C = condition',
+  `value` varchar(200) NOT NULL,
+  `conditionType` char(2) NOT NULL default 'E',
+  `conditionValue` varchar(200) NOT NULL,
+  PRIMARY KEY  (`defId`),
+  KEY `byTagNumId` (`numId`,`parentId`,`order`),
+  KEY `byTagParentId` (`parentId`,`order`)
+);"
+      );
+      $tablesDef = create_table_add_character_set($tablesDef);
+      $result=$this->tablef->create($tablesDef);
+      unset($tablesDef);
+
+      /*
+       * update old tables
+       */
+
+      // no tables to update
+    }
+
+
+
+
+    /**
+     * fill the database with some default value
+     */
+    private function initializeDatabase()
+    {
       L10n::setLanguage('en_UK');
 
       pwg_query("DELETE FROM ".$this->tables['used_tags']);
@@ -211,16 +312,6 @@
 
         $this->makeStatsConsolidation();
       }
-
-      $this->initConfig();
-      $this->loadConfig();
-      $this->config['installed']=AMD_VERSION2; //update the installed release number
-      $this->saveConfig();
-    }
-
-
-    public function deactivate()
-    {
     }
 
   } //class

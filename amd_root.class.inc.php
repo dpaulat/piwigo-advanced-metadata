@@ -39,7 +39,15 @@ class AMD_root extends CommonPlugin
     $this->setPluginNameFiles("amd");
     parent::__construct($prefixeTable, $filelocation);
 
-    $tableList=array('used_tags', 'images_tags', 'images', 'selected_tags', 'groups_names', 'groups');
+    $tableList=array(
+      'used_tags',
+      'images_tags',
+      'images',
+      'selected_tags',
+      'groups_names',
+      'groups',
+      'user_tags_label',
+      'user_tags_def');
     $this->setTablesList($tableList);
 
     $this->css = new GPCCss(dirname($this->getFileLocation()).'/'.$this->getPluginNameFiles().".css");
@@ -86,20 +94,19 @@ class AMD_root extends CommonPlugin
   public function initEvents()
   {
     parent::initEvents();
-
-
-    if(!isset($_REQUEST['ajaxfct']) and
-       $this->config['amd_FillDataBaseContinuously']=='y' and
-       $this->config['amd_AllPicturesAreAnalyzed']=='n')
-    {
-      /* do analyze for a random picture only if :
-       *  - config is set to fill database continuously
-       *  - we are not in an ajax call
-       */
-      add_event_handler('init', array(&$this, 'doRandomAnalyze'));
-    }
   }
 
+  public function getAdminLink($mode='')
+  {
+    if($mode=='ajax')
+    {
+      return('plugins/'.basename(dirname($this->getFileLocation())).'/amd_ajax.php');
+    }
+    else
+    {
+      return(parent::getAdminLink());
+    }
+  }
 
   /**
    * returns the number of pictures analyzed
@@ -244,6 +251,215 @@ class AMD_root extends CommonPlugin
 
     return("$imageId=$nbTags;");
   }
+
+
+  /**
+   * returns the userDefined tag for one image (without searching in the
+   * database)
+   *
+   * @param Array $numId : array of userDefeined numId to get
+   * @param Array $values : array of existing tag for the images
+   * @return Array : associated array of numId=>value
+   */
+  protected function pictureGetUserDefinedTags($listId, $values)
+  {
+    $listIds=implode(',', $listId);
+    $rules=array();
+    $returned=array();
+
+    $sql="SELECT numId, defId, parentId, `order`, `type`, value, conditionType, conditionValue
+          FROM ".$this->tables['user_tags_def']."
+          WHERE numId IN ($listIds)
+          ORDER BY numId, parentId, `order`;";
+    $result=pwg_query($sql);
+    if($result)
+    {
+      while($row=pwg_db_fetch_assoc($result))
+      {
+        $rules[$row['numId']][$row['parentId']][$row['defId']]=$row;
+      }
+    }
+
+    foreach($listId as $numId)
+    {
+      $returned[$numId]=$this->buildUserDefinedTagConditionRule(0, $values, $rules[$numId]);
+    }
+
+    return($returned);
+  }
+
+  /**
+   *
+   * @param String $id : id of the metadata to build
+   */
+  protected function buildUserDefinedTags($id)
+  {
+    $num=0;
+    $sql="SELECT GROUP_CONCAT(DISTINCT value ORDER BY value SEPARATOR ',')
+          FROM ".$this->tables['user_tags_def']."
+          WHERE `type`='C' or `type`='M'
+            AND numId='$id'";
+    $result=pwg_query($sql);
+    if($result)
+    {
+      // get the list of tags used to build the user defined tag
+      $list='';
+      while($row=pwg_db_fetch_row($result))
+      {
+        $list=$row[0];
+      }
+
+      $sql="(SELECT ait.imageId, ait.numId, ait.value
+             FROM ".$this->tables['images_tags']." ait
+             WHERE ait.numId IN ($list)
+            )
+            UNION
+            (SELECT pai.imageId, 0, ''
+            FROM ".$this->tables['images']." pai)
+            ORDER BY imageId, numId";
+      $result=pwg_query($sql);
+      if($result)
+      {
+        //build a list of properties for each image
+        $images=array();
+        while($row=pwg_db_fetch_assoc($result))
+        {
+          if(!array_key_exists($row['imageId'], $images))
+          {
+            $images[$row['imageId']]=array();
+          }
+          $images[$row['imageId']][$row['numId']]=$row['value'];
+        }
+
+        //load the rules
+        $sql="SELECT defId, parentId, `order`, `type`, value, conditionType, conditionValue
+              FROM ".$this->tables['user_tags_def']."
+              WHERE numId='$id'
+              ORDER BY parentId, `order`;";
+        $result=pwg_query($sql);
+        if($result)
+        {
+          $rules=array();
+          while($row=pwg_db_fetch_assoc($result))
+          {
+            $rules[$row['parentId']][$row['defId']]=$row;
+          }
+
+          $inserts=array();
+          // calculate tag values for each image
+          foreach($images as $key=>$val)
+          {
+            $buildValue=$this->buildUserDefinedTag($key, $val, $id, $rules);
+
+            if(!is_null($buildValue['value']))
+            {
+              $inserts[]=$buildValue;
+              $num++;
+            }
+          }
+
+          mass_inserts($this->tables['images_tags'], array('imageId', 'numId', 'value'), $inserts);
+        }
+      }
+    }
+    return($num);
+  }
+
+
+  /**
+   * build the userDefined tag for an image
+   *
+   * @param String $imageId : id of the image
+   * @param Array $values : array of existing tag for the images
+   * @param String $numId : id of the metadata to build
+   * @param Array $rules  : rules to apply to build the metadata
+   */
+  protected function buildUserDefinedTag($imageId, $values, $numId, $rules)
+  {
+    $returned=array(
+      'imageId' => $imageId,
+      'numId' => $numId,
+      'value' => $this->buildUserDefinedTagConditionRule(0, $values, $rules)
+    );
+
+    return($returned);
+  }
+
+
+  /**
+   * build the userDefined tag for an image
+   *
+   * @param String $imageId : id of the image
+   * @param Array $values : array of existing tag for the images
+   * @param String $numId : id of the metadata to build
+   * @param Array $rules  : rules to apply to build the metadata
+   */
+  protected function buildUserDefinedTagConditionRule($parentId, $values, $rules)
+  {
+    $null=true;
+    $returned='';
+    foreach($rules[$parentId] as $rule)
+    {
+      switch($rule['type'])
+      {
+        case 'T':
+          $returned.=$rule['value'];
+          $null=false;
+          break;
+        case 'M':
+          if(isset($values[$rule['value']]))
+          {
+            $returned.=$values[$rule['value']];
+            $null=false;
+          }
+          break;
+        case 'C':
+          $ok=false;
+          switch($rule['conditionType'])
+          {
+            case 'E':
+              if(isset($values[$rule['value']])) $ok=true;
+              break;
+            case '!E':
+              if(!isset($values[$rule['value']])) $ok=true;
+              break;
+            case '=':
+              if(isset($values[$rule['value']]) and
+                 $values[$rule['value']]==$rule['conditionValue']) $ok=true;
+              break;
+            case '!=':
+              if(isset($values[$rule['value']]) and
+                 $values[$rule['value']]!=$rule['conditionValue']) $ok=true;
+              break;
+            case '%':
+              if(isset($values[$rule['value']]) and
+                 preg_match('/'.$rule['conditionValue'].'/i', $values[$rule['value']])) $ok=true;
+              break;
+            case '!%':
+              if(isset($values[$rule['value']]) and
+                 !preg_match('/'.$rule['conditionValue'].'/i', $values[$rule['value']])) $ok=true;
+              break;
+          }
+          if($ok)
+          {
+            $subRule=$this->buildUserDefinedTagConditionRule($rule['defId'], $values, $rules);
+            if(!is_null($subRule))
+            {
+              $null=false;
+              $returned.=$subRule;
+            }
+          }
+          break;
+      }
+    }
+    if($null)
+    {
+      return(null);
+    }
+    return($returned);
+  }
+
+
 
 
   /**

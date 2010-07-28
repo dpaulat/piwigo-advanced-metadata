@@ -106,9 +106,13 @@
       $this->byteOrder=$byteOrder;
       $this->dataOffset=$offset;
 
+
       $this->skipHeader($this->headerSize);
 
+
+
       $dataPointer = $this->data->offset();
+
       /*
        * number of entries is defined byte an UShort at the begining of the
        * data structure
@@ -421,7 +425,20 @@
            * the tag 0x8769 value is an offset to an EXIF sub IFD
            * the returned value is a parsed sub IFD
            */
-          $returned=new IfdReader($this->data->readASCII(-1,$values-$this->dataOffset), $values, $this->byteOrder);
+          if($values>$this->dataOffset)
+          {
+            $returned=new IfdReader($this->data->readASCII(-1,$values-$this->dataOffset), $values, $this->byteOrder);
+          }
+          else
+          {
+            /* ELSE implemented with the mantis bug:1686
+             * when the offset of a sub IFD tag is lower than the offset of the
+             * current IFD, ignore the sub IFD
+             *
+             * A method have to be coded to manage this kind of sub IFD
+             */
+            $returned="Feature not implemented: read negative offset";
+          }
           break;
         case 0x8825: // GPS IFD Pointer, tag 0x8825
           /*

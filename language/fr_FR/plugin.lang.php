@@ -164,4 +164,50 @@ Ainsi, la métadonnée [b]magic.ShotInfo.Aperture[/b] restitue :
 [li]la valeur de la métadonnée [b]xmp.exif:ApertureValue[/b] si celle-ci est présente dans la photo[/li]
 [/ul]";
 
+
+// release 0.5.0
+
+$lang['g003_y'] = "Oui";
+$lang['g003_n'] = "Non";
+
+
+$lang['g003_state'] = "Etat";
+$lang['g003_update'] = "Mise à jour";
+$lang['g003_state'] = "Etat";
+$lang['g003_personnal'] = "Personnelles";
+$lang['g003_search'] = "Recherche";
+
+$lang['g003_personnal_metadata'] = "Métadonnées personnalisées";
+$lang['g003_add_a_new_md'] = "Ajouter une nouvelle métadonnée";
+$lang['g003_fill_database'] = "Alimente le référentiel";
+$lang['g003_num_of_rules'] = "Nombre de règles";
+$lang['g003_metadatId'] = "Identifiant de la métadonnée";
+$lang['g003_rules'] = "Règles";
+$lang['g003_add_a_rule'] = "Ajouter une règle";
+$lang['g003_typeText'] = "Texte";
+$lang['g003_typeMetadata'] = "Métadonnée";
+$lang['g003_typeCondition'] = "Condition";
+$lang['g003_typeCIfExist'] = "existe";
+$lang['g003_typeCIfNotExist'] = "n'existe pas";
+$lang['g003_typeCIfEqual'] = "est égale à";
+$lang['g003_typeCIfNotEqual'] = "n'est pas égale à";
+$lang['g003_typeCIfLike'] = "contient";
+$lang['g003_typeCIfNotLike'] = "ne contient pas";
+$lang['g003_conditionIf'] = "Tester si la métadonnée";
+
+$lang['g003_invalidId'] = "L\'identifiant de la métadonnée est invalide";
+$lang['g003_oneRuleIsNeeded'] = "Il doit y avoir au moins une règle de gestion";
+$lang['g003_textRuleInvalid'] = "Règle de type \"Texte\" : le texte ne doit pas être vide";
+$lang['g003_metadataRuleInvalid'] = "Règle de type \"Métadonnée\" : une métadonnée doit être sélectionnée";
+$lang['g003_conditionMdRuleInvalid'] = "Règle de type \"Condition\" : une métadonnée doit être sélectionnée";
+$lang['g003_conditionRulesRuleInvalid'] = "Règle de type \"Condition\" : il doit y avoir au moins une règle de gestion";
+
+$lang['g003_tagIdAlreadyExist'] = "Une métadonnée avec cet identifiant existe déjà !";
+
+$lang['g003_pleaseConfirmMetadataDelete'] = "Confirmez-vous la suppression de la métadonnée ?";
+$lang['g003_deleteMetadata'] = "Suppression de la métadonnée";
+$lang['g003_delete']= "Supprimer";
+
+$lang['g003_userDefined_filter'] = "Métadonnées personnalisées";
+
 ?>
