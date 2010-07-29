@@ -299,12 +299,14 @@ class AMD_root extends CommonPlugin
    * returns the userDefined tag for one image (without searching in the
    * database)
    *
-   * @param Array $numId : array of userDefeined numId to get
+   * @param Array $numId : array of userDefined numId to get
    * @param Array $values : array of existing tag for the images
    * @return Array : associated array of numId=>value
    */
   protected function pictureGetUserDefinedTags($listId, $values)
   {
+    if(count($listId)==0 or count($values)==0) return(array());
+
     $listIds=implode(',', $listId);
     $rules=array();
     $returned=array();
