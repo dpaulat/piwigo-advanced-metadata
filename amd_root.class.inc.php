@@ -75,15 +75,45 @@ class AMD_root extends CommonPlugin
   public function initConfig()
   {
     $this->config=array(
-      'amd_NumberOfItemsPerRequest' => 25,
+      // options set by the plugin interface - don't modify them manually
       'amd_GetListTags_OrderType' => "tag",
       'amd_GetListTags_FilterType' => "magic",
       'amd_GetListTags_ExcludeUnusedTag' => "y",
       'amd_GetListTags_SelectedTagOnly' => "n",
       'amd_GetListImages_OrderType' => "value",
-      'amd_FillDataBaseContinuously' => "y",
       'amd_AllPicturesAreAnalyzed' => "n",
+      'amd_FillDataBaseContinuously' => "y",
+      'amd_FillDataBaseIgnoreSchemas' => array(),
+
+      // theses options can be set manually
+      'amd_NumberOfItemsPerRequest' => 25,
+      'amd_DisplayWarningsMessageStatus' => "y",
+      'amd_DisplayWarningsMessageUpdate' => "y",
+      'amd_FillDataBaseExcludeTags' => array(),
+      'amd_FillDataBaseExcludeFilters' => array(),
     );
+    /*
+     * ==> amd_FillDataBaseExcludeTags : array of tagId
+     *     the listed tag are completely excluded by the plugin, as they don't
+     *     exist
+     *     for each tagId you can use generic char as the LIKE sql operator
+     *      array('xmp.%', 'exif.maker.%')
+     *        -> exclude all XMP and EXIF MAKER tags
+     *
+     * ==> amd_FillDataBaseExcludeFilters : array of filterValue
+     *     if you exclude all the xmp tag you probably want to exclude everything
+     *     displaying 'xmp'
+     *     array('exif.maker',
+     *           'exif',
+     *           'iptc',
+     *           'xmp',
+     *           'magic')
+     *
+     * ==> amd_DisplayWarningsMessageStatus : 'y' or 'n'
+     *     amd_DisplayWarningsMessageUpdate
+     *     you can disable warnings messages displayed on the database status&update
+     *     page
+     */
   }
 
   public function loadConfig()
@@ -106,6 +136,16 @@ class AMD_root extends CommonPlugin
     {
       return(parent::getAdminLink());
     }
+  }
+
+  /**
+   *
+   */
+  protected function configForTemplate()
+  {
+    global $template;
+
+    $template->assign('amdConfig', $this->config);
   }
 
   /**
@@ -174,6 +214,7 @@ class AMD_root extends CommonPlugin
    */
   protected function analyzeImageFile($fileName, $imageId, $loaded=false)
   {
+    $schemas=array_flip($this->config['amd_FillDataBaseIgnoreSchemas']);
     /*
      * the JpegMetaData object is instancied in the constructor
      */
@@ -184,9 +225,10 @@ class AMD_root extends CommonPlugin
         Array(
           'filter' => AMD_JpegMetaData::TAGFILTER_IMPLEMENTED,
           'optimizeIptcDateTime' => true,
-          'exif' => true,
-          'iptc' => true,
-          'xmp' => true
+          'exif' => !isset($schemas['exif']),
+          'iptc' => !isset($schemas['iptc']),
+          'xmp' => !isset($schemas['xmp']),
+          'magic' => !isset($schemas['magic']),
         )
       );
     }
@@ -468,12 +510,32 @@ class AMD_root extends CommonPlugin
    */
   protected function makeStatsConsolidation()
   {
+    // reset numbers
+    $sql="UPDATE ".$this->tables['used_tags']." ut
+          SET ut.numOfImg = 0;";
+    pwg_query($sql);
+
+    $sql="UPDATE ".$this->tables['images']." pai
+          SET pai.nbTags = 0;";
+    pwg_query($sql);
+
+
+    // count number of images per tag
     $sql="UPDATE ".$this->tables['used_tags']." ut,
-            (SELECT COUNT(imageId) AS nb, numId
+            (SELECT COUNT(DISTINCT imageId) AS nb, numId
               FROM ".$this->tables['images_tags']."
               GROUP BY numId) nb
           SET ut.numOfImg = nb.nb
           WHERE ut.numId = nb.numId;";
+    pwg_query($sql);
+
+    //count number of tags per images
+    $sql="UPDATE ".$this->tables['images']." pai,
+            (SELECT COUNT(DISTINCT numId) AS nb, imageId
+              FROM ".$this->tables['images_tags']."
+              GROUP BY imageId) nb
+          SET pai.nbTags = nb.nb
+          WHERE pai.imageId = nb.imageId;";
     pwg_query($sql);
 
 

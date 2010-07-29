@@ -44,6 +44,7 @@ class AMD_AIP extends AMD_root
     parent::__construct($prefixeTable, $filelocation);
 
     $this->loadConfig();
+    $this->configForTemplate();
     $this->initEvents();
 
     $this->tabsheet = new tabsheet();
@@ -445,6 +446,7 @@ class AMD_AIP extends AMD_root
     switch($tab)
     {
       case 'state':
+        $template->assign('sheetContent', $this->displayDatabaseStatus());
         break;
       case 'update':
         $template->assign('sheetContent', $this->displayDatabaseDatabase());
@@ -453,6 +455,115 @@ class AMD_AIP extends AMD_root
 
     $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
   }
+
+
+
+  /**
+   * display the database status
+   *
+   * @return String : the content of the page
+   */
+  private function displayDatabaseStatus()
+  {
+    global $template, $page;
+
+    $template->set_filename('sheet_page', dirname(__FILE__).'/admin/amd_metadata_database_status.tpl');
+
+    $datas=array(
+      'urlRequest' => $this->getAdminLink('ajax'),
+      'warning1' => GPCCore::BBtoHTML(l10n('g003_databaseWarning1')),
+      'nfoMetadata' => Array(
+          'exif' => 0,
+          'iptc' => 0,
+          'magic' => 0,
+          'xmp' => 0,
+          'userDefined' => 0,
+          'numOfPictures' => 0,
+          'numOfNotAnalyzedPictures' => 0,
+          'numOfPicturesWithoutTag' => 0,
+          'nfoSize' => 0,
+          'nfoRows' => 0,
+          'nfoSizeAndRows' => '',
+        )
+    );
+
+    $sql="SELECT SUM(numOfImg) AS nb, 'exif' AS `type`
+          FROM ".$this->tables['used_tags']."
+          WHERE tagId LIKE 'exif.%'
+          UNION
+          SELECT SUM(numOfImg), 'iptc'
+          FROM ".$this->tables['used_tags']."
+          WHERE tagId LIKE 'iptc.%'
+          UNION
+          SELECT SUM(numOfImg), 'magic'
+          FROM ".$this->tables['used_tags']."
+          WHERE tagId LIKE 'magic.%'
+          UNION
+          SELECT SUM(numOfImg), 'xmp'
+          FROM ".$this->tables['used_tags']."
+          WHERE tagId LIKE 'xmp.%'
+          UNION
+          SELECT SUM(numOfImg), 'userDefined'
+          FROM ".$this->tables['used_tags']."
+          WHERE tagId LIKE 'userDefined.%'
+          UNION
+          SELECT COUNT(imageId), 'numOfPictures'
+          FROM ".$this->tables['images']."
+          WHERE analyzed='y'
+          UNION
+          SELECT COUNT(imageId), 'numOfNotAnalyzedPictures'
+          FROM ".$this->tables['images']."
+          WHERE analyzed='n'
+          UNION
+          SELECT COUNT(imageId), 'numOfPicturesWithoutTag'
+          FROM ".$this->tables['images']."
+          WHERE nbTags=0";
+    $result=pwg_query($sql);
+    if($result)
+    {
+      while($row=pwg_db_fetch_assoc($result))
+      {
+        if(!is_null($row['nb']))
+        {
+          $datas['nfoMetadata'][$row['type']]=$row['nb'];
+          if($row['type']=='exif' or
+             $row['type']=='iptc' or
+             $row['type']=='magic' or
+             $row['type']=='xmp' or
+             $row['type']=='userDefined') $datas['nfoMetadata']['nfoRows']+=$row['nb'];
+        }
+      }
+    }
+
+    $sql="SHOW TABLE STATUS WHERE name LIKE '".$this->tables['images_tags']."'";
+    $result=pwg_query($sql);
+    if($result)
+    {
+      while($row=pwg_db_fetch_assoc($result))
+      {
+        $datas['nfoMetadata']['nfoSize']=$row['Data_length']+$row['Index_length'];
+      }
+    }
+
+    if($datas['nfoMetadata']['nfoSize']<1048576)
+    {
+      $datas['nfoMetadata']['nfoSize']=sprintf('%.2fKio', $datas['nfoMetadata']['nfoSize']/1024);
+    }
+    else
+    {
+      $datas['nfoMetadata']['nfoSize']=sprintf('%.2fMio', $datas['nfoMetadata']['nfoSize']/1048576);
+    }
+    $datas['nfoMetadata']['nfoSizeAndRows']=sprintf(l10n('g003_sizeAndRows'), $datas['nfoMetadata']['nfoSize'], $datas['nfoMetadata']['nfoRows']);
+    $datas['nfoMetadata']['numOfPictures']=sprintf(l10n('g003_numberOfAnalyzedPictures'), $datas['nfoMetadata']['numOfPictures']);
+    $datas['nfoMetadata']['numOfNotAnalyzedPictures']=sprintf(l10n('g003_numberOfNotAnalyzedPictures'), $datas['nfoMetadata']['numOfNotAnalyzedPictures']);
+    $datas['nfoMetadata']['numOfPicturesWithoutTag']=sprintf(l10n('g003_numberOfPicturesWithoutTags'), $datas['nfoMetadata']['numOfPicturesWithoutTag']);
+
+    $template->assign("datas", $datas);
+
+    return($template->parse('sheet_page', true));
+  } // displayDatabaseStatus
+
+
 
 
   /**
@@ -490,14 +601,19 @@ class AMD_AIP extends AMD_root
 
 
     /*
-     * delete metdata for images that are not in the AMD image table
+     * delete metadata for images that are not in the AMD image table
      */
-    $sql="DELETE FROM ".$this->tables['images_tags']."
-            WHERE imageId NOT IN (SELECT imageId FROM ".$this->tables['images'].")";
+    $sql="DELETE ait
+          FROM ".$this->tables['images_tags']." ait
+            JOIN (SELECT DISTINCT imageId FROM ".$this->tables['images_tags']." ) aitd
+              ON ait.imageId=aitd.imageId
+          WHERE aitd.imageId NOT IN (SELECT id FROM ".IMAGES_TABLE.") ";
     pwg_query($sql);
 
 
-    $template->set_filename('sheet_page', dirname(__FILE__).'/admin/amd_metadata_database.tpl');
+
+
+    $template->set_filename('sheet_page', dirname(__FILE__).'/admin/amd_metadata_database_database.tpl');
 
     $datas=array(
       'urlRequest' => $this->getAdminLink('ajax'),

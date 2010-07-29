@@ -53,6 +53,8 @@
 
   class GpsReader extends IfdReader
   {
+    protected $schema = Schemas::EXIF;
+
     function __destruct()
     {
       parent::__destruct();

@@ -12,7 +12,6 @@ $lang['g003_database'] = "Référentiel";
 $lang['g003_status'] = "Status";
 $lang['g003_show'] = "Consulter";
 
-$lang['g003_numberOfAnalyzedPictures'] = "%d images ont fait l'objet d'une analyse et représentent %d métadonnées";
 $lang['g003_numberOfNotAnalyzedPictures'] = "%d images n'ont pas fait l'objet d'une analyse";
 $lang['g003_analyze_not_analyzed_pictures'] = "L'analyse porte sur les images n'ayant jamais été analysées et vient s'ajouter au référentiel actuel";
 $lang['g003_analyze_all_pictures'] = "L'analyse porte sur toutes les images de la galerie et vient remplacer le référentiel actuel";
@@ -77,8 +76,7 @@ $lang['g003_no_tag_can_be_selected'] = "Aucune métadonnée n'est disponible";
 $lang['g003_warning_on_analyze_3'] = "Le référentiel s'alimente peu à peu chaque fois qu'une page de la galerie est visitée. La durée nécessaire pour l'alimentation complète du référentiel dépends donc :";
 $lang['g003_warning_on_analyze_3a'] = "du nombre de photos dans la galerie";
 $lang['g003_warning_on_analyze_3b'] = "du nombre de pages visualisées quotidiennement";
-$lang['g003_warning_on_analyze_4a'] = "le référentiel n'est exploité qu'à des fins statistiques et facilite le choix des métadonnées sélectionnées pour affichage";
-$lang['g003_warning_on_analyze_4b'] = "une image non prise prise en compte pour l'alimentation du référentiel disposera quand même des métadonnées sur la galerie";
+
 $lang['g003_warning_on_analyze_5'] = "Afin de disposer rapidement d'un référentiel complet, il est possible de procéder à une analyse plus directe de la galerie :";
 $lang['g003_warning_on_analyze_0'] = "Attention !";
 $lang['g003_warning_on_analyze_1'] = "L'alimentation du référentiel via le processus d'analyse directe peut s'avérer être long (jusqu'à plusieurs minutes de traitement) et gourmand en ressources sur le serveur en fonction du nombre de photos sélectionnées pour l'analyse.";
@@ -164,8 +162,9 @@ Ainsi, la métadonnée [b]magic.ShotInfo.Aperture[/b] restitue :
 [li]la valeur de la métadonnée [b]xmp.exif:ApertureValue[/b] si celle-ci est présente dans la photo[/li]
 [/ul]";
 
-
-// release 0.5.0
+/*
+ * release 0.5.0
+ */
 
 $lang['g003_y'] = "Oui";
 $lang['g003_n'] = "Non";
@@ -209,5 +208,33 @@ $lang['g003_deleteMetadata'] = "Suppression de la métadonnée";
 $lang['g003_delete']= "Supprimer";
 
 $lang['g003_userDefined_filter'] = "Métadonnées personnalisées";
+
+$lang['g003_informations'] = "Informations";
+$lang['g003_databaseInformation'] = "Informations importantes à propos du référentiel";
+$lang['g003_databaseWarning1']="[p]Le référentiel est constitué des métadonnées contenues dans les images de galerie ainsi que de métadonnées calculées par le plugin. En fonction du nombre d'images et du nombre de métadonnées y étant rattachées, le référentiel peut s'avérer être très volumineux.
+Avant d'alimenter le référentiel, assurez-vous que la base de données proposée par votre hébergeur permet ce type d'usage.
+[/p][p]Il est toutefois à noter que l'usage du référentiel est facultatif, ce dernier n'étant pas exploité pour l'affichage des métadonnées des photos de la galerie.
+[/p][p]L'alimentation du référentiel est nécessaire si vous souhaitez :[/p]
+[ul]
+[li]Disposer de statistiques sur les métadonnées présentes dans vos photos (c'est aussi une aide pour la sélection de métadonnées)[/li]
+[li]Disposer du moteur de recherche[/li]
+[/ul]
+";
+$lang['g003_sizeAndRows'] = "Le référentiel fait %s et est constitué de %s métadonnées";
+$lang['g003_numberOfAnalyzedPictures'] = "%d images ont fait l'objet d'une analyse";
+
+$lang['g003_options'] = "Options";
+$lang['g003_fillDatabaseContinuously'] = "Alimenter le référentiel au fil de l'eau";
+$lang['g003_ignoreMetadata'] = "Ignorer les métadonnées suivantes :";
+
+$lang['g003_analyze_analyzed_pictures'] = "L'analyse ne porte que sur les images ayant déjà fait l'objet d'une analyse";
+$lang['g003_fillDatabaseIgnoreWarning'] = "Pour être prise en compte, la modification des paramètres de cette option nécessite d'effectuer une analyse";
+
+/*
+ * removed keys
+ */
+//$lang['g003_warning_on_analyze_4a']
+//$lang['g003_warning_on_analyze_4b']
+
 
 ?>

@@ -59,6 +59,8 @@
 
   class PentaxReader extends MakerNotesReader
   {
+    protected $schema = Schemas::EXIF;
+
     /**
      * The constructor needs, like the ancestor, the datas to be parsed
      *

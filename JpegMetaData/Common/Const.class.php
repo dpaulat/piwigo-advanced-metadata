@@ -141,4 +141,16 @@
     );
   }
 
+  class Schemas {
+    const EXIF  = "exif";
+    const IPTC  = "iptc";
+    const XMP   = "xmp";
+    const MAGIC = "magic";
+
+    const EXIF_TIFF = "exif.tiff";
+    const EXIF_EXIF = "exif.exif";
+    const EXIF_GPS  = "exif.gps";
+    const EXIF_MAKER  = "exif.maker";
+  }
+
 ?>

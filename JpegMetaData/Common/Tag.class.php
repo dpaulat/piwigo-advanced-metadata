@@ -44,13 +44,14 @@
  *  - tagNote           : free to set note about a tag
  *  - tagValue          : the 'raw' value of the tag, not interpreted ; can be
  *                        of any type
- *  - valuelabel        : the interpreted value of the tag ; in most case it's a
+ *  - valueLabel        : the interpreted value of the tag ; in most case it's a
  *                        String, but can be an Integer, a Float or an Array
  *  - tagIsKnown        : indicates if the tag is a known tag or not
  *  - tagIsImplemented  : indicates if the interpretation of the tag is
  *                        implemented or not
  *  - tagIsTranslatable : indicates if the interpreted value for the tag is
  *                        translatable
+ *  - schema            : the schema associated with the tag ('exif', 'iptc', 'xmp', 'magic')
  *
  * This class provides theses public functions :
  *  - getId
@@ -58,6 +59,7 @@
  *  - getValue
  *  - getLabel
  *  - getNote
+ *  - getSchema
  *  - isKnown
  *  - isImplemented
  *  - isTranslatable
@@ -66,6 +68,7 @@
  *  - setValue
  *  - setLabel
  *  - setNote
+ *  - setSchema
  *  - setKnown
  *  - setImplemented
  *  - setTranslatable
@@ -83,6 +86,7 @@
     private $tagIsKnown = false;
     private $tagIsImplemented = false;
     private $tagIsTranslatable = false;
+    private $tagSchema = "";
 
     /**
      * All parameters for the Tag constructor are optional
@@ -103,9 +107,10 @@
      *                                                implemented tag or not
      * @param Boolean $tagIstranslatable (optional) : determine if the tag value
      *                                                can be translated or not
-     *
+     * @param String $schema (optional)             : schema associated with to
+     *                                                the tag
      */
-    function __construct($tagId=0xffff, $tagValue=0, $tagName="", $valueLabel="", $tagNote="", $tagIsKnown=false, $tagIsImplemented=false, $tagIsTranslatable=false)
+    function __construct($tagId=0xffff, $tagValue=0, $tagName="", $valueLabel="", $tagNote="", $tagIsKnown=false, $tagIsImplemented=false, $tagIsTranslatable=false, $schema="")
     {
       $this->tagId = $tagId;
       $this->tagValue = $tagValue;
@@ -115,6 +120,7 @@
       $this->tagIsKnown=$tagIsKnown;
       $this->tagIsImplemented=$tagIsImplemented;
       $this->tagIsTranslatable=$tagIsTranslatable;
+      $this->tagSchema = $schema;
     }
 
     function __destruct()
@@ -127,6 +133,7 @@
       unset($this->tagIsKnown);
       unset($this->tagIsImplemented);
       unset($this->tagIsTranslatable);
+      unset($this->tagSchema);
     }
 
     /**
@@ -198,6 +205,16 @@
     public function getNote()
     {
       return($this->tagNote);
+    }
+
+    /**
+     * returns the schema associated to the tag
+     *
+     * @return String
+     */
+    public function getSchema()
+    {
+      return($this->tagSchema);
     }
 
     /**
@@ -295,6 +312,19 @@
     }
 
     /**
+     * set a schema to the tag
+     *
+     * @param String $value
+     * @return String
+     */
+    public function setSchema($value)
+    {
+      $this->tagSchema=$value;
+      return($this->tagSchema);
+    }
+
+
+    /**
      * set if the tag value is translatable
      *
      * @param Boolean $value
@@ -312,7 +342,8 @@
 
       if($mode=="all")
         if(is_string($this->tagId))
-          $returned.="tag: ".str_replace(" ", "&nbsp;", sprintf("%-34s", $this->tagId))." ; ";
+          $returned.="tag: ".str_replace(" ", "&nbsp;", sprintf("%-34s", $this->tagId))." ;
+                      schema: ".str_replace(" ", "&nbsp;", sprintf("%-5s", $this->tagSchema))." ; ";
         else
           $returned.="tag: 0x".sprintf("%04x", $this->tagId)." ; ";
 

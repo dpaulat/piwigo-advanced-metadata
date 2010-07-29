@@ -55,10 +55,10 @@ li.groupItems input, li.groupItems select { margin-right:4px; }
   width:auto;
 }
 .helper {
-  -moz-border-radius:8px;
-  -webkit-border-radius:8px;
-  -khtml-border-radius:8px;
-  border-radius:8px;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+  -khtml-border-radius:4px;
+  border-radius:4px;
   border:2px dashed #777777;
   margin:4px 4px 4px 12px;
 }
@@ -102,4 +102,35 @@ ul.error {
   -webkit-border-radius:8px;
   -khtml-border-radius:8px;
   border-radius:8px;
+}
+
+.warnings {
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+  -khtml-border-radius:4px;
+  border-radius:4px;
+}
+.warnings p {
+  margin:0;
+  padding:0 0 6px;
+  text-align: justify;
+}
+.warnings ul {
+  margin:-6px 0;
+  padding:0 40px 6px;
+}
+table.mdInfo {
+  width:100%;
+  text-align:left;
+}
+table.mdInfo tr {
+  vertical-align:top;
+}
+table.mdInfo tr td ul {
+  margin:0px;
+}
+span.mdInfo {
+  width:100px;
+  display:inline-block;
+  font-weight:bold;
 }

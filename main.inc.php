@@ -55,10 +55,11 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis : feature 1692
 |         |            |   . Add possibility for user to build their own "magic"
 |         |            |     tags
+|         |            | * mantis : feature 1777
+|         |            |   . Weight of the metadata database can becomes very
+|         |            |     heavy
 |         |            | * ajax management was entirely rewritted
 |         |            | * user interface reviewed
-|         |            |
-|         |            |
 |         |            |
 |         |            |
 |         |            |

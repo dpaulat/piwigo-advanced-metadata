@@ -64,6 +64,7 @@
   {
     const HEADER_1 = "Photoshop 3.0\x00";
     const HEADER_2 = "Adobe_Photoshop2.5:\x00";
+    protected $schema = Schemas::IPTC;
 
     private $header = "";
 
@@ -236,6 +237,7 @@
         $tag->setName($tagProperties['tagName']);
         $tag->setImplemented($tagProperties['implemented']);
         $tag->setTranslatable($tagProperties['translatable']);
+        $tag->setSchema($this->schema);
 
         /*
          * if there is values defined for the tag, analyze it

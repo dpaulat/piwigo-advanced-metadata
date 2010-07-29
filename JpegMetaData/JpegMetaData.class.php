@@ -3,7 +3,7 @@
  * --:: JPEG MetaDatas ::-------------------------------------------------------
  *
  * Version : 1.0.1
- * Date    : 2010-07-24
+ * Date    : 2010-07-29
  *
  *  Author    : Grum
  *   email    : grum at piwigo.org
@@ -40,7 +40,7 @@
  * |         |            |
  * | 1.0.0   |            | * first public release
  * |         |            |
- * | 1.0.1   | 2010-07-24 | * mantis bug:1686
+ * | 1.0.1   | 2010-07-29 | * mantis bug:1686
  * |         |            |   . bug reported on IfdReader
  * |         |            |     When sub IFD (0x8769) refers to a sub IFD with
  * |         |            |     an offset lower than the current IFD, the reader
@@ -49,9 +49,21 @@
  * |         |            |     kind of offset, but it's not the right solution
  * |         |            |     (right solution: to be able to read negative
  * |         |            |     offset)
+ * |         |            |
  * |         |            | * mantis feature : 1719
  * |         |            |   . Coding a DateTime class ; used only if there is
  * |         |            |     no PHP built-in DateTime class
+ * |         |            |
+ * |         |            | * add the "schema" property to Tag class
+ * |         |            |
+ * |         |            | * fixed bug about filtering schema
+ * |         |            |   . when loading metadata, filter on schema are now
+ * |         |            |     applied ; 'magic' metadata are computed even if
+ * |         |            |     the other schema are filtered
+ * |         |            |
+ * |         |            |
+ * |         |            |
+ * |         |            |
  * |         |            |
  * |         |            |
  * |         |            |
@@ -132,14 +144,6 @@
     const TAGFILTER_KNOWN       = 0x01;
     const TAGFILTER_IMPLEMENTED = 0x02;
     const TAGFILTER_ALL         = 0x03;
-
-    const KEY_EXIF_TIFF = "exif.tiff";
-    const KEY_EXIF_EXIF = "exif.exif";
-    const KEY_EXIF_GPS  = "exif.gps";
-    const KEY_EXIF  = "exif";
-    const KEY_IPTC  = "iptc";
-    const KEY_XMP   = "xmp";
-    const KEY_MAGIC = "magic";
 
     private $jpeg = null;
     protected $tags = Array();
@@ -237,38 +241,38 @@
         {
           case "exif":
             $tmp=new IfdTags();
-            $schema="exif";
+            $schema=Schemas::EXIF;
             break;
           case "gps":
             $tmp=new GpsTags();
-            $schema="exif.gps";
+            $schema=Schemas::EXIF_GPS;
             break;
           case "iptc":
             $tmp=new IptcTags();
-            $schema="iptc";
+            $schema=Schemas::IPTC;
             break;
           case "xmp":
             $tmp=new XmpTags();
-            $schema="xmp";
+            $schema=Schemas::XMP;
             break;
           case "magic":
             $tmp=new MagicTags();
-            $schema="magic";
+            $schema=Schemas::MAGIC;
             break;
           case MAKER_PENTAX:
             include_once(JPEG_METADATA_DIR."TagDefinitions/PentaxTags.class.php");
             $tmp=new PentaxTags();
-            $schema="exif.".MAKER_PENTAX;
+            $schema=Schemas::EXIF_MAKER.'.'.MAKER_PENTAX;
             break;
           case MAKER_NIKON:
             include_once(JPEG_METADATA_DIR."TagDefinitions/NikonTags.class.php");
             $tmp=new NikonTags();
-            $schema="exif.".MAKER_NIKON;
+            $schema=Schemas::EXIF_MAKER.'.'.MAKER_NIKON;
             break;
           case MAKER_CANON:
             include_once(JPEG_METADATA_DIR."TagDefinitions/CanonTags.class.php");
             $tmp=new CanonTags();
-            $schema="exif.".MAKER_CANON;
+            $schema=Schemas::EXIF_MAKER.'.'.MAKER_CANON;
             break;
           default:
             $tmp=null;
@@ -286,12 +290,12 @@
               else
                 $name=$key;
 
-              if(array_key_exists('schema', $tag) and $val=="exif")
+              if(array_key_exists('schema', $tag) and $val==Schemas::EXIF)
                 $subSchema=".".$tag['schema'];
               else
                 $subSchema="";
 
-              if($val=='xmp')
+              if($val==Schemas::XMP)
                 $keyName=$schema.$subSchema.".".$key;
               else
                 $keyName=$schema.$subSchema.".".$name;
@@ -404,9 +408,10 @@
               /*
                * Load Exifs tags from Tiff block
                */
-              if($data->getNbIFDs()>0)
+              if($data->getNbIFDs()>0 and
+                 ($this->options['magic'] or $this->options['exif'] or $this->options['maker']))
               {
-                $this->loadIfdTags($data->getIFD(0), self::KEY_EXIF_TIFF);
+                $this->loadIfdTags($data->getIFD(0), Schemas::EXIF_TIFF);
               }
             }
             elseif($data instanceof XmpReader)
@@ -414,7 +419,10 @@
               /*
                * Load Xmp tags from Xmp block
                */
-              $this->loadTags($data->getTags(), self::KEY_XMP);
+              if($this->options['magic'] or $this->options['xmp'])
+              {
+                $this->loadTags($data->getTags(), Schemas::XMP);
+              }
             }
             elseif($data instanceof IptcReader)
             {
@@ -424,7 +432,10 @@
               if($this->options['optimizeIptcDateTime'])
                 $data->optimizeDateTime();
 
-              $this->loadTags($data->getTags(), self::KEY_IPTC);
+              if($this->options['magic'] or $this->options['iptc'])
+              {
+                $this->loadTags($data->getTags(), Schemas::IPTC);
+              }
             }
           }
         }
@@ -432,6 +443,12 @@
         if($this->options['magic'])
         {
           $this->processMagicTags();
+        }
+
+        // clean all unwanted metadata
+        foreach($this->tags as $key => $tag)
+        {
+          if(!$this->options[$tag->getSchema()]) unset($this->tags[$key]);
         }
 
         ksort($this->tags);
@@ -542,13 +559,13 @@
             switch($tag->getTag()->getName())
             {
               case 'Exif IFD Pointer':
-                $exifKey2=self::KEY_EXIF_EXIF;
+                $exifKey2=Schemas::EXIF_EXIF;
                 break;
               case 'MakerNote':
-                $exifKey2=self::KEY_EXIF.".".$tag->getTag()->getLabel()->getMaker();
+                $exifKey2=Schemas::EXIF_MAKER.".".$tag->getTag()->getLabel()->getMaker();
                 break;
               case 'GPS IFD Pointer':
-                $exifKey2=self::KEY_EXIF_GPS;
+                $exifKey2=Schemas::EXIF_GPS;
                 break;
               default:
                 $exifKey2=$exifKey;
@@ -620,6 +637,7 @@
             $tag->setKnown(true);
             $tag->setImplemented($val['implemented']);
             $tag->setTranslatable($val['translatable']);
+            $tag->setSchema(Schemas::MAGIC);
 
             $i=count($val['tagValues']);
           }

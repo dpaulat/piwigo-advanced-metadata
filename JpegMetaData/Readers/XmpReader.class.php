@@ -52,6 +52,8 @@
 
   class XmpReader extends GenericReader
   {
+    protected $schema = Schemas::XMP;
+
     private $xmlData = NULL;
 
     private $xmpTag2Exif = NULL;
@@ -299,7 +301,7 @@
         $tag->setKnown(true);
         $tag->setImplemented($tagProperties['implemented']);
         $tag->setTranslatable($tagProperties['translatable']);
-
+        $tag->setSchema($this->schema);
 
         if(array_key_exists('name', $tagProperties))
         {

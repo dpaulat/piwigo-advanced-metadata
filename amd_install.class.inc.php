@@ -155,6 +155,7 @@
 
       $this->initConfig();
       $this->loadConfig();
+      $this->loadConfigFromFile(dirname($this->getFileLocation()).'/activatePlugin.conf.php');
 
       /*
        * if there is no version information available, assume the previous
@@ -176,6 +177,7 @@
           break;
       }
 
+      $this->config['amd_FillDataBaseExcludeTags']=array();
       $this->config['installed']=AMD_VERSION2; //update the installed release number
       $this->saveConfig();
     }
@@ -233,6 +235,8 @@
      */
     private function initializeDatabase()
     {
+      global $user;
+
       L10n::setLanguage('en_UK');
 
       pwg_query("DELETE FROM ".$this->tables['used_tags']);
@@ -248,6 +252,22 @@
       foreach(AMD_JpegMetaData::getTagList(Array('filter' => AMD_JpegMetaData::TAGFILTER_IMPLEMENTED, 'xmp' => true, 'maker' => true, 'iptc' => true)) as $key => $val)
       {
         $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0, '".addslashes(L10n::get($val['name']))."');";
+        pwg_query($sql);
+      }
+
+      /*
+       * exclude unauthorized tag with the 'amd_FillDataBaseExcludeTags' option
+       */
+      if(count($this->config['amd_FillDataBaseExcludeTags']))
+      {
+        $sql="";
+        foreach($this->config['amd_FillDataBaseExcludeTags'] as $key => $tag)
+        {
+          if($sql!="") $sql.=" OR ";
+          $sql.=" tagId LIKE '$tag' ";
+        }
+        $sql="DELETE FROM ".$this->tables['used_tags']."
+              WHERE ".$sql;
         pwg_query($sql);
       }
 

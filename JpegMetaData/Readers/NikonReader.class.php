@@ -58,6 +58,8 @@
 
   class NikonReader extends MakerNotesReader
   {
+    protected $schema = Schemas::EXIF;
+
     /* these 2 specific metadata are used to decrypt some information, like the
      * data lens
      */

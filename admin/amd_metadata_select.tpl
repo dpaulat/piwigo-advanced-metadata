@@ -200,14 +200,25 @@
   <label>{'g003_filter'|@translate}
     <select id="iSelectFilterTagList" onchange="loadTagList();">
       <option value="" {if $datas.config_GetListTags_FilterType==""}selected{/if}>{'g003_no_filter'|@translate}</option>
+      {if !in_array('magic', $amdConfig.amd_FillDataBaseExcludeFilters)}
       <option value="magic" {if $datas.config_GetListTags_FilterType=="magic"}selected{/if}>{'g003_magic_filter'|@translate}</option>
+      {/if}
       <option value="userDefined" {if $datas.config_GetListTags_FilterType=="userDefined"}selected{/if}>{'g003_userDefined_filter'|@translate}</option>
+
+      {if !in_array('exif', $amdConfig.amd_FillDataBaseExcludeFilters)}
       <option value="exif" {if $datas.config_GetListTags_FilterType=="exif"}selected{/if}>Exif</option>
-      <option value="exif.Canon" {if $datas.config_GetListTags_FilterType=="exif.Canon"}selected{/if}>Exif [Canon]</option>
-      <option value="exif.Nikon" {if $datas.config_GetListTags_FilterType=="exif.Nikon"}selected{/if}>Exif [Nikon]</option>
-      <option value="exif.Pentax" {if $datas.config_GetListTags_FilterType=="exif.Pentax"}selected{/if}>Exif [Pentax]</option>
+      {/if}
+      {if !in_array('exif.maker', $amdConfig.amd_FillDataBaseExcludeFilters)}
+      <option value="exif.maker.Canon" {if $datas.config_GetListTags_FilterType=="exif.maker.Canon"}selected{/if}>Exif [Canon]</option>
+      <option value="exif.maker.Nikon" {if $datas.config_GetListTags_FilterType=="exif.maker.Nikon"}selected{/if}>Exif [Nikon]</option>
+      <option value="exif.maker.Pentax" {if $datas.config_GetListTags_FilterType=="exif.maker.Pentax"}selected{/if}>Exif [Pentax]</option>
+      {/if}
+      {if !in_array('xmp', $amdConfig.amd_FillDataBaseExcludeFilters)}
       <option value="xmp" {if $datas.config_GetListTags_FilterType=="xmp"}selected{/if}>Xmp</option>
+      {/if}
+      {if !in_array('iptc', $amdConfig.amd_FillDataBaseExcludeFilters)}
       <option value="iptc" {if $datas.config_GetListTags_FilterType=="iptc"}selected{/if}>Iptc</option>
+      {/if}
     </select>
   </label>
 

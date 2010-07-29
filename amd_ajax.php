@@ -65,10 +65,10 @@
            $_REQUEST['ajaxfct']=='admin.makeStats.getList' or
            $_REQUEST['ajaxfct']=='admin.makeStats.doAnalyze' or
            $_REQUEST['ajaxfct']=='admin.makeStats.consolidate' or
-           $_REQUEST['ajaxfct']=='admin.makeStats.getStatus' or
            $_REQUEST['ajaxfct']=='admin.showStats.getListTags' or
            $_REQUEST['ajaxfct']=='admin.showStats.getListImages' or
            $_REQUEST['ajaxfct']=='admin.updateTag.select' or
+           $_REQUEST['ajaxfct']=='admin.config.setOption' or
            $_REQUEST['ajaxfct']=='admin.group.getList' or
            $_REQUEST['ajaxfct']=='admin.group.delete' or
            $_REQUEST['ajaxfct']=='admin.group.getNames' or
@@ -99,9 +99,12 @@
           if(!($_REQUEST['selectMode']=="notAnalyzed" or
                $_REQUEST['selectMode']=="caddieAdd" or
                $_REQUEST['selectMode']=="caddieReplace" or
+               $_REQUEST['selectMode']=="analyzed" or
                $_REQUEST['selectMode']=="all")) $_REQUEST['selectMode']="caddieAdd";
 
           if(!isset($_REQUEST['numOfItems'])) $_REQUEST['numOfItems']=25;
+
+          if(!isset($_REQUEST['ignoreOptions'])) $_REQUEST['ignoreOptions']=array();
         }
 
         /*
@@ -134,14 +137,15 @@
           if(!isset($_REQUEST['filterType'])) $_REQUEST['filterType']="";
 
           if(!($_REQUEST['filterType']=="" or
-               $_REQUEST['filterType']=="magic" or
+               ($_REQUEST['filterType']=="magic" and !in_array('magic', $this->config['amd_FillDataBaseExcludeFilters'])) or
                $_REQUEST['filterType']=="userDefined" or
-               $_REQUEST['filterType']=="exif" or
-               $_REQUEST['filterType']=="exif.Canon" or
-               $_REQUEST['filterType']=="exif.Nikon" or
-               $_REQUEST['filterType']=="exif.Pentax" or
-               $_REQUEST['filterType']=="xmp" or
-               $_REQUEST['filterType']=="iptc")) $_REQUEST['filterType']="";
+               ($_REQUEST['filterType']=="exif" and !in_array('exif', $this->config['amd_FillDataBaseExcludeFilters'])) or
+               ($_REQUEST['filterType']=="exif.maker.Canon" and !in_array('maker', $this->config['amd_FillDataBaseExcludeFilters'])) or
+               ($_REQUEST['filterType']=="exif.maker.Nikon" and !in_array('maker', $this->config['amd_FillDataBaseExcludeFilters'])) or
+               ($_REQUEST['filterType']=="exif.maker.Pentax" and !in_array('maker', $this->config['amd_FillDataBaseExcludeFilters'])) or
+               ($_REQUEST['filterType']=="xmp" and !in_array('xmp', $this->config['amd_FillDataBaseExcludeFilters'])) or
+               ($_REQUEST['filterType']=="iptc"  and !in_array('iptc', $this->config['amd_FillDataBaseExcludeFilters']))
+               )) $_REQUEST['filterType']="";
 
           if(!isset($_REQUEST['excludeUnusedTag'])) $_REQUEST['excludeUnusedTag']="n";
 
@@ -175,6 +179,15 @@
           if(!isset($_REQUEST['numId'])) $_REQUEST['numId']="";
 
           if(!isset($_REQUEST['tagSelected'])) $_REQUEST['tagSelected']="";
+        }
+
+        /*
+         * check admin.config.setOption values
+         */
+        if($_REQUEST['ajaxfct']=="admin.config.setOption")
+        {
+          if(!isset($_REQUEST['id'])) $_REQUEST['ajaxfct']='';
+          if(!isset($_REQUEST['value'])) $_REQUEST['ajaxfct']='';
         }
 
         /*
@@ -314,16 +327,13 @@
       switch($_REQUEST['ajaxfct'])
       {
         case 'admin.makeStats.getList':
-          $result=$this->ajax_amd_admin_makeStatsGetList($_REQUEST['selectMode'], $_REQUEST['numOfItems']);
+          $result=$this->ajax_amd_admin_makeStatsGetList($_REQUEST['selectMode'], $_REQUEST['numOfItems'], $_REQUEST['ignoreOptions']);
           break;
         case 'admin.makeStats.doAnalyze':
           $result=$this->ajax_amd_admin_makeStatsDoAnalyze($_REQUEST['imagesList']);
           break;
         case 'admin.makeStats.consolidate':
           $result=$this->ajax_amd_admin_makeStatsConsolidate();
-          break;
-        case 'admin.makeStats.getStatus':
-          $result=$this->ajax_amd_admin_makeStatsGetStatus();
           break;
         case 'admin.showStats.getListTags':
           $result=$this->ajax_amd_admin_showStatsGetListTags($_REQUEST['orderType'], $_REQUEST['filterType'], $_REQUEST['excludeUnusedTag'], $_REQUEST['selectedTagOnly']);
@@ -333,6 +343,9 @@
           break;
         case 'admin.updateTag.select':
           $result=$this->ajax_amd_admin_updateTagSelect($_REQUEST['numId'], $_REQUEST['tagSelected']);
+          break;
+        case 'admin.config.setOption':
+          $result=$this->ajax_amd_admin_configSetOption($_REQUEST['id'], $_REQUEST['value']);
           break;
         case 'admin.group.getList':
           $result=$this->ajax_amd_admin_groupGetList();
@@ -451,29 +464,37 @@
      * @return String : list of image id to be analyzed, separated with a space
      *                      "23 78 4523 5670"
      */
-    private function ajax_amd_admin_makeStatsGetList($mode, $nbOfItems)
+    private function ajax_amd_admin_makeStatsGetList($mode, $nbOfItems, $ignoreSchemas)
     {
       global $user;
 
       $returned="";
+      $this->config['amd_FillDataBaseIgnoreSchemas']=$ignoreSchemas;
       $this->config['amd_NumberOfItemsPerRequest']=$nbOfItems;
       $this->saveConfig();
 
       $sql="SELECT ait.imageId FROM ".$this->tables['images']." ait";
-      if($mode=="notAnalyzed")
+      if($mode=='notAnalyzed')
       {
         $sql.=" WHERE ait.analyzed='n'";
       }
-      elseif($mode=="caddieAdd" or $mode=="caddieReplace")
+      elseif($mode=='caddieAdd' or $mode=='caddieReplace')
       {
-
         $sql.=" LEFT JOIN ".CADDIE_TABLE." ct ON ait.imageId = ct.element_id
               WHERE ct.user_id = ".$user['id']." ";
 
-        if($mode=="caddieAdd") $sql.=" AND ait.analyzed='n'";
+        if($mode=='caddieAdd') $sql.=" AND ait.analyzed='n'";
+      }
+      elseif($mode=='analyzed')
+      {
+        $sql.=" WHERE ait.analyzed='y'";
+
+        pwg_query("UPDATE ".$this->tables['images']." SET nbTags=0 WHERE analyzed='y';");
+        pwg_query("UPDATE ".$this->tables['used_tags']." SET numOfImg=0");
+        pwg_query("DELETE FROM ".$this->tables['images_tags']);
       }
 
-      if($mode=="all" or $mode=="caddieReplace")
+      if($mode=='all' or $mode=='caddieReplace')
       {
         pwg_query("UPDATE ".$this->tables['images']." SET analyzed='n', nbTags=0");
         pwg_query("UPDATE ".$this->tables['used_tags']." SET numOfImg=0");
@@ -560,62 +581,6 @@
     {
       $this->makeStatsConsolidation();
     }
-
-    /**
-     * returns a list of formated string, separated with a semi-colon :
-     *  - number of current analyzed pictures + number of current analyzed tags
-     *    for the analyzed pictures
-     *  - number of pictures not analyzed
-     *  - number of pictures without tag
-     *
-     * @return String
-     */
-    private function ajax_amd_admin_makeStatsGetStatus()
-    {
-      $numOfMetaData=0;
-      $numOfPictures=0;
-      $numOfPicturesNotAnalyzed=0;
-
-      $sql="SELECT COUNT(imageId), SUM(nbTags) FROM ".$this->tables['images']."
-              WHERE analyzed='y';";
-      $result=pwg_query($sql);
-      if($result)
-      {
-        while($row=pwg_db_fetch_row($result))
-        {
-          $numOfPictures=$row[0];
-          $numOfMetaData=$row[1];
-        }
-      }
-
-
-      $sql="SELECT COUNT(imageId) FROM ".$this->tables['images']."
-              WHERE analyzed='n';";
-      $result=pwg_query($sql);
-      if($result)
-      {
-        while($row=pwg_db_fetch_row($result))
-        {
-          $numOfPicturesNotAnalyzed=$row[0];
-        }
-      }
-
-      $sql="SELECT COUNT(imageId) FROM ".$this->tables['images']."
-              WHERE nbTags=0;";
-      $result=pwg_query($sql);
-      if($result)
-      {
-        while($row=pwg_db_fetch_row($result))
-        {
-          $numOfPicturesWithoutTags=$row[0];
-        }
-      }
-
-      return(sprintf(l10n("g003_numberOfAnalyzedPictures"), $numOfPictures, $numOfMetaData).";".
-                sprintf(l10n("g003_numberOfNotAnalyzedPictures"), $numOfPicturesNotAnalyzed).";".
-                sprintf(l10n("g003_numberOfPicturesWithoutTags"), $numOfPicturesWithoutTags));
-    }
-
 
     /**
      * return a formatted <table> (using the template "amd_stat_show_iListTags")
@@ -1384,9 +1349,7 @@
 
       $nbImg=$this->buildUserDefinedTags($id);
 
-      $sql="UPDATE ".$this->tables['used_tags']."
-              SET numOfImg='$nbImg';";
-      $result=pwg_query($sql);
+      $this->makeStatsConsolidation();
 
       return($id.','.$nbImg);
     }
@@ -1437,8 +1400,43 @@
       $result=pwg_query($sql);
     }
 
+    /**
+     * set value(s) for option(s)
+     *
+     * @param Array or String $ids : a string or an array of string (id)
+     * @param Array or String $values : a string or an array of string
+     * @return String : ok or ko
+     */
+    private function ajax_amd_admin_configSetOption($ids, $values)
+    {
+      if(is_array($ids) and is_array($values) and count($ids)==count($values))
+      {
+        foreach($ids as $key=>$id)
+        {
+          if(isset($id, $this->config))
+          {
+            $this->config[$id]=$values[$key];
+          }
+        }
+        $this->saveConfig();
+        return('ok');
+      }
+      elseif(is_string($ids) and is_string($values))
+      {
+        if(isset($ids, $this->config))
+        {
+          $this->config[$ids]=$values;
+        }
+        $this->saveConfig();
+        return('ok');
+      }
 
-  }
+      return('ko');
+    }
+
+
+
+  } //class
 
 
   $returned=new AMD_ajax($prefixeTable, __FILE__);

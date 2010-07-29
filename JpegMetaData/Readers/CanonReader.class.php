@@ -55,6 +55,8 @@
 
   class CanonReader extends MakerNotesReader
   {
+    protected $schema = Schemas::EXIF;
+
     /**
      * The constructor needs, like the ancestor, the datas to be parsed
      *
@@ -186,6 +188,7 @@
           $entry->getTag()->setKnown(true);
           $entry->getTag()->setImplemented($tagDef['implemented']);
           $entry->getTag()->setTranslatable($tagDef['translatable']);
+          $entry->getTag()->setSchema($this->schema);
 
           if(array_key_exists('tagValues', $tagDef))
           {
@@ -332,6 +335,7 @@
           $entry->getTag()->setKnown(true);
           $entry->getTag()->setImplemented($tagDef['implemented']);
           $entry->getTag()->setTranslatable($tagDef['translatable']);
+          $entry->getTag()->setSchema($this->schema);
 
           if(array_key_exists('tagValues', $tagDef))
           {
@@ -508,6 +512,7 @@
           $entry->getTag()->setKnown(true);
           $entry->getTag()->setImplemented($subTagDef['implemented']);
           $entry->getTag()->setTranslatable($subTagDef['translatable']);
+          $entry->getTag()->setSchema($this->schema);
 
           if(array_key_exists('tagValues', $subTagDef))
           {
@@ -597,6 +602,7 @@
           $entry->getTag()->setKnown(true);
           $entry->getTag()->setImplemented($subTagDef['implemented']);
           $entry->getTag()->setTranslatable($subTagDef['translatable']);
+          $entry->getTag()->setSchema($this->schema);
 
           if(array_key_exists('tagValues', $subTagDef))
           {

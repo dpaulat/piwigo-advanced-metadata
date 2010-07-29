@@ -80,10 +80,13 @@
   class IfdReader extends GenericReader
   {
     protected $byteOrder = BYTE_ORDER_LITTLE_ENDIAN;
+    protected $schema = Schemas::EXIF;
+
 
     private $nextIFDOffset = 0;
 
     private $dataOffset = 0;
+
 
     /**
      * The constructor needs, like the ancestor, the datas to be parsed
@@ -232,6 +235,7 @@
         $entry->getTag()->setName($tag['tagName']);
         $entry->getTag()->setImplemented($tag['implemented']);
         $entry->getTag()->setTranslatable($tag['translatable']);
+        $entry->getTag()->setSchema($this->schema);
 
         /*
          * if there is values defined for the tag, analyze it
