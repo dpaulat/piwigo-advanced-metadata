@@ -98,17 +98,17 @@
   PRIMARY KEY (`numId`, `lang`)
 );",
 "CREATE TABLE `".$this->tables['user_tags_def']."` (
-  `defId` int(10) unsigned NOT NULL auto_increment,
-  `parentId` int(10) unsigned NOT NULL default '0' COMMENT 'Id of the parent',
   `numId` int(10) unsigned NOT NULL COMMENT 'Id of the tag',
-  `order` int(10) unsigned NOT NULL COMMENT 'Order, relative to the parent',
+  `defId` int(10) unsigned NOT NULL default '0' COMMENT 'also used for ordering',
+  `parentId` int(10) unsigned NOT NULL default '0' COMMENT 'Id of the parent',
+  `order` int(10) unsigned NOT NULL,
   `type` char(1) NOT NULL default 'T' COMMENT 'T = static text ; M = metadata value ; C = condition',
   `value` varchar(200) NOT NULL,
   `conditionType` char(2) NOT NULL default 'E',
   `conditionValue` varchar(200) NOT NULL,
-  PRIMARY KEY  (`defId`),
-  KEY `byTagNumId` (`numId`,`parentId`,`order`),
-  KEY `byTagParentId` (`parentId`,`order`)
+  PRIMARY KEY  (`numId`,`defId`),
+  KEY `byTagParentId` USING BTREE (`numId`,`parentId`,`order`),
+  KEY `byTagOrder` (`numId`,`order`)
 );",
       );
 
@@ -203,17 +203,17 @@
   PRIMARY KEY (`numId`, `lang`)
 );",
 "CREATE TABLE `".$this->tables['user_tags_def']."` (
-  `defId` int(10) unsigned NOT NULL auto_increment,
-  `parentId` int(10) unsigned NOT NULL default '0' COMMENT 'Id of the parent',
   `numId` int(10) unsigned NOT NULL COMMENT 'Id of the tag',
-  `order` int(10) unsigned NOT NULL COMMENT 'Order, relative to the parent',
+  `defId` int(10) unsigned NOT NULL default '0' COMMENT 'also used for ordering',
+  `parentId` int(10) unsigned NOT NULL default '0' COMMENT 'Id of the parent',
+  `order` int(10) unsigned NOT NULL,
   `type` char(1) NOT NULL default 'T' COMMENT 'T = static text ; M = metadata value ; C = condition',
   `value` varchar(200) NOT NULL,
   `conditionType` char(2) NOT NULL default 'E',
   `conditionValue` varchar(200) NOT NULL,
-  PRIMARY KEY  (`defId`),
-  KEY `byTagNumId` (`numId`,`parentId`,`order`),
-  KEY `byTagParentId` (`parentId`,`order`)
+  PRIMARY KEY  (`numId`,`defId`),
+  KEY `byTagParentId` USING BTREE (`numId`,`parentId`,`order`),
+  KEY `byTagOrder` (`numId`,`order`)
 );"
       );
       $tablesDef = create_table_add_character_set($tablesDef);
