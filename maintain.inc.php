@@ -87,10 +87,15 @@ function plugin_activate($plugin_id, $plugin_version, &$errors)
   $amd=new AMD_install($prefixeTable, __FILE__);
   $result=$amd->activate();
   GPCCore::register($amd->getPluginName(), AMD_VERSION, $gpcNeeded);
+  GPCRequestBuilder::register($amd->getPluginName(), dirname($amd->getFileLocation()).'/amd_rb_callback.class.inc.php');
 }
 
 function plugin_deactivate($plugin_id)
 {
+  global $prefixeTable, $gpcNeeded;
+
+  $amd=new AMD_install($prefixeTable, __FILE__);
+  GPCRequestBuilder::unregister($amd->getPluginName());
 }
 
 function plugin_uninstall($plugin_id)

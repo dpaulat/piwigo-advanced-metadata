@@ -82,6 +82,7 @@
            $_REQUEST['ajaxfct']=='admin.userDefined.getTag' or
            $_REQUEST['ajaxfct']=='admin.userDefined.setTag' or
            $_REQUEST['ajaxfct']=='admin.userDefined.deleteTag' or
+           $_REQUEST['ajaxfct']=='admin.tag.getValues' or
 
            $_REQUEST['ajaxfct']=='public.makeStats.doPictureAnalyze')) $_REQUEST['ajaxfct']='';
 
@@ -308,6 +309,15 @@
 
 
         /*
+         * check admin.tag.getValues values
+         */
+        if($_REQUEST['ajaxfct']=="admin.tag.getValues" and !isset($_REQUEST['id']))
+        {
+          $_REQUEST['ajaxfct']='';
+        }
+
+
+        /*
          * check public.makeStats.doPictureAnalyze values
          */
         if($_REQUEST['ajaxfct']=="public.makeStats.doPictureAnalyze")
@@ -386,6 +396,9 @@
         case 'admin.userDefined.deleteTag':
           $result=$this->ajax_amd_admin_userDefinedDeleteTag($_REQUEST['id']);
           break;
+        case 'admin.tag.getValues':
+          $result=$this->ajax_amd_admin_tagGetValues($_REQUEST['id']);
+          break;
 
 
         case 'public.makeStats.doPictureAnalyze':
@@ -405,7 +418,7 @@
       if($imageId==0)
       {
         // get a randomly picture...
-        $sql="SELECT pai.imageId, pi.path
+        $sql="SELECT pai.imageId, pi.path, pi.has_high
               FROM ".$this->tables['images']." pai
                 LEFT JOIN ".IMAGES_TABLE." pi ON pai.imageId=pi.id
               WHERE analyzed='n'
@@ -425,7 +438,14 @@
         while($row=pwg_db_fetch_assoc($result))
         {
           $imageId=$row['imageId'];
-          $filename=$path."/".$row['path'];
+          if($row['has_high']===true and $this->config['amd_UseMetaFromHD']=='y')
+          {
+            $filename=$path."/".dirname($row['path'])."/pwg_high/".basename($row['path']);
+          }
+          else
+          {
+            $filename=$path."/".$row['path'];
+          }
         }
 
         $this->analyzeImageFile($filename, $imageId);
@@ -545,7 +565,7 @@
         // $path = path of piwigo's on the server filesystem
         $path=dirname(dirname(dirname(__FILE__)));
 
-        $sql="SELECT id, path FROM ".IMAGES_TABLE." WHERE id IN (".implode(", ", $list).")";
+        $sql="SELECT id, path, has_high FROM ".IMAGES_TABLE." WHERE id IN (".implode(", ", $list).")";
         $result=pwg_query($sql);
         if($result)
         {
@@ -563,7 +583,14 @@
             //echo "analyzing:".$row['id']."\n";
             //$mem1=memory_get_usage();
             //echo "memory before analyze:".$mem1."\n";
-            $returned.=$this->analyzeImageFile($path."/".$row['path'], $row['id']);
+            if($row['has_high']===true and $this->config['amd_UseMetaFromHD']=='y')
+            {
+              $returned.=$this->analyzeImageFile($path."/".dirname($row['path'])."/pwg_high/".basename($row['path']), $row['id']);
+            }
+            else
+            {
+              $returned.=$this->analyzeImageFile($path."/".$row['path'], $row['id']);
+            }
             //echo $returned."\n";
             //$mem2=memory_get_usage();
             //echo "memory after analyze:".$mem2." (".($mem2-$mem1).")\n";
@@ -721,7 +748,7 @@
         while($row=pwg_db_fetch_assoc($result))
         {
           $datas[]=array(
-            "value" => $this->prepareValueForDisplay($row['value'], ($row['translatable']=='y'), ", "),
+            "value" => AMD_root::prepareValueForDisplay($row['value'], ($row['translatable']=='y'), ", "),
             "nb"    => $row['Nb'],
             "pct"   => ($row['numOfImg']!=0)?sprintf("%.2f", 100*$row['Nb']/$row['numOfImg']):"-"
           );
@@ -1341,6 +1368,7 @@
       $inserts=array();
       foreach($properties['rules'] as $rule)
       {
+        print_r($rule['value']);
         $inserts[]="('$id', '".$rule['defId']."', '".$rule['parentId']."', '".$rule['order']."', '".$rule['type']."', '".$rule['value']."', '".$rule['conditionType']."', '".$rule['conditionValue']."')";
       }
       $sql="INSERT INTO ".$this->tables['user_tags_def']."
@@ -1399,6 +1427,37 @@
             WHERE numId='$id';";
       $result=pwg_query($sql);
     }
+
+
+    /**
+     * return the known values for a given tag id
+     *
+     * @param String $id : a tag numId
+     * @return String : an HTML list ready to use
+     */
+    private function ajax_amd_admin_tagGetValues($numId)
+    {
+      $returned="";
+
+      $sql="SELECT DISTINCT pait.value, COUNT(pait.imageId) AS nbImg, paut.translatable
+            FROM ".$this->tables['images_tags']." pait
+              LEFT JOIN ".$this->tables['used_tags']." paut
+                ON pait.numId=paut.numId
+            WHERE pait.numId = '$numId'
+            GROUP BY pait.value
+            ORDER BY pait.value";
+      $result=pwg_query($sql);
+      if($result)
+      {
+        while($row=pwg_db_fetch_assoc($result))
+        {
+          $value=htmlspecialchars(AMD_root::prepareValueForDisplay($row['value'], ($row['translatable']=='y'), ", "), ENT_QUOTES);
+          $returned.="<option displayvalue='$value' rawvalue='".$row['value']."'>$value (".$row['nbImg']." ".l10n('images').")</option>";
+        }
+      }
+      return($returned);
+    }
+
 
     /**
      * set value(s) for option(s)

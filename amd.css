@@ -134,3 +134,23 @@ span.mdInfo {
   display:inline-block;
   font-weight:bold;
 }
+
+#mdRulesAreaCheckOne,
+#mdRulesAreaCheckAll {
+  margin:3px;
+  text-align:left;
+}
+
+
+li.valueItems {
+  -moz-border-radius:4px 4px 4px 4px;
+  border:1px solid #666666;
+  margin-bottom:5px;
+  padding:4px;
+}
+
+#iDMCListValues {
+  list-style:none;
+  margin:8px;
+  padding:0;
+}

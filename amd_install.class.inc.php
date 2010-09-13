@@ -18,7 +18,7 @@
  * ---------------------------------------------------------------------------
  */
 
-  @include_once('amd_root.class.inc.php');
+  include_once('amd_root.class.inc.php');
   include_once(PHPWG_PLUGINS_PATH.'grum_plugins_classes-2/tables.class.inc.php');
 
 
@@ -65,8 +65,11 @@
 "CREATE TABLE `".$this->tables['images_tags']."` (
   `imageId` mediumint(8) unsigned NOT NULL default '0',
   `numId` int(10) unsigned NOT NULL default '0',
-  `value` text default NULL,
-  PRIMARY KEY  USING BTREE (`imageId`,`numId`)
+  `value` text,
+  `numValue` decimal(10,8) default NULL,
+  PRIMARY KEY  USING BTREE (`imageId`,`numId`),
+  KEY `byNumId` (`numId`,`value`(35)),
+  KEY `byNumId2` (`numId`,`numValue`)
 );",
 "CREATE TABLE `".$this->tables['images']."` (
   `imageId` MEDIUMINT(8) UNSIGNED NOT NULL,
@@ -193,7 +196,7 @@
     private function updateFrom_000400()
     {
       /*
-       * create new tables
+       * create new tables & alter existing tables
        */
       $tableDef=array(
 "CREATE TABLE `".$this->tables['user_tags_label']."` (
@@ -214,7 +217,12 @@
   PRIMARY KEY  (`numId`,`defId`),
   KEY `byTagParentId` USING BTREE (`numId`,`parentId`,`order`),
   KEY `byTagOrder` (`numId`,`order`)
-);"
+);",
+"ALTER TABLE `".$this->tables['images_tags']."`
+  ADD COLUMN `numValue` DECIMAL(10,8)  DEFAULT NULL AFTER `value`,
+  ADD INDEX `byNumId`(`numId`, `value`(35)),
+  ADD INDEX `byNumId2`(`numId`, `numValue`)
+;"
       );
       $tablesDef = create_table_add_character_set($tablesDef);
       $result=$this->tablef->create($tablesDef);
@@ -304,7 +312,7 @@
         {
           $excludeList="";
         }
-        $sql="SELECT ti.id, ti.path
+        $sql="SELECT ti.id, ti.path, ti.has_high
               FROM ".IMAGES_TABLE." ti ".$excludeList."
               ORDER BY RAND() LIMIT ".(25-count($listToAnalyze[0])).";";
         $result=pwg_query($sql);
@@ -327,7 +335,15 @@
 
         foreach($listToAnalyze[0] as $val)
         {
-          $this->analyzeImageFile($path."/".$val['path'], $val['id']);
+          if($val['has_high']===true and $this->config['amd_UseMetaFromHD']=='y')
+          {
+            $this->analyzeImageFile($path."/".dirname($val['path'])."/pwg_high/".basename($val['path']), $val['id']);
+          }
+          else
+          {
+            $this->analyzeImageFile($path."/".$val['path'], $val['id']);
+          }
+
         }
 
         $this->makeStatsConsolidation();

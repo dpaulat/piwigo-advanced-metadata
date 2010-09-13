@@ -27,7 +27,6 @@ include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCAjax.class.inc.php
 include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/genericjs.class.inc.php');
 
 
-
 class AMD_AIP extends AMD_root
 {
   protected $tabsheet;
@@ -113,7 +112,7 @@ class AMD_AIP extends AMD_root
         $this->displayMetaData($_REQUEST['fAMD_page']);
         break;
       case 'search':
-        //$this->displaySearch($_REQUEST['fAMD_page']);
+        $this->displaySearch($_REQUEST['fAMD_page']);
         break;
     }
 
@@ -127,6 +126,12 @@ class AMD_AIP extends AMD_root
    */
   public function initEvents()
   {
+    if(isset($_REQUEST['fAMD_tabsheet']) and $_REQUEST['fAMD_tabsheet']=='search')
+    {
+      // load request builder JS only on the search page
+      GPCRequestBuilder::loadJSandCSS();
+    }
+
     add_event_handler('loc_end_page_header', array(&$this->css, 'applyCSS'));
     GPCCss::applyGpcCss();
   }
@@ -234,6 +239,26 @@ class AMD_AIP extends AMD_root
     }
     return(false);
   }
+
+
+
+
+  /**
+   * display and manage the search page
+   */
+  protected function displaySearch()
+  {
+    global $template, $lang;
+
+    $template->set_filename('body_page',
+                dirname($this->getFileLocation()).'/admin/amd_metadata_search.tpl');
+
+    $template->assign('amd_search_page', GPCRequestBuilder::displaySearchPage($this->getPluginName()));
+
+    $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
+  }
+
+
 
 
   /**

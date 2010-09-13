@@ -22,6 +22,7 @@ if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
 
 include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php');
 include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCCss.class.inc.php');
+include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCRequestBuilder.class.inc.php');
 
 include_once('amd_jpegmetadata.class.inc.php');
 include_once(JPEG_METADATA_DIR."Common/L10n.class.php");
@@ -47,7 +48,8 @@ class AMD_root extends CommonPlugin
       'groups_names',
       'groups',
       'user_tags_label',
-      'user_tags_def');
+      'user_tags_def',
+      'tags_values');
     $this->setTablesList($tableList);
 
     $this->css = new GPCCss(dirname($this->getFileLocation()).'/'.$this->getPluginNameFiles().".css");
@@ -66,7 +68,6 @@ class AMD_root extends CommonPlugin
     //parent::__destruct();
   }
 
-
   /* ---------------------------------------------------------------------------
   common AIP & PIP functions
   --------------------------------------------------------------------------- */
@@ -84,6 +85,7 @@ class AMD_root extends CommonPlugin
       'amd_AllPicturesAreAnalyzed' => "n",
       'amd_FillDataBaseContinuously' => "y",
       'amd_FillDataBaseIgnoreSchemas' => array(),
+      'amd_UseMetaFromHD' => "y",
 
       // theses options can be set manually
       'amd_NumberOfItemsPerRequest' => 25,
@@ -177,7 +179,7 @@ class AMD_root extends CommonPlugin
    */
   public function doRandomAnalyze()
   {
-    $sql="SELECT tai.imageId, ti.path FROM ".$this->tables['images']." tai
+    $sql="SELECT tai.imageId, ti.path, ti.has_high FROM ".$this->tables['images']." tai
             LEFT JOIN ".IMAGES_TABLE." ti ON tai.imageId = ti.id
           WHERE tai.analyzed = 'n'
           ORDER BY RAND() LIMIT 1;";
@@ -189,7 +191,14 @@ class AMD_root extends CommonPlugin
 
       while($row=pwg_db_fetch_assoc($result))
       {
-        $this->analyzeImageFile($path."/".$row['path'], $row['imageId']);
+        if($row['has_high']===true and $this->config['amd_UseMetaFromHD']=='y')
+        {
+          $this->analyzeImageFile($path."/".dirname($row['path'])."/pwg_high/".basename($row['path']), $row['imageId']);
+        }
+        else
+        {
+          $this->analyzeImageFile($path."/".$row['path'], $row['imageId']);
+        }
       }
 
       $this->makeStatsConsolidation();
@@ -233,7 +242,7 @@ class AMD_root extends CommonPlugin
       );
     }
 
-    $sqlInsert="";
+    //$sqlInsert="";
     $massInsert=array();
     $nbTags=0;
     foreach($this->jpegMD->getTags() as $key => $val)
@@ -271,8 +280,8 @@ class AMD_root extends CommonPlugin
         if($numId>0)
         {
           $nbTags++;
-          if($sqlInsert!="") $sqlInsert.=", ";
-          $sqlInsert.="($imageId, '$numId', '".addslashes($value)."')";
+          //if($sqlInsert!="") $sqlInsert.=", ";
+          //$sqlInsert.="($imageId, '$numId', '".addslashes($value)."')";
           $massInsert[]="('$imageId', '$numId', '".addslashes($value)."') ";
         }
       }
@@ -290,6 +299,7 @@ class AMD_root extends CommonPlugin
             WHERE imageId=$imageId;";
     pwg_query($sql);
 
+    unset($massInsert);
 
     return("$imageId=$nbTags;");
   }
@@ -397,6 +407,7 @@ class AMD_root extends CommonPlugin
 
             if(!is_null($buildValue['value']))
             {
+              $buildValue['value']=addslashes($buildValue['value']);
               $inserts[]=$buildValue;
               $num++;
             }
@@ -483,6 +494,22 @@ class AMD_root extends CommonPlugin
               if(isset($values[$rule['value']]) and
                  !preg_match('/'.$rule['conditionValue'].'/i', $values[$rule['value']])) $ok=true;
               break;
+            case '^%':
+              if(isset($values[$rule['value']]) and
+                 preg_match('/^'.$rule['conditionValue'].'/i', $values[$rule['value']])) $ok=true;
+              break;
+            case '!^%':
+              if(isset($values[$rule['value']]) and
+                 !preg_match('/^'.$rule['conditionValue'].'/i', $values[$rule['value']])) $ok=true;
+              break;
+            case '$%':
+              if(isset($values[$rule['value']]) and
+                 preg_match('/'.$rule['conditionValue'].'$/i', $values[$rule['value']])) $ok=true;
+              break;
+            case '!$%':
+              if(isset($values[$rule['value']]) and
+                 !preg_match('/'.$rule['conditionValue'].'$/i', $values[$rule['value']])) $ok=true;
+              break;
           }
           if($ok)
           {
@@ -556,7 +583,6 @@ class AMD_root extends CommonPlugin
     $this->saveConfig();
   }
 
-
   /**
    * This function :
    *  - convert arrays (stored as a serialized string) into human readable string
@@ -568,7 +594,7 @@ class AMD_root extends CommonPlugin
    * @param String $separator     : separator for arrays items
    * @return String               : the value prepared
    */
-  protected function prepareValueForDisplay($value, $translatable=true, $separator=", ")
+  static public function prepareValueForDisplay($value, $translatable=true, $separator=", ")
   {
     global $user;
 
@@ -719,7 +745,59 @@ class AMD_root extends CommonPlugin
     }
   }
 
+
 } // amd_root  class
+
+
+
+Class AMD_functions {
+  /**
+   *  return all HTML&JS code necessary to display a dialogbox to choose
+   *  a metadata
+   */
+  static public function dialogBoxMetadata()
+  {
+    global $template, $prefixeTable;
+
+    $tables=array(
+        'used_tags' => $prefixeTable.'amd_used_tags',
+        'selected_tags' => $prefixeTable.'amd_selected_tags',
+    );
+
+    $template->set_filename('metadata_choose',
+                  dirname(__FILE__).'/templates/amd_dialog_metadata_choose.tpl');
+
+    $datas=array(
+      'urlRequest' => 'plugins/'.basename(dirname(__FILE__)).'/amd_ajax.php',
+      'tagList' => array(),
+    );
+
+    /*
+     * build tagList
+     */
+    $sql="SELECT ut.name, ut.numId, ut.tagId
+          FROM ".$tables['used_tags']." ut
+            JOIN ".$tables['selected_tags']." st ON st.tagId = ut.tagId
+          ORDER BY tagId";
+    $result=pwg_query($sql);
+    if($result)
+    {
+      while($row=pwg_db_fetch_assoc($result))
+      {
+        $datas['tagList'][]=Array(
+          'tagId' => $row['tagId'],
+          'name'  => L10n::get($row['name']),
+          'numId' => $row['numId']
+        );
+      }
+    }
+
+    $template->assign('datas', $datas);
+    unset($data);
+
+    return($template->parse('metadata_choose', true));
+  }
+}
 
 
 

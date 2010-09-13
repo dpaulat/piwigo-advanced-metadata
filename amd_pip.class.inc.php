@@ -92,6 +92,8 @@ class AMD_PIP extends AMD_root
       )
     );
 
+    trigger_action('amd_jpegMD_loaded', $this->jpegMD);
+
     $conf['show_exif']=false;
     $conf['show_iptc']=false;
 
@@ -139,17 +141,24 @@ class AMD_PIP extends AMD_root
                */
               $value=serialize($value);
             }
-            $userDefinedList['values'][$row['numId']]=$this->prepareValueForDisplay($value, $picturesTags[$row['tagId']]->isTranslatable());;
+            $userDefinedList['values'][$row['numId']]=AMD_root::prepareValueForDisplay($value, $picturesTags[$row['tagId']]->isTranslatable());;
           }
         }
       }
     }
 
-    $metadata=Array();
+    $metadata=$template->get_template_vars('metadata');
     $md=null;
     $group=null;
 
     $userDefinedValues=$this->pictureGetUserDefinedTags($userDefinedList['list'], $userDefinedList['values']);
+
+    trigger_action('amd_jpegMD_userDefinedValues_built',
+      array(
+        'picture' => $userDefinedList['values'],
+        'user'    => $userDefinedValues,
+      )
+    );
 
     foreach($tagsList as $key => $tagProperties)
     {
@@ -186,15 +195,19 @@ class AMD_PIP extends AMD_root
            */
           $value=serialize($value);
         }
-        $md['lines'][L10n::get($picturesTags[$key]->getName())]=$this->prepareValueForDisplay($value, $picturesTags[$key]->isTranslatable());
+
+        if($value!="")
+        {
+          $md['lines'][L10n::get($picturesTags[$key]->getName())]=AMD_root::prepareValueForDisplay($value, $picturesTags[$key]->isTranslatable());
+        }
       }
-      elseif($userDefined)
+      elseif($userDefined and isset($userDefinedValues[$tagProperties['numId']]) and $userDefinedValues[$tagProperties['numId']]!='')
       {
         $md['lines'][$tagProperties['name']]=$userDefinedValues[$tagProperties['numId']];
       }
     }
 
-    if(!is_null($md))
+    if(!is_null($md) and count($md['lines'])>0)
     {
       $metadata[]=$md;
     }

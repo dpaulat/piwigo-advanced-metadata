@@ -3,70 +3,11 @@
 
 {known_script id="gpc.external.interface" src=$ROOT_URL|@cat:"plugins/GrumPluginClasses/js/external/interface/interface.js"}
 {known_script id="gpc.external.inestedsortable" src=$ROOT_URL|@cat:"plugins/GrumPluginClasses/js/external/inestedsortable.pack.js"}
+{known_script id="tagListSelector" src=$ROOT_URL|@cat:"plugins/AMetaData/js/tagListSelector.js"}
+
 
 {literal}
 <script type="text/javascript">
-
-  /**
-   * sorry, tagListSelector is coded like a pork, but I don't have the time to
-   * code something better... ^^;
-   */
-  function tagListSelector(itemId)
-  {
-    options = {
-      itemId:'',
-      selectorId:'',
-      width:'auto',
-      height:'auto',
-      maxHeight:250,
-      selectedClass:'gcText3',
-      selectorClass:'ruleTypeM gcTextInput gcBgInput gcBorderInput',
-      selectorItems:'ruleTypeM',
-    }
-
-    this.init = function (itemId)
-    {
-      options.itemId=itemId;
-      $('body').append("<div id='iTLSDiv' class='"+options.selectorClass+"' style='padding:0px;z-index:5000;overflow:auto;display:none;position:absolute;max-height:"+options.maxHeight+"px'></div>");
-      $('#iTLSDiv')
-        .prepend($('#'+itemId))
-        .bind('mouseleave', function ()
-          {
-            $('#iTLSDiv').css('display', 'none');
-          }
-        );
-      $('#'+itemId).css('display', 'block');
-      $('#iTLSDiv li').bind('click', function ()
-        {
-          $('#'+options.selectorId).attr('value', $(this).attr('value'));
-          $('#'+options.selectorId+' span.ruleContent').html($(this).html());
-          $('#iTLSDiv').css('display', 'none');
-        }
-      );
-    }
-
-    this.display = function (fromId)
-    {
-      selectedItem=$('#'+fromId).attr('value');
-
-      top=$('#'+fromId).offset().top+$('#'+fromId).outerHeight()-1;
-      left=$('#'+fromId).offset().left;
-      width=$('#'+fromId).innerWidth();
-      $('#iTLSDiv li').removeClass(options.selectedClass);
-      $('#iTagListItem'+selectedItem).addClass(options.selectedClass);
-      $('#iTLSDiv').css(
-        {
-          top:top+'px',
-          left:left+'px',
-          width:width+'px',
-          display:'block'
-        }
-      );
-      options.selectorId=fromId;
-    }
-
-    this.init(itemId);
-  }
 
 
   function userDefManage ()
@@ -74,6 +15,7 @@
     var options = {
       numId:'',
       newRuleId:1,
+      optimalHeight:0,
     }
 
     /**
@@ -106,6 +48,7 @@
               }
           }
         );
+
       $('#iBDTagId').bind('keyup focusout', function (event)
         {
           if(!checkTagIdValidity($(this).val()))
@@ -157,7 +100,8 @@
               );
             }
 
-            $('#mdRulesArea').css('height', ($('#iDialogEdit').height()-$('#mdRulesArea').position().top)+'px' );
+            options.optimalHeight=$('#iDialogEdit').height()-$('#mdRulesArea').position().top;
+            $('#mdRulesArea').css('height', options.optimalHeight+'px' );
           }
         )
         .dialog("open");
@@ -308,6 +252,7 @@
                   checkSubRules(this.id);
                 }
               );
+              checkDialogHeight();
             },
           onHover: function (draggedItem)
             {
@@ -380,6 +325,7 @@
           break;
       }
       applyNested();
+      checkDialogHeight();
     }
 
     /**
@@ -394,6 +340,7 @@
           checkSubRules(this.id);
         }
       );
+      checkDialogHeight();
     }
 
     /**
@@ -422,6 +369,7 @@
         $('#iBDRuleTypeM'+id).css('display', 'none');
         $('#iBDRuleTypeC'+id).css('display', 'inline-block');
       }
+      checkDialogHeight();
     }
 
     /**
@@ -438,6 +386,7 @@
       {
         $('#iBDRuleTypeCIfValue'+id).css('display', 'inline');
       }
+      checkDialogHeight();
     }
 
     /**
@@ -455,6 +404,24 @@
       else
       {
         $('#iBDRuleType'+value).get(0).disabled=false;
+      }
+    }
+
+    /**
+     * check if it necessary to calculate the height of the dialogbox
+     */
+    var checkDialogHeight = function()
+    {
+      if($('#iBDRules').height() < options.optimalHeight &&
+         $('#mdRulesArea').get(0).scrollHeight > options.optimalHeight)
+      {
+        $('#iDialogEdit').height(options.optimalHeight+$('#mdRulesArea').get(0).offsetTop);
+        $('#mdRulesArea').height(options.optimalHeight);
+      }
+      else if($('#mdRulesArea').get(0).scrollHeight > options.optimalHeight)
+      {
+        $('#iDialogEdit').height($('#mdRulesArea').get(0).scrollHeight+$('#mdRulesArea').get(0).offsetTop);
+        $('#mdRulesArea').height($('#mdRulesArea').get(0).scrollHeight);
       }
     }
 
@@ -748,7 +715,10 @@
                     <option value='!='>{'g003_typeCIfNotEqual'|@translate}</option>
                     <option value='%'>{'g003_typeCIfLike'|@translate}</option>
                     <option value='!%'>{'g003_typeCIfNotLike'|@translate}</option>
-                  </select>
+                    <option value='^%'>{'g003_typeCIfBeginWith'|@translate}</option>
+                    <option value='!^%'>{'g003_typeCIfNotBeginWith'|@translate}</option>
+                    <option value='$%'>{'g003_typeCIfEndWith'|@translate}</option>
+                    <option value='!$%'>{'g003_typeCIfNotEndWith'|@translate}</option>                  </select>
                   <input type='text' id='iBDRuleTypeCIfValueZZZZZ' value='' maxlength=200 size=26 style='display:none;'>
                 </div>
               </td>
@@ -769,7 +739,9 @@
   {/foreach}
 </ul>
 
+{literal}
 <script type="text/javascript">
   var udm=new userDefManage();
-  var tls=new tagListSelector('iTagList');
+  var tls=new tagListSelector({itemId:'iTagList'});
 </script>
+{/literal}

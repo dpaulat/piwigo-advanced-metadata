@@ -36,7 +36,10 @@ Author URI: http://photos.grum.fr/
 |         |            |   functions
 |         |            | * update some html/css
 |         |            |
-| 0.5.0   | 2010/07/24 | * update to the JpegMetadata class 1.0.1 to fix the
+| 0.5.0   | 2010/07/24 | * release 0.5.0 not published, features are reported in
+|         |            |   the release 0.5.1
+|         |            |
+| 0.5.1   | 2010/09/12 | * update to the JpegMetadata class 1.0.1 to fix the
 |         |            |   mantis bugs&features 1686, 1718 and 1719
 |         |            | * mantis : bug 1686
 |         |            |   . Picture analysis finish with an Error 500 or with a
@@ -58,8 +61,22 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis : feature 1777
 |         |            |   . Weight of the metadata database can becomes very
 |         |            |     heavy
-|         |            | * ajax management was entirely rewritted
+|         |            | * mantis : feature 1691
+|         |            |   . Add possibility to search picture by metadata
+|         |            |     properties
+|         |            | * mantis : feature 1846
+|         |            |   . Read the metadata in the HD picture
+|         |            | * ajax management entirely rewritted
 |         |            | * user interface reviewed
+|         |            | * add some triggers events when picture metadata are
+|         |            |   loaded in the picture.php page
+|         |            |   . amd_jpegMD_loaded
+|         |            |   . amd_jpegMD_userDefinedValues_built
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
 |         |            |
 |         |            |
 |         |            |
@@ -72,12 +89,29 @@ Author URI: http://photos.grum.fr/
 :: TO DO
 
 --------------------------------------------------------------------------------
-
-:: NFO
-  AMD_AIM : classe to manage plugin integration into plugin menu
-  AMD_AIP : classe to manage plugin admin pages
-  AMD_PIP : classe to manage plugin public integration
-
+*
+* :: NFO
+* AMD_AIM : classe to manage plugin integration into plugin menu
+* AMD_AIP : classe to manage plugin admin pages
+* AMD_PIP : classe to manage plugin public integration
+*
+*
+* :: Triggers & data provided
+* - amd_jpegMD_loaded
+*   . triggered on the picture.php page, when metadata were loaded from the
+*     picture file
+*   . the JpegMetadata object is provided as data to the callback function
+*
+* - amd_jpegMD_userDefinedValues_built
+*   . triggered on the picture.php page, when metadata were loaded from the
+*     picture file and user defined tags were built
+*   . an array is provided as data to the callback function
+*       $data['picture'] : an array of (tagId => value) with only the selected
+*                          metadata
+*       $data['user']    : an array of (tagId => value) with only the user
+*                          defined metadata built
+*
+*
 --------------------------------------------------------------------------------
 */
 

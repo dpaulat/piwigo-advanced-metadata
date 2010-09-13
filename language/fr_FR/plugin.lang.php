@@ -192,6 +192,10 @@ $lang['g003_typeCIfEqual'] = "est égale à";
 $lang['g003_typeCIfNotEqual'] = "n'est pas égale à";
 $lang['g003_typeCIfLike'] = "contient";
 $lang['g003_typeCIfNotLike'] = "ne contient pas";
+$lang['g003_typeCIfBeginWith'] = "commence par";
+$lang['g003_typeCIfNotBeginWith'] = "ne commence pas par";
+$lang['g003_typeCIfEndWith'] = "finit par";
+$lang['g003_typeCIfNotEndWith'] = "ne finit pas par";
 $lang['g003_conditionIf'] = "Tester si la métadonnée";
 
 $lang['g003_invalidId'] = "L\'identifiant de la métadonnée est invalide";
@@ -211,7 +215,7 @@ $lang['g003_userDefined_filter'] = "Métadonnées personnalisées";
 
 $lang['g003_informations'] = "Informations";
 $lang['g003_databaseInformation'] = "Informations importantes à propos du référentiel";
-$lang['g003_databaseWarning1']="[p]Le référentiel est constitué des métadonnées contenues dans les images de galerie ainsi que de métadonnées calculées par le plugin. En fonction du nombre d'images et du nombre de métadonnées y étant rattachées, le référentiel peut s'avérer être très volumineux.
+$lang['g003_databaseWarning1']="[p]Le référentiel est constitué des métadonnées contenues dans les images de la galerie ainsi que de métadonnées calculées par le plugin. En fonction du nombre d'images et du nombre de métadonnées y étant rattachées, le référentiel peut s'avérer être très volumineux.
 Avant d'alimenter le référentiel, assurez-vous que la base de données proposée par votre hébergeur permet ce type d'usage.
 [/p][p]Il est toutefois à noter que l'usage du référentiel est facultatif, ce dernier n'étant pas exploité pour l'affichage des métadonnées des photos de la galerie.
 [/p][p]L'alimentation du référentiel est nécessaire si vous souhaitez :[/p]
@@ -229,6 +233,36 @@ $lang['g003_ignoreMetadata'] = "Ignorer les métadonnées suivantes :";
 
 $lang['g003_analyze_analyzed_pictures'] = "L'analyse ne porte que sur les images ayant déjà fait l'objet d'une analyse";
 $lang['g003_fillDatabaseIgnoreWarning'] = "Pour être prise en compte, la modification des paramètres de cette option nécessite d'effectuer une analyse";
+
+
+$lang['g003_add_metadata'] = "Ajouter une métadonnée";
+
+$lang['g003_choose_a_metadata'] = "Recherche sur l\'évaluation d\'une métadonnée";
+$lang['g003_add'] = "Ajouter";
+$lang['g003_metadata_value_check_one'] = "Au moins une des valeurs suivantes doit être vérifiée :";
+$lang['g003_metadata_value_check_all'] = "Toutes les valeurs suivantes doivent être vérifiées :";
+
+$lang['g003_metadata_exists']="La métadonnée %s est présente";
+$lang['g003_metadata_dont_exists']="La métadonnée %s n'est pas présente";
+$lang['g003_metadata_equals_all']="La métadonnée %s est présente et est égale à l\'une des valeurs suivantes :";
+$lang['g003_metadata_equals_one']="La métadonnée %s est présente et est égale à la valeur suivante :";
+$lang['g003_metadata_not_equals_all']="La métadonnée %s est présente et n'est égale à aucune des valeurs suivantes :";
+$lang['g003_metadata_not_equals_one']="La métadonnée %s est présente et n'est pas égale à la valeur suivante :";
+$lang['g003_metadata_like_all']="La métadonnée %s est présente et contient l\'une des valeurs suivantes :";
+$lang['g003_metadata_like_one']="La métadonnée %s est présente et contient la valeur suivante :";
+$lang['g003_metadata_not_like_all']="La métadonnée %s est présente et ne contient aucune des valeurs suivantes :";
+$lang['g003_metadata_not_like_one']="La métadonnée %s est présente et n'est contient pas la valeur suivante :";
+$lang['g003_metadata_begin_all']="La métadonnée %s est présente et commence par l\'une des valeurs suivantes :";
+$lang['g003_metadata_begin_one']="La métadonnée %s est présente et commence par la valeur suivante :";
+$lang['g003_metadata_not_begin_all']="La métadonnée %s est présente et ne commence pas par l\'une des valeurs suivantes :";
+$lang['g003_metadata_not_begin_one']="La métadonnée %s est présente et ne commence pas par la valeur suivante :";
+$lang['g003_metadata_end_all']="La métadonnée %s est présente et finit par l\'une des valeurs suivantes :";
+$lang['g003_metadata_end_one']="La métadonnée %s est présente et finit par la valeur suivante :";
+$lang['g003_metadata_not_end_all']="La métadonnée %s est présente et ne finit pas par l\'une des valeurs suivantes :";
+$lang['g003_metadata_not_end_one']="La métadonnée %s est présente et ne finit pas par la valeur suivante :";
+
+$lang['g003_value_already_set'] = "La valeur est déjà définie dans le domaine de valeurs";
+$lang['g003_please_set_a_value'] = "Merci de définir une valeur";
 
 /*
  * removed keys
