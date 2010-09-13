@@ -2,7 +2,7 @@
 /**
  * --:: JPEG MetaDatas ::-------------------------------------------------------
  *
- * Version : 1.0.1
+ * Version : 1.1.0
  * Date    : 2010-07-29
  *
  *  Author    : Grum
@@ -40,7 +40,7 @@
  * |         |            |
  * | 1.0.0   |            | * first public release
  * |         |            |
- * | 1.0.1   | 2010-07-29 | * mantis bug:1686
+ * | 1.1.0   | 2010-07-29 | * mantis bug:1686
  * |         |            |   . bug reported on IfdReader
  * |         |            |     When sub IFD (0x8769) refers to a sub IFD with
  * |         |            |     an offset lower than the current IFD, the reader
@@ -61,10 +61,10 @@
  * |         |            |     applied ; 'magic' metadata are computed even if
  * |         |            |     the other schema are filtered
  * |         |            |
+ * |         |            | * add the "getTag" function
  * |         |            |
- * |         |            |
- * |         |            |
- * |         |            |
+ * | 1.1.1   | 2010-09-13 | * mantis bug:1826
+ * |         |            |   . digiKam XMP tags are not recognized
  * |         |            |
  * |         |            |
  * |         |            |
@@ -105,6 +105,7 @@
  *  - (static) getTagList
  *  - load
  *  - getTags
+ *  - getTag
  *
  * -----------------------------------------------------------------------------
  *
@@ -448,7 +449,7 @@
         // clean all unwanted metadata
         foreach($this->tags as $key => $tag)
         {
-          if(!$this->options[$tag->getSchema()]) unset($this->tags[$key]);
+          if(isset($this->options[$tag->getSchema()]) and !$this->options[$tag->getSchema()]) unset($this->tags[$key]);
         }
 
         ksort($this->tags);
@@ -503,6 +504,22 @@
         }
       }
       return($returned);
+    }
+
+
+    /**
+     * This function returns the tag object for the given tag name
+     *
+     * @param String $key : the tag name (ie: "exif.exif.ApertureValue")
+     * @return Tag : the tag object, null if the tag doesn't exist
+     */
+    public function getTag($key)
+    {
+      if(array_key_exists($key, $this->tags))
+      {
+        return($this->tags[$key]);
+      }
+      return(null);
     }
 
     /**

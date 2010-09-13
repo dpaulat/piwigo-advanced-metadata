@@ -228,6 +228,7 @@
         case "exif:SubjectLocation" : // seq
         case "Iptc4xmpCore:Scene": //bag
         case "Iptc4xmpCore:SubjectCode": //bag
+        case "digiKam:TagsList": //seq
           $child=$node->getFirstChild();
           switch($child->getName())
           {
@@ -526,6 +527,7 @@
         case "exif:ISOSpeedRatings" : // seq
         case "exif:SubjectArea" : // seq
         case "exif:SubjectLocation" : // seq
+        case "digiKam:TagsList": //seq
           $returned=$value;
           break;
         case "Iptc4xmpCore:Scene": //bag
