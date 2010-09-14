@@ -162,13 +162,14 @@ Ainsi, la métadonnée [b]magic.ShotInfo.Aperture[/b] restitue :
 [li]la valeur de la métadonnée [b]xmp.exif:ApertureValue[/b] si celle-ci est présente dans la photo[/li]
 [/ul]";
 
-/*
- * release 0.5.0
+
+
+/** ----------------------------------------------------------------------------
+ * new keys from releases 0.5.0/0.5.1
  */
 
 $lang['g003_y'] = "Oui";
 $lang['g003_n'] = "Non";
-
 
 $lang['g003_state'] = "Etat";
 $lang['g003_update'] = "Mise à jour";
@@ -264,8 +265,28 @@ $lang['g003_metadata_not_end_one']="La métadonnée %s est présente et ne finit
 $lang['g003_value_already_set'] = "La valeur est déjà définie dans le domaine de valeurs";
 $lang['g003_please_set_a_value'] = "Merci de définir une valeur";
 
-/*
- * removed keys
+
+$lang['g003_install']="Installation";
+$lang['g003_basic_mode']="Basique";
+$lang['g003_advanced_mode']="Avancé";
+$lang['g003_validate']="Valider";
+$lang['g003_step_1']="Choix du type d'usage du plugin";
+$lang['g003_basic_mode_help']="
+Le mode [i]basique[/i] s'adresse à ceux qui souhaitent simplement afficher les métadonnées de leurs photos et propose :[ul]
+[li]une interface simplifiée au maximum[/li]
+[li]une liste réduite de métadonnées (environ 140, dont les plus courantes)[/li]
+[/ul]";
+$lang['g003_advanced_mode_help']="
+Le mode [i]avancé[/i] s'adresse à ceux qui souhaitent exploiter au maximum les métadonnées de leurs photos et propose :[ul]
+[li]une interface plus complexe, mais complète[/li]
+[li]une liste de métadonnées plus complète (environ 540)[/li]
+[li]des fonctionnalités étendues (statistiques, recherche, ...)[/li]
+[/ul]
+Le mode [i]avancé[/i] nécessite la constitution d'un référentiel.";
+
+
+/** ----------------------------------------------------------------------------
+ * removed keys from releases 0.5.0/0.5.1
  */
 //$lang['g003_warning_on_analyze_4a']
 //$lang['g003_warning_on_analyze_4b']

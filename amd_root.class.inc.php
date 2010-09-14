@@ -86,6 +86,7 @@ class AMD_root extends CommonPlugin
       'amd_FillDataBaseContinuously' => "y",
       'amd_FillDataBaseIgnoreSchemas' => array(),
       'amd_UseMetaFromHD' => "y",
+      'amd_InterfaceMode' => "advanced",    // 'advanced' or 'basic'
 
       // theses options can be set manually
       'amd_NumberOfItemsPerRequest' => 25,

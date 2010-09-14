@@ -49,6 +49,7 @@
       $this->initConfig();
       $this->loadConfig();
       $this->config['installed']=AMD_VERSION2;
+      $this->config['newInstall']='y';
       $this->saveConfig();
 
       $tables_def=array(
@@ -120,7 +121,8 @@
       $result=$this->tablef->create($tables_def);
       unset($tables_def);
 
-      $tables_insert=array(
+
+      $tablesInsert=array(
 "INSERT INTO `".$this->tables['groups']."` VALUES(1, 0)",
 "INSERT INTO `".$this->tables['groups_names']."` VALUES(1, '".$user['language']."', '".$lang['g003_default_group_name']."')",
 "INSERT INTO `".$this->tables['selected_tags']."` VALUES
@@ -134,10 +136,11 @@
     ('magic.ShotInfo.FocalLengthIn35mm', 7, 1),
     ('magic.ShotInfo.Flash.Fired', 8, 1)"
       );
-      foreach($tables_insert as $sql)
+      foreach($tablesInsert as $sql)
       {
         pwg_query($sql);
       }
+
 
       return($result);
     }
@@ -277,76 +280,6 @@
         $sql="DELETE FROM ".$this->tables['used_tags']."
               WHERE ".$sql;
         pwg_query($sql);
-      }
-
-      $listToAnalyze=Array(Array(), Array());
-      /*
-       * select 25 pictures into the caddie
-       */
-      $sql="SELECT ti.id, ti.path
-            FROM ".CADDIE_TABLE." tc
-              LEFT JOIN ".IMAGES_TABLE." ti ON ti.id = tc.element_id
-            WHERE tc.user_id = ".$user['id']."
-              AND ti.id IS NOT NULL
-            ORDER BY RAND() LIMIT 25;";
-      $result=pwg_query($sql);
-      if($result)
-      {
-        while($row=pwg_db_fetch_assoc($result))
-        {
-          $listToAnalyze[0][]=$row;
-          $listToAnalyze[1][]=$row['id'];
-        }
-      }
-      /*
-       * if caddie is empty, of is have less than 25 pictures, select other
-       * pictures from the gallery
-       */
-      if(count($listToAnalyze[0])<25)
-      {
-        if(count($listToAnalyze[0])>0)
-        {
-          $excludeList="WHERE ti.id NOT IN(".implode(",", $listToAnalyze[1]).") ";
-        }
-        else
-        {
-          $excludeList="";
-        }
-        $sql="SELECT ti.id, ti.path, ti.has_high
-              FROM ".IMAGES_TABLE." ti ".$excludeList."
-              ORDER BY RAND() LIMIT ".(25-count($listToAnalyze[0])).";";
-        $result=pwg_query($sql);
-        if($result)
-        {
-          while($row=pwg_db_fetch_assoc($result))
-          {
-            $listToAnalyze[0][]=$row;
-          }
-        }
-      }
-
-      /*
-       * analyze the 25 selected pictures
-       */
-      if(count($listToAnalyze[0])>0)
-      {
-        // $path = path of piwigo's on the server filesystem
-        $path=dirname(dirname(dirname(__FILE__)));
-
-        foreach($listToAnalyze[0] as $val)
-        {
-          if($val['has_high']===true and $this->config['amd_UseMetaFromHD']=='y')
-          {
-            $this->analyzeImageFile($path."/".dirname($val['path'])."/pwg_high/".basename($val['path']), $val['id']);
-          }
-          else
-          {
-            $this->analyzeImageFile($path."/".$val['path'], $val['id']);
-          }
-
-        }
-
-        $this->makeStatsConsolidation();
       }
     }
 

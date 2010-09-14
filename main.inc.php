@@ -66,6 +66,8 @@ Author URI: http://photos.grum.fr/
 |         |            |     properties
 |         |            | * mantis : feature 1846
 |         |            |   . Read the metadata in the HD picture
+|         |            | * mantis : feature 1857
+|         |            |   . Implement a basic and an advanced interface mode
 |         |            | * ajax management entirely rewritted
 |         |            | * user interface reviewed
 |         |            | * add some triggers events when picture metadata are

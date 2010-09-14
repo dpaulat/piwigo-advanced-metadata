@@ -317,6 +317,8 @@
         }
 
 
+
+
         /*
          * check public.makeStats.doPictureAnalyze values
          */
@@ -1492,7 +1494,6 @@
 
       return('ko');
     }
-
 
 
   } //class

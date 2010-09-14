@@ -152,7 +152,7 @@
       .dialog(
         {
           resizable: true,
-          width:480,
+          width:640,
           height:120,
           modal: true,
           draggable:true,
@@ -211,7 +211,7 @@
     .dialog(
       {
         resizable: true,
-        width:480,
+        width:640,
         height:120,
         modal: true,
         draggable:true,
@@ -279,8 +279,8 @@
     .dialog(
       {
         resizable: false,
-        width:480,
-        height:320,
+        width:640,
+        height:480,
         modal: true,
         draggable:true,
         dialogClass: 'gcBgTabSheet gcBorder',

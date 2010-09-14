@@ -19,15 +19,30 @@
 
 if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
 
-include(AMD_PATH."amd_aip.class.inc.php");
-
 global $prefixeTable;
 
 load_language('plugin.lang', AMD_PATH);
 
 $main_plugin_object = get_plugin_data($plugin_id);
 
-$plugin_ai = new AMD_AIP($prefixeTable, $main_plugin_object->getFileLocation());
+/*
+ * if the plugin is newly installed, display a special configuration page
+ * otherwise, display normal page
+ */
+
+$config=Array();
+GPCCore::loadConfig('amd', $config);
+
+if($config['newInstall']=='n')
+{
+  include(AMD_PATH."amd_aip.class.inc.php");
+  $plugin_ai = new AMD_AIP($prefixeTable, $main_plugin_object->getFileLocation());}
+else
+{
+  include(AMD_PATH."amd_aip_install.class.inc.php");
+  $plugin_ai = new AMD_AIPInstall($prefixeTable, $main_plugin_object->getFileLocation());
+}
+
 $plugin_ai->manage();
 
 ?>
