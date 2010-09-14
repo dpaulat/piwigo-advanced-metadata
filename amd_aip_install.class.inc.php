@@ -380,7 +380,7 @@ class AMD_AIPInstall extends AMD_root
 
       foreach($listToAnalyze[0] as $val)
       {
-        if($val['has_high']===true and $this->config['amd_UseMetaFromHD']=='y')
+        if($val['has_high']==='true' and $this->config['amd_UseMetaFromHD']=='y')
         {
           $this->analyzeImageFile($path."/".dirname($val['path'])."/pwg_high/".basename($val['path']), $val['id']);
         }

@@ -66,19 +66,28 @@ class AMD_PIP extends AMD_root
     $filename="";
     $this->pictureProperties['id']=$page['image_id'];
 
-    $sql="SELECT ti.path, tai.analyzed FROM ".IMAGES_TABLE." ti
+    $sql="SELECT ti.path, tai.analyzed, ti.has_high FROM ".IMAGES_TABLE." ti
             LEFT JOIN ".$this->tables['images']." tai ON tai.imageId = ti.id
           WHERE ti.id=".$page['image_id'].";";
     $result=pwg_query($sql);
     if($result)
     {
+      $hasHigh='';
       while($row=pwg_db_fetch_assoc($result))
       {
         $filename=$row['path'];
+        $hasHigh=$row['has_high'];
         $this->pictureProperties['analyzed']=$row['analyzed'];
       }
       $filename=$path."/".$filename;
+
+      if($hasHigh==='true' and $this->config['amd_UseMetaFromHD']=='y')
+      {
+        $filename=dirname($filename)."/pwg_high/".basename($filename);
+      }
     }
+
+
 
     $this->jpegMD->load(
       $filename,

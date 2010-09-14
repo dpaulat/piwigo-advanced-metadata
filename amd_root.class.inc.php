@@ -192,7 +192,7 @@ class AMD_root extends CommonPlugin
 
       while($row=pwg_db_fetch_assoc($result))
       {
-        if($row['has_high']===true and $this->config['amd_UseMetaFromHD']=='y')
+        if($row['has_high']==='true' and $this->config['amd_UseMetaFromHD']=='y')
         {
           $this->analyzeImageFile($path."/".dirname($row['path'])."/pwg_high/".basename($row['path']), $row['imageId']);
         }

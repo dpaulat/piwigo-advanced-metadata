@@ -440,7 +440,7 @@
         while($row=pwg_db_fetch_assoc($result))
         {
           $imageId=$row['imageId'];
-          if($row['has_high']===true and $this->config['amd_UseMetaFromHD']=='y')
+          if($row['has_high']==='true' and $this->config['amd_UseMetaFromHD']=='y')
           {
             $filename=$path."/".dirname($row['path'])."/pwg_high/".basename($row['path']);
           }
@@ -585,7 +585,7 @@
             //echo "analyzing:".$row['id']."\n";
             //$mem1=memory_get_usage();
             //echo "memory before analyze:".$mem1."\n";
-            if($row['has_high']===true and $this->config['amd_UseMetaFromHD']=='y')
+            if($row['has_high']==='true' and $this->config['amd_UseMetaFromHD']=='y')
             {
               $returned.=$this->analyzeImageFile($path."/".dirname($row['path'])."/pwg_high/".basename($row['path']), $row['id']);
             }
