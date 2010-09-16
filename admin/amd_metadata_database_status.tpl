@@ -1,7 +1,7 @@
 <h2>{'g003_status_of_database'|@translate}</h2>
 
 {if $amdConfig.amd_DisplayWarningsMessageStatus=='y'}
-<div style="padding-left: 60px;" class="warnings">
+<div class="warnings">
 <p style="font-size: 120%;">{'g003_databaseInformation'|@translate}</p>
 {$datas.warning1}
 </div>

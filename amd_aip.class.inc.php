@@ -48,7 +48,7 @@ class AMD_AIP extends AMD_root
 
     $this->tabsheet = new tabsheet();
 
-    if($this->config['amd_interfaceMode']=='basic')
+    if($this->config['amd_InterfaceMode']=='basic')
     {
       $this->tabsheet->add('metadata',
                             l10n('g003_metadata'),
@@ -68,6 +68,9 @@ class AMD_AIP extends AMD_root
       $this->tabsheet->add('search',
                             l10n('g003_search'),
                             $this->getAdminLink().'&amp;fAMD_tabsheet=search');
+      $this->tabsheet->add('tags',
+                            l10n('g003_tags'),
+                            $this->getAdminLink().'&amp;fAMD_tabsheet=tags');
       $this->tabsheet->add('help',
                             l10n('g003_help'),
                             $this->getAdminLink().'&amp;fAMD_tabsheet=help');
@@ -127,6 +130,9 @@ class AMD_AIP extends AMD_root
       case 'search':
         $this->displaySearch($_REQUEST['fAMD_page']);
         break;
+      case 'tags':
+        $this->displayTags();
+        break;
     }
 
     $template->assign_var_from_handle('ADMIN_CONTENT', 'plugin_admin_content');
@@ -167,7 +173,7 @@ class AMD_AIP extends AMD_root
 
     if(!isset($_REQUEST['fAMD_tabsheet']))
     {
-      if($this->getNumOfPictures()==0 and $this->config['amd_interfaceMode']=='advanced')
+      if($this->getNumOfPictures()==0 and $this->config['amd_InterfaceMode']=='advanced')
       {
         $_REQUEST['fAMD_tabsheet']="database";
         $_REQUEST['fAMD_page']="state";
@@ -182,12 +188,14 @@ class AMD_AIP extends AMD_root
     if(!($_REQUEST['fAMD_tabsheet']=="metadata" or
          $_REQUEST['fAMD_tabsheet']=="help" or
          $_REQUEST['fAMD_tabsheet']=="database" or
-         $_REQUEST['fAMD_tabsheet']=="search")
+         $_REQUEST['fAMD_tabsheet']=="search" or
+         $_REQUEST['fAMD_tabsheet']=="tags")
          or
-         $this->config['amd_interfaceMode']=='basic' and
+         $this->config['amd_InterfaceMode']=='basic' and
          (
            $_REQUEST['fAMD_tabsheet']=="database" or
-           $_REQUEST['fAMD_tabsheet']=="search"
+           $_REQUEST['fAMD_tabsheet']=="search" or
+           $_REQUEST['fAMD_tabsheet']=="tags"
          )
       )
     {
@@ -201,7 +209,7 @@ class AMD_AIP extends AMD_root
     {
       if(!isset($_REQUEST['fAMD_page']))
       {
-        if($this->config['amd_interfaceMode']=='basic')
+        if($this->config['amd_InterfaceMode']=='basic')
         {
           $_REQUEST['fAMD_page']="display";
         }
@@ -215,13 +223,13 @@ class AMD_AIP extends AMD_root
            $_REQUEST['fAMD_page']=="select" or
            $_REQUEST['fAMD_page']=="display")
            or
-           $this->config['amd_interfaceMode']=='basic' and
+           $this->config['amd_InterfaceMode']=='basic' and
            (
              $_REQUEST['fAMD_page']=="select"
            )
         )
       {
-        if($this->config['amd_interfaceMode']=='basic')
+        if($this->config['amd_InterfaceMode']=='basic')
         {
           $_REQUEST['fAMD_page']="display";
         }
@@ -266,6 +274,7 @@ class AMD_AIP extends AMD_root
       if(!($_REQUEST['fAMD_page']=="state" or
            $_REQUEST['fAMD_page']=="update")) $_REQUEST['fAMD_page']="state";
     }
+
 
   } //init_request
 
@@ -326,7 +335,7 @@ class AMD_AIP extends AMD_root
     $statTabsheet->add('personnal',
                           l10n('g003_personnal'),
                           $this->getAdminLink().'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=personnal');
-    if($this->config['amd_interfaceMode']=='advanced')
+    if($this->config['amd_InterfaceMode']=='advanced')
     {
       $statTabsheet->add('select',
                             l10n('g003_select'),
@@ -361,7 +370,7 @@ class AMD_AIP extends AMD_root
    */
   protected function displayMetaDataPersonnal()
   {
-    global $template, $theme, $themes, $themeconf;
+    global $template, $theme, $themes, $themeconf, $lang;
 
     $template->set_filename('sheet_page',
                   dirname($this->getFileLocation()).'/admin/amd_metadata_personnal.tpl');
@@ -391,6 +400,8 @@ class AMD_AIP extends AMD_root
       }
     }
 
+    $lang['g003_personnal_page_help']=GPCCore::BBtoHTML($lang['g003_personnal_page_help']);
+
     $template->assign('datas', $datas);
     return($template->parse('sheet_page', true));
   }
@@ -403,7 +414,7 @@ class AMD_AIP extends AMD_root
    */
   protected function displayMetaDataSelect()
   {
-    global $template, $theme, $themes, $themeconf;
+    global $template, $theme, $themes, $themeconf, $lang;
 
     $template->set_filename('sheet_page',
                   dirname($this->getFileLocation()).'/admin/amd_metadata_select.tpl');
@@ -417,6 +428,8 @@ class AMD_AIP extends AMD_root
       'config_GetListImages_OrderType' => $this->config['amd_GetListImages_OrderType']
     );
 
+    $lang['g003_select_page_help']=GPCCore::BBtoHTML($lang['g003_select_page_help']);
+
     $template->assign('datas', $datas);
     return($template->parse('sheet_page', true));
   }
@@ -429,7 +442,7 @@ class AMD_AIP extends AMD_root
    */
   protected function displayMetaDataDisplay()
   {
-    global $user, $template;
+    global $user, $template, $lang;
 
     //$local_tpl = new Template(AMD_PATH."admin/", "");
     $template->set_filename('sheet_page',
@@ -489,6 +502,7 @@ class AMD_AIP extends AMD_root
       }
     }
 
+    $lang['g003_display_page_help']=GPCCore::BBtoHTML($lang['g003_display_page_help']);
     $template->assign('datas', $datas);
     return($template->parse('sheet_page', true));
   }
@@ -743,6 +757,28 @@ class AMD_AIP extends AMD_root
 
     $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
   }
+
+
+  /**
+   * display and manage the tags page
+   *
+   */
+  protected function displayTags()
+  {
+    global $template, $user, $lang;
+    $template->set_filename('body_page', dirname(__FILE__).'/admin/amd_metadata_tags.tpl');
+
+    $datas=array(
+      'urlRequest' => $this->getAdminLink('ajax')
+    );
+
+    $lang['g003_tags_page_help']=GPCCore::BBtoHTML($lang['g003_tags_page_help']);
+
+    $template->assign('datas', $datas);
+
+    $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
+  }
+
 
 } // AMD_AIP class
 

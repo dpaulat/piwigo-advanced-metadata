@@ -104,21 +104,6 @@ ul.error {
   border-radius:8px;
 }
 
-.warnings {
-  -moz-border-radius:4px;
-  -webkit-border-radius:4px;
-  -khtml-border-radius:4px;
-  border-radius:4px;
-}
-.warnings p {
-  margin:0;
-  padding:0 0 6px;
-  text-align: justify;
-}
-.warnings ul {
-  margin:-6px 0;
-  padding:0 40px 6px;
-}
 table.mdInfo {
   width:100%;
   text-align:left;

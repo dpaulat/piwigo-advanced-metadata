@@ -194,6 +194,10 @@
 
 <h2>{'g003_select_metadata'|@translate}</h2>
 
+<div class='helps'>
+  <p>{'g003_select_page_help'|@translate}</p>
+</div>
+
 <form>
   <input type="hidden" id="iSelectOrderTagList" value="{$datas.config_GetListTags_OrderType}"/>
 

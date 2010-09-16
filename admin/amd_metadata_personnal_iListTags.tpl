@@ -3,7 +3,6 @@
   <tr>
     <td style="width:35%;min-width:340px;">{$data.tagId}</td>
     <td>{$data.label}</td>
-    <th style="width:15%;">{$data.fillDatabase}</th>
     <th style="width:15%;">{$data.numOfRules}</th>
     <td width="40px">
       <img src="{$themeconf.admin_icon_dir}/edit_s.png"

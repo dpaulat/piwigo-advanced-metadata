@@ -285,6 +285,43 @@ Le mode [i]avancé[/i] s'adresse à ceux qui souhaitent exploiter au maximum les
 Le mode [i]avancé[/i] nécessite la constitution d'un référentiel.";
 
 
+$lang['g003_tags']="Tags";
+$lang['g003_number_of_keywords']="Nombre de mots-clefs :";
+$lang['g003_keyword']="Mot-clef";
+$lang['g003_tag_in_piwigo']="Présent dans Piwigo";
+$lang['g003_num_of_pictures']="Nombre de photos";
+$lang['g003_num_of_pictures_already_tagged']="Nombre de photos déjà taggées";
+$lang['g003_convert_ok']="La conversion s'est correctement effectuée";
+$lang['g003_convert_keywords_and_apply']="Convertir";
+
+
+$lang['g003_tags_page_help']="Cette fonctionnalité effectue une extraction des mots-clefs présents dans les métadonnées de vos photos et vous permet de les convertir en [i]Tags[/i].
+Les photos pour lesquelles les mots-clefs ont déjà été convertis et associés n'apparaissent pas : seuls les mots-clefs des photos pour lesquelles une conversion et une association sont possibles sont proposés.";
+
+$lang['g003_search_page_help']="Il est possible d'effectuer diverses recherches sur le contenu des métadonnées, des plus simples au plus complexes : ajoutez des critères, et combinez-les par glisser/déposer.";
+
+$lang['g003_personnal_page_help']="Il est possible de construire très facilement vos propres métadonnées à partir des métadonnées existantes.
+[ul]
+[li]Ajoutez une nouvelles métadonnée[/li]
+[li]Renseignez ses propriétés[/li]
+[li]Ajoutez des règles de gestion et combinez-les au besoin par glisser/déposer[/li]
+[/ul]";
+
+$lang['g003_select_page_help']="Seules les métadonnées sélectionnées ici sont disponibles dans les autres interfaces de paramétrage : ceci permet de réduire la liste des métadonnées à celles qui vous semblent les plus pertinentes pour votre usage.
+La sélection est prise en compte immédiatement (il n'est pas nécessaire de la valider).";
+
+
+$lang['g003_display_page_help']="Les métadonnées affichées avec la photo peuvent être triées et regroupées.
+Par défaut, seul le groupe [i]".$lang['g003_default_group_name']."[/i] est disponible, mais il est possible d'en créer autant que nécessaire ([i]IPTC[/i], [i]Géolocalisation[/i], ...).
+[ul]
+[li]Créez les groupes de métadonnées selon vos besoins[/li]
+[li]Ajoutez-y les métadonnées à afficher[/li]
+[li]Au sein d'un groupe, triez l'ordre d'affichage des métadonnées par glisser/déposer[/li]
+[li]Triez l'ordre d'affichage des groupes par glisser/déposer[/li]
+[/ul]
+Sélections&tris sont pris en compte immédiatement (il n'est pas nécessaire de les valider).";
+
+
 /** ----------------------------------------------------------------------------
  * removed keys from releases 0.5.0/0.5.1
  */

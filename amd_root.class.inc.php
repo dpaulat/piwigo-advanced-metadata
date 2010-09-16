@@ -283,7 +283,7 @@ class AMD_root extends CommonPlugin
           $nbTags++;
           //if($sqlInsert!="") $sqlInsert.=", ";
           //$sqlInsert.="($imageId, '$numId', '".addslashes($value)."')";
-          $massInsert[]="('$imageId', '$numId', '".addslashes($value)."') ";
+          $massInsert[]="('$imageId', '$numId', '".mysql_escape_string($value)."') ";
         }
       }
     }

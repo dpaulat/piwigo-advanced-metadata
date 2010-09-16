@@ -420,7 +420,7 @@ class AMD_AIPInstall extends AMD_root
     }
 
     $this->config['newInstall']='n';
-    $this->config['amd_interfaceMode']=$interfaceMode;
+    $this->config['amd_InterfaceMode']=$interfaceMode;
     $this->saveConfig();
 
     return('ok');

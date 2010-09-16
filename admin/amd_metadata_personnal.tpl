@@ -603,6 +603,10 @@
 
 <h2>{'g003_personnal_metadata'|@translate}</h2>
 
+<div class='helps'>
+  <p>{'g003_personnal_page_help'|@translate}</p>
+</div>
+
 <div class='addMetadata'>
   <a onclick="udm.editMetadata('');">{'g003_add_a_new_md'|@translate}</a>
 </div>
@@ -611,7 +615,6 @@
   <tr>
     <th style="width:35%;min-width:340px;">{'g003_TagId'|@translate}</th>
     <th>{'g003_TagLabel'|@translate}</th>
-    <th style="width:15%;">{'g003_fill_database'|@translate}</th>
     <th style="width:15%;">{'g003_num_of_rules'|@translate}</th>
     <th width="40px">&nbsp;</th>
   </tr>

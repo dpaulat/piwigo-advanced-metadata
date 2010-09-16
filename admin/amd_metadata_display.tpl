@@ -350,6 +350,10 @@
 
 <h2>{'g003_display_management'|@translate}</h2>
 
+<div class='helps'>
+  <p>{'g003_display_page_help'|@translate}</p>
+</div>
+
 <div class="addGroup">
   <a onclick="editGroup('');">{'g003_add_a_group'|@translate}</a>
 </div>

@@ -83,6 +83,8 @@
            $_REQUEST['ajaxfct']=='admin.userDefined.setTag' or
            $_REQUEST['ajaxfct']=='admin.userDefined.deleteTag' or
            $_REQUEST['ajaxfct']=='admin.tag.getValues' or
+           $_REQUEST['ajaxfct']=='admin.tags.getKeywords' or
+           $_REQUEST['ajaxfct']=='admin.tags.convertKeywords' or
 
            $_REQUEST['ajaxfct']=='public.makeStats.doPictureAnalyze')) $_REQUEST['ajaxfct']='';
 
@@ -316,6 +318,17 @@
           $_REQUEST['ajaxfct']='';
         }
 
+        /*
+         * check admin.tags.convertKeywords values
+         */
+        if($_REQUEST['ajaxfct']=="admin.tags.convertKeywords")
+        {
+          if(!isset($_REQUEST['keywords'])) $_REQUEST['keywords']=array();
+          if(!is_array($_REQUEST['keywords'])) $_REQUEST['keywords']=array();
+          if(count($_REQUEST['keywords'])==0) $_REQUEST['ajaxfct']='';
+        }
+
+
 
 
 
@@ -400,6 +413,12 @@
           break;
         case 'admin.tag.getValues':
           $result=$this->ajax_amd_admin_tagGetValues($_REQUEST['id']);
+          break;
+        case 'admin.tags.getKeywords':
+          $result=$this->ajax_amd_admin_tagsGetKeywords();
+          break;
+        case 'admin.tags.convertKeywords':
+          $result=$this->ajax_amd_admin_tagsConvertKeywords($_REQUEST['keywords']);
           break;
 
 
@@ -941,8 +960,8 @@
               'tagId' => $row['tagId'],
               'name'  => L10n::get($row['name']),
               'numId' => $row['numId'],
-              'nbItems' => $row['numOfImg'],
-              'pct'   => ($numOfPictures==0)?"0":sprintf("%.2f", 100*$row['numOfImg']/$numOfPictures)
+              'nbItems' => ($this->config['amd_InterfaceMode']=='advanced')?$row['numOfImg']:'',
+              'pct'   => ($this->config['amd_InterfaceMode']=='advanced')?(($numOfPictures==0)?"0":sprintf("%.2f", 100*$row['numOfImg']/$numOfPictures)):''
             );
           }
 
@@ -1339,6 +1358,12 @@
               VALUES ('$id', '".$user['language']."', '".$properties['name']."');";
         $result=pwg_query($sql);
         */
+
+        if($this->config['amd_InterfaceMode']=='basic')
+        {
+          $sql="INSERT INTO ".$this->tables['selected_tags']." VALUES ('".$properties['tagId']."', 0, -1);";
+          pwg_query($sql);
+        }
       }
       else
       {
@@ -1370,14 +1395,21 @@
       $inserts=array();
       foreach($properties['rules'] as $rule)
       {
-        print_r($rule['value']);
+        //print_r($rule['value']);
         $inserts[]="('$id', '".$rule['defId']."', '".$rule['parentId']."', '".$rule['order']."', '".$rule['type']."', '".$rule['value']."', '".$rule['conditionType']."', '".$rule['conditionValue']."')";
       }
       $sql="INSERT INTO ".$this->tables['user_tags_def']."
             VALUES ".implode(',', $inserts);
       $result=pwg_query($sql);
 
-      $nbImg=$this->buildUserDefinedTags($id);
+      if($this->config['amd_InterfaceMode']=='advanced')
+      {
+        $nbImg=$this->buildUserDefinedTags($id);
+      }
+      else
+      {
+        $nbImg=0;
+      }
 
       $this->makeStatsConsolidation();
 
@@ -1457,6 +1489,188 @@
           $returned.="<option displayvalue='$value' rawvalue='".$row['value']."'>$value (".$row['nbImg']." ".l10n('images').")</option>";
         }
       }
+      return($returned);
+    }
+
+
+    /**
+     * return an html list of found keywords in the images_tags table
+     *
+     * @return String : html formatted list
+     */
+    private function ajax_amd_admin_tagsGetKeywords()
+    {
+      global $template;
+
+      $returned=array();
+      $keywordsList=array();
+      $sql="SELECT pait.value, pait.imageId, paut.numId
+            FROM (".$this->tables['images_tags']." pait
+              JOIN ".$this->tables['used_tags']." paut ON pait.numId = paut.numId)
+
+            WHERE (paut.tagId = 'xmp.dc:subject' OR
+                   paut.tagId = 'xmp.digiKam:tagsList' OR
+                   paut.tagId = 'iptc.Keywords');";
+      $result=pwg_query($sql);
+      if($result)
+      {
+        while($row=pwg_db_fetch_assoc($result))
+        {
+          if(preg_match('/^a:\d+:{/', $row['value']))
+          {
+            /*
+             *  if value is a serialized string, unserialize and process it
+             */
+            $tmp=unserialize($row['value']);
+            foreach($tmp['values'] as $val)
+            {
+              $keywordsList[]="('".mysql_escape_string($val)."', ".$row['imageId'].")";
+            }
+          }
+          else
+          {
+            $keywordsList[]="('".mysql_escape_string($row['value'])."', ".$row['imageId'].")";
+          }
+        }
+        $sql="CREATE TEMPORARY TABLE amd_temp_tags (
+                `value` CHAR(255) default '',
+                `imageId` mediumint(8) unsigned NOT NULL default '0',
+                PRIMARY KEY  USING BTREE (`value`,`imageId`)
+              ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
+        if(pwg_query($sql))
+        {
+          $sql="INSERT IGNORE INTO amd_temp_tags
+            VALUES ".implode(',', $keywordsList);
+          if(pwg_query($sql))
+          {
+            $sql="SELECT att.value AS value,
+                    COUNT(DISTINCT att.imageId) AS nbPictures,
+                    IF(ptt.name IS NULL, 'n', 'y') AS tagExists,
+                    COUNT(DISTINCT pit.image_id) AS nbPicturesTagged
+                  FROM (amd_temp_tags att LEFT JOIN ".TAGS_TABLE."  ptt ON att.value = ptt.name)
+                    LEFT JOIN ".IMAGE_TAG_TABLE." pit ON pit.tag_id = ptt.id
+                  GROUP BY att.value
+                  HAVING nbPicturesTagged < nbPictures";
+            $result=pwg_query($sql);
+            if($result)
+            {
+              $i=0;
+              while($row=pwg_db_fetch_assoc($result))
+              {
+                $row['id']=$i;
+                $returned[]=$row;
+                $i++;
+              }
+            }
+          }
+        }
+      }
+
+      $template->set_filename('keywordsList',
+                    dirname($this->getFileLocation()).'/admin/amd_metadata_tags_iKeywordsList.tpl');
+
+      $template->assign('datas', $returned);
+      return($template->parse('keywordsList', true));
+    }
+
+
+    /**
+     * convert given keywords into tags, and associate them to pictures
+     *
+     * @param Array $keywords : an array of strings
+     * @return String : ok or ko
+     */
+    private function ajax_amd_admin_tagsConvertKeywords($keywords)
+    {
+      global $template;
+
+      $returned='ko';
+
+      /*
+       * 1/ build a temp table with all couple of keywords/imageId
+       */
+      $keywordsList=array();
+      $sql="SELECT pait.value, pait.imageId, paut.numId
+            FROM (".$this->tables['images_tags']." pait
+              JOIN ".$this->tables['used_tags']." paut ON pait.numId = paut.numId)
+
+            WHERE (paut.tagId = 'xmp.dc:subject' OR
+                   paut.tagId = 'xmp.digiKam:tagsList' OR
+                   paut.tagId = 'iptc.Keywords');";
+      $result=pwg_query($sql);
+      if($result)
+      {
+        while($row=pwg_db_fetch_assoc($result))
+        {
+          if(preg_match('/^a:\d+:{/', $row['value']))
+          {
+            /*
+             *  if value is a serialized string, unserialize and process it
+             */
+            $tmp=unserialize($row['value']);
+            foreach($tmp['values'] as $val)
+            {
+              $keywordsList[]="('".mysql_escape_string($val)."', ".$row['imageId'].")";
+            }
+          }
+          else
+          {
+            $keywordsList[]="('".mysql_escape_string($row['value'])."', ".$row['imageId'].")";
+          }
+        }
+        $sql="CREATE TEMPORARY TABLE amd_temp_tags (
+                `value` CHAR(255) default '',
+                `imageId` mediumint(8) unsigned NOT NULL default '0',
+                PRIMARY KEY  USING BTREE (`value`,`imageId`)
+              ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
+        if(pwg_query($sql))
+        {
+          $sql="INSERT IGNORE INTO amd_temp_tags
+            VALUES ".implode(',', $keywordsList);
+          if(pwg_query($sql))
+          {
+            foreach($keywords as $key => $val)
+            {
+              $keywords[$key]="(att.value LIKE '".mysql_escape_string($val)."')";
+            }
+            /*
+             * 2/ join temp table with piwigo tags table, found the keywords
+             *    that don't have a corresponding keyword
+             */
+            $sql="SELECT DISTINCT att.value
+                  FROM amd_temp_tags att LEFT JOIN ".TAGS_TABLE." ptt ON att.value = ptt.name
+                  WHERE ptt.id IS NULL
+                    AND".implode(' OR ', $keywords);
+            $result=pwg_query($sql);
+            if($result)
+            {
+              $sql=array();
+              while($row=pwg_db_fetch_assoc($result))
+              {
+                $sql[]="('', '".mysql_escape_string($row['value'])."', '".mysql_escape_string(str2url($row['value']))."')";
+              }
+              if(count($sql)>0)
+              {
+                $sql="INSERT INTO ".TAGS_TABLE." VALUES ".implode(',', $sql);
+                pwg_query($sql);
+              }
+            }
+
+            /*
+             * 3/ join temp table with piwigo tags table, associate piwigo tagId
+             *    to the keywords (at this step, all keyword can be associated
+             *    with a piwigo tagId)
+             */
+            $sql="INSERT IGNORE INTO ".IMAGE_TAG_TABLE."
+                    SELECT DISTINCT att.imageId, ptt.id
+                    FROM amd_temp_tags att LEFT JOIN ".TAGS_TABLE." ptt ON att.value = ptt.name
+                    WHERE ".implode(' OR ', $keywords);
+            $result=pwg_query($sql);
+            $returned='ok';
+          }
+        }
+      }
+
       return($returned);
     }
 

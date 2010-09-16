@@ -295,7 +295,7 @@ var processAnalyze = {
         </span>
 
         {if $amdConfig.amd_DisplayWarningsMessageUpdate=='y'}
-          <div style="padding-left: 60px;" class="warnings">
+          <div class="warnings">
             <p style="font-size: 120%;">{'g003_warning_on_analyze_0'|@translate}</p>
             <p>{'g003_warning_on_analyze_1'|@translate}</p>
             <p>{'g003_warning_on_analyze_2'|@translate}</p>
