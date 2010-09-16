@@ -66,6 +66,14 @@
  * | 1.1.1   | 2010-09-13 | * mantis bug:1826
  * |         |            |   . digiKam XMP tags are not recognized
  * |         |            |
+ * |         |            | * mantis bug:1859
+ * |         |            |   . JpegMetadata class can't manage multiple IPTC
+ * |         |            |     keywords
+ * |         |            |
+ * |         |            | * mantis bug:1861
+ * |         |            |   . Accentued chars from ISO-8859-1 charset are not
+ * |         |            |     recognized
+ * |         |            |
  * |         |            |
  * |         |            |
  * |         |            |

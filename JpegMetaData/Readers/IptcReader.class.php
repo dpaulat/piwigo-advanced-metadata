@@ -213,9 +213,58 @@
       }
       unset($blocks);
 
+
+      /* for each entries, convert value to human readable tag value
+       *
+       * build a special 'keywords' tag made as an array from all iptc 'keywords' (0x0219) tags found
+       */
+      $keywordsTag=null;
       foreach($this->entries as $key => $tag)
       {
         $this->setTagProperties($tag);
+        if($tag->getId()==0x0219)
+        {
+          if(is_null($keywordsTag))
+          {
+            $keywordsTag=new Tag(
+              0x0219,
+              array($tag->getValue()),
+              $tag->getName(),
+              array($tag->getLabel()),
+              "",
+              $tag->isKnown(),
+              $tag->isImplemented(),
+              $tag->isTranslatable(),
+              $tag->getSchema()
+            );
+          }
+          else
+          {
+            $keywordsTag->setValue(array_merge($keywordsTag->getValue(), array($tag->getValue())));
+            $keywordsTag->setLabel(array_merge($keywordsTag->getLabel(), array($tag->getLabel())));
+          }
+        }
+      }
+      if(!is_null($keywordsTag))
+      {
+        /*
+         * IPTC 'keywords' is stored like XMP 'xmp.dc:subject' (as a 'seq')
+         */
+        $keywordsTag->setValue(
+          array(
+            'type' => 'seq',
+            'values' => $keywordsTag->getValue()
+          )
+        );
+
+        $keywordsTag->setLabel(
+          array(
+            'type' => 'seq',
+            'values' => $keywordsTag->getLabel()
+          )
+        );
+        $this->entries[]=$keywordsTag;
+        unset($keywordsTag);
       }
     }
 
@@ -305,7 +354,7 @@
         case 0x0278: // 2:120 - Description
         case 0x027A: // 2:122 - Writer/Editor
         case 0x0287: // 2:150 - Language Identifier
-          $returned=$values;
+          $returned=utf8_encode($values);
           break;
         case 0x0114: // 1:20  - File Format
           $tag=$this->tagDef->getTagById(0x0114);
