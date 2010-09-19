@@ -293,6 +293,7 @@ $lang['g003_num_of_pictures']="Nombre de photos";
 $lang['g003_num_of_pictures_already_tagged']="Nombre de photos déjà taggées";
 $lang['g003_convert_ok']="La conversion s'est correctement effectuée";
 $lang['g003_convert_keywords_and_apply']="Convertir";
+$lang['g003_no_keywords']="Aucun mot-clef susceptible d'être convertit n'a pu être trouvé.";
 
 
 $lang['g003_tags_page_help']="Cette fonctionnalité effectue une extraction des mots-clefs présents dans les métadonnées de vos photos et vous permet de les convertir en [i]Tags[/i].
@@ -321,6 +322,8 @@ Par défaut, seul le groupe [i]".$lang['g003_default_group_name']."[/i] est disp
 [/ul]
 Sélections&tris sont pris en compte immédiatement (il n'est pas nécessaire de les valider).";
 
+$lang['g003_gpc_not_up_to_date']="Il est nécessaire que le plugin <i>Grum Plugin Classes</i> version %s soit installé.
+Actuellement, la version %s est installée : merci de procéder à la mise à jour de version du plugin <i>Grum Plugin Classes</i>.";
 
 /** ----------------------------------------------------------------------------
  * removed keys from releases 0.5.0/0.5.1

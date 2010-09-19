@@ -28,13 +28,12 @@ include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCCore.class.inc.php
 include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCTables.class.inc.php');
 
 
-global $gpc_installed, $gpcNeeded, $lang; //needed for plugin manager compatibility
+global $gpcInstalled, $lang; //needed for plugin manager compatibility
 
 /* -----------------------------------------------------------------------------
  * AMD needs the Grum Plugin Classe
  * -------------------------------------------------------------------------- */
-$gpc_installed=false;
-$gpcNeeded="3.2.0";
+$gpcInstalled=false;
 if(file_exists(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php'))
 {
   @include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php');
@@ -42,14 +41,13 @@ if(file_exists(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.
   if(CommonPlugin::checkGPCRelease(3,2,0))
   {
     @include_once("amd_install.class.inc.php");
-    $gpc_installed=true;
+    $gpcInstalled=true;
   }
 }
 
 function gpcMsgError(&$errors)
 {
-  global $gpcNeeded;
-  $msg=sprintf(l10n('To install this plugin, you need to install Grum Plugin Classes %s before'), $gpcNeeded);
+  $msg=sprintf(l10n('To install this plugin, you need to install Grum Plugin Classes %s before'), AMD_GPC_NEEDED);
   if(is_array($errors))
   {
     array_push($errors, $msg);
@@ -67,12 +65,11 @@ load_language('plugin.lang', AMD_PATH);
 
 function plugin_install($plugin_id, $plugin_version, &$errors)
 {
-  global $prefixeTable, $gpc_installed, $gpcNeeded;
-  if($gpc_installed)
+  global $prefixeTable, $gpcInstalled;
+  if($gpcInstalled)
   {
     $amd=new AMD_install($prefixeTable, __FILE__);
     $result=$amd->install();
-    GPCCore::register($amd->getPluginName(), AMD_VERSION, $gpcNeeded);
   }
   else
   {
@@ -82,30 +79,32 @@ function plugin_install($plugin_id, $plugin_version, &$errors)
 
 function plugin_activate($plugin_id, $plugin_version, &$errors)
 {
-  global $prefixeTable, $gpcNeeded;
-
-  $amd=new AMD_install($prefixeTable, __FILE__);
-  $result=$amd->activate();
-  GPCCore::register($amd->getPluginName(), AMD_VERSION, $gpcNeeded);
-  GPCRequestBuilder::register($amd->getPluginName(), dirname($amd->getFileLocation()).'/amd_rb_callback.class.inc.php');
+  global $prefixeTable, $gpcInstalled;
+  if($gpcInstalled)
+  {
+    $amd=new AMD_install($prefixeTable, __FILE__);
+    $result=$amd->activate();
+  }
 }
 
 function plugin_deactivate($plugin_id)
 {
-  global $prefixeTable, $gpcNeeded;
+  global $prefixeTable, $gpcInstalled;
 
-  $amd=new AMD_install($prefixeTable, __FILE__);
-  GPCRequestBuilder::unregister($amd->getPluginName());
+  if($gpcInstalled)
+  {
+    $amd=new AMD_install($prefixeTable, __FILE__);
+    $amd->deactivate();
+  }
 }
 
 function plugin_uninstall($plugin_id)
 {
-  global $prefixeTable, $gpc_installed, $gpcNeeded;
-  if($gpc_installed)
+  global $prefixeTable, $gpcInstalled;
+  if($gpcInstalled)
   {
     $amd=new AMD_install($prefixeTable, __FILE__);
     $result=$amd->uninstall();
-    GPCCore::unregister($amd->getPluginName());
   }
   else
   {

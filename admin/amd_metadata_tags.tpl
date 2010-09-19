@@ -22,6 +22,15 @@
             $("#iListTagsNb").html(
               "{/literal}{'g003_number_of_keywords'|@translate}{literal} "+$("#iListTags table tr").length
             );
+
+            if($("#iListTags table tr").length==0)
+            {
+              $('#iApply').css('display', 'none');
+            }
+            else
+            {
+              $('#iApply').css('display', 'block');
+            }
           }
       }
     );
@@ -81,7 +90,7 @@
 </div>
 <div id="iListTagsNb"></div>
 
-<input type="button" value="{'g003_convert_keywords_and_apply'|@translate}" id='iApply' onclick='convertKeywordsList();'>
+<input type="button" value="{'g003_convert_keywords_and_apply'|@translate}" id='iApply' onclick='convertKeywordsList();' style='display:none;'>
 
 <script type='text/javascript'>
   displayWait();

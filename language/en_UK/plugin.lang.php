@@ -97,7 +97,7 @@ $lang['g003_help_tab_magic'] = "Magic";
 $lang['g003_help_exif'] = "EXIF Metadata is information stored in the image file by the camera at shooting.
 
 
-The information there are mainly technical: 
+The information there are mainly technical:
 [ul]
 [li]equipment used (camera model, maker)[/li]
 [li]shooting conditions (aperture, exposure time, focal length)[/li]
@@ -115,7 +115,7 @@ EXIF metadata is standardized ([url]http://www.exif.org/Exif2-2.PDF[/url]), but 
 
 $lang['g003_help_iptc'] = "IPTC Metadata consists of information the photographer can record in the image with an appropriate software.
 
-Information there is mainly oriented towards the professional world: 
+Information there is mainly oriented towards the professional world:
 [ul]
 [li]photographer references (name, contact)[/li]
 [li]information on the Copyright[/li]
@@ -165,5 +165,139 @@ Thus, the [b]magic.ShotInfo.Aperture[/b] metadata returns:
 [li]if present in the photo, the value of the [b]exif.exif.ApertureValue[/b] metadata, otherwise [/ li]
 [li]if present in the photo, the value of the [b]xmp.exif: ApertureValue[/b] metadata.[/li]
 [/ul]";
+
+
+
+
+/** ----------------------------------------------------------------------------
+ * new keys from releases 0.5.0/0.5.1
+ */
+
+$lang['g003_y'] = "Yes";
+$lang['g003_n'] = "No";
+
+$lang['g003_state'] = "State";
+$lang['g003_update'] = "Update";
+$lang['g003_personnal'] = "User defined";
+$lang['g003_search'] = "Search";
+
+$lang['g003_personnal_metadata'] = "User defined metadata";
+$lang['g003_add_a_new_md'] = "Add a new metadata";
+$lang['g003_fill_database'] = "Alimente le référentiel";
+$lang['g003_num_of_rules'] = "Number of rules";
+$lang['g003_metadatId'] = "Metadata ID";
+$lang['g003_rules'] = "Rules";
+$lang['g003_add_a_rule'] = "Add a rule";
+$lang['g003_typeText'] = "Text";
+$lang['g003_typeMetadata'] = "Metadata";
+$lang['g003_typeCondition'] = "Condition";
+$lang['g003_typeCIfExist'] = "exists";
+$lang['g003_typeCIfNotExist'] = "don't exists";
+$lang['g003_typeCIfEqual'] = "equals";
+$lang['g003_typeCIfNotEqual'] = "is not equals";
+$lang['g003_typeCIfLike'] = "like";
+$lang['g003_typeCIfNotLike'] = "don't like";
+$lang['g003_typeCIfBeginWith'] = "begin with";
+$lang['g003_typeCIfNotBeginWith'] = "don't begin with";
+$lang['g003_typeCIfEndWith'] = "end with";
+$lang['g003_typeCIfNotEndWith'] = "don't end with";
+$lang['g003_conditionIf'] = "Test if the metadata value";
+
+$lang['g003_invalidId'] = "Metadata ID isn\'t valid";
+$lang['g003_oneRuleIsNeeded'] = "At least, one rule is mandatory";
+$lang['g003_textRuleInvalid'] = "Rule of type \"Text\" : a value is mandatory";
+$lang['g003_metadataRuleInvalid'] = "Rule of type \"Metadata\" : a metadata must be selected";
+$lang['g003_conditionMdRuleInvalid'] = "Règle of type \"Condition\" : a metadata must be selected";
+$lang['g003_conditionRulesRuleInvalid'] = "Règle of type \"Condition\" : a least, one rule is mandatory";
+
+$lang['g003_tagIdAlreadyExist'] = "A metadata with this ID already exists !";
+
+$lang['g003_pleaseConfirmMetadataDelete'] = "Please confirm deleting the metadata";
+$lang['g003_deleteMetadata'] = "Deleting a metadata";
+$lang['g003_delete']= "Delete";
+
+$lang['g003_userDefined_filter'] = "User defined metadata";
+
+$lang['g003_informations'] = "Informations";
+$lang['g003_databaseInformation'] = "Informations importantes à propos du référentiel";
+$lang['g003_databaseWarning1']="[p]Le référentiel est constitué des métadonnées contenues dans les images de la galerie ainsi que de métadonnées calculées par le plugin. En fonction du nombre d'images et du nombre de métadonnées y étant rattachées, le référentiel peut s'avérer être très volumineux.
+Avant d'alimenter le référentiel, assurez-vous que la base de données proposée par votre hébergeur permet ce type d'usage.
+[/p][p]Il est toutefois à noter que l'usage du référentiel est facultatif, ce dernier n'étant pas exploité pour l'affichage des métadonnées des photos de la galerie.
+[/p][p]L'alimentation du référentiel est nécessaire si vous souhaitez :[/p]
+[ul]
+[li]Disposer de statistiques sur les métadonnées présentes dans vos photos (c'est aussi une aide pour la sélection de métadonnées)[/li]
+[li]Disposer du moteur de recherche[/li]
+[/ul]
+";
+$lang['g003_sizeAndRows'] = "The database weight do %s and have %s metadata";
+$lang['g003_numberOfAnalyzedPictures'] = "%d images were analyzed";
+
+$lang['g003_options'] = "Options";
+$lang['g003_fillDatabaseContinuously'] = "Fill the database continuously";
+$lang['g003_ignoreMetadata'] = "Ignore the metadata :";
+
+$lang['g003_analyze_analyzed_pictures'] = "Analyze is made only on pictures already analyzed";
+$lang['g003_fillDatabaseIgnoreWarning'] = "To be applied, the modified settings needs to made a new database analyze";
+
+
+$lang['g003_add_metadata'] = "Add a metadata";
+
+$lang['g003_choose_a_metadata'] = "Search on a metadata value";
+$lang['g003_add'] = "Ajouter";
+$lang['g003_metadata_value_check_one'] = "Au moins une des valeurs suivantes doit être vérifiée :";
+$lang['g003_metadata_value_check_all'] = "Toutes les valeurs suivantes doivent être vérifiées :";
+
+$lang['g003_metadata_exists']="La métadonnée %s est présente";
+$lang['g003_metadata_dont_exists']="La métadonnée %s n'est pas présente";
+$lang['g003_metadata_equals_all']="La métadonnée %s est présente et est égale à l\'une des valeurs suivantes :";
+$lang['g003_metadata_equals_one']="La métadonnée %s est présente et est égale à la valeur suivante :";
+$lang['g003_metadata_not_equals_all']="La métadonnée %s est présente et n'est égale à aucune des valeurs suivantes :";
+$lang['g003_metadata_not_equals_one']="La métadonnée %s est présente et n'est pas égale à la valeur suivante :";
+$lang['g003_metadata_like_all']="La métadonnée %s est présente et contient l\'une des valeurs suivantes :";
+$lang['g003_metadata_like_one']="La métadonnée %s est présente et contient la valeur suivante :";
+$lang['g003_metadata_not_like_all']="La métadonnée %s est présente et ne contient aucune des valeurs suivantes :";
+$lang['g003_metadata_not_like_one']="La métadonnée %s est présente et n'est contient pas la valeur suivante :";
+$lang['g003_metadata_begin_all']="La métadonnée %s est présente et commence par l\'une des valeurs suivantes :";
+$lang['g003_metadata_begin_one']="La métadonnée %s est présente et commence par la valeur suivante :";
+$lang['g003_metadata_not_begin_all']="La métadonnée %s est présente et ne commence pas par l\'une des valeurs suivantes :";
+$lang['g003_metadata_not_begin_one']="La métadonnée %s est présente et ne commence pas par la valeur suivante :";
+$lang['g003_metadata_end_all']="La métadonnée %s est présente et finit par l\'une des valeurs suivantes :";
+$lang['g003_metadata_end_one']="La métadonnée %s est présente et finit par la valeur suivante :";
+$lang['g003_metadata_not_end_all']="La métadonnée %s est présente et ne finit pas par l\'une des valeurs suivantes :";
+$lang['g003_metadata_not_end_one']="La métadonnée %s est présente et ne finit pas par la valeur suivante :";
+
+$lang['g003_value_already_set'] = "La valeur est déjà définie dans le domaine de valeurs";
+$lang['g003_please_set_a_value'] = "Merci de définir une valeur";
+
+
+$lang['g003_install']="Installation";
+$lang['g003_basic_mode']="Basic";
+$lang['g003_advanced_mode']="Advanced";
+$lang['g003_validate']="Validate";
+$lang['g003_step_1']="Choix du type d'usage du plugin";
+$lang['g003_basic_mode_help']="
+Le mode [i]basique[/i] s'adresse à ceux qui souhaitent simplement afficher les métadonnées de leurs photos et propose :[ul]
+[li]une interface simplifiée au maximum[/li]
+[li]une liste réduite de métadonnées (environ 140, dont les plus courantes)[/li]
+[/ul]";
+$lang['g003_advanced_mode_help']="
+Le mode [i]avancé[/i] s'adresse à ceux qui souhaitent exploiter au maximum les métadonnées de leurs photos et propose :[ul]
+[li]une interface plus complexe, mais complète[/li]
+[li]une liste de métadonnées plus complète (environ 540)[/li]
+[li]des fonctionnalités étendues (statistiques, recherche, ...)[/li]
+[/ul]
+Le mode [i]avancé[/i] nécessite la constitution d'un référentiel.";
+
+
+/** ----------------------------------------------------------------------------
+ * removed keys from releases 0.5.0/0.5.1
+ */
+//$lang['g003_warning_on_analyze_4a']
+//$lang['g003_warning_on_analyze_4b']
+
+
+
+
+
 
 ?>

@@ -7,7 +7,7 @@
 </script>
 {/literal}
 
-
+{if count($datas)>0}
 <table class="littlefont listTags {$themeconf.name}" style="width:100%;">
   {foreach from=$datas key=name item=data}
   <tr>
@@ -22,3 +22,7 @@
   </tr>
   {/foreach}
 </table>
+{else}
+<br>
+{'g003_no_keywords'|@translate}
+{/if}

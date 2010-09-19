@@ -19,8 +19,6 @@
  */
 
   include_once('amd_root.class.inc.php');
-  include_once(PHPWG_PLUGINS_PATH.'grum_plugins_classes-2/tables.class.inc.php');
-
 
   class AMD_install extends AMD_root
   {
@@ -141,7 +139,7 @@
         pwg_query($sql);
       }
 
-
+      GPCCore::register($this->getPluginName(), AMD_VERSION, AMD_GPC_NEEDED);
       return($result);
     }
 
@@ -153,6 +151,7 @@
     {
       $this->deleteConfig();
       $this->tablef->drop();
+      GPCCore::unregister($this->getPluginName());
     }
 
     public function activate()
@@ -161,7 +160,10 @@
 
       $this->initConfig();
       $this->loadConfig();
-      $this->loadConfigFromFile(dirname($this->getFileLocation()).'/activatePlugin.conf.php');
+      if(method_exists($this, 'loadConfigFromFile'))
+      {
+        $this->loadConfigFromFile(dirname($this->getFileLocation()).'/activatePlugin.conf.php');
+      }
 
       /*
        * if there is no version information available, assume the previous
@@ -172,6 +174,7 @@
       switch($this->config['installed'])
       {
         case '00.04.00':
+          $this->config['newInstall']='n';
           $this->updateFrom_000400();
           break;
         default:
@@ -186,11 +189,15 @@
       $this->config['amd_FillDataBaseExcludeTags']=array();
       $this->config['installed']=AMD_VERSION2; //update the installed release number
       $this->saveConfig();
+
+      GPCCore::register($this->getPluginName(), AMD_VERSION, AMD_GPC_NEEDED);
+      GPCRequestBuilder::register($this->getPluginName(), dirname($this->getFileLocation()).'/amd_rb_callback.class.inc.php');
     }
 
 
     public function deactivate()
     {
+      GPCRequestBuilder::unregister($this->getPluginName());
     }
 
     /**
@@ -201,7 +208,7 @@
       /*
        * create new tables & alter existing tables
        */
-      $tableDef=array(
+      $tablesCreate=array(
 "CREATE TABLE `".$this->tables['user_tags_label']."` (
   `numId` INTEGER UNSIGNED NOT NULL,
   `lang` CHAR(5)  NOT NULL,
@@ -221,21 +228,22 @@
   KEY `byTagParentId` USING BTREE (`numId`,`parentId`,`order`),
   KEY `byTagOrder` (`numId`,`order`)
 );",
-"ALTER TABLE `".$this->tables['images_tags']."`
-  ADD COLUMN `numValue` DECIMAL(10,8)  DEFAULT NULL AFTER `value`,
-  ADD INDEX `byNumId`(`numId`, `value`(35)),
-  ADD INDEX `byNumId2`(`numId`, `numValue`)
-;"
       );
-      $tablesDef = create_table_add_character_set($tablesDef);
-      $result=$this->tablef->create($tablesDef);
-      unset($tablesDef);
+      $tablesUpdate=array(
+        $this->tables['images_tags'] => array(
+          'byNumId' => "ADD INDEX `byNumId`(`numId`, `value`(35))",
+        )
+      );
 
-      /*
-       * update old tables
-       */
+      $tablesDef = create_table_add_character_set($tablesCreate);
 
-      // no tables to update
+      $tablef=new GPCTables(array($this->tables['user_tags_label'], $this->tables['user_tags_def']));
+
+      if(count($tablesCreate)>0) $tablef->create($tablesCreate);
+      if(count($tablesUpdate)>0) $tablef->updateTablesFields($tablesUpdate);
+
+      unset($tablesCreate);
+      unset($tablesUpdate);
     }
 
 

@@ -4,6 +4,9 @@
 
   function submitForm()
   {
+    $('#btSubmit').css('display', 'none');
+    $('#iImgWait').css('display', 'block');
+
     if($('#iInterfaceModeB').get(0).checked)
     {
       interfaceMode='basic';
@@ -54,7 +57,8 @@
 
   </fieldset>
 
-  <input type="button" onclick='submitForm();'  value="{'g003_validate'|@translate}">
+  <input id='btSubmit' type="button" onclick='submitForm();'  value="{'g003_validate'|@translate}">
+  <img id='iImgWait' src='./plugins/GrumPluginClasses/icons/processing.gif' style='display:none;margin-left:40px;'>
 
 </form>
 

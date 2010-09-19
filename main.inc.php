@@ -62,8 +62,8 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis : feature 1718
 |         |            |   . Make test images lighter
 |         |            |     The weight of tests images provided with the
-|         |            |     JpegMetadata class was to heavy ; the file size has
-|         |            |     been reduced from 9Mb to 230Kb
+|         |            |     JpegMetadata class was too heavy ; the file size
+|         |            |     has been reduced from 9Mb to 230Kb
 |         |            |
 |         |            | * mantis : feature 1688
 |         |            |   . Improve performance when the database is filled
@@ -181,10 +181,13 @@ if(defined('IN_ADMIN'))
 }
 else
 {
-  //AMD public part loaded and active only if in public page
-  include_once("amd_pip.class.inc.php");
-  $obj = new AMD_PIP($prefixeTable, __FILE__);
-  set_plugin_data($plugin['id'], $obj);
+  //AMD public part loaded and active only if in public page and if GPC is up to date
+  if(CommonPlugin::checkGPCRelease(3,2,0))
+  {
+    include_once("amd_pip.class.inc.php");
+    $obj = new AMD_PIP($prefixeTable, __FILE__);
+    set_plugin_data($plugin['id'], $obj);
+  }
 }
 
 

@@ -1532,34 +1532,38 @@
             $keywordsList[]="('".mysql_escape_string($row['value'])."', ".$row['imageId'].")";
           }
         }
-        $sql="CREATE TEMPORARY TABLE amd_temp_tags (
-                `value` CHAR(255) default '',
-                `imageId` mediumint(8) unsigned NOT NULL default '0',
-                PRIMARY KEY  USING BTREE (`value`,`imageId`)
-              ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
-        if(pwg_query($sql))
+
+        if(count($keywordsList)>0)
         {
-          $sql="INSERT IGNORE INTO amd_temp_tags
-            VALUES ".implode(',', $keywordsList);
+          $sql="CREATE TEMPORARY TABLE amd_temp_tags (
+                  `value` CHAR(255) default '',
+                  `imageId` mediumint(8) unsigned NOT NULL default '0',
+                  PRIMARY KEY  USING BTREE (`value`,`imageId`)
+                ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
           if(pwg_query($sql))
           {
-            $sql="SELECT att.value AS value,
-                    COUNT(DISTINCT att.imageId) AS nbPictures,
-                    IF(ptt.name IS NULL, 'n', 'y') AS tagExists,
-                    COUNT(DISTINCT pit.image_id) AS nbPicturesTagged
-                  FROM (amd_temp_tags att LEFT JOIN ".TAGS_TABLE."  ptt ON att.value = ptt.name)
-                    LEFT JOIN ".IMAGE_TAG_TABLE." pit ON pit.tag_id = ptt.id
-                  GROUP BY att.value
-                  HAVING nbPicturesTagged < nbPictures";
-            $result=pwg_query($sql);
-            if($result)
+            $sql="INSERT IGNORE INTO amd_temp_tags
+              VALUES ".implode(',', $keywordsList);
+            if(pwg_query($sql))
             {
-              $i=0;
-              while($row=pwg_db_fetch_assoc($result))
+              $sql="SELECT att.value AS value,
+                      COUNT(DISTINCT att.imageId) AS nbPictures,
+                      IF(ptt.name IS NULL, 'n', 'y') AS tagExists,
+                      COUNT(DISTINCT pit.image_id) AS nbPicturesTagged
+                    FROM (amd_temp_tags att LEFT JOIN ".TAGS_TABLE."  ptt ON att.value = ptt.name)
+                      LEFT JOIN ".IMAGE_TAG_TABLE." pit ON pit.tag_id = ptt.id
+                    GROUP BY att.value
+                    HAVING nbPicturesTagged < nbPictures";
+              $result=pwg_query($sql);
+              if($result)
               {
-                $row['id']=$i;
-                $returned[]=$row;
-                $i++;
+                $i=0;
+                while($row=pwg_db_fetch_assoc($result))
+                {
+                  $row['id']=$i;
+                  $returned[]=$row;
+                  $i++;
+                }
               }
             }
           }
