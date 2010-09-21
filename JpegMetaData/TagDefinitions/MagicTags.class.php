@@ -115,7 +115,7 @@
         'translatable' => false,
         'tagValues'    => Array(
           "{exif.exif.ISOSpeedRatings}",
-          "{xmp.exif:ISOSpeedRatings}",
+          "{xmp.exif:ISOSpeedRatings[values]}",
           "{exif.Pentax.ISO}",
         )
       ),

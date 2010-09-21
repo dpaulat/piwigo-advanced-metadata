@@ -245,7 +245,7 @@
               $type="n/a";
               break;
           }
-          if($type=="seq" or $type=="bag" or $type="alt")
+          if($type=="seq" or $type=="bag" or $type=="alt")
           {
             $value=Array('type' => $type, 'values' => Array());
             $childNode=$child->getFirstChild();

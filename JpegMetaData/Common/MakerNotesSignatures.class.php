@@ -91,27 +91,27 @@
 
     static public function getMaker($datas)
     {
-      if(substr_compare($datas, self::OlympusHeader, 0, self::OlympusHeaderSize)===0)
+      if(strlen($datas) >= self::OlympusHeaderSize and substr_compare($datas, self::OlympusHeader, 0, self::OlympusHeaderSize)===0)
        { return(self::OlympusHeader); }
-      elseif(substr_compare($datas, self::Olympus2Header, 0, self::Olympus2HeaderSize)===0)
+      elseif(strlen($datas) >= self::Olympus2HeaderSize and substr_compare($datas, self::Olympus2Header, 0, self::Olympus2HeaderSize)===0)
        { return(self::Olympus2Header); }
-      elseif(substr_compare($datas, self::FujiFilmHeader, 0, self::FujiFilmHeaderSize)===0)
+      elseif(strlen($datas) >= self::FujiFilmHeaderSize and substr_compare($datas, self::FujiFilmHeader, 0, self::FujiFilmHeaderSize)===0)
        { return(self::FujiFilmHeader); }
-      elseif(substr_compare($datas, self::Nikon2Header, 0, self::Nikon2HeaderSize)===0)
+      elseif(strlen($datas) >= self::Nikon2HeaderSize and substr_compare($datas, self::Nikon2Header, 0, self::Nikon2HeaderSize)===0)
        { return(self::Nikon2Header); }
-      elseif(substr_compare($datas, self::Nikon3Header, 0, self::Nikon3HeaderSize)===0)
+      elseif(strlen($datas) >= self::Nikon3HeaderSize and substr_compare($datas, self::Nikon3Header, 0, self::Nikon3HeaderSize)===0)
        { return(self::Nikon3Header); }
-      elseif(substr_compare($datas, self::PanasonicHeader, 0, self::PanasonicHeaderSize)===0)
+      elseif(strlen($datas) >= self::PanasonicHeaderSize and substr_compare($datas, self::PanasonicHeader, 0, self::PanasonicHeaderSize)===0)
        { return(self::PanasonicHeader); }
-      elseif(substr_compare($datas, self::PentaxHeader, 0, self::PentaxHeaderSize)===0)
+      elseif(strlen($datas) >= self::PentaxHeaderSize and substr_compare($datas, self::PentaxHeader, 0, self::PentaxHeaderSize)===0)
        { return(self::PentaxHeader); }
-      elseif(substr_compare($datas, self::Pentax2Header, 0, self::Pentax2HeaderSize)===0)
+      elseif(strlen($datas) >= self::Pentax2HeaderSize and substr_compare($datas, self::Pentax2Header, 0, self::Pentax2HeaderSize)===0)
        { return(self::Pentax2Header); }
-      elseif(substr_compare($datas, self::SigmaHeader, 0, self::SigmaHeaderSize)===0)
+      elseif(strlen($datas) >= self::SigmaHeaderSize and substr_compare($datas, self::SigmaHeader, 0, self::SigmaHeaderSize)===0)
        { return(self::SigmaHeader); }
-      elseif(substr_compare($datas, self::Sigma2Header, 0, self::Sigma2HeaderSize)===0)
+      elseif(strlen($datas) >= self::Sigma2HeaderSize and substr_compare($datas, self::Sigma2Header, 0, self::Sigma2HeaderSize)===0)
        { return(self::Sigma2Header); }
-      elseif(substr_compare($datas, self::SonyHeader, 0, self::SonyHeaderSize)===0)
+      elseif(strlen($datas) >= self::SonyHeaderSize and substr_compare($datas, self::SonyHeader, 0, self::SonyHeaderSize)===0)
        { return(self::SonyHeader); }
       else
        { return(self::UnknownHeader); }

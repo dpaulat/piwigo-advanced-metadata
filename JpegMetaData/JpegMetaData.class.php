@@ -67,12 +67,13 @@
  * |         |            |   . digiKam XMP tags are not recognized
  * |         |            |
  * |         |            | * mantis bug:1859
- * |         |            |   . JpegMetadata class can't manage multiple IPTC
+ * |         |            |   . JpegMetadata class can't manage multiple IPTC keywords
  * |         |            |     keywords
  * |         |            |
- * |         |            | * mantis bug:1861
- * |         |            |   . Accentued chars from ISO-8859-1 charset are not
- * |         |            |     recognized
+ * |         |            | * mantis bug:1870
+ * |         |            |   . Xmp ISOSpeedRatings was not interpreted by
+ * |         |            |     'Magic' metadata
+ * |         |            |
  * |         |            |
  * |         |            |
  * |         |            |
@@ -627,7 +628,7 @@
     }
 
     /**
-     * MagicTags are build with this function
+     * MagicTags are built with this function
      */
     protected function processMagicTags()
     {
@@ -649,11 +650,13 @@
 
           if($found)
           {
-            $returned=trim(preg_replace_callback(
+            $returned=trim(
+              preg_replace_callback(
                 '/{([a-z0-9:\.\s\/\[\]]*)}/i',
                 Array(&$this, "processMagicTagsCB"),
                 $val['tagValues'][$i]
-            ));
+              )
+            );
 
             $returned=$this->processSpecialMagicTag($key, $returned);
 
@@ -717,14 +720,15 @@
           $label=$this->tags[$matches[1]]->getLabel();
         }
       }
-
       if($label instanceof DateTime)
         return($label->format("Y-m-d H:i:s"));
 
       $label=XmpTags::getAltValue($label, L10n::getLanguage());
 
       if(is_array($label))
+      {
         return(implode(", ", $label));
+      }
 
       return(trim($label));
     }
