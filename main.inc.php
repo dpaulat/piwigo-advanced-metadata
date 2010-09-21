@@ -49,8 +49,9 @@ Author URI: http://photos.grum.fr/
 |         |            |   are reported in the release 0.5.1
 |         |            |
 |         |            |
-| 0.5.1   | 2010/09/12 | * update to the JpegMetadata class 1.0.1 to fix the
-|         |            |   mantis bugs&features 1686, 1718 and 1719
+| 0.5.1   | 2010/09/12 | * update to the JpegMetadata class 1.1.1 to fix the
+|         |            |   mantis bugs&features 1686, 1718, 1719, 1826, 1859 and
+|         |            |   1870
 |         |            |
 |         |            | * mantis : bug 1686
 |         |            |   . Picture analysis finish with an Error 500 or with a
@@ -101,6 +102,10 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis bug:1861
 |         |            |   . Accentued chars from ISO-8859-1 charset are not
 |         |            |     recognized
+|         |            |
+|         |            | * mantis bug:1870
+|         |            |   . Xmp ISOSpeedRatings was not interpreted by
+|         |            |     'Magic' metadata
 |         |            |
 |         |            | * ajax management entirely rewritted
 |         |            |
