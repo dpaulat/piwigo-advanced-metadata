@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.5.1
+Version: 0.5.2
 Description: An advanced metadata manager
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
 Author: grum@piwigo.org
@@ -119,11 +119,11 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis : feature 1858
 |         |            |   . Ability to import tags from picture to piwigo tags
 |         |            |
-|         |            |
-|         |            |
-|         |            |
-|         |            |
-|         |            |
+| 0.5.2   | 2010/09/28 | * fix bug, need to load GPC CommonPlugin.class.inc.php
+|         |            |   on the main.inc.php file
+|         |            | * the "templates/amd_dialog_metadata_choose.tpl" file
+|         |            |   was not commit on the repository ; so need to build a
+|         |            |   new package
 |         |            |
 |         |            |
 |         |            |
@@ -171,6 +171,7 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 define('AMD_DIR' , basename(dirname(__FILE__)));
 define('AMD_PATH' , PHPWG_PLUGINS_PATH . AMD_DIR . '/');
 
+include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php');
 include_once('amd_version.inc.php'); // => Don't forget to update this file !!
 
 global $prefixeTable, $page;
