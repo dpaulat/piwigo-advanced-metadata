@@ -173,7 +173,6 @@ $lang['g003_n'] = "Non";
 
 $lang['g003_state'] = "Etat";
 $lang['g003_update'] = "Mise à jour";
-$lang['g003_state'] = "Etat";
 $lang['g003_personnal'] = "Personnelles";
 $lang['g003_search'] = "Recherche";
 
@@ -252,7 +251,7 @@ $lang['g003_metadata_not_equals_one']="La métadonnée %s est présente et n'est
 $lang['g003_metadata_like_all']="La métadonnée %s est présente et contient l\'une des valeurs suivantes :";
 $lang['g003_metadata_like_one']="La métadonnée %s est présente et contient la valeur suivante :";
 $lang['g003_metadata_not_like_all']="La métadonnée %s est présente et ne contient aucune des valeurs suivantes :";
-$lang['g003_metadata_not_like_one']="La métadonnée %s est présente et n'est contient pas la valeur suivante :";
+$lang['g003_metadata_not_like_one']="La métadonnée %s est présente et ne contient pas la valeur suivante :";
 $lang['g003_metadata_begin_all']="La métadonnée %s est présente et commence par l\'une des valeurs suivantes :";
 $lang['g003_metadata_begin_one']="La métadonnée %s est présente et commence par la valeur suivante :";
 $lang['g003_metadata_not_begin_all']="La métadonnée %s est présente et ne commence pas par l\'une des valeurs suivantes :";
@@ -303,7 +302,7 @@ $lang['g003_search_page_help']="Il est possible d'effectuer diverses recherches 
 
 $lang['g003_personnal_page_help']="Il est possible de construire très facilement vos propres métadonnées à partir des métadonnées existantes.
 [ul]
-[li]Ajoutez une nouvelles métadonnée[/li]
+[li]Ajoutez une nouvelle métadonnée[/li]
 [li]Renseignez ses propriétés[/li]
 [li]Ajoutez des règles de gestion et combinez-les au besoin par glisser/déposer[/li]
 [/ul]";

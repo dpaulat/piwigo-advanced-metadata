@@ -159,4 +159,171 @@ Así, el [b]metadatos magic.ShotInfo.Aperture[/b] devuelve:
 [/ul]";
 
 
+
+
+/** ----------------------------------------------------------------------------
+ * new keys from releases 0.5.0/0.5.1
+ *
+ * need to be translated
+ * thanks :)
+ */
+
+$lang['g003_y'] = "Yes";
+$lang['g003_n'] = "No";
+
+$lang['g003_state'] = "State";
+$lang['g003_update'] = "Update";
+$lang['g003_personnal'] = "Custom";
+$lang['g003_search'] = "Search";
+
+$lang['g003_personnal_metadata'] = "Custom metadata";
+$lang['g003_add_a_new_md'] = "Add a new metadata";
+$lang['g003_num_of_rules'] = "Number of rules";
+$lang['g003_metadatId'] = "Identifier of the metadata";
+$lang['g003_rules'] = "Rules";
+$lang['g003_add_a_rule'] = "Add a rule";
+$lang['g003_typeText'] = "Text";
+$lang['g003_typeMetadata'] = "Metadata";
+$lang['g003_typeCondition'] = "Condition";
+$lang['g003_typeCIfExist'] = "exists";
+$lang['g003_typeCIfNotExist'] = "does not exist";
+$lang['g003_typeCIfEqual'] = "equals";
+$lang['g003_typeCIfNotEqual'] = "is not equal to";
+$lang['g003_typeCIfLike'] = "contain";
+$lang['g003_typeCIfNotLike'] = "does not contain";
+$lang['g003_typeCIfBeginWith'] = "begin with";
+$lang['g003_typeCIfNotBeginWith'] = "does not begin with";
+$lang['g003_typeCIfEndWith'] = "end with";
+$lang['g003_typeCIfNotEndWith'] = "does not end with";
+$lang['g003_conditionIf'] = "Test if the metadata";
+
+$lang['g003_invalidId'] = "The identifier of the metadata is not valid";
+$lang['g003_oneRuleIsNeeded'] = "There must be at least one rule";
+$lang['g003_textRuleInvalid'] = "Rule of type \"Text\": the text must not be empty";
+$lang['g003_metadataRuleInvalid'] = "Rule of type \"Metadata\": a metadata must be selected";
+$lang['g003_conditionMdRuleInvalid'] = "Rule of type \"Condition\": a metadata must be selected";
+$lang['g003_conditionRulesRuleInvalid'] = "Rule of type \"Condition\": there must be at least one rule";
+
+$lang['g003_tagIdAlreadyExist'] = "A metadata with this identifier already exists !";
+
+$lang['g003_pleaseConfirmMetadataDelete'] = "Do you confirm the metadata deletion ?";
+$lang['g003_deleteMetadata'] = "Deleting the metadata";
+$lang['g003_delete']= "Delete";
+
+$lang['g003_userDefined_filter'] = "Custom metadata";
+
+$lang['g003_informations'] = "Informations";
+$lang['g003_databaseInformation'] = "Important information about the repository";
+$lang['g003_databaseWarning1']="[p]The repository is built using the metadata contained in images from the gallery as well as metadata calculated by the plugin. Depending on the number of images and the number of metadata to be attached, the repository can be very large.
+Before powering up the repository, make sure that the database provided by your host allows this type of use.
+[/p][p]It should be noted however that the use of the repository is optional, it is not used for displaying metadata for photos in the gallery.
+[/p][p]The filling of the repository is necessary if you wish:[/p]
+[ul]
+[li]Have statistics on the metadata in your photos (it also help in the selection of metadata)[/li]
+[li]Use the search engine[/li]
+[/ul]
+";
+$lang['g003_sizeAndRows'] = "The weight of the repository is %s and it contains %s metadata";
+$lang['g003_numberOfAnalyzedPictures'] = "%d images were analyzed";
+
+$lang['g003_options'] = "Options";
+$lang['g003_fillDatabaseContinuously'] = "Fill the repository continuously";
+$lang['g003_ignoreMetadata'] = "Ignore the following metadata:";
+
+$lang['g003_analyze_analyzed_pictures'] = "The analysis covers only the images that have already been analyzed";
+$lang['g003_fillDatabaseIgnoreWarning'] = "To be applied, modifying the parameters of this option requires a new analysis";
+
+
+$lang['g003_add_metadata'] = "Add a metadata";
+
+$lang['g003_choose_a_metadata'] = "Perform a search on the value of a metadata";
+$lang['g003_add'] = "Add";
+$lang['g003_metadata_value_check_one'] = "At least one of the following must be true:";
+$lang['g003_metadata_value_check_all'] = "All values have to be true:";
+
+$lang['g003_metadata_exists']="Metadata %s is present";
+$lang['g003_metadata_dont_exists']="Metadata %s is not present";
+$lang['g003_metadata_equals_all']="Metadata %s is present and is equal to the one of the following value:";
+$lang['g003_metadata_equals_one']="Metadata %s is present and is equal to:";
+$lang['g003_metadata_not_equals_all']="Metadata %s is present and must not be equal to any of the following value:";
+$lang['g003_metadata_not_equals_one']="Metadata %s is present and must not be equal to:";
+$lang['g003_metadata_like_all']="Metadata %s is present and must contain the one of the following value:";
+$lang['g003_metadata_like_one']="Metadata %s is present and must contain:";
+$lang['g003_metadata_not_like_all']="Metadata %s is present and must not contain any of the following value:";
+$lang['g003_metadata_not_like_one']="Metadata %s is present and must not contain:";
+$lang['g003_metadata_begin_all']="Metadata %s is present and must begin with any of the following value:";
+$lang['g003_metadata_begin_one']="Metadata %s is present and must begin with:";
+$lang['g003_metadata_not_begin_all']="Metadata %s is present and must not begin with any of the following value:";
+$lang['g003_metadata_not_begin_one']="Metadata %s is present and must not begin with:";
+$lang['g003_metadata_end_all']="Metadata %s is present and must end with any of the following value:";
+$lang['g003_metadata_end_one']="Metadata %s is present and must end with:";
+$lang['g003_metadata_not_end_all']="Metadata %s is present and must not end with any of the following value:";
+$lang['g003_metadata_not_end_one']="Metadata %s is present and must not end with:";
+
+$lang['g003_value_already_set'] = "The value is already defined in the domain of values";
+$lang['g003_please_set_a_value'] = "Please, set a value";
+
+
+$lang['g003_install']="Installation";
+$lang['g003_basic_mode']="Basic";
+$lang['g003_advanced_mode']="Advanced";
+$lang['g003_validate']="OK";
+$lang['g003_step_1']="Choice of use of the plugin";
+$lang['g003_basic_mode_help']="
+The [i]basic[/i] mode is for those who simply want to display the metadata of their photos and offers:[ul]
+[li]an interface as simple as possible[/li]
+[li]a short list of metadata (about 140, the most common)[/li]
+[/ul]";
+$lang['g003_advanced_mode_help']="
+The [i]advanced[/i] mode is for those who wish to make maximum use of their photos and metadata offers:[ul]
+[li]an interface more complex, but complete[/li]
+[li]a complete list of metadata (about 540)[/li]
+[li]extended functionalities (statistics, search ...)[/li]
+[/ul]
+The [i]advanced[/i] mode requires to built a repository.";
+
+
+$lang['g003_tags']="Tags";
+$lang['g003_number_of_keywords']="Number of keywords:";
+$lang['g003_keyword']="Keyword";
+$lang['g003_tag_in_piwigo']="Present in Piwigo";
+$lang['g003_num_of_pictures']="Number of photos";
+$lang['g003_num_of_pictures_already_tagged']="Number of photos already tagged";
+$lang['g003_convert_ok']="The conversion was done correctly";
+$lang['g003_convert_keywords_and_apply']="Convert";
+$lang['g003_no_keywords']="No keyword that can be converted has been found";
+
+
+$lang['g003_tags_page_help']="This feature performs an extraction of keywords present in the metadata for your photos and allows you to convert [i]Tags[/i].
+The images for which keywords have already been converted and associates do not appear: only the keywords of images for which a conversion and a possible association are proposed.";
+
+$lang['g003_search_page_help']="It is possible to perform various searches on the metadata content, from simple to complex: add criteria, and combine them using drag and drop.";
+
+$lang['g003_personnal_page_help']="You can easily build your own metadata from existing metadata.
+[ul]
+[li]Add a new metadata[/li]
+[li]Fill properties[/li]
+[li]Add rules and combine them if necessary by drag'n'drop[/li]
+[/ul]";
+
+$lang['g003_select_page_help']="Only metadata selected here are available in other interfaces configuration: this allows to reduce the list of metadata to those that seem most relevant to your use.
+The selection is applied immediately (it is not necessary to validate).";
+
+
+$lang['g003_display_page_help']="The metadata posted with the photo can be sorted and grouped.
+By default, only the group [i]".$Lang['g003_default_group_name']."[/i] is available, but it is possible to create as many as necessary ([i]IPTC[/i], [i]Geolocation[/i], ...).
+[ul]
+[li]Create groups of metadata according to your needs[/li]
+[li]Add the metadata to display[/li]
+[li]Within a group, sort the display order of metadata by drag'n'drop[/li]
+[li]Sort the display order of groups by drag'n'drop[/li]
+[/ul]
+Selection and sorting are applied immediately (it is not necessary to validate).";
+
+$lang['g003_gpc_not_up_to_date']="It is necessary for the plugin that the <i>Grum Plugin Classes</i> version %s is installed.
+Currently, version %s is installed: please proceed with the update version of the plugin <i>Grum Plugin Classes</i>.";
+
+
+
+
 ?>
