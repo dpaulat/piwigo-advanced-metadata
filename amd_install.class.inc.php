@@ -122,7 +122,7 @@
 
       $tablesInsert=array(
 "INSERT INTO `".$this->tables['groups']."` VALUES(1, 0)",
-"INSERT INTO `".$this->tables['groups_names']."` VALUES(1, '".$user['language']."', '".$lang['g003_default_group_name']."')",
+$this->buildDefaultGroup(),
 "INSERT INTO `".$this->tables['selected_tags']."` VALUES
     ('magic.Camera.Make', 0, 1),
     ('magic.Camera.Model', 1, 1),
@@ -289,6 +289,21 @@
               WHERE ".$sql;
         pwg_query($sql);
       }
+    }
+
+    private function buildDefaultGroup()
+    {
+      $sql=array();
+      $languages=get_languages();
+      foreach($languages as $key => $val)
+      {
+        load_language('plugin.lang', AMD_PATH, array('language' => $key, 'no_fallback'=>true));
+        $sql[]="(1, '".$key."', '".l10n('g003_default_group_name')."')";
+      }
+
+      //reload default user language
+      load_language('plugin.lang', AMD_PATH);
+      return("INSERT INTO `".$this->tables['groups_names']."` VALUES ".implode(',', $sql));
     }
 
   } //class

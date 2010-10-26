@@ -216,56 +216,119 @@
 
       /* for each entries, convert value to human readable tag value
        *
-       * build a special 'keywords' tag made as an array from all iptc 'keywords' (0x0219) tags found
+       * repeatable values are stored in arrays
+       *
+       * for Subject Reference tags (0x020C), made derived tags (0x020Cnn)
        */
-      $keywordsTag=null;
+      $repeatableTags=array();
       foreach($this->entries as $key => $tag)
       {
         $this->setTagProperties($tag);
-        if($tag->getId()==0x0219)
+
+        $list=array();
+
+        if($tag->getId()==0x020C)
         {
-          if(is_null($keywordsTag))
-          {
-            $keywordsTag=new Tag(
-              0x0219,
-              array($tag->getValue()),
-              $tag->getName(),
-              array($tag->getLabel()),
-              "",
-              $tag->isKnown(),
-              $tag->isImplemented(),
-              $tag->isTranslatable(),
-              $tag->getSchema()
-            );
-          }
-          else
-          {
-            $keywordsTag->setValue(array_merge($keywordsTag->getValue(), array($tag->getValue())));
-            $keywordsTag->setLabel(array_merge($keywordsTag->getLabel(), array($tag->getLabel())));
-          }
+          $tmpValues=explode(':', $tag->getValue());
+          $tmpLabels=explode(':', $tag->getLabel());
+
+          $list=array(
+            array(
+              'id' => 0x020C,
+              'value' => $tag->getValue(),
+              'label' => $tag->getLabel(),
+            ),
+            array(
+              'id' => 0x020C00,
+              'value' => isset($tmpValues[0])?$tmpValues[0]:'',
+              'label' => isset($tmpLabels[0])?$tmpLabels[0]:'',
+            ),
+            array(
+              'id' => 0x020C01,
+              'value' => isset($tmpValues[1])?$tmpValues[1]:'',
+              'label' => isset($tmpLabels[1])?$tmpLabels[1]:'',
+            ),
+            array(
+              'id' => 0x020C02,
+              'value' => isset($tmpValues[2])?$tmpValues[2]:'',
+              'label' => isset($tmpLabels[2])?$tmpLabels[2]:'',
+            ),
+            array(
+              'id' => 0x020C03,
+              'value' => isset($tmpValues[3])?$tmpValues[3]:'',
+              'label' => isset($tmpLabels[3])?$tmpLabels[3]:'',
+            ),
+            array(
+              'id' => 0x020C04,
+              'value' => isset($tmpValues[4])?$tmpValues[4]:'',
+              'label' => isset($tmpLabels[4])?$tmpLabels[4]:'',
+            )
+          );
         }
+        else
+        {
+          $list=array(
+            array(
+              'id' => $tag->getId(),
+              'value' => $tag->getValue(),
+              'label' => $tag->getLabel(),
+            )
+          );
+        }
+
+
+        foreach($list as $tagItem)
+        {
+          $tagDef=$this->tagDef->getTagById($tagItem['id']);
+
+          if($tagDef['repeatable'])
+          {
+            if(!array_key_exists($tagItem['id'], $repeatableTags))
+            {
+              $repeatableTags[$tagItem['id']]=new Tag(
+                $tagItem['id'],
+                array($tagItem['value']),
+                $tagDef['tagName'],
+                array($tagItem['label']),
+                "",
+                $tag->isKnown(),
+                $tagDef['implemented'],
+                $tagDef['translatable'],
+                $tag->getSchema()
+              );
+            }
+            else
+            {
+              $repeatableTags[$tagItem['id']]->setValue(array_merge($repeatableTags[$tagItem['id']]->getValue(), array($tagItem['value'])));
+              $repeatableTags[$tagItem['id']]->setLabel(array_merge($repeatableTags[$tagItem['id']]->getLabel(), array($tagItem['label'])));
+            }
+          }
+          unset($tagDef);
+        }
+        unset($tagId);
       }
-      if(!is_null($keywordsTag))
+      foreach($repeatableTags as $key => $tag)
       {
         /*
          * IPTC 'keywords' is stored like XMP 'xmp.dc:subject' (as a 'seq')
          */
-        $keywordsTag->setValue(
+        $repeatableTags[$key]->setValue(
           array(
             'type' => 'seq',
-            'values' => $keywordsTag->getValue()
+            'values' => $repeatableTags[$key]->getValue()
           )
         );
 
-        $keywordsTag->setLabel(
+        $repeatableTags[$key]->setLabel(
           array(
             'type' => 'seq',
-            'values' => $keywordsTag->getLabel()
+            'values' => $repeatableTags[$key]->getLabel()
           )
         );
-        $this->entries[]=$keywordsTag;
-        unset($keywordsTag);
+        $this->entries[]=$repeatableTags[$key];
+        unset($repeatableTags[$key]);
       }
+      unset($repeatableTags);
     }
 
     /**
@@ -329,6 +392,7 @@
         case 0x0132: // 1:50  - Product I.D.
         case 0x0205: // 2:05  - Title
         case 0x0207: // 2:07  - Edit Status
+        case 0x020C: // 2:12 - Subject Reference
         case 0x020F: // 2:15  - Category
         case 0x0214: // 2:20  - Supplemental Category
         case 0x0216: // 2:22  - Fixture Identifier
@@ -358,7 +422,15 @@
           break;
         case 0x0114: // 1:20  - File Format
           $tag=$this->tagDef->getTagById(0x0114);
-          $returned=$tag['tagValues.special'][ConvertData::toUShort($values, BYTE_ORDER_BIG_ENDIAN)];
+          $tmpValue=ConvertData::toUShort($values, BYTE_ORDER_BIG_ENDIAN);
+          if(array_key_exists($tmpValue, $tag['tagValues.special']))
+          {
+            $returned=$tag['tagValues.special'][$tmpValue];
+          }
+          else
+          {
+            $returned='Unknown file format : '.ConvertData::toHexDump($tmpValue, ByteType::USHORT);
+          }
           unset($tag);
           break;
         case 0x0203: // 2:03  - Object Type Reference

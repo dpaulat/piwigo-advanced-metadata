@@ -22,7 +22,7 @@
 
     {if isset($datasLang.language_list) and count($datasLang.language_list)}
       {foreach from=$datasLang.language_list key=name item=language_row}
-        <input type='hidden' id='iName_{$name}' value='{$language_row.name}'>
+        <input type='hidden' id='iName_{$name}' value='{$language_row.name}' size=60 maxlength =80>
       {/foreach}
     {/if}
 

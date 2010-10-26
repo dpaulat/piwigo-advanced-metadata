@@ -80,7 +80,7 @@
       $('#iDialogEdit')
         .bind('dialogopen', function ()
           {
-            if(options.id!='')
+            if(options.numId!='')
             {
               displayProcessing(true);
 

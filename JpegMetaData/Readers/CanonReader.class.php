@@ -140,6 +140,7 @@
           /*
            * null terminated strings
            */
+          print_r($values);
           $returned=ConvertData::toStrings($values);
           break;
         case 0x000c: // "SerialNumber"
@@ -232,8 +233,8 @@
                   if(is_array($lens))
                   {
                     $focalUnit=(array_key_exists(25, $values))?$values[25]:1;
-                    $FocalShort=(array_key_exists(24, $values))?$values[24]/$focalUnit:0;
-                    $FocalLong=(array_key_exists(23, $values))?$values[23]/$focalUnit:0;
+                    $FocalShort=(array_key_exists(24, $values) && ($focalUnit!=0))?$values[24]/$focalUnit:0;
+                    $FocalLong=(array_key_exists(23, $values) && ($focalUnit!=0))?$values[23]/$focalUnit:0;
                     $focal=(($FocalShort==$FocalLong or $FocalLong==0)?$FocalShort:$FocalShort."-".$FocalLong)."mm";
 
                     foreach($lens as $name)

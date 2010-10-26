@@ -125,6 +125,29 @@ Author URI: http://photos.grum.fr/
 |         |            |   was not commit on the repository ; so need to build a
 |         |            |   new package
 |         |            |
+| 0.x.y   | 2010/09/30 | * mantis bug:1894
+|         |            |   . Error when filling the metadata repository
+|         |            |
+|         |            | * mantis bug:1898
+|         |            |   . Warning "division by zero" on Canon images
+|         |            |
+|         |            | * mantis bug:1911
+|         |            |   . Unable to read Jpeg file if there is extradata
+|         |            |     after the EOI marker
+|         |            |
+|         |            | * mantis bug:1863
+|         |            |   . Except "keywords" meta, all IPTC meta declared
+|         |            |     as "repeatable" are not managed
+|         |            |
+|         |            | * mantis bug:1955
+|         |            |   . Incorrect mapping for IPTC File format
+|         |            |
+|         |            | * mantis bug:1956
+|         |            |   . IPTC "Subject Reference" is not implemented
+|         |            |
+|         |            | * mantis bug:1925
+|         |            |   . default selected tags works only for the french
+|         |            |     user
 |         |            |
 |         |            |
 |         |            |

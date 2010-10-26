@@ -51,7 +51,7 @@ class RBCallBackAMetaData extends GPCSearchCallback {
    */
   static public function getSelect($param="")
   {
-    return("pait.value AS amdValue, paut.name AS amdName");
+    return(" pait.value AS amdValue, paut.name AS amdName ");
   }
 
   /**

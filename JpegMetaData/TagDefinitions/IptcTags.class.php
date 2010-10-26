@@ -57,12 +57,14 @@
         'tagName'      => "Model Version",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0105 => Array( // 1:05
         'tagName'      => "Destination",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x0114 => Array( //1:20
@@ -80,39 +82,42 @@
           0x0007 => "MacBinary II",
           0x0008 => "IPTC Unstructured Character Oriented File Format (UCOFF)",
           0x0009 => "United Press International ANPA 1312 variant",
-          0x0010 => "United Press International Down-Load Message",
-          0x0011 => "JPEG File Interchange (JFIF)",
-          0x0012 => "Photo-CD Image-Pac (Eastman Kodak)",
-          0x0013 => "Microsoft Bit Mapped Graphics File [*.BMP]",
-          0x0014 => "Digital Audio File [*.WAV] (Microsoft & Creative Labs)",
-          0x0015 => "Audio plus Moving Video [*.AVI] (Microsoft)",
-          0x0016 => "PC DOS/Windows Executable Files [*.COM][*.EXE]",
-          0x0017 => "Compressed Binary File [*.ZIP] (PKWare Inc)",
-          0x0018 => "Audio Interchange File Format AIFF (Apple Computer Inc)",
-          0x0019 => "RIFF Wave (Microsoft Corporation)",
-          0x0020 => "Freehand (Macromedia/Aldus)",
-          0x0021 => "Hypertext Markup Language 'HTML' (The Internet Society)",
-          0x0022 => "MPEG 2 Audio Layer 2 (Musicom), ISO/IEC",
-          0x0023 => "MPEG 2 Audio Layer 3, ISO/IEC",
-          0x0024 => "Portable Document File (*.PDF) Adobe",
-          0x0025 => "News Industry Text Format (NITF)",
-          0x0026 => "Tape Archive (*.TAR)",
-          0x0027 => "Tidningarnas Telegrambyrå NITF version (TTNITF DTD)",
-          0x0028 => "Ritzaus Bureau NITF version (RBNITF DTD)",
-          0x0029 => "Corel Draw [*.CDR]",
+          0x000A => "United Press International Down-Load Message",
+          0x000B => "JPEG File Interchange (JFIF)",
+          0x000C => "Photo-CD Image-Pac (Eastman Kodak)",
+          0x000D => "Microsoft Bit Mapped Graphics File [*.BMP]",
+          0x000E => "Digital Audio File [*.WAV] (Microsoft & Creative Labs)",
+          0x000F => "Audio plus Moving Video [*.AVI] (Microsoft)",
+          0x0010 => "PC DOS/Windows Executable Files [*.COM][*.EXE]",
+          0x0011 => "Compressed Binary File [*.ZIP] (PKWare Inc)",
+          0x0012 => "Audio Interchange File Format AIFF (Apple Computer Inc)",
+          0x0013 => "RIFF Wave (Microsoft Corporation)",
+          0x0014 => "Freehand (Macromedia/Aldus)",
+          0x0015 => "Hypertext Markup Language 'HTML' (The Internet Society)",
+          0x0016 => "MPEG 2 Audio Layer 2 (Musicom), ISO/IEC",
+          0x0017 => "MPEG 2 Audio Layer 3, ISO/IEC",
+          0x0018 => "Portable Document File (*.PDF) Adobe",
+          0x0019 => "News Industry Text Format (NITF)",
+          0x001A => "Tape Archive (*.TAR)",
+          0x001B => "Tidningarnas Telegrambyrå NITF version (TTNITF DTD)",
+          0x001C => "Ritzaus Bureau NITF version (RBNITF DTD)",
+          0x001D => "Corel Draw [*.CDR]",
         ),
+        'repeatable' => false,
       ),
 
       0x0116 => Array(
         'tagName'      => "File Format Version",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x011E => Array( //1:30
         'tagName'      => "Service Identifier",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
 
@@ -120,18 +125,21 @@
         'tagName'      => "Envelope Number",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0132 => Array( // 1:50
         'tagName'      => "Product I.D.",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x013C => Array(
         'tagName'      => "Envelope Priority",
         'implemented'  => true,
         'translatable' => true,
+        'repeatable' => false,
         'tagValues'    => Array(
            '0' => 'none',
            '1' => 'high+++',
@@ -149,78 +157,91 @@
         'tagName'      => "Date Sent",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0150 => Array( // 1:80
         'tagName'      => "Time Sent",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x015A => Array(
         'tagName'      => "Coded Character Set",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0164 => Array(
         'tagName'      => "UNO",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0178 => Array(
         'tagName'      => "ARM Identifier",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x017A => Array(
         'tagName'      => "ARM Version",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0200 => Array( //2:00
         'tagName'      => "Record Version",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0203 => Array( // 2:03
         'tagName'      => "Object Type Reference",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0204 => Array( //2:04
         'tagName'      => "Object Attribute Reference",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x0205 => Array( // 2:05
         'tagName'      => "Object Name",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0207 => Array( // 2:07
         'tagName'      => "Edit Status",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0208 => Array(
         'tagName'      => "Editorial Update",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x020A => Array(
         'tagName'      => "Urgency",
         'implemented'  => true,
         'translatable' => true,
+        'repeatable' => false,
         'tagValues'    => Array(
            '0' => 'none',
            '1' => 'high+++',
@@ -237,140 +258,195 @@
 
       0x020C => Array( //2:12
         'tagName'      => "Subject Reference",
-        'implemented'  => false,
+        'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
+
+      0x020C00 => Array( //2:12:00 --> fake code, not in IPTC Spec.
+        'tagName'      => "Subject Reference[IPR]",
+        'implemented'  => true,
+        'translatable' => false,
+        'repeatable' => true,
+      ),
+      0x020C01 => Array( //2:12:01 --> fake code, not in IPTC Spec.
+        'tagName'      => "Subject Reference[Number]",
+        'implemented'  => true,
+        'translatable' => false,
+        'repeatable' => true,
+      ),
+      0x020C02 => Array( //2:12:02 --> fake code, not in IPTC Spec.
+        'tagName'      => "Subject Reference[Name]",
+        'implemented'  => true,
+        'translatable' => false,
+        'repeatable' => true,
+      ),
+      0x020C03 => Array( //2:12:03 --> fake code, not in IPTC Spec.
+        'tagName'      => "Subject Reference[Matter Name]",
+        'implemented'  => true,
+        'translatable' => false,
+        'repeatable' => true,
+      ),
+      0x020C04 => Array( //2:12:04 --> fake code, not in IPTC Spec.
+        'tagName'      => "Subject Reference[Detail Name]",
+        'implemented'  => true,
+        'translatable' => false,
+        'repeatable' => true,
+      ),
+
 
       0x020F => Array( //2:15
         'tagName'      => "Category",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0214 => Array( // 2:20
         'tagName'      => "Supplemental Category",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x0216 => Array( //2:22
         'tagName'      => "Fixture Identifier",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0219 => Array( //2:25
         'tagName'      => "Keywords",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x021A => Array( //2:26
         'tagName'      => "Content Location Code",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x021B => Array( //2:27
         'tagName'      => "Content Location Name",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x021E => Array( //2:30
         'tagName'      => "Release Date",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0223 => Array( // 2:35
         'tagName'      => "Release Time",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0225 => Array( // 2:37
         'tagName'      => "Expiration Date",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0226 => Array( // 2:38
         'tagName'      => "Expiration Time",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0228 => Array(  //2:40
         'tagName'      => "Special Instructions",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x022A => Array(
         'tagName'      => "Action Advised",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x022D => Array(
         'tagName'      => "Reference Service",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x022F => Array(
         'tagName'      => "Reference Date",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x0232 => Array(
         'tagName'      => "Reference number",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x0237 => Array( //2:55
         'tagName'      => "Date Created",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x023C => Array( //2:60
         'tagName'      => "Time Created",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x023E => Array( //2:62
         'tagName'      => "Digital Creation Date",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x023F => Array( //2:63
         'tagName'      => "Digital Creation Time",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0241 => Array( //2:65
         'tagName'      => "Originating Program",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0246 => Array( //2:70
         'tagName'      => "Program Version",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x024B => Array(
         'tagName'      => "Object Cycle",
         'implemented'  => true,
         'translatable' => true,
+        'repeatable' => false,
         'tagValues'    => Array(
           'a' => "morning",
           'p' => "evening",
@@ -382,102 +458,119 @@
         'tagName'      => "By-line",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x0255 => Array( //2:85
         'tagName'      => "By-line Title",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x025A => Array( //2:90
         'tagName'      => "City",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x025C => Array( //2:92
         'tagName'      => "Sublocation",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x025F => Array( //2:95
         'tagName'      => "Province/State",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0264 => Array( // 2:100
         'tagName'      => "Country/Primary Location Code",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0265 => Array( // 2:101
         'tagName'      => "Country/Primary Location Name",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0267 => Array( // 2:103
         'tagName'      => "Original Transmission Reference",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0269 => Array( // 2:105
         'tagName'      => "Headline",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x026E => Array( //2:110
         'tagName'      => "Credit",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0273 => Array( //2:115
         'tagName'      => "Source",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0274 => Array( //2:116
         'tagName'      => "Copyright Notice",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0276 => Array( //2:118
         'tagName'      => "Contact",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x0278 => Array( // 2:120
         'tagName'      => "Caption/Abstract",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x027A => Array( // 2:122
         'tagName'      => "Writer/Editor",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x027D => Array(
         'tagName'      => "Rasterized Caption",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0282 => Array(
         'tagName'      => "Image Type",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
         'tagValues.special' => Array(
          0 => Array(
           '0' => "no object data",
@@ -509,6 +602,7 @@
         'tagName'      => "Image Orientation",
         'implemented'  => true,
         'translatable' => true,
+        'repeatable' => false,
         'tagValues'    => Array(
           'P' => "portrait",
           'L' => "Landscape",
@@ -520,30 +614,35 @@
         'tagName'      => "Language Identifier",
         'implemented'  => true,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0296 => Array(
         'tagName'      => "Audio Type",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0297 => Array(
         'tagName'      => "Audion Sampling Rate",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0298 => Array(
         'tagName'      => "Audio Sampling Resolution",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0299 => Array(
         'tagName'      => "Audio Duration",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
 
@@ -551,60 +650,70 @@
         'tagName'      => "Audion Outcue",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x02C8 => Array(
         'tagName'      => "ObjectData Preview File Format",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x02C9 => Array(
         'tagName'      => "ObjectData Preview File Format Version",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x02CA => Array(
         'tagName'      => "ObjectData Preview Data",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x070A => Array(
         'tagName'      => "Size Mode",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x0714 => Array(
         'tagName'      => "Max Subfile Size",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x075A => Array(
         'tagName'      => "ObjectData Size Announced",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x075F => Array(
         'tagName'      => "Maximum ObjectData Size",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
 
       0x080A => Array(
         'tagName'      => "Subfile",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => true,
       ),
 
       0x090A => Array(
         'tagName'      => "Confirmed ObjectData Size",
         'implemented'  => false,
         'translatable' => false,
+        'repeatable' => false,
       ),
     );
 

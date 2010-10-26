@@ -84,6 +84,10 @@
      * end of image file tag
      */
     const JPEG_EOI = 0xFFD9;
+    /**
+     * start of scan tag
+     */
+    const JPEG_SOS = 0xFFDA;
 
 
     private $fileName = "";
@@ -173,16 +177,37 @@
     {
       fseek($this->fileHandler, -2, SEEK_END);
       $header=fread($this->fileHandler, 2);
-      if(ConvertData::toUShort($header, BYTE_ORDER_BIG_ENDIAN) == self::JPEG_EOI)
+      $haveEOI=(ConvertData::toUShort($header, BYTE_ORDER_BIG_ENDIAN) == self::JPEG_EOI);
+
+      // look if 2 first bytes of file are SOI
+      fseek($this->fileHandler, 0);
+      $header=fread($this->fileHandler, 2);
+      if(ConvertData::toUShort($header, BYTE_ORDER_BIG_ENDIAN) == self::JPEG_SOI)
       {
-        /*
-         * the file ends with the good marker
-         */
-        fseek($this->fileHandler, 0);
-        $header=fread($this->fileHandler, 2);
-        if(ConvertData::toUShort($header, BYTE_ORDER_BIG_ENDIAN) == self::JPEG_SOI)
+        //if file have EOI, it seems to be a valid JPEG file
+        if($haveEOI) return(true);
+
+        // otherwise, try to find SOS
+        while(!feof($this->fileHandler))
         {
-          return(true);
+          $header=ConvertData::toUShort(fread($this->fileHandler, 2), BYTE_ORDER_BIG_ENDIAN);
+
+          if($header==self::JPEG_EOI or $header==self::JPEG_SOS )
+          {
+            //seems to be a valid JPEG file
+            return(true);
+          }
+          elseif($header>>8==0xFF)
+          {
+            //seems to be a valid marker, jump to next marker...
+            $sizeBlock=ConvertData::toUShort(fread($this->fileHandler, 2), BYTE_ORDER_BIG_ENDIAN);
+            fseek($this->fileHandler, $sizeBlock-2, SEEK_CUR);
+          }
+          else
+          {
+            // not a marker, not e JPEG file
+            return(false);
+          }
         }
       }
       return(false);
