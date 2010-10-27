@@ -229,6 +229,7 @@
         case "Iptc4xmpCore:Scene": //bag
         case "Iptc4xmpCore:SubjectCode": //bag
         case "digiKam:TagsList": //seq
+        case "lr:hierarchicalSubject": //bag
           $child=$node->getFirstChild();
           switch($child->getName())
           {
@@ -528,6 +529,7 @@
         case "exif:SubjectArea" : // seq
         case "exif:SubjectLocation" : // seq
         case "digiKam:TagsList": //seq
+        case "lr:hierarchicalSubject": //seq
           $returned=$value;
           break;
         case "Iptc4xmpCore:Scene": //bag

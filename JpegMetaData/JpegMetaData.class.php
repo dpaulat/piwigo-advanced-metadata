@@ -91,8 +91,24 @@
  * |         |            | * mantis bug:1955
  * |         |            |   . Incorrect mapping for IPTC File format
  * |         |            |
+ * |         |            | * mantis bug:1955
+ * |         |            |   . Incorrect mapping for IPTC File format
+ * |         |            |
  * |         |            | * mantis bug:1956
  * |         |            |   . IPTC "Subject Reference" is not implemented
+ * |         |            |
+ * |         |            | * mantis bug:1965
+ * |         |            |   . add XML <lr:hierarchicalSubject> markup
+ * |         |            |
+ * |         |            |
+ * |         |            |
+ * |         |            |
+ * |         |            |
+ * |         |            |
+ * |         |            |
+ * |         |            |
+ * |         |            |
+ * |         |            |
  * |         |            |
  * |         |            |
  * +---------+------------+-----------------------------------------------------

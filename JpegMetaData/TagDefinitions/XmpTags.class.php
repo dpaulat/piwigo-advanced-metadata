@@ -2030,6 +2030,23 @@
         'schema'       => "digiKam",
       ),
 
+      /*
+       * lr=>lightroom Schema
+       */
+      'xmlns:lr' => Array(
+        'implemented'  => false,
+        'translatable' => false,
+        'type'         => self::TYPE_SIMPLE,
+        'schema'       => "xmlns",
+      ),
+
+      'lr:hierarchicalSubject' => Array(
+        'implemented'  => true,
+        'translatable' => true,
+        'type'         => self::TYPE_BAG,
+        'schema'       => "lightroom",
+      ),
+
     );
 
     /**
