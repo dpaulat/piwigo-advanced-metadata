@@ -39,6 +39,11 @@
 
   class AMD_ajax extends AMD_root
   {
+    private $tagSeparators=array(
+      'xmp.digiKam:TagsList' => '/',
+      'xmp.lr:hierarchicalSubject' => '|'
+    );
+
     /**
      * constructor
      */
@@ -1504,12 +1509,13 @@
 
       $returned=array();
       $keywordsList=array();
-      $sql="SELECT pait.value, pait.imageId, paut.numId
+      $sql="SELECT DISTINCT pait.value, pait.imageId, paut.numId, paut.tagId
             FROM (".$this->tables['images_tags']." pait
               JOIN ".$this->tables['used_tags']." paut ON pait.numId = paut.numId)
 
             WHERE (paut.tagId = 'xmp.dc:subject' OR
-                   paut.tagId = 'xmp.digiKam:tagsList' OR
+                   paut.tagId = 'xmp.digiKam:TagsList' OR
+                   paut.tagId = 'xmp.lr:hierarchicalSubject' OR
                    paut.tagId = 'iptc.Keywords');";
       $result=pwg_query($sql);
       if($result)
@@ -1524,7 +1530,18 @@
             $tmp=unserialize($row['value']);
             foreach($tmp['values'] as $val)
             {
-              $keywordsList[]="('".mysql_escape_string($val)."', ".$row['imageId'].")";
+              if($row['tagId']=='xmp.digiKam:TagsList' or $row['tagId']=='xmp.lr:hierarchicalSubject')
+              {
+                $list=explode($this->tagSeparators[$row['tagId']], $val);
+                foreach($list as $subTag)
+                {
+                  $keywordsList[]="('".mysql_escape_string(trim($subTag))."', ".$row['imageId'].")";
+                }
+              }
+              else
+              {
+                $keywordsList[]="('".mysql_escape_string($val)."', ".$row['imageId'].")";
+              }
             }
           }
           else
@@ -1553,7 +1570,8 @@
                     FROM (amd_temp_tags att LEFT JOIN ".TAGS_TABLE."  ptt ON att.value = ptt.name)
                       LEFT JOIN ".IMAGE_TAG_TABLE." pit ON pit.tag_id = ptt.id
                     GROUP BY att.value
-                    HAVING nbPicturesTagged < nbPictures";
+                    HAVING nbPicturesTagged < nbPictures
+                    ORDER BY att.value";
               $result=pwg_query($sql);
               if($result)
               {
@@ -1594,12 +1612,13 @@
        * 1/ build a temp table with all couple of keywords/imageId
        */
       $keywordsList=array();
-      $sql="SELECT pait.value, pait.imageId, paut.numId
+      $sql="SELECT DISTINCT pait.value, pait.imageId, paut.numId, paut.tagId
             FROM (".$this->tables['images_tags']." pait
               JOIN ".$this->tables['used_tags']." paut ON pait.numId = paut.numId)
 
             WHERE (paut.tagId = 'xmp.dc:subject' OR
-                   paut.tagId = 'xmp.digiKam:tagsList' OR
+                   paut.tagId = 'xmp.digiKam:TagsList' OR
+                   paut.tagId = 'xmp.lr:hierarchicalSubject' OR
                    paut.tagId = 'iptc.Keywords');";
       $result=pwg_query($sql);
       if($result)
@@ -1614,7 +1633,18 @@
             $tmp=unserialize($row['value']);
             foreach($tmp['values'] as $val)
             {
-              $keywordsList[]="('".mysql_escape_string($val)."', ".$row['imageId'].")";
+              if($row['tagId']=='xmp.digiKam:TagsList')
+              {
+                $list=explode($this->tagSeparators[$row['tagId']], $val);
+                foreach($list as $subTag)
+                {
+                  $keywordsList[]="('".mysql_escape_string(trim($subTag))."', ".$row['imageId'].")";
+                }
+              }
+              else
+              {
+                $keywordsList[]="('".mysql_escape_string($val)."', ".$row['imageId'].")";
+              }
             }
           }
           else
@@ -1639,12 +1669,12 @@
             }
             /*
              * 2/ join temp table with piwigo tags table, found the keywords
-             *    that don't have a corresponding keyword
+             *    that don't have a corresponding tag
              */
             $sql="SELECT DISTINCT att.value
                   FROM amd_temp_tags att LEFT JOIN ".TAGS_TABLE." ptt ON att.value = ptt.name
                   WHERE ptt.id IS NULL
-                    AND".implode(' OR ', $keywords);
+                    AND (".implode(' OR ', $keywords).") ";
             $result=pwg_query($sql);
             if($result)
             {
@@ -1674,7 +1704,6 @@
           }
         }
       }
-
       return($returned);
     }
 

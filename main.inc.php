@@ -149,6 +149,12 @@ Author URI: http://photos.grum.fr/
 |         |            |   . default selected tags works only for the french
 |         |            |     user
 |         |            |
+|         |            | * mantis bug:1912
+|         |            |   . Reading digiKam hierarchical keywords as 'flat'
+|         |            |     keywords
+|         |            |
+|         |            | * mantis bug:1968
+|         |            |   . Keyword to tag conversion generate duplicated tags
 |         |            |
 |         |            |
 |         |            |
