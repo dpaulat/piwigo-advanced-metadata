@@ -331,4 +331,15 @@ Actuellement, la version %s est installée : merci de procéder à la mise à jo
 //$lang['g003_warning_on_analyze_4b']
 
 
+
+/** ----------------------------------------------------------------------------
+ * new keys from releases 0.5.3
+ */
+$lang['g003_1_picture_in_caddie']="1 photo dans le panier";
+$lang['g003_n_pictures_in_caddie']="%s photos dans le panier";
+$lang['g003_analyze_random_pictures'] = "L'analyse porte sur %s images sélectionnées aléatoirement parmis les images n'ayant jamais été analysées et vient s'ajouter au référentiel actuel";
+$lang['g003_invalid_random_number']="Le nombre de photos à traiter est invalide";
+
+
+
 ?>
