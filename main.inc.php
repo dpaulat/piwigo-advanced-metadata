@@ -156,6 +156,12 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis bug:1968
 |         |            |   . Keyword to tag conversion generate duplicated tags
 |         |            |
+|         |            | * mantis bug:1923
+|         |            |   . with google chrome, the métadata list is not
+|         |            |     displayed
+|         |            |
+|         |            |
+|         |            |
 |         |            |
 |         |            |
 |         |            |

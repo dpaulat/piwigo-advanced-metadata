@@ -16,7 +16,7 @@ function tagListSelector(optionsToSet)
     selectorClass:'ruleTypeM gcTextInput gcBgInput gcBorderInput',
     selectorItems:'ruleTypeM',
     onSelect:null,
-  }
+  };
 
   this.init = function (optionsToSet)
   {
@@ -42,7 +42,7 @@ function tagListSelector(optionsToSet)
         if(event.data.onSelect!=null && jQuery.isFunction(event.data.onSelect)) event.data.onSelect($(this).attr('value'));
       }
     );
-  }
+  };
 
 
 
@@ -50,9 +50,9 @@ function tagListSelector(optionsToSet)
   {
     selectedItem=$('#'+fromId).attr('value');
 
-    top=$('#'+fromId).offset().top+$('#'+fromId).outerHeight()-1;
-    left=$('#'+fromId).offset().left;
-    width=$('#'+fromId).innerWidth();
+    var top=$('#'+fromId).offset().top+$('#'+fromId).outerHeight()-1,
+        left=$('#'+fromId).offset().left,
+        width=$('#'+fromId).innerWidth();
     $('#iTLSDiv li').removeClass(this.options.selectedClass);
     $('#iTagListItem'+selectedItem).addClass(this.options.selectedClass);
     $('#iTLSDiv').css(
@@ -64,7 +64,7 @@ function tagListSelector(optionsToSet)
       }
     );
     this.options.selectorId=fromId;
-  }
+  };
 
 
   this.init(optionsToSet);
