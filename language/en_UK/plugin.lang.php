@@ -17,8 +17,8 @@ $lang['g003_numberOfAnalyzedPictures'] = "%d images have been analyzed and %d me
 $lang['g003_numberOfNotAnalyzedPictures'] = "%d images have not been analyzed";
 $lang['g003_analyze_not_analyzed_pictures'] = "The analysis focuses on the images that have never been analyzed, and adds to the existing repository";
 $lang['g003_analyze_all_pictures'] = "The analysis includes all the images in the gallery, and replaces the current repository";
-$lang['g003_analyze_caddie_add_pictures'] = "The analysis focuses on the images in the basket, and adds to the existing repository";
-$lang['g003_analyze_caddie_replace_pictures'] = "The analysis focuses on the images in the basket, and replaces the current repository";
+$lang['g003_analyze_caddie_add_pictures'] = "The analysis focuses on the images in the caddie, and adds to the existing repository";
+$lang['g003_analyze_caddie_replace_pictures'] = "The analysis focuses on the images in the caddie, and replaces the current repository";
 $lang['g003_analyze'] = "Analyze";
 $lang['g003_update_metadata'] = "Update metadata repository";
 $lang['g003_status_of_database'] = "Repository status";
@@ -331,6 +331,15 @@ Currently, version %s is installed: please proceed with the update version of th
 //$lang['g003_warning_on_analyze_4a']
 //$lang['g003_warning_on_analyze_4b']
 
+
+
+/** ----------------------------------------------------------------------------
+ * new keys from releases 0.5.3
+ */
+$lang['g003_1_picture_in_caddie']="1 picture in caddie";
+$lang['g003_n_pictures_in_caddie']="%s pictures in caddie";
+$lang['g003_analyze_random_pictures'] = "The analysis focuses on %s images selected randomly among images that have never been analyzed, and adds to the existing repository";
+$lang['g003_invalid_random_number']="The number of images to process is not valid";
 
 
 

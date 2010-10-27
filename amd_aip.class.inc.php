@@ -666,7 +666,7 @@ class AMD_AIP extends AMD_root
    */
   private function displayDatabaseDatabase()
   {
-    global $template, $page;
+    global $template, $page, $user;
 
     /*
      * insert new image (from piwigo images table) in the AMD images table, with
@@ -699,6 +699,18 @@ class AMD_AIP extends AMD_root
     pwg_query($sql);
 
 
+    $caddieNbPictures=0;
+    $sql="SELECT COUNT(element_id) AS nbPictures
+          FROM ".CADDIE_TABLE."
+          WHERE user_id='".$user['id']."';";
+    $result=pwg_query($sql);
+    if($result)
+    {
+      while($row=pwg_db_fetch_assoc($result))
+      {
+        $caddieNbPictures=$row['nbPictures'];
+      }
+    }
 
 
     $template->set_filename('sheet_page', dirname(__FILE__).'/admin/amd_metadata_database_database.tpl');
@@ -706,6 +718,7 @@ class AMD_AIP extends AMD_root
     $datas=array(
       'urlRequest' => $this->getAdminLink('ajax'),
       'NumberOfItemsPerRequest' => $this->config['amd_NumberOfItemsPerRequest'],
+      'caddieNbPictures' => ($caddieNbPictures==1)?l10n('g003_1_picture_in_caddie'):sprintf(l10n('g003_n_pictures_in_caddie'), $caddieNbPictures)
     );
 
     $template->assign("datas", $datas);

@@ -23,8 +23,18 @@ var processAnalyze = {
 
   function doAnalyze()
   {
-    mode="all";
-    modeLabel="";
+    var mode="all",
+        modeLabel="",
+        numOfRandomItems=0,
+        doAnalyzeDialog="<br><form id='iDialogProgress' class='formtable'>"+
+      "<div id='iprogressbar_contener' class='gcBorderInput'>"+
+      "<span id='iprogressbar_bg' class='gcBgInput' style='width:0%;'>&nbsp;</span>"+
+      "<span id='iprogressbar_fg' class='gcLink'>0%</span>"+
+      "</div><p>{/literal}{'g003_analyze_in_progress'|@translate}{literal}"+
+      "<br><img src='./plugins/GrumPluginClasses/icons/processing.gif'>"+
+      "</p></form>",
+        re=/^\d+$/;
+
 
     if($("#ianalyze_action0").get(0).checked)
     {
@@ -51,6 +61,17 @@ var processAnalyze = {
       mode="analyzed";
       modeLabel="{/literal}{'g003_analyze_analyzed_pictures'|@translate}{literal}";
     }
+    else if($("#ianalyze_action5").get(0).checked)
+    {
+      mode="randomList";
+      numOfRandomItems=$("#ianalyze_action6").val();
+      if(numOfRandomItems<=0 || re.exec(numOfRandomItems)==null)
+      {
+        alert("{/literal}{'g003_invalid_random_number'|@translate}{literal}");
+        return(false);
+      }
+      modeLabel="{/literal}{'g003_analyze_random_pictures'|@translate|replace:'%s':'"+numOfRandomItems+"'}{literal}";
+    }
 
     ignoreOptions=[];
     if($('#iFillDataBaseIgnore_magic').get(0).checked)
@@ -70,14 +91,6 @@ var processAnalyze = {
       ignoreOptions.push('xmp');
     }
 
-
-    doAnalyzeDialog="<br><form id='iDialogProgress' class='formtable'>"+
-      "<div id='iprogressbar_contener' class='gcBorderInput'>"+
-      "<span id='iprogressbar_bg' class='gcBgInput' style='width:0%;'>&nbsp;</span>"+
-      "<span id='iprogressbar_fg' class='gcLink'>0%</span>"+
-      "</div><p>{/literal}{'g003_analyze_in_progress'|@translate}{literal}"+
-      "<br><img src='./plugins/GrumPluginClasses/icons/processing.gif'>"
-      "</p></form>";
 
     $("#dialog")
     .html("")
@@ -106,6 +119,7 @@ var processAnalyze = {
             selectMode:mode,
             numOfItems:NumberOfItemsPerRequest,
             ignoreOptions:ignoreOptions,
+            numOfRandomItems:numOfRandomItems,
           },
         success: function(msg)
           {
@@ -266,16 +280,20 @@ var processAnalyze = {
 
     <fieldset>
       <legend>{'g003_update_metadata'|@translate}</legend>
-        <label>
-          <input type="radio" value="caddieAdd" name="fAMD_analyze_action" id="ianalyze_action2" checked>&nbsp;
-          {'g003_analyze_caddie_add_pictures'|@translate}
-        </label><br>
+        <div>
+          <div style='display: inline-block; border-right: 1px dotted; margin-right: 4px; padding-right: 8px;'>
+            <label>
+              <input type="radio" value="caddieAdd" name="fAMD_analyze_action" id="ianalyze_action2" checked>&nbsp;
+              {'g003_analyze_caddie_add_pictures'|@translate}&nbsp;
+            </label><br>
 
-        <label>
-          <input type="radio" value="caddieReplace" name="fAMD_analyze_action" id="ianalyze_action3">&nbsp;
-          {'g003_analyze_caddie_replace_pictures'|@translate}
-        </label><br>
-
+            <label>
+              <input type="radio" value="caddieReplace" name="fAMD_analyze_action" id="ianalyze_action3">&nbsp;
+              {'g003_analyze_caddie_replace_pictures'|@translate}&nbsp;
+            </label><br>
+          </div>
+          <span style='font-style: italic; position: relative; top: -12px;'>{$datas.caddieNbPictures}</span>
+        </div>
 
         <label>
           <input type="radio" value="notAnalayzed" name="fAMD_analyze_action" id="ianalyze_action0">&nbsp;
@@ -286,6 +304,13 @@ var processAnalyze = {
           <input type="radio" value="all" name="fAMD_analyze_action" id="ianalyze_action1">&nbsp;
           {'g003_analyze_all_pictures'|@translate}
         </label><br>
+
+
+
+          <input type="radio" value="randomList" name="fAMD_analyze_action" id="ianalyze_action5">&nbsp;
+          {'g003_analyze_random_pictures'|@translate|replace:'%s':"<input type='text' size='4' id='ianalyze_action6' value='500' style='display:inline;' onfocus='$(&quot;#ianalyze_action5&quot;).attr(&quot;checked&quot;, true);'>"}
+        <br>
+
 
         <span id='iAnalyzeAnalyzed' style='display:none;'>
           <label>

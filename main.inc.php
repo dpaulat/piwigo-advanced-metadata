@@ -160,8 +160,8 @@ Author URI: http://photos.grum.fr/
 |         |            |   . with google chrome, the métadata list is not
 |         |            |     displayed
 |         |            |
-|         |            |
-|         |            |
+|         |            | * mantis bug:1294
+|         |            |   . filling database method
 |         |            |
 |         |            |
 |         |            |

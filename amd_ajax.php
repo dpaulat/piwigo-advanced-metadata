@@ -108,7 +108,16 @@
                $_REQUEST['selectMode']=="caddieAdd" or
                $_REQUEST['selectMode']=="caddieReplace" or
                $_REQUEST['selectMode']=="analyzed" or
+               $_REQUEST['selectMode']=="randomList" or
                $_REQUEST['selectMode']=="all")) $_REQUEST['selectMode']="caddieAdd";
+
+          if($_REQUEST['selectMode']=="randomList" and
+              (!isset($_REQUEST['numOfRandomItems']) or
+               $_REQUEST['numOfRandomItems']<=0 or
+               preg_match('/^\d+$/', $_REQUEST['numOfRandomItems'])==0
+              )
+            ) $_REQUEST['ajaxfct']='';
+
 
           if(!isset($_REQUEST['numOfItems'])) $_REQUEST['numOfItems']=25;
 
@@ -357,7 +366,7 @@
       switch($_REQUEST['ajaxfct'])
       {
         case 'admin.makeStats.getList':
-          $result=$this->ajax_amd_admin_makeStatsGetList($_REQUEST['selectMode'], $_REQUEST['numOfItems'], $_REQUEST['ignoreOptions']);
+          $result=$this->ajax_amd_admin_makeStatsGetList($_REQUEST['selectMode'], $_REQUEST['numOfItems'], $_REQUEST['ignoreOptions'], $_REQUEST['numOfRandomItems']);
           break;
         case 'admin.makeStats.doAnalyze':
           $result=$this->ajax_amd_admin_makeStatsDoAnalyze($_REQUEST['imagesList']);
@@ -507,10 +516,12 @@
      *
      * @param String $mode
      * @param Integer $nbOfItems : number of items per request
+     * @param
+     * @param Integer $numOfRandomItems : number of random items (used if $mode=='randomList')
      * @return String : list of image id to be analyzed, separated with a space
      *                      "23 78 4523 5670"
      */
-    private function ajax_amd_admin_makeStatsGetList($mode, $nbOfItems, $ignoreSchemas)
+    private function ajax_amd_admin_makeStatsGetList($mode, $nbOfItems, $ignoreSchemas, $numOfRandomItems)
     {
       global $user;
 
@@ -520,7 +531,7 @@
       $this->saveConfig();
 
       $sql="SELECT ait.imageId FROM ".$this->tables['images']." ait";
-      if($mode=='notAnalyzed')
+      if($mode=='notAnalyzed' or $mode=='randomList' )
       {
         $sql.=" WHERE ait.analyzed='n'";
       }
@@ -545,6 +556,11 @@
         pwg_query("UPDATE ".$this->tables['images']." SET analyzed='n', nbTags=0");
         pwg_query("UPDATE ".$this->tables['used_tags']." SET numOfImg=0");
         pwg_query("DELETE FROM ".$this->tables['images_tags']);
+      }
+
+      if($mode=='randomList')
+      {
+        $sql.=" ORDER BY RAND() LIMIT 0, $numOfRandomItems;";
       }
 
       $result=pwg_query($sql);
