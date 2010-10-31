@@ -253,6 +253,15 @@
           "{xmp.dc:description}",
           "{iptc.Caption/Abstract}",
           "{exif.exif.UserComment}",
+          "{com.comment}"
+        )
+      ),
+
+      'Author.Keywords' => Array(
+        'implemented'  => true,
+        'translatable' => false,
+        'tagValues' => Array(
+          "{xmp.dc:subject[values]},{iptc.Keywords[values]},{xmp.digiKam:TagsList[values]},{xmp.lr:hierarchicalSubject[values]}"
         )
       ),
 

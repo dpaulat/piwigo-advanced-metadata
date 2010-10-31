@@ -73,7 +73,13 @@
      6 => "008080",
      7 => "808000",
      8 => "800080",
-     9 => "808080");
+     9 => "808080",
+     10 => "6080F0",
+     11 => "F06080",
+     12 => "80F060",
+     13 => "8080FF",
+     14 => "80FF80",
+     15 => "FF8080" );
 
     $parser = xml_parser_create();
     xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
@@ -236,7 +242,7 @@
 
   $page.="<span style='font-family:monospace;'>";
 
-  $jpeg = new JpegReader($file);
+  $jpeg = new JpegReader($file, Array('filter' => JpegMetaData::TAGFILTER_ALL, 'xmp' => false, 'maker' => false, 'iptc' => false, 'exif' => false));
 
   $page2="JpegReader extraction<br>";
   $page2.="fileName=".$jpeg->getFileName()."<br>";
@@ -285,6 +291,15 @@
           $page2.="</div>";
         }
       }
+      elseif($data instanceof ComReader)
+      {
+        foreach($data->getTags() as $key2 => $val2)
+        {
+          $page2.="<div style='color:#0000ff;font-weight:normal;margin-left:12px;'>";
+          $page2.=dump_tag($key2, $val2, "");
+          $page2.="</div>";
+        }
+      }
       elseif(is_array($data))
       {
         $page2.=print_r($val->getData(), true)."<br>";
@@ -302,14 +317,21 @@
 
   $page2.="<div style='font-family:monospace;'>JpegMetaData - tag from test file<br>";
   $page2.="<table style='border:1px solid #000000;width:100%;'>";
-  $page2.="<tr style='border-bottom:1x solid #000000;'><th>Key</th><th>Name</th><th>Value</th><th>Computed Value</th></tr>";
+  $page2.="<tr style='border-bottom:1x solid #000000;'><th>Schema</th><th>Key</th><th>Name</th><th>Value</th><th>Computed Value</th></tr>";
 
 
   $time=microtime(true);
-  $jpegmd = new JpegMetaData($file, Array(
-    'filter' => JpegMetaData::TAGFILTER_IMPLEMENTED,
-    'optimizeIptcDateTime' => true)
-  );
+  $jpegmd = new JpegMetaData($file,
+                              Array(
+                                'filter' => JpegMetaData::TAGFILTER_IMPLEMENTED,
+                                'xmp' => true,
+                                'maker' => true,
+                                'iptc' => true,
+                                'magic' => true,
+                                'exif' => true,
+                                'optimizeIptcDateTime' => true
+                              )
+                            );
   $time2=microtime(true);
 
   $i=0;
@@ -331,7 +353,7 @@
       $txt=print_r($txt, true);
     if(is_array($value))
       $value=print_r($value, true);
-    $page2.="<tr><td>".$key."</td><td>".L10n::get($val->getName())."</td><td>".$value."</td><td style='$style'>".$txt."</td></tr>";
+    $page2.="<tr><td>".$val->getSchema()."</td><td>".$key."</td><td>".L10n::get($val->getName())."</td><td>".$value."</td><td style='$style'>".$txt."</td></tr>";
     $i++;
   }
   $page2.="</table>Total tags: $i</div><hr>";
@@ -341,7 +363,16 @@
   $page2.="<div style='font-family:monospace;'>JpegMetaData - known tags<br>";
   $page2.="<table style='border:1px solid #000000;width:100%;'>";
   $page2.="<tr style='border-bottom:1x solid #000000;'><th>Key</th><th>Name</th><th>Implemented</th></tr>";
-  foreach(JpegMetaData::getTagList(Array('filter' => JpegMetaData::TAGFILTER_ALL, 'xmp' => true, 'maker' => true, 'iptc' => true)) as $key => $val)
+  foreach(JpegMetaData::getTagList(
+                                    Array(
+                                      'filter' => JpegMetaData::TAGFILTER_ALL,
+                                      'xmp' => true,
+                                      'maker' => true,
+                                      'iptc' => true,
+                                      'magic' => true,
+                                      'exif' => true,
+                                    )
+                                  ) as $key => $val)
   {
     $val['implemented']?$i++:$j++;
     $page2.="<tr><td>".$key."</td><td>".L10n::get($val['name'])."</td><td>".($val['implemented']?"yes":"no")."</td></tr>";

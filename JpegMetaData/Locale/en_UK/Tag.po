@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TagNames\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2010-04-11 09:31+0100\n"
+"PO-Revision-Date: 2010-10-31 01:25+0100\n"
 "Last-Translator: grum <grum@piwigo.org>\n"
 "Language-Team: grum\n"
 "MIME-Version: 1.0\n"
@@ -284,6 +284,10 @@ msgstr "Copyright"
 #. [Metadata name] Magic JpegMetadata computed tags / Author.ImageTitle
 msgid "Author.ImageTitle"
 msgstr "Title"
+
+#. [Metadata name] Magic JpegMetadata computed tags / Author.Keywords
+msgid "Author.Keywords"
+msgstr "Keywords/Subject"
 
 #. Canon specific tags / 0x0001.4 (CanonCameraSettings.CanonFlashMode)
 #. Nikon specific tags / 0x0022 (ActiveD-Lighting)
@@ -6410,4 +6414,32 @@ msgstr "Y position"
 #. [Metadata name] Exif & Tiff tags / 0x011b (YResolution)
 msgid "YResolution"
 msgstr "Y resolution"
+
+#. [Metadata name] XMP tags / digiKam:TagsList
+msgid "digiKam:TagsList"
+msgstr "Keywords/Subject"
+
+#. [Metadata name] XMP tags / lr:hierarchicalSubject
+msgid "lr:hierarchicalSubject"
+msgstr "Keywords/Subject"
+
+#. [Metadata name] IPTC tags / 0x20c04 (Subject Reference[Detail Name])
+msgid "Subject Reference[Detail Name]"
+msgstr "Subject Reference (Detail name)"
+
+#. [Metadata name] IPTC tags / 0x20c00 (Subject Reference[IPR])
+msgid "Subject Reference[IPR]"
+msgstr "Subject Reference (IPR)"
+
+#. [Metadata name] IPTC tags / 0x20c03 (Subject Reference[Matter Name])
+msgid "Subject Reference[Matter Name]"
+msgstr "Subject Reference (Matter Name)"
+
+#. [Metadata name] IPTC tags / 0x20c02 (Subject Reference[Name])
+msgid "Subject Reference[Name]"
+msgstr "Subject Reference (Name)"
+
+#. [Metadata name] IPTC tags / 0x20c01 (Subject Reference[Number])
+msgid "Subject Reference[Number]"
+msgstr "Subject Reference (Number)"
 

@@ -100,9 +100,11 @@
  * |         |            | * mantis bug:1965
  * |         |            |   . add XML <lr:hierarchicalSubject> markup
  * |         |            |
+ * |         |            | * mantis bug:1975
+ * |         |            |   . Implement COM segment as a tag
  * |         |            |
- * |         |            |
- * |         |            |
+ * |         |            | * mantis bug:1976
+ * |         |            |   . Implement keywords as magic tag
  * |         |            |
  * |         |            |
  * |         |            |
@@ -241,6 +243,7 @@
         'xmp'   => true,
         'maker' => true,
         'magic' => true,
+        'com'   => true
       );
 
       foreach($default as $key => $val)
@@ -274,6 +277,9 @@
       if($default['magic'])
         $list[]="magic";
 
+      if($default['com'])
+        $list[]="com";
+
       foreach($list as $val)
       {
         unset($tmp);
@@ -299,6 +305,10 @@
           case "magic":
             $tmp=new MagicTags();
             $schema=Schemas::MAGIC;
+            break;
+          case "com":
+            $tmp=new ComTags();
+            $schema=Schemas::COM;
             break;
           case MAKER_PENTAX:
             include_once(JPEG_METADATA_DIR."TagDefinitions/PentaxTags.class.php");
@@ -478,6 +488,10 @@
                 $this->loadTags($data->getTags(), Schemas::IPTC);
               }
             }
+            elseif($data instanceof ComReader)
+            {
+              $this->loadTags($data->getTags(), Schemas::COM);
+            }
           }
         }
 
@@ -576,7 +590,8 @@
         'exif'  => true,
         'iptc'  => true,
         'xmp'   => true,
-        'magic' => true
+        'magic' => true,
+        'com'   => true
       );
 
       foreach($this->options as $key => $val)
@@ -675,7 +690,7 @@
           preg_match_all('/{([a-z0-9:\.\s\/]*)(\[.*\])?}/i', $val['tagValues'][$i], $returned, PREG_PATTERN_ORDER);
           foreach($returned[1] as $testKey)
           {
-            $found=$found & array_key_exists($testKey, $this->tags);
+            $found=$found & (array_key_exists($testKey, $this->tags) and $this->tags[$testKey]->getValue()!='');
           }
           if(count($returned[1])==0) $found=false;
 
@@ -779,6 +794,11 @@
           if($result[3][0]!="") $num+= ((float) $result[3][0])/3600;
           if($result[4][0]=="W" or $result[4][0]=="S") $num=-$num;
           return($num);
+        case "Author.Keywords":
+          $list=array_flip(array_flip(explode(',', str_replace(array('/', '|', ', '), ',', $value))));
+          sort($list);
+          return(implode(',', $list));
+          break;
         default:
           return($value);
       }

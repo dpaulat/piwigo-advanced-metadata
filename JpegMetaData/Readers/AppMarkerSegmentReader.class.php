@@ -72,6 +72,7 @@
   require_once(JPEG_METADATA_DIR."Readers/TiffReader.class.php");
   require_once(JPEG_METADATA_DIR."Readers/XmpReader.class.php");
   require_once(JPEG_METADATA_DIR."Readers/IptcReader.class.php");
+  require_once(JPEG_METADATA_DIR."Readers/ComReader.class.php");
 
   class AppMarkerSegmentReader
   {
@@ -921,7 +922,7 @@
      */
     private function readSegmentCOM()
     {
-      $this->data = $this->workData->readASCII();
+      $this->data = new ComReader($this->workData->readASCII());
       $this->dataLoaded=true;
     }
 

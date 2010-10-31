@@ -146,6 +146,7 @@
     const IPTC  = "iptc";
     const XMP   = "xmp";
     const MAGIC = "magic";
+    const COM   = "com";
 
     const EXIF_TIFF = "exif.tiff";
     const EXIF_EXIF = "exif.exif";
