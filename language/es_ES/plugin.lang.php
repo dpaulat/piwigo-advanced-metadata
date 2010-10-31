@@ -1,4 +1,17 @@
 <?php
+/*
+ * How to translate metadata names and values ?
+ *
+ * Metadata names and values are not translated with a /language/*.lang.php file
+ * but they are stored in a .po and .mo files, respectively localized into
+ *  - /JpegMetaData/Locale/xx_XX/Tag.po
+ *  - /JpegMetaData/Locale/xx_XX/LC_MESSAGES/Tag.mo
+ *
+ * More information about GNU gettext l10n system and method to edit the .po & .mo
+ * files on wikipedia :
+ *  - http://en.wikipedia.org/wiki/GNU_gettext
+ *
+ */
 
 $lang['Grum Plugin Classes is not installed'] = 'El plugin <b>Grum Plugin Classes</b> no esta instalado';
 
@@ -15,7 +28,7 @@ $lang['g003_show'] = "Consultar";
 
 $lang['g003_performances'] = "Rendimiento";
 $lang['g003_setting_nb_items_per_request'] = "Numero de imágenes analizadas por demandas";
-$lang['g003_apply'] = "Afficher en écriture latineAplicar";
+$lang['g003_apply'] = "Aplicar";
 
 $lang['g003_numberOfAnalyzedPictures'] = "%d imágenes han sido objeto de un análisis y representan %d métadatos";
 $lang['g003_numberOfNotAnalyzedPictures'] = "%d imagenes no han sido objecto de un análisis";
@@ -325,5 +338,27 @@ Currently, version %s is installed: please proceed with the update version of th
 
 
 
+/** ----------------------------------------------------------------------------
+ * new keys from releases 0.5.3
+ *
+ *
+ * need to be translated
+ * thanks :)
+ */
+$lang['g003_1_picture_in_caddie']="1 picture in caddie";
+$lang['g003_n_pictures_in_caddie']="%s pictures in caddie";
+$lang['g003_analyze_random_pictures'] = "The analysis focuses on %s images selected randomly among images that have never been analyzed, and adds to the existing repository";
+$lang['g003_invalid_random_number']="The number of images to process is not valid";
+
+
+$lang['g003_database_is_not_up_to_date']="The repository is not up do date !";
+$lang['g003_databaseWarning2_1']="[p]A new metadata is available since the last update of the plugin:[/p][ul]%s[/ul]
+[p]
+To be exploited, it is necessary to update the repository.[/p]";
+$lang['g003_databaseWarning2_n']="[p]Some new metadatas are available since the last update of the plugin:[/p][ul]%s[/ul]
+[p]
+To be exploited, it is necessary to update the repository.[/p]";
+
+// help for metadata translation is given at the beginning of this file
 
 ?>

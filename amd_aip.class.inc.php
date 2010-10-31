@@ -557,14 +557,51 @@ class AMD_AIP extends AMD_root
 
     $template->set_filename('sheet_page', dirname(__FILE__).'/admin/amd_metadata_database_status.tpl');
 
+    $warning2='';
+    $sql="SELECT tagId
+          FROM ".$this->tables['used_tags']."
+          WHERE newFromLastUpdate='y'";
+    $result=pwg_query($sql);
+    if($result)
+    {
+      $tmp=array();
+      $tagSchema='';
+      while($row=pwg_db_fetch_assoc($result))
+      {
+        if(preg_match('/^([a-z0-9]*)\..*/i', $row['tagId'], $tagSchema))
+        {
+          if(!in_array($tagSchema[1],$this->config['amd_FillDataBaseIgnoreSchemas'])) $tmp[]=$row['tagId'];
+        }
+      }
+      if(count($tmp)>0)
+      {
+        $ul='';
+        foreach($tmp as $val)
+        {
+          $ul.='<li>'.$val.'</li>';
+        }
+        if(count($tmp)>1)
+        {
+          $warning2=sprintf(GPCCore::BBtoHTML(l10n('g003_databaseWarning2_n')),$ul);
+        }
+        else
+        {
+          $warning2=sprintf(GPCCore::BBtoHTML(l10n('g003_databaseWarning2_1')),$ul);
+        }
+      }
+    }
+
+
     $datas=array(
       'urlRequest' => $this->getAdminLink('ajax'),
+      'warning2' => $warning2,
       'warning1' => GPCCore::BBtoHTML(l10n('g003_databaseWarning1')),
       'nfoMetadata' => Array(
           'exif' => 0,
           'iptc' => 0,
           'magic' => 0,
           'xmp' => 0,
+          'com' => 0,
           'userDefined' => 0,
           'numOfPictures' => 0,
           'numOfNotAnalyzedPictures' => 0,
@@ -590,6 +627,10 @@ class AMD_AIP extends AMD_root
           SELECT SUM(numOfImg), 'xmp'
           FROM ".$this->tables['used_tags']."
           WHERE tagId LIKE 'xmp.%'
+          UNION
+          SELECT SUM(numOfImg), 'com'
+          FROM ".$this->tables['used_tags']."
+          WHERE tagId LIKE 'com.%'
           UNION
           SELECT SUM(numOfImg), 'userDefined'
           FROM ".$this->tables['used_tags']."
@@ -618,6 +659,7 @@ class AMD_AIP extends AMD_root
              $row['type']=='iptc' or
              $row['type']=='magic' or
              $row['type']=='xmp' or
+             $row['type']=='com' or
              $row['type']=='userDefined') $datas['nfoMetadata']['nfoRows']+=$row['nb'];
         }
       }

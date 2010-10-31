@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.5.2
+Version: 0.5.3
 Description: An advanced metadata manager
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
 Author: grum@piwigo.org
@@ -125,7 +125,7 @@ Author URI: http://photos.grum.fr/
 |         |            |   was not commit on the repository ; so need to build a
 |         |            |   new package
 |         |            |
-| 0.x.y   | 2010/09/30 | * mantis bug:1894
+| 0.5.3   | 2010/09/30 | * mantis bug:1894
 |         |            |   . Error when filling the metadata repository
 |         |            |
 |         |            | * mantis bug:1898
@@ -162,6 +162,16 @@ Author URI: http://photos.grum.fr/
 |         |            |
 |         |            | * mantis bug:1294
 |         |            |   . filling database method
+|         |            |
+|         |            | * mantis bug:1975
+|         |            |   . Implement COM segment as a tag
+|         |            |
+|         |            | * mantis bug:1976
+|         |            |   . Implement keywords as magic tag
+|         |            |
+|         |            | * mantis bug:1978
+|         |            |   . Some meta names are not translated in french
+|         |            |
 |         |            |
 |         |            |
 |         |            |

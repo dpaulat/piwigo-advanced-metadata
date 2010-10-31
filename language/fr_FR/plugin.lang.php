@@ -1,5 +1,19 @@
 <?php
 
+/*
+ * How to translate metadata names and values ?
+ *
+ * Metadata names and values are not translated with a /language/*.lang.php file
+ * but they are stored in a .po and .mo files, respectively localized into
+ *  - /JpegMetaData/Locale/xx_XX/Tag.po
+ *  - /JpegMetaData/Locale/xx_XX/LC_MESSAGES/Tag.mo
+ *
+ * More information about GNU gettext l10n system and method to edit the .po & .mo
+ * files on wikipedia :
+ *  - http://en.wikipedia.org/wiki/GNU_gettext
+ *
+ */
+
 $lang['Grum Plugin Classes is not installed'] = 'Le plugin <b>Grum Plugin Classes</b> n\'est pas installé';
 
 $lang['amd_title_page'] = 'Gestion avancée des métadonnées';
@@ -340,6 +354,15 @@ $lang['g003_n_pictures_in_caddie']="%s photos dans le panier";
 $lang['g003_analyze_random_pictures'] = "L'analyse porte sur %s images sélectionnées aléatoirement parmis les images n'ayant jamais été analysées et vient s'ajouter au référentiel actuel";
 $lang['g003_invalid_random_number']="Le nombre de photos à traiter est invalide";
 
+$lang['g003_database_is_not_up_to_date']="Le référentiel n'est pas à jour !";
+$lang['g003_databaseWarning2_1']="[p]Une nouvelle métadonnée est accessible suite à la dernière mise à jour du plugin :[/p][ul]%s[/ul]
+[p]
+Pour qu'elle puisse être exploitée, il est nécessaire de procéder à la mise à jour du référentiel.[/p]";
+$lang['g003_databaseWarning2_n']="[p]De nouvelles métadonnées sont accessibles suite à la dernière mise à jour du plugin :[/p][ul]%s[/ul]
+[p]
+Pour qu'elles puissent être exploitées, il est nécessaire de procéder à la mise à jour du référentiel.[/p]";
+
+// help for metadata translation is given at the beginning of this file
 
 
 ?>

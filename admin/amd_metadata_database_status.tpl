@@ -1,10 +1,19 @@
 <h2>{'g003_status_of_database'|@translate}</h2>
 
+{if $datas.warning2!=''}
+<div class="warnings">
+<p style="font-size: 120%;">{'g003_database_is_not_up_to_date'|@translate}</p>
+{$datas.warning2}
+</div>
+{/if}
+
+
 {if $amdConfig.amd_DisplayWarningsMessageStatus=='y'}
 <div class="warnings">
 <p style="font-size: 120%;">{'g003_databaseInformation'|@translate}</p>
 {$datas.warning1}
 </div>
+{/if}
 
 <fieldset>
 <legend>{'g003_informations'|@translate}</legend>
@@ -27,6 +36,9 @@
      {if !in_array('xmp', $amdConfig.amd_FillDataBaseExcludeFilters)}
      <li><span class="mdInfo">XMP</span>{$datas.nfoMetadata.xmp}</li>
      {/if}
+     {if !in_array('com', $amdConfig.amd_FillDataBaseExcludeFilters)}
+     <li><span class="mdInfo">COM</span>{$datas.nfoMetadata.com}</li>
+     {/if}
      <li><span class="mdInfo">{'g003_personnal'|@translate}</span>{$datas.nfoMetadata.userDefined}</li>
     </ul>
    </td>
@@ -44,5 +56,4 @@
 
 
 
-{/if}
 

@@ -46,6 +46,7 @@
 
       $this->initConfig();
       $this->loadConfig();
+      $this->config['amd_FillDataBaseIgnoreSchemas']=> array('exif', 'iptc', 'xmp', 'com');
       $this->config['installed']=AMD_VERSION2;
       $this->config['newInstall']='y';
       $this->saveConfig();
@@ -58,6 +59,7 @@
   `name` varchar(200) NOT NULL default '',
   `numOfImg` int(10) unsigned NOT NULL default '0',
   `translatedName` varchar(200) NOT NULL default '',
+  `newFromLastUpdate` char(1) NOT NULL default 'n',
   PRIMARY KEY  (`numId`),
   KEY `by_tag` (`tagId`)
 );",
@@ -176,13 +178,16 @@ $this->buildDefaultGroup(),
         case '00.04.00':
           $this->config['newInstall']='n';
           $this->updateFrom_000400();
-          break;
+        case '00.05.01':
+        case '00.05.02':
+          $this->config['newInstall']='n';
+          $this->updateFrom_000502();
         default:
           /*
            * default is applied for fresh install, and consist to fill the
            * database with default values
            */
-          $this->initializeDatabase();
+          $this->fillDatabase();
           break;
       }
 
@@ -246,13 +251,47 @@ $this->buildDefaultGroup(),
       unset($tablesUpdate);
     }
 
+    /**
+     * update the database from the release 0.5.2
+     */
+    private function updateFrom_000502()
+    {
+      /*
+       * alter existing tables
+       */
+      $tablesUpdate=array(
+        $this->tables['used_tags'] => array(
+          'newFromLastUpdate' => "ADD COLUMN `newFromLastUpdate` CHAR(1)  NOT NULL DEFAULT 'n' AFTER `translatedName`",
+        )
+      );
 
+      $tablef=new GPCTables(array($this->tables['used_tags']));
+
+      if(count($tablesUpdate)>0) $tablef->updateTablesFields($tablesUpdate);
+
+      unset($tablesUpdate);
+    }
 
 
     /**
      * fill the database with some default value
      */
-    private function initializeDatabase()
+    private function fillDatabase()
+    {
+      if($this->config['newInstall']=='y')
+      {
+        $this->initializeDatabaseContent();
+      }
+      else
+      {
+        $this->updateDatabaseContent();
+      }
+    }
+
+    /**
+     * reset and initialize the database content (for a fresh install)
+     */
+    private function initializeDatabaseContent()
     {
       global $user;
 
@@ -268,9 +307,16 @@ $this->buildDefaultGroup(),
       /*
        * fill the 'used_tags' table with default values
        */
-      foreach(AMD_JpegMetaData::getTagList(Array('filter' => AMD_JpegMetaData::TAGFILTER_IMPLEMENTED, 'xmp' => true, 'maker' => true, 'iptc' => true)) as $key => $val)
+      foreach(AMD_JpegMetaData::getTagList(
+                Array('filter' => AMD_JpegMetaData::TAGFILTER_IMPLEMENTED,
+                      'xmp' => true,
+                      'maker' => true,
+                      'iptc' => true,
+                      'com' => true)
+              ) as $key => $val
+             )
       {
-        $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0, '".addslashes(L10n::get($val['name']))."');";
+        $sql="INSERT INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0, '".addslashes(L10n::get($val['name']))."', 'n');";
         pwg_query($sql);
       }
 
@@ -290,6 +336,68 @@ $this->buildDefaultGroup(),
         pwg_query($sql);
       }
     }
+
+    /**
+     * update the database content (for an update)
+     */
+    private function updateDatabaseContent()
+    {
+      global $user;
+
+      L10n::setLanguage('en_UK');
+
+      pwg_query("INSERT INTO ".$this->tables['images']."
+                  SELECT id, 'n', 0
+                    FROM ".IMAGES_TABLE."
+                    WHERE id NOT IN (SELECT imageId FROM ".$this->tables['images'].")");
+
+      $tagList=array();
+      $sql="SELECT tagId FROM ".$this->tables['used_tags'];
+      $result=pwg_query($sql);
+      if($result)
+      {
+        while($row=pwg_db_fetch_row($result))
+        {
+          $tagList[$row[0]]='';
+        }
+      }
+
+      /*
+       * fill the 'used_tags' table with default values
+       */
+      foreach(AMD_JpegMetaData::getTagList(
+                Array('filter' => AMD_JpegMetaData::TAGFILTER_IMPLEMENTED,
+                      'xmp' => true,
+                      'maker' => true,
+                      'iptc' => true,
+                      'com' => true)
+              ) as $key => $val
+             )
+      {
+        if(!array_key_exists($key, $tagList))
+        {
+          $sql="INSERT IGNORE INTO ".$this->tables['used_tags']." VALUES('', '".$key."', '".(($val['translatable'])?'y':'n')."', '".$val['name']."', 0, '".addslashes(L10n::get($val['name']))."', 'y');";
+          pwg_query($sql);
+        }
+      }
+
+      /*
+       * exclude unauthorized tag with the 'amd_FillDataBaseExcludeTags' option
+       */
+      if(count($this->config['amd_FillDataBaseExcludeTags']))
+      {
+        $sql="";
+        foreach($this->config['amd_FillDataBaseExcludeTags'] as $key => $tag)
+        {
+          if($sql!="") $sql.=" OR ";
+          $sql.=" tagId LIKE '$tag' ";
+        }
+        $sql="DELETE FROM ".$this->tables['used_tags']."
+              WHERE ".$sql;
+        pwg_query($sql);
+      }
+    }
+
 
     private function buildDefaultGroup()
     {

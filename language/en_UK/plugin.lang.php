@@ -1,5 +1,17 @@
 <?php
-
+/*
+ * How to translate metadata names and values ?
+ *
+ * Metadata names and values are not translated with a /language/*.lang.php file
+ * but they are stored in a .po and .mo files, respectively localized into
+ *  - /JpegMetaData/Locale/xx_XX/Tag.po
+ *  - /JpegMetaData/Locale/xx_XX/LC_MESSAGES/Tag.mo
+ *
+ * More information about GNU gettext l10n system and method to edit the .po & .mo
+ * files on wikipedia :
+ *  - http://en.wikipedia.org/wiki/GNU_gettext
+ *
+ */
 
 $lang['Grum Plugin Classes is not installed'] = '<b>Grum Plugin Classes</b> plugin is not installed';
 
@@ -342,7 +354,14 @@ $lang['g003_analyze_random_pictures'] = "The analysis focuses on %s images selec
 $lang['g003_invalid_random_number']="The number of images to process is not valid";
 
 
+$lang['g003_database_is_not_up_to_date']="The repository is not up do date !";
+$lang['g003_databaseWarning2_1']="[p]A new metadata is available since the last update of the plugin:[/p][ul]%s[/ul]
+[p]
+To be exploited, it is necessary to update the repository.[/p]";
+$lang['g003_databaseWarning2_n']="[p]Some new metadatas are available since the last update of the plugin:[/p][ul]%s[/ul]
+[p]
+To be exploited, it is necessary to update the repository.[/p]";
 
-
+// help for metadata translation is given at the beginning of this file
 
 ?>

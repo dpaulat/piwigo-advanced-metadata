@@ -90,6 +90,10 @@ var processAnalyze = {
     {
       ignoreOptions.push('xmp');
     }
+    if($('#iFillDataBaseIgnore_com').get(0).checked)
+    {
+      ignoreOptions.push('com');
+    }
 
 
     $("#dialog")
@@ -253,7 +257,8 @@ var processAnalyze = {
       {if !(in_array('exif', $amdConfig.amd_FillDataBaseExcludeFilters) and
             in_array('xmp', $amdConfig.amd_FillDataBaseExcludeFilters) and
             in_array('iptc', $amdConfig.amd_FillDataBaseExcludeFilters) and
-            in_array('xmp', $amdConfig.amd_FillDataBaseExcludeFilters)) }
+            in_array('xmp', $amdConfig.amd_FillDataBaseExcludeFilters) and
+            in_array('com', $amdConfig.amd_FillDataBaseExcludeFilters)) }
         <br>
         {'g003_ignoreMetadata'|@translate}<br>
         <table style='margin-left:0px;'>
@@ -269,7 +274,10 @@ var processAnalyze = {
               <label><input onclick='displayAnalyzedOption();' type="checkbox" id='iFillDataBaseIgnore_iptc' {if in_array('iptc', $amdConfig.amd_FillDataBaseIgnoreSchemas)}checked{/if}>&nbsp;IPTC</label><br>
               {/if}
               {if !in_array('xmp', $amdConfig.amd_FillDataBaseExcludeFilters)}
-              <label><input onclick='displayAnalyzedOption();' type="checkbox" id='iFillDataBaseIgnore_xmp' {if in_array('xmp', $amdConfig.amd_FillDataBaseIgnoreSchemas)}checked{/if}>&nbsp;XMP</label>
+              <label><input onclick='displayAnalyzedOption();' type="checkbox" id='iFillDataBaseIgnore_xmp' {if in_array('xmp', $amdConfig.amd_FillDataBaseIgnoreSchemas)}checked{/if}>&nbsp;XMP</label><br>
+              {/if}
+              {if !in_array('com', $amdConfig.amd_FillDataBaseExcludeFilters)}
+              <label><input onclick='displayAnalyzedOption();' type="checkbox" id='iFillDataBaseIgnore_com' {if in_array('com', $amdConfig.amd_FillDataBaseIgnoreSchemas)}checked{/if}>&nbsp;COM</label>
               {/if}
             </td>
             <td style='border-left:1px dotted;'><br><span style='font-style:italic;margin-left:8px;'>{'g003_fillDatabaseIgnoreWarning'|@translate}</span></td>

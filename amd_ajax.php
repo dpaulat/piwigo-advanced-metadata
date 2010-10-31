@@ -161,7 +161,8 @@
                ($_REQUEST['filterType']=="exif.maker.Nikon" and !in_array('maker', $this->config['amd_FillDataBaseExcludeFilters'])) or
                ($_REQUEST['filterType']=="exif.maker.Pentax" and !in_array('maker', $this->config['amd_FillDataBaseExcludeFilters'])) or
                ($_REQUEST['filterType']=="xmp" and !in_array('xmp', $this->config['amd_FillDataBaseExcludeFilters'])) or
-               ($_REQUEST['filterType']=="iptc"  and !in_array('iptc', $this->config['amd_FillDataBaseExcludeFilters']))
+               ($_REQUEST['filterType']=="iptc"  and !in_array('iptc', $this->config['amd_FillDataBaseExcludeFilters'])) or
+               ($_REQUEST['filterType']=="com"  and !in_array('com', $this->config['amd_FillDataBaseExcludeFilters']))
                )) $_REQUEST['filterType']="";
 
           if(!isset($_REQUEST['excludeUnusedTag'])) $_REQUEST['excludeUnusedTag']="n";
@@ -658,7 +659,7 @@
      *
      * @param String $orderType : order for the list (by tag 'tag' or by number of
      *                            pictures 'num')
-     * @param String $filterType : filter for the list ('exif', 'xmp', 'iptc' or '')
+     * @param String $filterType : filter for the list ('exif', 'xmp', 'iptc', 'com' or '')
      * @return String
      */
     private function ajax_amd_admin_showStatsGetListTags($orderType, $filterType, $excludeUnusedTag, $selectedTagOnly)
@@ -1532,7 +1533,8 @@
             WHERE (paut.tagId = 'xmp.dc:subject' OR
                    paut.tagId = 'xmp.digiKam:TagsList' OR
                    paut.tagId = 'xmp.lr:hierarchicalSubject' OR
-                   paut.tagId = 'iptc.Keywords');";
+                   paut.tagId = 'iptc.Keywords' OR
+                   paut.tagId = 'magic.Author.Keywords');";
       $result=pwg_query($sql);
       if($result)
       {
@@ -1544,6 +1546,7 @@
              *  if value is a serialized string, unserialize and process it
              */
             $tmp=unserialize($row['value']);
+            if(!isset($tmp['values'])) $tmp=array('values'=>$tmp);
             foreach($tmp['values'] as $val)
             {
               if($row['tagId']=='xmp.digiKam:TagsList' or $row['tagId']=='xmp.lr:hierarchicalSubject')
@@ -1635,7 +1638,8 @@
             WHERE (paut.tagId = 'xmp.dc:subject' OR
                    paut.tagId = 'xmp.digiKam:TagsList' OR
                    paut.tagId = 'xmp.lr:hierarchicalSubject' OR
-                   paut.tagId = 'iptc.Keywords');";
+                   paut.tagId = 'iptc.Keywords' OR
+                   paut.tagId = 'magic.Author.Keywords');";
       $result=pwg_query($sql);
       if($result)
       {
@@ -1647,9 +1651,10 @@
              *  if value is a serialized string, unserialize and process it
              */
             $tmp=unserialize($row['value']);
+            if(!isset($tmp['values'])) $tmp=array('values'=>$tmp);
             foreach($tmp['values'] as $val)
             {
-              if($row['tagId']=='xmp.digiKam:TagsList')
+              if($row['tagId']=='xmp.digiKam:TagsList' or $row['tagId']=='xmp.lr:hierarchicalSubject')
               {
                 $list=explode($this->tagSeparators[$row['tagId']], $val);
                 foreach($list as $subTag)

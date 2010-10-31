@@ -36,7 +36,7 @@ class AMD_root extends CommonPlugin
   public function __construct($prefixeTable, $filelocation)
   {
     global $user;
-    $this->setPluginName("AMetaData");
+    $this->setPluginName("Advanced MetaData");
     $this->setPluginNameFiles("amd");
     parent::__construct($prefixeTable, $filelocation);
 
@@ -110,7 +110,8 @@ class AMD_root extends CommonPlugin
      *           'exif',
      *           'iptc',
      *           'xmp',
-     *           'magic')
+     *           'magic',
+     *           'com')
      *
      * ==> amd_DisplayWarningsMessageStatus : 'y' or 'n'
      *     amd_DisplayWarningsMessageUpdate
@@ -239,6 +240,7 @@ class AMD_root extends CommonPlugin
           'iptc' => !isset($schemas['iptc']),
           'xmp' => !isset($schemas['xmp']),
           'magic' => !isset($schemas['magic']),
+          'com' => !isset($schemas['com']),
         )
       );
     }
@@ -581,6 +583,7 @@ class AMD_root extends CommonPlugin
       }
 
     }
+print_r($this->config['amd_FillDataBaseIgnoreSchemas']);
     $this->saveConfig();
   }
 

@@ -173,6 +173,7 @@ class AMD_AIPInstall extends AMD_root
       'magic.Author.Comment',
       'magic.Author.Copyright',
       'magic.Author.ImageTitle',
+      'magic.Author.Keywords',
       'magic.GPS.Altitude',
       'magic.GPS.Latitude',
       'magic.GPS.LatitudeNum',

@@ -106,6 +106,8 @@
  * |         |            | * mantis bug:1976
  * |         |            |   . Implement keywords as magic tag
  * |         |            |
+ * |         |            | * mantis bug:1978
+ * |         |            |   . Some meta names are not translated in french
  * |         |            |
  * |         |            |
  * |         |            |
@@ -795,9 +797,14 @@
           if($result[4][0]=="W" or $result[4][0]=="S") $num=-$num;
           return($num);
         case "Author.Keywords":
-          $list=array_flip(array_flip(explode(',', str_replace(array('/', '|', ', '), ',', $value))));
+          $list=array_flip(array_flip(explode(',', str_replace(array('/', '|', ','), ',', $value))));
           sort($list);
-          return(implode(',', $list));
+          $tmp=array();
+          foreach($list as $key=>$val)
+          {
+            if(trim($val)!='') $tmp[]=trim($val);
+          }
+          return($tmp);
           break;
         default:
           return($value);

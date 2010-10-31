@@ -223,6 +223,9 @@
       {if !in_array('iptc', $amdConfig.amd_FillDataBaseExcludeFilters)}
       <option value="iptc" {if $datas.config_GetListTags_FilterType=="iptc"}selected{/if}>Iptc</option>
       {/if}
+      {if !in_array('com', $amdConfig.amd_FillDataBaseExcludeFilters)}
+      <option value="com" {if $datas.config_GetListTags_FilterType=="com"}selected{/if}>Com</option>
+      {/if}
     </select>
   </label>
 
