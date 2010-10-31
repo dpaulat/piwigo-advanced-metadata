@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TagNames\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2010-10-31 01:13+0100\n"
+"PO-Revision-Date: 2010-10-31 13:10+0100\n"
 "Last-Translator: grum <grum@piwigo.org>\n"
 "Language-Team: grum\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,6 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #. Exif GPS tags / 0x000a (GPSMeasureMode)
-#, fuzzy
 msgid "2-dimensional measurement"
 msgstr "Mesure à 2 dimensions"
 
@@ -34,7 +33,6 @@ msgid "2nd-curtain sync used"
 msgstr "Synchronisation au second rideau"
 
 #. Exif GPS tags / 0x000a (GPSMeasureMode)
-#, fuzzy
 msgid "3-dimensional measurement"
 msgstr "Mesure à 3 dimensions"
 
@@ -261,7 +259,6 @@ msgid "Audio Sampling Resolution"
 msgstr "Résolution de l'échantillonage audio"
 
 #. [Metadata name] IPTC tags / 0x0296 (Audio Type)
-#, fuzzy
 msgid "Audio Type"
 msgstr "Type audio"
 
@@ -318,7 +315,6 @@ msgid "Auto (DaylightFluorescent)"
 msgstr "Automatique (Néon - Lumière du jour)"
 
 #. Pentax specific tags / 0x001a (WhiteBalanceMode)
-#, fuzzy
 msgid "Auto (DaywhiteFluorescent)"
 msgstr "Automatique (Néon - Lumière blanche du jour)"
 
@@ -453,7 +449,6 @@ msgid "aux:SerialNumber"
 msgstr "Numéro de série"
 
 #. [Metadata name] Nikon specific tags / 0x0082 (AuxiliaryLens)
-#, fuzzy
 msgid "AuxiliaryLens"
 msgstr "Objectif auxiliaire"
 
@@ -518,7 +513,6 @@ msgid "Black & White"
 msgstr "Noir & Blanc"
 
 #. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
-#, fuzzy
 msgid "BlackIsZero"
 msgstr "Le noir est le zéro"
 
@@ -531,12 +525,10 @@ msgid "BlueBalance"
 msgstr "Balance des bleus"
 
 #. Pentax specific tags / 0x000b (PictureMode)
-#, fuzzy
 msgid "Blur Reduction"
 msgstr "Réduction du flou"
 
 #. IPTC tags / 0x024b (Object Cycle)
-#, fuzzy
 msgid "both"
 msgstr "Les deux"
 
@@ -583,12 +575,10 @@ msgid "Bulb"
 msgstr "Ampoule"
 
 #. Pentax specific tags / 0x0033 (PictureMode)
-#, fuzzy
 msgid "Bulb (Off-Auto-Aperture)"
 msgstr "Ampoule (Ouverture automatique OFF)"
 
 #. Pentax specific tags / 0x0034 (DriveMode)
-#, fuzzy
 msgid "Burst"
 msgstr "Rapide"
 
@@ -598,7 +588,6 @@ msgstr "Photographe"
 
 #. [Metadata name] XMP tags / photoshop:AuthorsPosition (By-line Title)
 #. [Metadata name] IPTC tags / 0x0255 (By-line Title)
-#, fuzzy
 msgid "By-line Title"
 msgstr "Métier du photographe"
 
@@ -617,7 +606,6 @@ msgid "Camera Local Control"
 msgstr "Control local de l'appareil"
 
 #. [Metadata name] Magic JpegMetadata computed tags / Camera.Make
-#, fuzzy
 msgid "Camera.Make"
 msgstr "Marque"
 
@@ -653,7 +641,6 @@ msgstr "Information sur l'appareil"
 
 #. [Metadata name] Canon specific tags / 0x000d.40D.48 (CanonCameraInfo.CameraOrientation)
 #. [Metadata name] Canon specific tags / 0x000d.1DMarkIV.53 (CanonCameraInfo.CameraOrientation)
-#, fuzzy
 msgid "CanonCameraInfo.CameraOrientation"
 msgstr "Orientation de l'appareil"
 
@@ -912,7 +899,6 @@ msgid "CanonFirmwareVersion"
 msgstr "Version du firmware"
 
 #. [Metadata name] Canon specific tags / 0x00b0 (CanonFlags)
-#, fuzzy
 msgid "CanonFlags"
 msgstr "Drapeaux"
 
@@ -961,12 +947,10 @@ msgid "CanonShotInfo.AutoRotate"
 msgstr "Rotation automatique"
 
 #. [Metadata name] Canon specific tags / 0x0004.2 (CanonShotInfo.BaseISO)
-#, fuzzy
 msgid "CanonShotInfo.BaseISO"
 msgstr "Base ISO"
 
 #. [Metadata name] Canon specific tags / 0x0004.24 (CanonShotInfo.BulbDuration)
-#, fuzzy
 msgid "CanonShotInfo.BulbDuration"
 msgstr "Durée de l'ampoule"
 
@@ -995,7 +979,6 @@ msgid "CanonShotInfo.FlashGuideNumber"
 msgstr "Nombre de guides du flash"
 
 #. [Metadata name] Canon specific tags / 0x0004.33 (CanonShotInfo.FlashOutput)
-#, fuzzy
 msgid "CanonShotInfo.FlashOutput"
 msgstr "Sortie du flash"
 
@@ -1020,12 +1003,10 @@ msgid "CanonShotInfo.MeasuredEV2"
 msgstr "EV mesurée (2)"
 
 #. [Metadata name] Canon specific tags / 0x0004.28 (CanonShotInfo.NDFilter)
-#, fuzzy
 msgid "CanonShotInfo.NDFilter"
 msgstr "Filtre"
 
 #. [Metadata name] Canon specific tags / 0x0004.10 (CanonShotInfo.OpticalZoomCode)
-#, fuzzy
 msgid "CanonShotInfo.OpticalZoomCode"
 msgstr "Codification du zoom optique"
 
@@ -1181,17 +1162,14 @@ msgid "Colombo"
 msgstr ""
 
 #. Canon specific tags / 0x0001.11 (CanonCameraSettings.EasyMode)
-#, fuzzy
 msgid "Color Accent"
 msgstr "Touches de couleur"
 
 #. Pentax specific tags / 0x0032 (ImageProcessing)
-#, fuzzy
 msgid "Color Filter"
 msgstr "Filtre de couleur"
 
 #. Exif & Tiff tags / 0x0106 (PhotometricInterpretation)
-#, fuzzy
 msgid "Color Filter Array"
 msgstr "Tableau de filtre de couleur"
 
@@ -1204,7 +1182,6 @@ msgid "color sequential linear sensor"
 msgstr ""
 
 #. Canon specific tags / 0x0001.11 (CanonCameraSettings.EasyMode)
-#, fuzzy
 msgid "Color Swap"
 msgstr "Remplacement de couleur"
 
@@ -1214,12 +1191,10 @@ msgid "ColorBalance"
 msgstr "Balance des couleurs"
 
 #. [Metadata name] Nikon specific tags / 0x0014 (ColorBalanceA)
-#, fuzzy
 msgid "ColorBalanceA"
 msgstr "Balance des couleurs A"
 
 #. [Metadata name] Canon specific tags / 0x4001 (ColorData)
-#, fuzzy
 msgid "ColorData"
 msgstr "Informations couleurs"
 
@@ -1229,22 +1204,18 @@ msgstr "Teinte"
 
 #. [Metadata name] Pentax specific tags / 0x0222 (ColorInfo)
 #. [Metadata name] Canon specific tags / 0x4003 (ColorInfo)
-#, fuzzy
 msgid "ColorInfo"
 msgstr "Informations couleurs"
 
 #. [Metadata name] Pentax specific tags / 0x0203 (ColorMatrixA)
-#, fuzzy
 msgid "ColorMatrixA"
 msgstr "Matrice de couleurs A"
 
 #. [Metadata name] Pentax specific tags / 0x0204 (ColorMatrixB)
-#, fuzzy
 msgid "ColorMatrixB"
 msgstr "Matrice de couleurs B"
 
 #. [Metadata name] Nikon specific tags / 0x0003 (ColorMode)
-#, fuzzy
 msgid "ColorMode"
 msgstr "Mode de couleur"
 
@@ -1307,7 +1278,6 @@ msgid "confidential"
 msgstr "Confidentiel"
 
 #. [Metadata name] IPTC tags / 0x090a (Confirmed ObjectData Size)
-#, fuzzy
 msgid "Confirmed ObjectData Size"
 msgstr "Taille confirmée des objets de données"
 
@@ -1406,7 +1376,6 @@ msgid "CR2+JPEG"
 msgstr ""
 
 #. Canon specific tags / 0x0001.11 (CanonCameraSettings.EasyMode)
-#, fuzzy
 msgid "Creative Auto"
 msgstr "Creatif automatique"
 
@@ -1441,7 +1410,6 @@ msgid "crs:AutoExposure"
 msgstr "Exposition automatique"
 
 #. [Metadata name] XMP tags / crs:AutoShadows
-#, fuzzy
 msgid "crs:AutoShadows"
 msgstr "Ombres automatiques"
 
@@ -1474,7 +1442,6 @@ msgid "crs:ChromaticAberrationR"
 msgstr "Aberrations chromatiques rouges"
 
 #. [Metadata name] XMP tags / crs:ColorNoiseReduction
-#, fuzzy
 msgid "crs:ColorNoiseReduction"
 msgstr "Réduction du bruit coloré"
 
@@ -1850,7 +1817,6 @@ msgid "DestinationCityName"
 msgstr "Ville de destination"
 
 #. [Metadata name] Pentax specific tags / 0x0026 (DestinationDST)
-#, fuzzy
 msgid "DestinationDST"
 msgstr "Destination DST"
 
@@ -1993,12 +1959,10 @@ msgid "Editorial Update"
 msgstr "Mise à jour de l'éditorial"
 
 #. [Metadata name] Pentax specific tags / 0x002d (EffectiveLV)
-#, fuzzy
 msgid "EffectiveLV"
 msgstr "LV Effectif"
 
 #. [Metadata name] IPTC tags / 0x0128 (Envelope Number)
-#, fuzzy
 msgid "Envelope Number"
 msgstr "Numéro de l'enveloppe"
 
@@ -2091,7 +2055,6 @@ msgid "exif:ExifVersion"
 msgstr "Version de l'Exif"
 
 #. [Metadata name] XMP tags / exif:ExposureBiasValue
-#, fuzzy
 msgid "exif:ExposureBiasValue"
 msgstr "Valeur d'exposition biaisée"
 
@@ -2144,7 +2107,6 @@ msgid "exif:FocalLengthIn35mmFilm"
 msgstr "Focale en film 35mm"
 
 #. [Metadata name] XMP tags / exif:FocalPlaneResolutionUnit
-#, fuzzy
 msgid "exif:FocalPlaneResolutionUnit"
 msgstr "Unité de résolution du plan"
 
@@ -2270,7 +2232,6 @@ msgstr "ID de version"
 
 #. [Metadata name] XMP tags / exif:ImageUniqueID
 #. [Metadata name] XMP tags / exif:ISOSpeedRatings
-#, fuzzy
 msgid "exif:ISOSpeedRatings"
 msgstr "Taux de la vitesse ISO"
 
@@ -2347,7 +2308,6 @@ msgid "exif:SpectralSensitivity"
 msgstr "Sensibilité du spectre"
 
 #. [Metadata name] XMP tags / exif:SubjectArea
-#, fuzzy
 msgid "exif:SubjectArea"
 msgstr "Zone du sujet"
 
@@ -2394,7 +2354,6 @@ msgstr "Compensation d'exposition"
 
 #. [Metadata name] Exif & Tiff tags / 0x9204 (ExposureBiasValue)
 #. [Metadata name] XMP tags / exif:ExposureBiasValue (ExposureBiasValue)
-#, fuzzy
 msgid "ExposureBiasValue"
 msgstr "Valeur d'exposition biaisée"
 
@@ -2462,7 +2421,6 @@ msgid "external, auto"
 msgstr "Externe, automatique"
 
 #. Pentax specific tags / 0x000c (Flash)
-#, fuzzy
 msgid "external, contrast-control sync"
 msgstr "Externe, synchronisation contrôlée des contrastes"
 
@@ -2672,12 +2630,10 @@ msgid "Flash Off"
 msgstr "Flash désactivé"
 
 #. Pentax specific tags / 0x0033 (PictureMode)
-#, fuzzy
 msgid "Flash X-Sync Speed AE, 1/2 EV steps"
 msgstr "AE flash en synchro X, pas de 1/2 EV"
 
 #. Pentax specific tags / 0x0033 (PictureMode)
-#, fuzzy
 msgid "Flash X-Sync Speed AE, 1/3 EV steps"
 msgstr "AE flash en synchro X, pas de 1/3 EV"
 
@@ -2690,13 +2646,11 @@ msgid "FlashBDump"
 msgstr "Décharge du flash B"
 
 #. [Metadata name] Nikon specific tags / 0x0018 (FlashExposureBracketValue)
-#, fuzzy
 msgid "FlashExposureBracketValue"
 msgstr "Bracketing de l'exposition du flash"
 
 #. [Metadata name] Nikon specific tags / 0x0012 (FlashExposureComp)
 #. [Metadata name] Nikon specific tags / 0x0017 (FlashExposureComp)
-#, fuzzy
 msgid "FlashExposureComp"
 msgstr "Compensation de l'exposition du flash"
 
@@ -2796,12 +2750,10 @@ msgid "FP sync used"
 msgstr ""
 
 #. Pentax specific tags / 0x000b (PictureMode)
-#, fuzzy
 msgid "Frame Composite"
 msgstr "Cadre en composite"
 
 #. Pentax specific tags / 0x0032 (ImageProcessing)
-#, fuzzy
 msgid "Frame Synthesis?"
 msgstr "Cadre de synthèse"
 
@@ -2818,7 +2770,6 @@ msgid "Freehand (Macromedia/Aldus)"
 msgstr ""
 
 #. [Metadata name] Exif & Tiff tags / 0x0120 (FreeOffsets)
-#, fuzzy
 msgid "FreeOffsets"
 msgstr "Emplacement libres"
 
@@ -2842,7 +2793,6 @@ msgstr "Image en pleine résolution"
 
 #. [Metadata name] Exif & Tiff tags / 0xa407 (GainControl)
 #. [Metadata name] XMP tags / exif:GainControl (GainControl)
-#, fuzzy
 msgid "GainControl"
 msgstr "Contrôle du gain"
 
@@ -2876,7 +2826,7 @@ msgstr "Latitude"
 
 #. [Metadata name] Magic JpegMetadata computed tags / GPS.Localization
 msgid "GPS.Localization"
-msgstr "Localization"
+msgstr "Localisation"
 
 #. [Metadata name] Magic JpegMetadata computed tags / GPS.Longitude
 msgid "GPS.Longitude"
@@ -2979,7 +2929,6 @@ msgstr "Référence de la longitude"
 
 #. [Metadata name] Exif GPS tags / 0x0012 (GPSMapDatum)
 #. [Metadata name] XMP tags / exif:GPSMapDatum (GPSMapDatum)
-#, fuzzy
 msgid "GPSMapDatum"
 msgstr "Données de relevé géodésique"
 
@@ -3019,7 +2968,6 @@ msgstr "Horodatage"
 
 #. [Metadata name] Exif GPS tags / 0x000f (GPSTrack)
 #. [Metadata name] XMP tags / exif:GPSTrack (GPSTrack)
-#, fuzzy
 msgid "GPSTrack"
 msgstr "Piste"
 
@@ -3069,7 +3017,6 @@ msgid "half-length"
 msgstr "Demi longueur"
 
 #. Pentax specific tags / 0x000b (PictureMode)
-#, fuzzy
 msgid "Half-length Portrait"
 msgstr "Demi-portrait en pied"
 
@@ -3116,12 +3063,10 @@ msgid "high"
 msgstr "Elevé"
 
 #. Exif & Tiff tags / 0xa407 (GainControl)
-#, fuzzy
 msgid "high gain down"
 msgstr "Gain élevé à"
 
 #. Exif & Tiff tags / 0xa407 (GainControl)
-#, fuzzy
 msgid "high gain up"
 msgstr "Gain élevé jusqu'à"
 
@@ -3162,7 +3107,6 @@ msgid "HomeCityName"
 msgstr "Ville de résidence"
 
 #. [Metadata name] Pentax specific tags / 0x0025 (HometownDST)
-#, fuzzy
 msgid "HometownDST"
 msgstr "Ville de résidence (DST)"
 
@@ -3395,7 +3339,6 @@ msgid "Iptc4xmpCore:DateCreated"
 msgstr "Date de creation"
 
 #. [Metadata name] XMP tags / Iptc4xmpCore:IntellectualGenre
-#, fuzzy
 msgid "Iptc4xmpCore:IntellectualGenre"
 msgstr "Référence d'attribut de l'objet / Genre"
 
@@ -3433,23 +3376,19 @@ msgid "ISO studio tungsten"
 msgstr "Studio, tungstène"
 
 #. [Metadata name] Nikon specific tags / 0x0025 (ISOInfo)
-#, fuzzy
 msgid "ISOInfo"
 msgstr "Informations sur la sensibilité"
 
 #. [Metadata name] Nikon specific tags / 0x000f (ISOSelection)
-#, fuzzy
 msgid "ISOSelection"
 msgstr "Sélection de l'ISO"
 
 #. [Metadata name] Nikon specific tags / 0x0013 (ISOSetting)
-#, fuzzy
 msgid "ISOSetting"
 msgstr "Configuration de l'ISO"
 
 #. [Metadata name] XMP tags / exif:ISOSpeedRatings (ISOSpeedRatings)
 #. [Metadata name] Exif & Tiff tags / 0x8827 (ISOSpeedRatings)
-#, fuzzy
 msgid "ISOSpeedRatings"
 msgstr "Taux de la vitesse ISO"
 
@@ -3698,7 +3637,6 @@ msgid "London"
 msgstr "Londre"
 
 #. Canon specific tags / 0x0001.11 (CanonCameraSettings.EasyMode)
-#, fuzzy
 msgid "Long Shutter"
 msgstr "Obturation longue"
 
@@ -3858,12 +3796,10 @@ msgid "manual white balance"
 msgstr "Réglage manuel de la balance des blancs"
 
 #. [Metadata name] Nikon specific tags / 0x0085 (ManualFocusDistance)
-#, fuzzy
 msgid "ManualFocusDistance"
 msgstr "Réglage manuel de la distance de mise au point"
 
 #. [Metadata name] IPTC tags / 0x0714 (Max Subfile Size)
-#, fuzzy
 msgid "Max Subfile Size"
 msgstr "Poids maximum du sous-fichier"
 
@@ -3873,7 +3809,6 @@ msgid "MaxApertureValue"
 msgstr "Ouverture maximum"
 
 #. [Metadata name] IPTC tags / 0x075f (Maximum ObjectData Size)
-#, fuzzy
 msgid "Maximum ObjectData Size"
 msgstr "Poids maximum de l'objet"
 
@@ -3882,7 +3817,6 @@ msgid "MaxSampleValue"
 msgstr "Valeur maximum de l'échantillonnage"
 
 #. [Metadata name] Canon specific tags / 0x00aa (MeasuredColor)
-#, fuzzy
 msgid "MeasuredColor"
 msgstr "Couleur mesurée"
 
@@ -3899,24 +3833,20 @@ msgid "measurement without differential correction"
 msgstr "Mesure sans correction différentielle"
 
 #. Pentax specific tags / 0x0021 (Sharpness)
-#, fuzzy
 msgid "Med Hard"
 msgstr "Dur (Moyen)"
 
 #. Pentax specific tags / 0x0020 (Contrast)
 #. Pentax specific tags / 0x001f (Saturation)
-#, fuzzy
 msgid "Med High"
 msgstr "Elevé (Moyen)"
 
 #. Pentax specific tags / 0x0020 (Contrast)
 #. Pentax specific tags / 0x001f (Saturation)
-#, fuzzy
 msgid "Med Low"
 msgstr "Bas (Moyen)"
 
 #. Pentax specific tags / 0x0021 (Sharpness)
-#, fuzzy
 msgid "Med Soft"
 msgstr "Doux (Moyen)"
 
@@ -3946,7 +3876,6 @@ msgid "Medium Movie"
 msgstr "Film, qualité moyenne"
 
 #. Pentax specific tags / 0x000b (PictureMode)
-#, fuzzy
 msgid "Medium Pet"
 msgstr "Animaux de compagnie"
 
@@ -4068,12 +3997,10 @@ msgstr ""
 
 #. Pentax specific tags / 0x0033 (PictureMode)
 #. Pentax specific tags / 0x0033 (PictureMode)
-#, fuzzy
 msgid "MTF Program"
 msgstr "Programme MTF"
 
 #. Pentax specific tags / 0x0017 (MeteringMode)
-#, fuzzy
 msgid "Multi Segment"
 msgstr "Multi segment"
 
@@ -4086,7 +4013,6 @@ msgid "Multiple Exposure"
 msgstr "Expositions multiples"
 
 #. Exif & Tiff tags / 0x9207 (MeteringMode)
-#, fuzzy
 msgid "multispot"
 msgstr "Points multiples"
 
@@ -4133,7 +4059,6 @@ msgid "Natural"
 msgstr "Naturel"
 
 #. Pentax specific tags / 0x000b (PictureMode)
-#, fuzzy
 msgid "Natural Skin Tone"
 msgstr "Ton naturel de la peau"
 
@@ -4143,7 +4068,6 @@ msgid "NEFBitDepth"
 msgstr "NEF bit depth"
 
 #. [Metadata name] Nikon specific tags / 0x0093 (NEFCompression)
-#, fuzzy
 msgid "NEFCompression"
 msgstr "Compression NEF"
 
@@ -4207,12 +4131,10 @@ msgid "NikonCaptureOffsets"
 msgstr "Capture offsets"
 
 #. [Metadata name] Nikon specific tags / 0x0e1e (NikonCaptureOutput)
-#, fuzzy
 msgid "NikonCaptureOutput"
 msgstr "Capture des sorties"
 
 #. [Metadata name] Nikon specific tags / 0x0e09 (NikonCaptureVersion)
-#, fuzzy
 msgid "NikonCaptureVersion"
 msgstr "Capture version"
 
@@ -4256,7 +4178,6 @@ msgid "no flash function"
 msgstr "Pas de fonctions pour le flash"
 
 #. IPTC tags / 0x0114 (File Format)
-#, fuzzy
 msgid "No ObjectData"
 msgstr "Pas de données pour l'objet"
 
@@ -4369,7 +4290,6 @@ msgid "Object Attribute Reference"
 msgstr "Référence d'attribut de l'objet / Genre"
 
 #. [Metadata name] IPTC tags / 0x024b (Object Cycle)
-#, fuzzy
 msgid "Object Cycle"
 msgstr "Cycle"
 
@@ -4396,7 +4316,6 @@ msgid "ObjectData Preview File Format Version"
 msgstr "Version du format de la prévisualisation"
 
 #. [Metadata name] IPTC tags / 0x075a (ObjectData Size Announced)
-#, fuzzy
 msgid "ObjectData Size Announced"
 msgstr "Poids déclaré"
 
@@ -4445,7 +4364,6 @@ msgid "off-beat"
 msgstr "Excentrique"
 
 #. [Metadata name] Exif & Tiff tags / 0x00ff (OldSubfileType)
-#, fuzzy
 msgid "OldSubfileType"
 msgstr "Ancien type de sous-fichier"
 
@@ -4508,7 +4426,6 @@ msgid "on, return not detected"
 msgstr "Activé, sans retour"
 
 #. Canon specific tags / 0x0001.34 (CanonCameraSettings.ImageStabilization)
-#, fuzzy
 msgid "On, Shot Only"
 msgstr "Activé, cliché uniquement"
 
@@ -4525,7 +4442,6 @@ msgid "on, soft"
 msgstr "Activé, doux"
 
 #. Pentax specific tags / 0x000c (Flash)
-#, fuzzy
 msgid "on, trailing-curtain sync"
 msgstr "Activé, synchronisation au second rideau"
 
@@ -4538,12 +4454,10 @@ msgid "on, wireless (master)"
 msgstr "Activé, sans fil (maître)"
 
 #. Exif & Tiff tags / 0xa217 (SensingMethod)
-#, fuzzy
 msgid "one-chip color area sensor"
 msgstr "Capteur couleur, une puce"
 
 #. Canon specific tags / 0x0001.7 (CanonCameraSettings.FocusMode)
-#, fuzzy
 msgid "One-shot AF"
 msgstr "AF sur cliché"
 
@@ -4665,7 +4579,6 @@ msgid "Pentax PEF Compressed"
 msgstr "Compression PEF Pentax"
 
 #. XMP tags / Iptc4xmpCore:Scene
-#, fuzzy
 msgid "performing"
 msgstr "De la scène"
 
@@ -4705,7 +4618,6 @@ msgid "photoshop:AuthorsPosition"
 msgstr "Profession de l'auteur"
 
 #. [Metadata name] XMP tags / photoshop:CaptionWriter
-#, fuzzy
 msgid "photoshop:CaptionWriter"
 msgstr "Rédacteur"
 
@@ -4722,7 +4634,6 @@ msgid "photoshop:Country"
 msgstr "Pays/Nom"
 
 #. [Metadata name] XMP tags / photoshop:ColorMode
-#, fuzzy
 msgid "photoshop:ColorMode"
 msgstr "Mode de couleur"
 
@@ -4798,13 +4709,11 @@ msgstr "Pixels"
 
 #. [Metadata name] XMP tags / exif:PixelXDimension (PixelXDimension)
 #. [Metadata name] Exif & Tiff tags / 0xa002 (PixelXDimension)
-#, fuzzy
 msgid "PixelXDimension"
 msgstr "Dimensions X du pixel"
 
 #. [Metadata name] XMP tags / exif:PixelYDimension (PixelYDimension)
 #. [Metadata name] Exif & Tiff tags / 0xa003 (PixelYDimension)
-#, fuzzy
 msgid "PixelYDimension"
 msgstr "Dimensions Y du pixel"
 
@@ -4852,7 +4761,6 @@ msgid "Predictor"
 msgstr "Predictor"
 
 #. Pentax specific tags / 0x0008 (Quality)
-#, fuzzy
 msgid "Premium"
 msgstr "Super"
 
@@ -4862,7 +4770,6 @@ msgid "Preset (Fireworks?)"
 msgstr ""
 
 #. [Metadata name] Pentax specific tags / 0x003e (PreviewImageBorders)
-#, fuzzy
 msgid "PreviewImageBorders"
 msgstr "Frontières de l'aperçu de l'image"
 
@@ -4939,12 +4846,10 @@ msgid "Program AE"
 msgstr "Programme AE"
 
 #. Pentax specific tags / 0x0033 (PictureMode)
-#, fuzzy
 msgid "Program Av Shift"
 msgstr "Programme Av"
 
 #. Pentax specific tags / 0x0033 (PictureMode)
-#, fuzzy
 msgid "Program Tv Shift"
 msgstr "Programme Tv"
 
@@ -5159,7 +5064,6 @@ msgid "Rotate 90 CW"
 msgstr "Rotation 90° horaire"
 
 #. [Metadata name] Exif & Tiff tags / 0x0116 (RowsPerStrip)
-#, fuzzy
 msgid "RowsPerStrip"
 msgstr "Lignes par bande"
 
@@ -5200,7 +5104,6 @@ msgid "SaturationInfo"
 msgstr "Informations sur la saturation"
 
 #. [Metadata name] Nikon specific tags / 0x009c (SceneAssist)
-#, fuzzy
 msgid "SceneAssist"
 msgstr "Assistance de la scène"
 
@@ -5248,12 +5151,10 @@ msgid "SensingMethod"
 msgstr "Méthode de détection"
 
 #. Pentax specific tags / 0x0033 (PictureMode)
-#, fuzzy
 msgid "Sensitivity Priority AE, 1/2 EV steps"
 msgstr "AE priorité à la sensibilité, pas de 1/2 EV"
 
 #. Pentax specific tags / 0x0033 (PictureMode)
-#, fuzzy
 msgid "Sensitivity Priority AE, 1/3 EV steps"
 msgstr "AE priorité à la sensibilité, pas de 1/3 EV"
 
@@ -5266,7 +5167,6 @@ msgid "SensorInfo"
 msgstr "Informations des capteurs"
 
 #. [Metadata name] Nikon specific tags / 0x009a (SensorPixelSize)
-#, fuzzy
 msgid "SensorPixelSize"
 msgstr "Taille des pixels du capteur"
 
@@ -5379,18 +5279,15 @@ msgid "ShotInfo.Lens"
 msgstr "Objectif"
 
 #. Pentax specific tags / 0x0033 (PictureMode)
-#, fuzzy
 msgid "Shutter & Aperture Priority AE, 1/2 EV steps"
 msgstr "AE priorité à l'ouverture et à la vitesse, pas de 1/2 EV"
 
 #. Pentax specific tags / 0x0033 (PictureMode)
-#, fuzzy
 msgid "Shutter & Aperture Priority AE, 1/3 EV steps"
 msgstr "AE priorité à l'ouverture et à la vitesse, pas de 1/3 EV"
 
 #. Pentax specific tags / 0x0033 (PictureMode)
 #. Exif & Tiff tags / 0x8822 (ExposureProgram)
-#, fuzzy
 msgid "shutter priority"
 msgstr "Priorité à la vitesse"
 
@@ -5401,7 +5298,6 @@ msgid "Shutter Speed Priority"
 msgstr "Priorité à la vitesse"
 
 #. Canon specific tags / 0x0001.20 (CanonCameraSettings.CanonExposureMode)
-#, fuzzy
 msgid "Shutter speed priority AE"
 msgstr "AE priorité à la vitesse"
 
@@ -5412,7 +5308,6 @@ msgstr "Nombre de déclenchements"
 
 #. [Metadata name] XMP tags / exif:ShutterSpeedValue (ShutterSpeedValue)
 #. [Metadata name] Exif & Tiff tags / 0x9201 (ShutterSpeedValue)
-#, fuzzy
 msgid "ShutterSpeedValue"
 msgstr "Temps d'exposition"
 
@@ -5437,13 +5332,11 @@ msgid "Single Area (wide)"
 msgstr "Zone unique (large)"
 
 #. Nikon specific tags / 0x0089 (ShootingMode)
-#, fuzzy
 msgid "Single frame"
 msgstr "Photo unique"
 
 #. Exif & Tiff tags / 0x00fe (SubfileType)
 #. Exif & Tiff tags / 0x00ff (OldSubfileType)
-#, fuzzy
 msgid "single page of multi-page image"
 msgstr "Page unique d'une photo multi-pages"
 
@@ -5464,7 +5357,6 @@ msgid "Size Mode"
 msgstr "Type de taille"
 
 #. Canon specific tags / 0x0001.11 (CanonCameraSettings.EasyMode)
-#, fuzzy
 msgid "Slow shutter"
 msgstr "Obturation lente"
 
@@ -5481,7 +5373,6 @@ msgid "Small Movie"
 msgstr "Filme, qualité basse"
 
 #. Canon specific tags / 0x0001.40 (CanonCameraSettings.PhotoEffect)
-#, fuzzy
 msgid "Smooth"
 msgstr "Lisse"
 
@@ -5514,7 +5405,6 @@ msgstr "Sud"
 
 #. [Metadata name] Exif & Tiff tags / 0xa20c (SpatialFrequencyResponse)
 #. [Metadata name] XMP tags / exif:SpatialFrequencyResponse (SpatialFrequencyResponse)
-#, fuzzy
 msgid "SpatialFrequencyResponse"
 msgstr "Réponse en fréquence spatiale"
 
@@ -5581,7 +5471,6 @@ msgid "standard light C"
 msgstr "Eclairage standard C"
 
 #. Canon specific tags / 0x0001.11 (CanonCameraSettings.EasyMode)
-#, fuzzy
 msgid "Still Image"
 msgstr "Photo tranquille"
 
@@ -5591,24 +5480,20 @@ msgid "Stockholm"
 msgstr ""
 
 #. [Metadata name] Exif & Tiff tags / 0x0117 (StripByteCounts)
-#, fuzzy
 msgid "StripByteCounts"
 msgstr "Octets par bande"
 
 #. [Metadata name] Exif & Tiff tags / 0x0111 (StripOffsets)
-#, fuzzy
 msgid "StripOffsets"
 msgstr "Compensations des bandes"
 
 #. Exif & Tiff tags / 0x9209 (Flash)
 #. XMP tags / exif:Return
-#, fuzzy
 msgid "strobe return light detected"
 msgstr "Avec retour de lumière stroboscopique"
 
 #. Exif & Tiff tags / 0x9209 (Flash)
 #. XMP tags / exif:Return
-#, fuzzy
 msgid "strobe return light not detected"
 msgstr "Sans retour de lumière stroboscopique"
 
@@ -5621,24 +5506,20 @@ msgid "Strong Contrast"
 msgstr "Contrast élevé"
 
 #. [Metadata name] IPTC tags / 0x080a (Subfile)
-#, fuzzy
 msgid "Subfile"
 msgstr "Sous fichier"
 
 #. [Metadata name] Exif & Tiff tags / 0x00fe (SubfileType)
-#, fuzzy
 msgid "SubfileType"
 msgstr "Type de sous fichier"
 
 #. [Metadata name] XMP tags / Iptc4xmpCore:SubjectCode (Subject Reference)
 #. [Metadata name] IPTC tags / 0x020c (Subject Reference)
-#, fuzzy
 msgid "Subject Reference"
 msgstr "Sujet de référence"
 
 #. [Metadata name] Exif & Tiff tags / 0x9214 (SubjectArea)
 #. [Metadata name] XMP tags / exif:SubjectArea (SubjectArea)
-#, fuzzy
 msgid "SubjectArea"
 msgstr "Zone du sujet"
 
@@ -5659,9 +5540,8 @@ msgstr "Position du sujet"
 
 #. [Metadata name] XMP tags / Iptc4xmpCore:Location (Sublocation)
 #. [Metadata name] IPTC tags / 0x025c (Sublocation)
-#, fuzzy
 msgid "Sublocation"
-msgstr ""
+msgstr "Sous-emplacement"
 
 #. [Metadata name] Exif & Tiff tags / 0x9290 (SubsecTime)
 #, fuzzy
@@ -5690,7 +5570,6 @@ msgid "super macro"
 msgstr "Super macro"
 
 #. Canon specific tags / 0x0001.3 (CanonCameraSettings.Quality)
-#, fuzzy
 msgid "Superfine"
 msgstr "Très précis"
 
@@ -5764,7 +5643,6 @@ msgid "Text"
 msgstr "Texte"
 
 #. Exif & Tiff tags / 0xa217 (SensingMethod)
-#, fuzzy
 msgid "three-chip color area sensor"
 msgstr "Capteur couleur, trois puces"
 
@@ -5938,7 +5816,6 @@ msgid "ToneCurveTable"
 msgstr "Table de la courbe de tonalité"
 
 #. [Metadata name] Nikon specific tags / 0x00b3 (ToningEffect)
-#, fuzzy
 msgid "ToningEffect"
 msgstr "Effet tonifiant"
 
@@ -6105,7 +5982,6 @@ msgid "Unprocessed"
 msgstr "Non traité"
 
 #. Nikon specific tags / 0x0089 (ShootingMode)
-#, fuzzy
 msgid "Unused LE-NR Slowdown"
 msgstr "Ralentissement LE-NR inutilisés"
 
@@ -6174,7 +6050,6 @@ msgid "Very Soft"
 msgstr "Très doux"
 
 #. Pentax specific tags / 0x004f (ImageTone)
-#, fuzzy
 msgid "Vibrant"
 msgstr "Vibrant"
 
@@ -6323,12 +6198,10 @@ msgid "Widescreen"
 msgstr "Ecran large"
 
 #. [Metadata name] Nikon specific tags / 0x0024 (WorldTime)
-#, fuzzy
 msgid "WorldTime"
 msgstr "Heure du monde"
 
 #. [Metadata name] Pentax specific tags / 0x0022 (WorldTimeLocation)
-#, fuzzy
 msgid "WorldTimeLocation"
 msgstr "Lieu du monde"
 
@@ -6362,7 +6235,6 @@ msgid "xmp:Label"
 msgstr "Étiquette"
 
 #. [Metadata name] XMP tags / xmp:MetadataDate
-#, fuzzy
 msgid "xmp:MetadataDate"
 msgstr "Date des métadonnée"
 
@@ -6383,7 +6255,6 @@ msgid "xmp:Thumbnails"
 msgstr "Vignettes"
 
 #. [Metadata name] XMP tags / xmpBJ:JobRef
-#, fuzzy
 msgid "xmpBJ:JobRef"
 msgstr "Référence de l'annonce"
 
@@ -6400,7 +6271,6 @@ msgid "xmpMM:History"
 msgstr "Historique"
 
 #. [Metadata name] XMP tags / xmpMM:InstanceID
-#, fuzzy
 msgid "xmpMM:InstanceID"
 msgstr "ID de la demande"
 
@@ -6413,7 +6283,6 @@ msgid "xmpMM:ManagedFrom"
 msgstr "Géré par"
 
 #. [Metadata name] XMP tags / xmpMM:Manager
-#, fuzzy
 msgid "xmpMM:Manager"
 msgstr "Directeur"
 
@@ -6423,7 +6292,6 @@ msgid "xmpMM:ManagerVariant"
 msgstr "Manager variant"
 
 #. [Metadata name] XMP tags / xmpMM:ManageTo
-#, fuzzy
 msgid "xmpMM:ManageTo"
 msgstr "Gérer"
 
@@ -6433,17 +6301,14 @@ msgid "xmpMM:ManageUI"
 msgstr "Manage UI"
 
 #. [Metadata name] XMP tags / xmpMM:RenditionClass
-#, fuzzy
 msgid "xmpMM:RenditionClass"
 msgstr "Classe d'interprétation"
 
 #. [Metadata name] XMP tags / xmpMM:RenditionParams
-#, fuzzy
 msgid "xmpMM:RenditionParams"
 msgstr "Paramètre d'interprétation"
 
 #. [Metadata name] XMP tags / xmpMM:VersionID
-#, fuzzy
 msgid "xmpMM:VersionID"
 msgstr "ID de la version"
 
@@ -6460,7 +6325,6 @@ msgid "xmpRights:Certificate"
 msgstr "Certificat"
 
 #. [Metadata name] XMP tags / xmpRights:Marked
-#, fuzzy
 msgid "xmpRights:Marked"
 msgstr "Marqué"
 
@@ -6473,7 +6337,6 @@ msgid "xmpRights:UsageTerms"
 msgstr "Conditions d'utilisation"
 
 #. [Metadata name] XMP tags / xmpRights:WebStatement
-#, fuzzy
 msgid "xmpRights:WebStatement"
 msgstr "Déclaration Web"
 
@@ -6494,7 +6357,6 @@ msgid "xmpTPg:NPages"
 msgstr "Numbre de pages"
 
 #. [Metadata name] XMP tags / xmpTPg:PlateNames
-#, fuzzy
 msgid "xmpTPg:PlateNames"
 msgstr "Plate names"
 
@@ -6591,4 +6453,8 @@ msgstr "Sujet de référence (nom)"
 #. [Metadata name] IPTC tags / 0x20c01 (Subject Reference[Number])
 msgid "Subject Reference[Number]"
 msgstr "Sujet de référence (numéro)"
+
+#. [Metadata name] COM tags / 'comment'
+msgid "comment"
+msgstr "Commentaire"
 

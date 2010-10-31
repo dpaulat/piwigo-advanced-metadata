@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TagNames\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2010-10-31 01:25+0100\n"
+"PO-Revision-Date: 2010-10-31 12:41+0100\n"
 "Last-Translator: grum <grum@piwigo.org>\n"
 "Language-Team: grum\n"
 "MIME-Version: 1.0\n"
@@ -6442,4 +6442,8 @@ msgstr "Subject Reference (Name)"
 #. [Metadata name] IPTC tags / 0x20c01 (Subject Reference[Number])
 msgid "Subject Reference[Number]"
 msgstr "Subject Reference (Number)"
+
+#. [Metadata name] COM tags / 'comment'
+msgid "comment"
+msgstr "Comment"
 
