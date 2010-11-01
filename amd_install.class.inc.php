@@ -46,7 +46,7 @@
 
       $this->initConfig();
       $this->loadConfig();
-      $this->config['amd_FillDataBaseIgnoreSchemas']=> array('exif', 'iptc', 'xmp', 'com');
+      $this->config['amd_FillDataBaseIgnoreSchemas']=array('exif', 'iptc', 'xmp', 'com');
       $this->config['installed']=AMD_VERSION2;
       $this->config['newInstall']='y';
       $this->saveConfig();
