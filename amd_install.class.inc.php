@@ -182,6 +182,8 @@ $this->buildDefaultGroup(),
         case '00.05.02':
           $this->config['newInstall']='n';
           $this->updateFrom_000502();
+        case '00.05.03':
+          $this->updateFrom_000503();
         default:
           /*
            * default is applied for fresh install, and consist to fill the
@@ -196,13 +198,13 @@ $this->buildDefaultGroup(),
       $this->saveConfig();
 
       GPCCore::register($this->getPluginName(), AMD_VERSION, AMD_GPC_NEEDED);
-      GPCRequestBuilder::register($this->getPluginName(), dirname($this->getFileLocation()).'/amd_rb_callback.class.inc.php');
+      GPCRequestBuilder::register('AMetaData', dirname($this->getFileLocation()).'/amd_rb_callback.class.inc.php');
     }
 
 
     public function deactivate()
     {
-      GPCRequestBuilder::unregister($this->getPluginName());
+      GPCRequestBuilder::unregister('AMetaData');
     }
 
     /**
@@ -270,6 +272,14 @@ $this->buildDefaultGroup(),
       if(count($tablesUpdate)>0) $tablef->updateTablesFields($tablesUpdate);
 
       unset($tablesUpdate);
+    }
+
+    /**
+     * update the database from the release 0.5.3
+     */
+    private function updateFrom_000503()
+    {
+      GPCRequestBuilder::unregister('Advanced MetaData');
     }
 
 
