@@ -308,7 +308,7 @@ class AMD_AIP extends AMD_root
     $template->set_filename('body_page',
                 dirname($this->getFileLocation()).'/admin/amd_metadata_search.tpl');
 
-    $template->assign('amd_search_page', GPCRequestBuilder::displaySearchPage($this->getPluginName()));
+    $template->assign('amd_search_page', GPCRequestBuilder::displaySearchPage('AMetaData'));
 
     $template->assign_var_from_handle('AMD_BODY_PAGE', 'body_page');
   }
