@@ -583,7 +583,12 @@ class AMD_root extends CommonPlugin
       }
 
     }
-print_r($this->config['amd_FillDataBaseIgnoreSchemas']);
+
+    $sql="UPDATE ".$this->tables['used_tags']." ut
+          SET ut.newFromLastUpdate = 'n'
+          WHERE ut.newFromLastUpdate = 'y';";
+    pwg_query($sql);
+
     $this->saveConfig();
   }
 
