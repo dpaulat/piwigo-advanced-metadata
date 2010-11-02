@@ -109,8 +109,8 @@
  * |         |            | * mantis bug:1978
  * |         |            |   . Some meta names are not translated in french
  * |         |            |
- * |         |            |
- * |         |            |
+ * | 1.1.4   | 2010-11-02 | * mantis bug:1992
+ * |         |            |   . On Canon file, debug informations are displayed
  * |         |            |
  * |         |            |
  * |         |            |

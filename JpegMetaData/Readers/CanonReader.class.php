@@ -140,7 +140,6 @@
           /*
            * null terminated strings
            */
-          print_r($values);
           $returned=ConvertData::toStrings($values);
           break;
         case 0x000c: // "SerialNumber"
