@@ -103,7 +103,7 @@ $lang['g003_metadata_detail'] = 'Intervallo i valori per il metadati';
 $lang['g003_help'] = 'Guida sui metadati';
 $lang['g003_help_tab_exif'] = 'Exif';
 $lang['g003_help_tab_iptc'] = 'IPTC';
-$lang['g003_help_tab_xmp'] = 'XMP'
+$lang['g003_help_tab_xmp'] = 'XMP';
 $lang['g003_help_tab_magic'] = 'Magic';
 $lang['g003_help_exif'] = 'I metadati EXIF sono le informazioni che sono memorizzate nell\'immagine, dalla fotocamera, durante lo scatto.
 
@@ -295,7 +295,7 @@ La modalità [i]avanzata[/i]si rivolge a chi desidera massimizzare l\'uso dei me
 [li]un elenco più completo di metadati (circa 540)[/li]
 [li]delle funzionalità estese (statistiche, ricerche, ...)[/li]
 [/ul]
-La modalità [i]avanzata[/i] richiede la creazione di un repository. '
+La modalità [i]avanzata[/i] richiede la creazione di un repository. ';
 
 
 $lang['g003_tags'] = 'Tag';
@@ -306,7 +306,7 @@ $lang['g003_num_of_pictures'] = 'Numero di foto';
 $lang['g003_num_of_pictures_already_tagged'] = 'Numero di foto già taggate';
 $lang['g003_convert_ok'] = 'La conversione è stata completata con successo';
 $lang['g003_convert_keywords_and_apply'] = 'Convertire';
-$lang['g003_no_keywords'] = 'Nessuna parola chiave suscettibile di essere convertita è stata trovata.'
+$lang['g003_no_keywords'] = 'Nessuna parola chiave suscettibile di essere convertita è stata trovata.';
 
 
 $lang['g003_tags_page_help'] = 'Questa funzionalità esegue un\'estrazione di parole chiavi presenti nei metadati per le foto e ti permette di convertirli in [i]Tags[/i].
@@ -325,7 +325,7 @@ $lang['g003_select_page_help'] = 'Solo i metadati qui selezionati sono disponibi
 La selezione è immediatamente prese in considerazione (non è necessario confermarla).';
 
 
-$lang['g003_display_page_help'] = 'I metadati visualizzati con la foto possono essere ordinati e raggruppati.
+$lang['g003_display_page_help'] = "I metadati visualizzati con la foto possono essere ordinati e raggruppati.
 Di default, solo il gruppo [i]".$Lang['g003_default_group_name']."[/i] è disponibile, ma è possibile crearne altri ([i]IPTC[/i], [i]Geolocalizzazione[/i], ...).
 [ul]
 [li]Create dei gruppi di metadati in base alle vostre esigenze[/li]
@@ -333,7 +333,7 @@ Di default, solo il gruppo [i]".$Lang['g003_default_group_name']."[/i] è dispon
 [li]All\'interno di un gruppo, scegliete l\'ordine di visualizzazione dei metadati con il drag and drop[/li]
 [li]Ordinamento dei gruppi di visualizzazione con il drag and drop[/li]
 [/ul]
-Selezioni & ordinamento sono disponibili immediatamente (non è necessario convalidare).';
+Selezioni & ordinamento sono disponibili immediatamente (non è necessario convalidare).";
 
 $lang['g003_gpc_not_up_to_date'] = 'E\' necessario che il plugin <i>Grum Plugin Classes</i> versione %s sia installato.
 Attualmente, la versione %s è installata : siete pregati di procedere con l\'aggiornamento della versione del plugin <i>Grum Plugin Classes</i>.';
