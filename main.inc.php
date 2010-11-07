@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.5.5
+Version: 0.5.6
 Description: An advanced metadata manager
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
 Author: grum@piwigo.org
@@ -178,9 +178,11 @@ Author URI: http://photos.grum.fr/
 | 0.5.5   | 2010-11-02 | * mantis bug:1992
 |         |            |   . On Canon file, debug informations are displayed
 |         |            |
+| 0.5.6   | 2010-11-07 | * mantis bug:2015
+|         |            |   . Can't add a new personnal tag
 |         |            |
-|         |            |
-|         |            |
+|         |            | * mantis bug:2017
+|         |            |   . MySQL 5.1 incompatibility
 |         |            |
 |         |            |
 

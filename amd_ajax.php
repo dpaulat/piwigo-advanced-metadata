@@ -840,10 +840,10 @@
       }
       elseif($selected=='n')
       {
-        $sql="DELETE FROM ".$this->tables['selected_tags']." st
+        $sql="DELETE FROM ".$this->tables['selected_tags']."
                 USING ".$this->tables['used_tags']." ut
-                  LEFT JOIN ".$this->tables['selected_tags']." st
-                    ON ut.tagID = st.tagId
+                  LEFT JOIN ".$this->tables['selected_tags']."
+                    ON ut.tagID = ".$this->tables['selected_tags'].".tagId
                 WHERE ut.numId = $numId;";
         pwg_query($sql);
       }
@@ -1370,7 +1370,7 @@
       {
         // add a new metadata
         $sql="INSERT INTO ".$this->tables['used_tags']."
-              VALUES ('', '".$properties['tagId']."', 'n', '".$properties['name']."', 0, '".$properties['name']."')";
+              VALUES ('', '".$properties['tagId']."', 'n', '".$properties['name']."', 0, '".$properties['name']."', 'n')";
         $result=pwg_query($sql);
         $id=pwg_db_insert_id();
 
