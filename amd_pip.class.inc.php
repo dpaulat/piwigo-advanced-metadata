@@ -112,7 +112,7 @@ class AMD_PIP extends AMD_root
       'list' => array(),
       'values' => array(),
     );
-    $sql="SELECT st.tagId, gn.name as gName, ut.numId, ut.name
+    $sql="(SELECT st.tagId, gn.name as gName, ut.numId, ut.name, 'y' AS displayStatus
           FROM ((".$this->tables['selected_tags']." st
             LEFT JOIN ".$this->tables['groups']." gr
               ON gr.groupId = st.groupId)
@@ -122,7 +122,18 @@ class AMD_PIP extends AMD_root
               ON ut.tagId = st.tagId
           WHERE gn.lang='".$user['language']."'
             AND st.groupId <> -1
-          ORDER BY gr.order, st.order;";
+          ORDER BY gr.order, st.order)
+
+          UNION
+
+          (SELECT DISTINCT ut3.tagId, '', pautd.value, '', 'n'
+          FROM ((".$this->tables['selected_tags']." st2
+            LEFT JOIN ".$this->tables['used_tags']." ut2 ON ut2.tagId = st2.tagId)
+            LEFT JOIN ".$this->tables['user_tags_def']." pautd ON pautd.numId=ut2.numId)
+            LEFT JOIN ".$this->tables['used_tags']." ut3 ON ut3.numId = pautd.value
+          WHERE st2.tagId LIKE 'userDefined.%'
+          AND pautd.type = 'M');";
+
     $result=pwg_query($sql);
     if($result)
     {
@@ -171,7 +182,7 @@ class AMD_PIP extends AMD_root
 
     foreach($tagsList as $key => $tagProperties)
     {
-      $keyExist=array_key_exists($key, $picturesTags);
+      $keyExist=array_key_exists($key, $picturesTags) & ($tagProperties['displayStatus']=='y');
       $userDefined=preg_match('/^userDefined\./i', $key);
 
       if(($group!=$tagProperties['gName']) and

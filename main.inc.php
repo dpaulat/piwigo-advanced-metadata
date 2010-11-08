@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.5.6
+Version: 0.5.7
 Description: An advanced metadata manager
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
 Author: grum@piwigo.org
@@ -183,6 +183,15 @@ Author URI: http://photos.grum.fr/
 |         |            |
 |         |            | * mantis bug:2017
 |         |            |   . MySQL 5.1 incompatibility
+|         |            |
+| 0.5.7   | 2010-11-08 | * mantis bug:2019
+|         |            |   . Personnal metadata are not correct
+|         |            |
+|         |            | * mantis bug:2020
+|         |            |   . Impossible to install plugin id it_IT language is
+|         |            |     activated
+|         |            |
+|         |            |
 |         |            |
 |         |            |
 
