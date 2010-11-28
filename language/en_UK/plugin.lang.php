@@ -324,7 +324,7 @@ The selection is applied immediately (it is not necessary to validate).";
 
 
 $lang['g003_display_page_help']="The metadata posted with the photo can be sorted and grouped.
-By default, only the group [i]".$Lang['g003_default_group_name']."[/i] is available, but it is possible to create as many as necessary ([i]IPTC[/i], [i]Geolocation[/i], ...).
+By default, only the group [i]".$lang['g003_default_group_name']."[/i] is available, but it is possible to create as many as necessary ([i]IPTC[/i], [i]Geolocation[/i], ...).
 [ul]
 [li]Create groups of metadata according to your needs[/li]
 [li]Add the metadata to display[/li]

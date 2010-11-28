@@ -326,7 +326,7 @@ La selezione è immediatamente prese in considerazione (non è necessario confer
 
 
 $lang['g003_display_page_help'] = "I metadati visualizzati con la foto possono essere ordinati e raggruppati.
-Di default, solo il gruppo [i]".$Lang['g003_default_group_name']."[/i] è disponibile, ma è possibile crearne altri ([i]IPTC[/i], [i]Geolocalizzazione[/i], ...).
+Di default, solo il gruppo [i]".$lang['g003_default_group_name']."[/i] è disponibile, ma è possibile crearne altri ([i]IPTC[/i], [i]Geolocalizzazione[/i], ...).
 [ul]
 [li]Create dei gruppi di metadati in base alle vostre esigenze[/li]
 [li]Aggiungeteci i metadati da visualizzare[/li]
