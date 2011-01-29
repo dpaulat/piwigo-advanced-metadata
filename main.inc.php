@@ -188,8 +188,19 @@ Author URI: http://photos.grum.fr/
 |         |            |   . Personnal metadata are not correct
 |         |            |
 |         |            | * mantis bug:2020
-|         |            |   . Impossible to install plugin id it_IT language is
+|         |            |   . Impossible to install plugin if it_IT language is
 |         |            |     activated
+|         |            |
+| 0.5.8   | 2011-01-29 | * add language ru_RU
+|         |            |
+| 0.5.9   | 2011-01-29 | * mantis bug:2141
+|         |            |   . MakerNotes on some Nikon file are not recognized
+|         |            |     and script is terminated with a memory allocation
+|         |            |     error
+|         |            |
+|         |            |
+|         |            |
+|         |            |
 |         |            |
 |         |            |
 |         |            |

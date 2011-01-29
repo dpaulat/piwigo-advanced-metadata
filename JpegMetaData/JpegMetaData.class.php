@@ -109,8 +109,10 @@
  * |         |            | * mantis bug:1978
  * |         |            |   . Some meta names are not translated in french
  * |         |            |
- * | 1.1.4   | 2010-11-02 | * mantis bug:1992
- * |         |            |   . On Canon file, debug informations are displayed
+ * | 1.1.4   | 2011-01-29 | * mantis bug:2141
+ * |         |            |   . MakerNotes on some Nikon file are not recognized
+ * |         |            |     and script is terminated with a memory allocation
+ * |         |            |     error
  * |         |            |
  * |         |            |
  * |         |            |

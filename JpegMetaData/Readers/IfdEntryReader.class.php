@@ -106,22 +106,34 @@
         $this->type  = ConvertData::toUShort(substr($data, 2), $this->byteOrder);
         $this->size  = ConvertData::toULong(substr($data, 4), $this->byteOrder);
 
-        /*
-         * the entry value is stored in 4 bytes
-         * if the entry type size multiplied by the entry size is greater than 4
-         * it means that the entry value is an offset
-         */
-        $numBytes = $this->size * ByteType::$typeSizes[$this->type];
 
-        if($numBytes>4)
+        if(!isset(ByteType::$typeSizes[$this->type]))
         {
-          $this->isOffset = true;
-          $this->extraDataOffset = ConvertData::toULong(substr($data, 8), $this->byteOrder);
-          $this->tag->setValue($this->extractExtraData(new Data($segmentData->readASCII($this->size*ByteType::$typeSizes[$this->type], $this->extraDataOffset - $segmentDataOffset), $this->byteOrder), $this->byteOrder));
+          /*
+           * invalid IFD marker type ?
+           * process it as dummy
+           */
+          $this->tag->setValue(0);
         }
         else
         {
-          $this->tag->setValue($this->extractExtraData(new Data(substr($data,8), $this->byteOrder)));
+          /*
+           * the entry value is stored in 4 bytes
+           * if the entry type size multiplied by the entry size is greater than 4
+           * it means that the entry value is an offset
+           */
+          $numBytes = $this->size * ByteType::$typeSizes[$this->type];
+
+          if($numBytes>4)
+          {
+            $this->isOffset = true;
+            $this->extraDataOffset = ConvertData::toULong(substr($data, 8), $this->byteOrder);
+            $this->tag->setValue($this->extractExtraData(new Data($segmentData->readASCII($this->size*ByteType::$typeSizes[$this->type], $this->extraDataOffset - $segmentDataOffset), $this->byteOrder), $this->byteOrder));
+          }
+          else
+          {
+            $this->tag->setValue($this->extractExtraData(new Data(substr($data,8), $this->byteOrder)));
+          }
         }
 
         switch($this->type)
