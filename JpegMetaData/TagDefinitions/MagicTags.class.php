@@ -232,7 +232,7 @@
         'tagValues' => Array(
           "{xmp.dc:creator[values]}",
           "{exif.tiff.Artist}",
-          "{iptc.Writer/Editor}",
+          "{iptc.Writer/Editor[values]}",
         )
       ),
 
