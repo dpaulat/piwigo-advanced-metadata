@@ -1,6 +1,6 @@
-{known_script id="jquery.ui" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.core.packed.js"}
-{known_script id="jquery.ui.dialog" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.dialog.packed.js"}
-{known_script id="tagListSelector" src=$ROOT_URL|@cat:"plugins/AMetaData/js/tagListSelector.js"}
+{combine_script id="jquery.ui" path="themes/default/js/ui/minified/jquery.ui.core.min.js"}
+{combine_script id="jquery.ui.dialog" path="themes/default/js/ui/minified/jquery.ui.dialog.min.js"}
+{combine_script id="tagListSelector" path="plugins/AMetaData/js/tagListSelector.js"}
 
 {literal}
 <style type='text/css'>

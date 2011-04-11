@@ -1,5 +1,5 @@
-{known_script id="jquery.ui" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.core.packed.js"}
-{known_script id="jquery.ui.dialog" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.dialog.packed.js"}
+{combine_script id="jquery.ui" path=$ROOT_URL|@cat:"themes/default/js/ui/minified/jquery.ui.core.min.js"}
+{combine_script id="jquery.ui.dialog" path=$ROOT_URL|@cat:"themes/default/js/ui/minified/jquery.ui.dialog.min.js"}
 
 {literal}
 <script type="text/javascript">

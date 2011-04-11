@@ -37,8 +37,8 @@ $gpcInstalled=false;
 if(file_exists(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php'))
 {
   @include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php');
-  // need GPC release greater or equal than 3.2.0
-  if(CommonPlugin::checkGPCRelease(3,2,0))
+  // need GPC release greater or equal than AMD_GPC_NEEDED
+  if(CommonPlugin::checkGPCRelease(AMD_GPC_NEEDED))
   {
     @include_once("amd_install.class.inc.php");
     $gpcInstalled=true;

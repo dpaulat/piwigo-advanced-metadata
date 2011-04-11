@@ -1,9 +1,9 @@
-{known_script id="jquery.ui" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.core.packed.js"}
-{known_script id="jquery.ui.dialog" src=$ROOT_URL|@cat:"themes/default/js/ui/packed/ui.dialog.packed.js"}
+{combine_script id="jquery.ui" path="themes/default/js/ui/minified/jquery.ui.core.min.js"}
+{combine_script id="jquery.ui.dialog" path="themes/default/js/ui/minified/jquery.ui.dialog.min.js"}
 
-{known_script id="gpc.external.interface" src=$ROOT_URL|@cat:"plugins/GrumPluginClasses/js/external/interface/interface.js"}
-{known_script id="gpc.external.inestedsortable" src=$ROOT_URL|@cat:"plugins/GrumPluginClasses/js/external/inestedsortable.pack.js"}
-{known_script id="tagListSelector" src=$ROOT_URL|@cat:"plugins/AMetaData/js/tagListSelector.js"}
+{combine_script id="gpc.external.interface" path="plugins/GrumPluginClasses/js/external/interface/interface.js" require="jquery.ui"}
+{combine_script id="gpc.external.inestedsortable" path="plugins/GrumPluginClasses/js/external/inestedsortable.pack.js" require="gpc.external.interface"}
+{combine_script id="tagListSelector" path="plugins/AMetaData/js/tagListSelector.js" require="jquery"}
 
 
 {literal}

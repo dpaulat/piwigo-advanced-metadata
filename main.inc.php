@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.5.9
+Version: 0.6.0
 Description: An advanced metadata manager
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
 Author: grum@piwigo.org
@@ -201,8 +201,8 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis bug:2191
 |         |            |   . Array to strong conversion message on MagicTag "Author"
 |         |            |
-|         |            |
-|         |            |
+| 0.6.0   | 2011-04-11 | * mantis bug:2143
+|         |            |   . compatibility with piwigo 2.2
 |         |            |
 |         |            |
 
