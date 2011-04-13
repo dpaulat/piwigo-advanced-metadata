@@ -25,7 +25,7 @@ include_once('amd_root.class.inc.php');
 
 class AMD_AIM extends AMD_root
 {
-  function AMD_AIM($prefixeTable, $filelocation)
+  function __construct($prefixeTable, $filelocation)
   {
     parent::__construct($prefixeTable, $filelocation);
   }
