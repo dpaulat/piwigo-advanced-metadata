@@ -493,7 +493,7 @@
            *
            */
 
-          $value=1/pow(2, $values[0]/$values[1]);
+          $value=($values[0]<=0)?0:1/pow(2, $values[0]/$values[1]);
           if($value>1)
           {
             $value=round($value,2);

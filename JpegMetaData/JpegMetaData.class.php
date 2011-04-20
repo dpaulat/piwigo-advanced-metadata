@@ -114,6 +114,8 @@
  * |         |            |     and script is terminated with a memory allocation
  * |         |            |     error
  * |         |            |
+ * | 1.1.5   | 2011-04-20 | * mantis bug:2222
+ * |         |            |   . Division by zero with Exif ShutterSpeedValue
  * |         |            |
  * |         |            |
  * |         |            |

@@ -204,6 +204,10 @@ Author URI: http://photos.grum.fr/
 | 0.6.0   | 2011-04-11 | * mantis bug:2143
 |         |            |   . compatibility with piwigo 2.2
 |         |            |
+|         |            | * mantis bug:2222
+|         |            |   . Division by zero with Exif ShutterSpeedValue
+|         |            |
+|         |            |
 |         |            |
 
 
