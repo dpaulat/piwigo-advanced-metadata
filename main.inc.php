@@ -210,6 +210,9 @@ Author URI: http://photos.grum.fr/
 | 0.6.1   | 2011-09-25 | * mantis bug:2028
 |         |            |   . Use of deprecated function
 |         |            |
+|         |            | * mantis bug:2272
+|         |            |   . Incompatibility with IE
+|         |            |
 |         |            |
 |         |            |
 |         |            |

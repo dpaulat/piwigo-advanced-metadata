@@ -357,7 +357,7 @@ dialogChooseMetadataBox = function()
    */
   var setCBuilderItem = function(id)
   {
-    content="<div>";
+    var content="<div>";
 
     if(dialogOptions.values.listValues.length>1 && dialogOptions.values.conditionIf=='=')
     {
