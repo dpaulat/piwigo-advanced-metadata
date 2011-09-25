@@ -207,6 +207,16 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis bug:2222
 |         |            |   . Division by zero with Exif ShutterSpeedValue
 |         |            |
+| 0.6.1   | 2011-09-25 | * mantis bug:2028
+|         |            |   . Use of deprecated function
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
 |         |            |
 |         |            |
 

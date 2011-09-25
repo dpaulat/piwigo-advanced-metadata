@@ -16,7 +16,7 @@
 
   if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
-  define('AMD_VERSION',  '0.6.0');
-  define('AMD_VERSION2', '00.06.00');
-  define('AMD_GPC_NEEDED', '3.5.1');
+  define('AMD_VERSION',  '0.6.1');
+  define('AMD_VERSION2', '00.06.01');
+  define('AMD_GPC_NEEDED', '3.5.2');
 ?>

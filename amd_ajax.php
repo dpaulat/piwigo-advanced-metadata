@@ -1554,18 +1554,18 @@
                 $list=explode($this->tagSeparators[$row['tagId']], $val);
                 foreach($list as $subTag)
                 {
-                  $keywordsList[]="('".mysql_escape_string(trim($subTag))."', ".$row['imageId'].")";
+                  $keywordsList[]="('".pwg_db_real_escape_string(trim($subTag))."', ".$row['imageId'].")";
                 }
               }
               else
               {
-                $keywordsList[]="('".mysql_escape_string($val)."', ".$row['imageId'].")";
+                $keywordsList[]="('".pwg_db_real_escape_string($val)."', ".$row['imageId'].")";
               }
             }
           }
           else
           {
-            $keywordsList[]="('".mysql_escape_string($row['value'])."', ".$row['imageId'].")";
+            $keywordsList[]="('".pwg_db_real_escape_string($row['value'])."', ".$row['imageId'].")";
           }
         }
 
@@ -1659,18 +1659,18 @@
                 $list=explode($this->tagSeparators[$row['tagId']], $val);
                 foreach($list as $subTag)
                 {
-                  $keywordsList[]="('".mysql_escape_string(trim($subTag))."', ".$row['imageId'].")";
+                  $keywordsList[]="('".pwg_db_real_escape_string(trim($subTag))."', ".$row['imageId'].")";
                 }
               }
               else
               {
-                $keywordsList[]="('".mysql_escape_string($val)."', ".$row['imageId'].")";
+                $keywordsList[]="('".pwg_db_real_escape_string($val)."', ".$row['imageId'].")";
               }
             }
           }
           else
           {
-            $keywordsList[]="('".mysql_escape_string($row['value'])."', ".$row['imageId'].")";
+            $keywordsList[]="('".pwg_db_real_escape_string($row['value'])."', ".$row['imageId'].")";
           }
         }
         $sql="CREATE TEMPORARY TABLE amd_temp_tags (
@@ -1686,7 +1686,7 @@
           {
             foreach($keywords as $key => $val)
             {
-              $keywords[$key]="(att.value LIKE '".mysql_escape_string($val)."')";
+              $keywords[$key]="(att.value LIKE '".pwg_db_real_escape_string($val)."')";
             }
             /*
              * 2/ join temp table with piwigo tags table, found the keywords
@@ -1702,7 +1702,7 @@
               $sql=array();
               while($row=pwg_db_fetch_assoc($result))
               {
-                $sql[]="('', '".mysql_escape_string($row['value'])."', '".mysql_escape_string(str2url($row['value']))."')";
+                $sql[]="('', '".pwg_db_real_escape_string($row['value'])."', '".pwg_db_real_escape_string(str2url($row['value']))."')";
               }
               if(count($sql)>0)
               {
