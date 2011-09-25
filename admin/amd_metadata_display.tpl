@@ -24,7 +24,7 @@
         tolerance:'intersect',
         start: function (event, ui)
           {
-            manageGroup(event.originalTarget.id.substr(8), 'n');
+            manageGroup(event.originalEvent.target.id.substr(8), 'n');
           },
         update: function (event, ui)
           {
@@ -36,7 +36,7 @@
                   list+=this.id.substr(8);
                 }
               );
-            list=list.substr(0, list.lastIndexOf(';'));
+
             $.ajax(
               {
                 type: "POST",
@@ -76,7 +76,7 @@
                   list+=this.id.substr(this.id.indexOf('t')+1);
                 }
               );
-            //list=list.substr(0, list.lastIndexOf(';'));
+
             $.ajax(
               {
                 type: "POST",

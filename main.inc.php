@@ -216,9 +216,9 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis bug:2438
 |         |            |   . order defined for metadata is not applied
 |         |            |
-|         |            |
-|         |            |
-|         |            |
+|         |            | * mantis bug:2030
+|         |            |   . metadata tabs are messed up when adding certain
+|         |            |     of xmp:dc tags
 |         |            |
 |         |            |
 |         |            |
