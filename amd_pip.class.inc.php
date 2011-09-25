@@ -112,7 +112,7 @@ class AMD_PIP extends AMD_root
       'list' => array(),
       'values' => array(),
     );
-    $sql="(SELECT st.tagId, gn.name as gName, ut.numId, ut.name, 'y' AS displayStatus, st.order AS tOrder, gr.order as gOrder
+    $sql="(SELECT st.tagId, gn.name as gName, ut.numId, ut.name, 'y' AS displayStatus, st.order AS tOrder, gr.order as gOrder, gr.groupId
           FROM ((".$this->tables['selected_tags']." st
             LEFT JOIN ".$this->tables['groups']." gr
               ON gr.groupId = st.groupId)
@@ -125,7 +125,7 @@ class AMD_PIP extends AMD_root
 
           UNION
 
-          (SELECT DISTINCT ut3.tagId, '', pautd.value, '', 'n', -1, -1
+          (SELECT DISTINCT ut3.tagId, '', pautd.value, '', 'n', -1, -1, -1
           FROM ((".$this->tables['selected_tags']." st2
             LEFT JOIN ".$this->tables['used_tags']." ut2 ON ut2.tagId = st2.tagId)
             LEFT JOIN ".$this->tables['user_tags_def']." pautd ON pautd.numId=ut2.numId)
@@ -138,8 +138,37 @@ class AMD_PIP extends AMD_root
     $result=pwg_query($sql);
     if($result)
     {
+      $numMD=0;
+
       while($row=pwg_db_fetch_assoc($result))
       {
+        if(trim($row['gName'])=='')
+        {
+          $sql2="SELECT gn0.name
+                 FROM ".$this->tables['groups_names']." gn0
+                 WHERE gn0.lang='en_UK' AND gn0.name <> '' AND groupId=".$row['groupId']."
+
+                 UNION
+
+                 SELECT gn0.name
+                 FROM ".$this->tables['groups_names']." gn0
+                 WHERE gn0.lang<>'".$user['language']."' AND gn0.name <> ''  AND groupId=".$row['groupId']."
+
+                 LIMIT 0,1;";
+          $result2=pwg_query($sql2);
+          if($result2)
+          {
+            $row2=pwg_db_fetch_assoc($result2);
+            if($row2['name']!='') $row['gName']=$row2['name'];
+          }
+        }
+
+        if($row['gName']=='')
+        {
+          $row['gName']='Metadatas #'.$numMD;
+          $numMD++;
+        }
+
         $tagsList[$row['tagId']]=$row;
         if(preg_match('/^userDefined\./i', $row['tagId']))
         {

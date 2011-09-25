@@ -220,6 +220,11 @@ Author URI: http://photos.grum.fr/
 |         |            |   . metadata tabs are messed up when adding certain
 |         |            |     of xmp:dc tags
 |         |            |
+|         |            | * mantis bug:2029
+|         |            |   . metadata tab is hidden when a tab name is not
+|         |            |     specified for certain language
+|         |            |
+|         |            |
 |         |            |
 |         |            |
 
