@@ -112,7 +112,7 @@ class AMD_PIP extends AMD_root
       'list' => array(),
       'values' => array(),
     );
-    $sql="(SELECT st.tagId, gn.name as gName, ut.numId, ut.name, 'y' AS displayStatus
+    $sql="(SELECT st.tagId, gn.name as gName, ut.numId, ut.name, 'y' AS displayStatus, st.order AS tOrder, gr.order as gOrder
           FROM ((".$this->tables['selected_tags']." st
             LEFT JOIN ".$this->tables['groups']." gr
               ON gr.groupId = st.groupId)
@@ -121,18 +121,19 @@ class AMD_PIP extends AMD_root
             LEFT JOIN ".$this->tables['used_tags']." ut
               ON ut.tagId = st.tagId
           WHERE gn.lang='".$user['language']."'
-            AND st.groupId <> -1
-          ORDER BY gr.order, st.order)
+            AND st.groupId <> -1)
 
           UNION
 
-          (SELECT DISTINCT ut3.tagId, '', pautd.value, '', 'n'
+          (SELECT DISTINCT ut3.tagId, '', pautd.value, '', 'n', -1, -1
           FROM ((".$this->tables['selected_tags']." st2
             LEFT JOIN ".$this->tables['used_tags']." ut2 ON ut2.tagId = st2.tagId)
             LEFT JOIN ".$this->tables['user_tags_def']." pautd ON pautd.numId=ut2.numId)
             LEFT JOIN ".$this->tables['used_tags']." ut3 ON ut3.numId = pautd.value
           WHERE st2.tagId LIKE 'userDefined.%'
-          AND pautd.type = 'M');";
+          AND pautd.type = 'M')
+
+          ORDER BY gOrder, tOrder;";
 
     $result=pwg_query($sql);
     if($result)

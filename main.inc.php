@@ -213,8 +213,8 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis bug:2272
 |         |            |   . Incompatibility with IE
 |         |            |
-|         |            |
-|         |            |
+|         |            | * mantis bug:2438
+|         |            |   . order defined for metadata is not applied
 |         |            |
 |         |            |
 |         |            |

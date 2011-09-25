@@ -76,7 +76,7 @@
                   list+=this.id.substr(this.id.indexOf('t')+1);
                 }
               );
-            list=list.substr(0, list.lastIndexOf(';'));
+            //list=list.substr(0, list.lastIndexOf(';'));
             $.ajax(
               {
                 type: "POST",
