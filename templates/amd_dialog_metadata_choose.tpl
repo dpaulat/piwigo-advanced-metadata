@@ -190,7 +190,7 @@ dialogChooseMetadataBox = function()
   {
     text="<li class='valueItems gcBgPage' id='iDMCListValues_"+dialogOptions.numValues+"' value='"+value+"'>";
     text+="<span>"+value+"</span>";
-    text+="<img id='iDMCListValues_Delete"+dialogOptions.numValues+"' {/literal}src='{$themeconf.admin_icon_dir}/delete.png' class='button pointer' alt='{"g003_delete"|@translate}' title='{"g003_delete"|@translate}' style='float:right;' {literal}/></li>";
+    text+="<div id='iDMCListValues_Delete"+dialogOptions.numValues+"' class='button pointer iconDelete'  style='float:right;'/></li>";
     $('#iDMCListValues').append(text);
 
     $('#iDMCListValues_Delete'+dialogOptions.numValues).bind('click',
