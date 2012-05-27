@@ -454,7 +454,7 @@
       if($imageId==0)
       {
         // get a randomly picture...
-        $sql="SELECT pai.imageId, pi.path, pi.has_high
+        $sql="SELECT pai.imageId, pi.path
               FROM ".$this->tables['images']." pai
                 LEFT JOIN ".IMAGES_TABLE." pi ON pai.imageId=pi.id
               WHERE analyzed='n'
@@ -474,14 +474,7 @@
         while($row=pwg_db_fetch_assoc($result))
         {
           $imageId=$row['imageId'];
-          if($row['has_high']==='true' and $this->config['amd_UseMetaFromHD']=='y')
-          {
-            $filename=$path."/".dirname($row['path'])."/pwg_high/".basename($row['path']);
-          }
-          else
-          {
-            $filename=$path."/".$row['path'];
-          }
+          $filename=$path."/".$row['path'];
         }
 
         $this->analyzeImageFile($filename, $imageId);
@@ -608,7 +601,7 @@
         // $path = path of piwigo's on the server filesystem
         $path=dirname(dirname(dirname(__FILE__)));
 
-        $sql="SELECT id, path, has_high FROM ".IMAGES_TABLE." WHERE id IN (".implode(", ", $list).")";
+        $sql="SELECT id, path FROM ".IMAGES_TABLE." WHERE id IN (".implode(", ", $list).")";
         $result=pwg_query($sql);
         if($result)
         {
@@ -626,14 +619,7 @@
             //echo "analyzing:".$row['id']."\n";
             //$mem1=memory_get_usage();
             //echo "memory before analyze:".$mem1."\n";
-            if($row['has_high']==='true' and $this->config['amd_UseMetaFromHD']=='y')
-            {
-              $returned.=$this->analyzeImageFile($path."/".dirname($row['path'])."/pwg_high/".basename($row['path']), $row['id']);
-            }
-            else
-            {
-              $returned.=$this->analyzeImageFile($path."/".$row['path'], $row['id']);
-            }
+            $returned.=$this->analyzeImageFile($path."/".$row['path'], $row['id']);
             //echo $returned."\n";
             //$mem2=memory_get_usage();
             //echo "memory after analyze:".$mem2." (".($mem2-$mem1).")\n";

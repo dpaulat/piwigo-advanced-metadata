@@ -85,7 +85,6 @@ class AMD_root extends CommonPlugin
       'amd_AllPicturesAreAnalyzed' => "n",
       'amd_FillDataBaseContinuously' => "y",
       'amd_FillDataBaseIgnoreSchemas' => array(),
-      'amd_UseMetaFromHD' => "y",
       'amd_InterfaceMode' => "advanced",    // 'advanced' or 'basic'
 
       // theses options can be set manually
@@ -181,7 +180,7 @@ class AMD_root extends CommonPlugin
    */
   public function doRandomAnalyze()
   {
-    $sql="SELECT tai.imageId, ti.path, ti.has_high FROM ".$this->tables['images']." tai
+    $sql="SELECT tai.imageId, ti.path FROM ".$this->tables['images']." tai
             LEFT JOIN ".IMAGES_TABLE." ti ON tai.imageId = ti.id
           WHERE tai.analyzed = 'n'
           ORDER BY RAND() LIMIT 1;";
@@ -193,14 +192,7 @@ class AMD_root extends CommonPlugin
 
       while($row=pwg_db_fetch_assoc($result))
       {
-        if($row['has_high']==='true' and $this->config['amd_UseMetaFromHD']=='y')
-        {
-          $this->analyzeImageFile($path."/".dirname($row['path'])."/pwg_high/".basename($row['path']), $row['imageId']);
-        }
-        else
-        {
-          $this->analyzeImageFile($path."/".$row['path'], $row['imageId']);
-        }
+        $this->analyzeImageFile($path."/".$row['path'], $row['imageId']);
       }
 
       $this->makeStatsConsolidation();

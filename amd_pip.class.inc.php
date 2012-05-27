@@ -66,25 +66,18 @@ class AMD_PIP extends AMD_root
     $filename="";
     $this->pictureProperties['id']=$page['image_id'];
 
-    $sql="SELECT ti.path, tai.analyzed, ti.has_high FROM ".IMAGES_TABLE." ti
+    $sql="SELECT ti.path, tai.analyzed FROM ".IMAGES_TABLE." ti
             LEFT JOIN ".$this->tables['images']." tai ON tai.imageId = ti.id
           WHERE ti.id=".$page['image_id'].";";
     $result=pwg_query($sql);
     if($result)
     {
-      $hasHigh='';
       while($row=pwg_db_fetch_assoc($result))
       {
         $filename=$row['path'];
-        $hasHigh=$row['has_high'];
         $this->pictureProperties['analyzed']=$row['analyzed'];
       }
       $filename=$path."/".$filename;
-
-      if($hasHigh==='true' and $this->config['amd_UseMetaFromHD']=='y')
-      {
-        $filename=dirname($filename)."/pwg_high/".basename($filename);
-      }
     }
 
 
@@ -219,15 +212,13 @@ class AMD_PIP extends AMD_root
          ( $keyExist or $userDefined) )
       {
         $group=$tagProperties['gName'];
-        if(!is_null($md))
+        if(!isset($metadata[$group]))
         {
-          $metadata[]=$md;
-          unset($md);
+          $metadata[$group]=Array(
+                              'TITLE' => $tagProperties['gName'],
+                              'lines' => Array()
+                            );
         }
-        $md=Array(
-          'TITLE' => $tagProperties['gName'],
-          'lines' => Array()
-        );
       }
 
       if($keyExist)
@@ -248,18 +239,13 @@ class AMD_PIP extends AMD_root
 
         if($value!="")
         {
-          $md['lines'][L10n::get($picturesTags[$key]->getName())]=AMD_root::prepareValueForDisplay($value, $picturesTags[$key]->isTranslatable());
+          $metadata[$group]['lines'][L10n::get($picturesTags[$key]->getName())]=AMD_root::prepareValueForDisplay($value, $picturesTags[$key]->isTranslatable());
         }
       }
       elseif($userDefined and isset($userDefinedValues[$tagProperties['numId']]) and $userDefinedValues[$tagProperties['numId']]!='')
       {
-        $md['lines'][$tagProperties['name']]=$userDefinedValues[$tagProperties['numId']];
+        $metadata[$group]['lines'][$tagProperties['name']]=$userDefinedValues[$tagProperties['numId']];
       }
-    }
-
-    if(!is_null($md) and count($md['lines'])>0)
-    {
-      $metadata[]=$md;
     }
 
     $template->assign('metadata', $metadata);

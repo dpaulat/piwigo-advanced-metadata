@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.6.0
+Version: 0.7.0
 Description: An advanced metadata manager
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
 Author: grum@piwigo.org
@@ -223,6 +223,14 @@ Author URI: http://photos.grum.fr/
 |         |            | * mantis bug:2029
 |         |            |   . metadata tab is hidden when a tab name is not
 |         |            |     specified for certain language
+|         |            |
+| 0.7.0   | 2012-05-25 | * mantis feature:2637
+|         |            |   . Compatibility with piwigo 2.4
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
 |         |            |
 |         |            |
 |         |            |

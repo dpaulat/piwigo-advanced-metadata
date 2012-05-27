@@ -52,28 +52,28 @@ class AMD_AIP extends AMD_root
     {
       $this->tabsheet->add('metadata',
                             l10n('g003_metadata'),
-                            $this->getAdminLink().'&amp;fAMD_tabsheet=metadata');
+                            $this->getAdminLink().'-metadata');
       $this->tabsheet->add('help',
                             l10n('g003_help'),
-                            $this->getAdminLink().'&amp;fAMD_tabsheet=help');
+                            $this->getAdminLink().'-help');
     }
     else
     {
       $this->tabsheet->add('database',
                             l10n('g003_database'),
-                            $this->getAdminLink().'&amp;fAMD_tabsheet=database');
+                            $this->getAdminLink().'-database');
       $this->tabsheet->add('metadata',
                             l10n('g003_metadata'),
-                            $this->getAdminLink().'&amp;fAMD_tabsheet=metadata');
+                            $this->getAdminLink().'-metadata');
       $this->tabsheet->add('search',
                             l10n('g003_search'),
-                            $this->getAdminLink().'&amp;fAMD_tabsheet=search');
+                            $this->getAdminLink().'-search');
       $this->tabsheet->add('tags',
                             l10n('g003_tags'),
-                            $this->getAdminLink().'&amp;fAMD_tabsheet=tags');
+                            $this->getAdminLink().'-tags');
       $this->tabsheet->add('help',
                             l10n('g003_help'),
-                            $this->getAdminLink().'&amp;fAMD_tabsheet=help');
+                            $this->getAdminLink().'-help');
     }
   }
 
@@ -103,32 +103,32 @@ class AMD_AIP extends AMD_root
 
     $template->set_filename('plugin_admin_content', dirname(__FILE__)."/admin/amd_admin.tpl");
 
-    $this->tabsheet->select($_REQUEST['fAMD_tabsheet']);
+    $this->tabsheet->select($_GET['tab']);
     $this->tabsheet->assign();
     $selected_tab=$this->tabsheet->get_selected();
     $template->assign($this->tabsheet->get_titlename(), "[".$selected_tab['caption']."]");
 
     $pluginInfo=array(
       'AMD_VERSION' => "<i>".$this->getPluginName()."</i> ".l10n('g003_version').AMD_VERSION,
-      'AMD_PAGE' => $_REQUEST['fAMD_tabsheet'],
+      'AMD_PAGE' => $_GET['tab'],
       'PATH' => AMD_PATH
     );
 
     $template->assign('plugin', $pluginInfo);
 
-    switch($_REQUEST['fAMD_tabsheet'])
+    switch($_GET['tab'])
     {
       case 'help':
         $this->displayHelp();
         break;
       case 'database':
-        $this->displayDatabase($_REQUEST['fAMD_page']);
+        $this->displayDatabase($_REQUEST['t']);
         break;
       case 'metadata':
-        $this->displayMetaData($_REQUEST['fAMD_page']);
+        $this->displayMetaData($_REQUEST['t']);
         break;
       case 'search':
-        $this->displaySearch($_REQUEST['fAMD_page']);
+        $this->displaySearch($_REQUEST['t']);
         break;
       case 'tags':
         $this->displayTags();
@@ -145,7 +145,7 @@ class AMD_AIP extends AMD_root
    */
   public function initEvents()
   {
-    if(isset($_REQUEST['fAMD_tabsheet']) and $_REQUEST['fAMD_tabsheet']=='search')
+    if(isset($_GET['tab']) and $_GET['tab']=='search')
     {
       // load request builder JS only on the search page
       GPCRequestBuilder::loadJSandCSS();
@@ -171,71 +171,76 @@ class AMD_AIP extends AMD_root
   {
     //initialise $REQUEST values if not defined
 
-    if(!isset($_REQUEST['fAMD_tabsheet']))
+    if(!isset($_GET['tab']))
     {
       if($this->getNumOfPictures()==0 and $this->config['amd_InterfaceMode']=='advanced')
       {
-        $_REQUEST['fAMD_tabsheet']="database";
-        $_REQUEST['fAMD_page']="state";
+        $_GET['tab']="database";
+        $_REQUEST['t']="state";
       }
       else
       {
-        $_REQUEST['fAMD_tabsheet']="metadata";
-        $_REQUEST['fAMD_page']="select";
+        $_GET['tab']="metadata";
+        $_REQUEST['t']="select";
       }
     }
 
-    if(!($_REQUEST['fAMD_tabsheet']=="metadata" or
-         $_REQUEST['fAMD_tabsheet']=="help" or
-         $_REQUEST['fAMD_tabsheet']=="database" or
-         $_REQUEST['fAMD_tabsheet']=="search" or
-         $_REQUEST['fAMD_tabsheet']=="tags")
+    $tmp=explode('/', $_GET['tab'].'/');
+    $_GET['tab']=$tmp[0];
+    $_REQUEST['t']=$tmp[1];
+
+
+    if(!($_GET['tab']=="metadata" or
+         $_GET['tab']=="help" or
+         $_GET['tab']=="database" or
+         $_GET['tab']=="search" or
+         $_GET['tab']=="tags")
          or
          $this->config['amd_InterfaceMode']=='basic' and
          (
-           $_REQUEST['fAMD_tabsheet']=="database" or
-           $_REQUEST['fAMD_tabsheet']=="search" or
-           $_REQUEST['fAMD_tabsheet']=="tags"
+           $_GET['tab']=="database" or
+           $_GET['tab']=="search" or
+           $_GET['tab']=="tags"
          )
       )
     {
-      $_REQUEST['fAMD_tabsheet']="metadata";
+      $_GET['tab']="metadata";
     }
 
     /*
      * metadata tabsheet
      */
-    if($_REQUEST['fAMD_tabsheet']=="metadata")
+    if($_GET['tab']=="metadata")
     {
-      if(!isset($_REQUEST['fAMD_page']))
+      if(!isset($_REQUEST['t']))
       {
         if($this->config['amd_InterfaceMode']=='basic')
         {
-          $_REQUEST['fAMD_page']="display";
+          $_REQUEST['t']="display";
         }
         else
         {
-          $_REQUEST['fAMD_page']="select";
+          $_REQUEST['t']="select";
         }
       }
 
-      if(!($_REQUEST['fAMD_page']=="personnal" or
-           $_REQUEST['fAMD_page']=="select" or
-           $_REQUEST['fAMD_page']=="display")
+      if(!($_REQUEST['t']=="personnal" or
+           $_REQUEST['t']=="select" or
+           $_REQUEST['t']=="display")
            or
            $this->config['amd_InterfaceMode']=='basic' and
            (
-             $_REQUEST['fAMD_page']=="select"
+             $_REQUEST['t']=="select"
            )
         )
       {
         if($this->config['amd_InterfaceMode']=='basic')
         {
-          $_REQUEST['fAMD_page']="display";
+          $_REQUEST['t']="display";
         }
         else
         {
-          $_REQUEST['fAMD_page']="select";
+          $_REQUEST['t']="select";
         }
       }
     }
@@ -243,36 +248,36 @@ class AMD_AIP extends AMD_root
     /*
      * help tabsheet
      */
-    if($_REQUEST['fAMD_tabsheet']=="help")
+    if($_GET['tab']=="help")
     {
-      if(!isset($_REQUEST['fAMD_page'])) $_REQUEST['fAMD_page']="exif";
+      if(!isset($_REQUEST['t'])) $_REQUEST['t']="exif";
 
-      if(!($_REQUEST['fAMD_page']=="exif" or
-           $_REQUEST['fAMD_page']=="iptc" or
-           $_REQUEST['fAMD_page']=="xmp" or
-           $_REQUEST['fAMD_page']=="magic")) $_REQUEST['fAMD_page']="exif";
+      if(!($_REQUEST['t']=="exif" or
+           $_REQUEST['t']=="iptc" or
+           $_REQUEST['t']=="xmp" or
+           $_REQUEST['t']=="magic")) $_REQUEST['t']="exif";
     }
 
     /*
      * search tabsheet
      */
-    if($_REQUEST['fAMD_tabsheet']=="search")
+    if($_GET['tab']=="search")
     {
-      if(!isset($_REQUEST['fAMD_page'])) $_REQUEST['fAMD_page']="search";
+      if(!isset($_REQUEST['t'])) $_REQUEST['t']="search";
 
-      if(!($_REQUEST['fAMD_page']=="config" or
-           $_REQUEST['fAMD_page']=="search")) $_REQUEST['fAMD_page']="search";
+      if(!($_REQUEST['t']=="config" or
+           $_REQUEST['t']=="search")) $_REQUEST['t']="search";
     }
 
     /*
      * database tabsheet
      */
-    if($_REQUEST['fAMD_tabsheet']=="database")
+    if($_GET['tab']=="database")
     {
-      if(!isset($_REQUEST['fAMD_page'])) $_REQUEST['fAMD_page']="state";
+      if(!isset($_REQUEST['t'])) $_REQUEST['t']="state";
 
-      if(!($_REQUEST['fAMD_page']=="state" or
-           $_REQUEST['fAMD_page']=="update")) $_REQUEST['fAMD_page']="state";
+      if(!($_REQUEST['t']=="state" or
+           $_REQUEST['t']=="update")) $_REQUEST['t']="state";
     }
 
 
@@ -334,16 +339,16 @@ class AMD_AIP extends AMD_root
     $statTabsheet->select($tab);
     $statTabsheet->add('personnal',
                           l10n('g003_personnal'),
-                          $this->getAdminLink().'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=personnal');
+                          $this->getAdminLink().'-metadata/personnal');
     if($this->config['amd_InterfaceMode']=='advanced')
     {
       $statTabsheet->add('select',
                             l10n('g003_select'),
-                            $this->getAdminLink().'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=select');
+                            $this->getAdminLink().'-metadata/select');
     }
     $statTabsheet->add('display',
                           l10n('g003_display'),
-                          $this->getAdminLink().'&amp;fAMD_tabsheet=metadata&amp;fAMD_page=display');
+                          $this->getAdminLink().'-metadata/display');
     $statTabsheet->assign();
 
     switch($tab)
@@ -525,10 +530,10 @@ class AMD_AIP extends AMD_root
     $statTabsheet->select($tab);
     $statTabsheet->add('state',
                           l10n('g003_state'),
-                          $this->getAdminLink().'&amp;fAMD_tabsheet=database&amp;fAMD_page=state');
+                          $this->getAdminLink().'-database/state');
     $statTabsheet->add('update',
                           l10n('g003_update'),
-                          $this->getAdminLink().'&amp;fAMD_tabsheet=database&amp;fAMD_page=update');
+                          $this->getAdminLink().'-database/update');
     $statTabsheet->assign();
 
     switch($tab)

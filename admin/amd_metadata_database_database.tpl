@@ -1,5 +1,3 @@
-{combine_script id="jquery.ui" path=$ROOT_URL|@cat:"themes/default/js/ui/minified/jquery.ui.core.min.js"}
-{combine_script id="jquery.ui.dialog" path=$ROOT_URL|@cat:"themes/default/js/ui/minified/jquery.ui.dialog.min.js"}
 
 {literal}
 <script type="text/javascript">
@@ -102,7 +100,7 @@ var processAnalyze = {
       {
         resizable: false,
         width:480,
-        height:120,
+        height:150,
         modal: true,
         draggable:true,
         dialogClass: 'gcBgTabSheet gcBorder',
@@ -193,7 +191,7 @@ var processAnalyze = {
         {
           resizable: false,
           width:480,
-          height:120,
+          height:150,
           modal: true,
           draggable:true,
           dialogClass: 'gcBgTabSheet gcBorder',

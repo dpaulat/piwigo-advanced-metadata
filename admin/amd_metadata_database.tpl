@@ -1,5 +1,7 @@
+{*
 {combine_script id="jquery.ui" path="themes/default/js/ui/minified/jquery.ui.core.min.js"}
 {combine_script id="jquery.ui.dialog" path="themes/default/js/ui/minified/jquery.ui.dialog.min.js"}
+*}
 
 {literal}
 <script type="text/javascript">

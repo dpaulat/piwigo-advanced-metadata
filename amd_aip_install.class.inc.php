@@ -40,7 +40,7 @@ class AMD_AIPInstall extends AMD_root
     $this->tabsheet = new tabsheet();
     $this->tabsheet->add('install',
                           l10n('g003_install'),
-                          $this->getAdminLink()."&amp;f_tabsheet=install");
+                          $this->getAdminLink()."-install");
   }
 
   public function __destruct()
@@ -70,7 +70,7 @@ class AMD_AIPInstall extends AMD_root
 
     $template->set_filename('plugin_admin_content', dirname($this->getFileLocation())."/admin/amd_admin.tpl");
 
-    $this->tabsheet->select($_REQUEST['f_tabsheet']);
+    $this->tabsheet->select($_GET['tab']);
     $this->tabsheet->assign();
     $selected_tab=$this->tabsheet->get_selected();
     $template->assign($this->tabsheet->get_titlename(), "[".$selected_tab['caption']."]");
@@ -79,7 +79,7 @@ class AMD_AIPInstall extends AMD_root
 
     $pluginInfo=array(
       'AMD_VERSION' => "<i>".$this->getPluginName()."</i> ".l10n('g003_version').AMD_VERSION,
-      'AMD_PAGE' => $_REQUEST['f_tabsheet'],
+      'AMD_PAGE' => $_GET['tab'],
       'PATH' => AMD_PATH
     );
 
@@ -96,7 +96,7 @@ class AMD_AIPInstall extends AMD_root
    */
   protected function checkRequest()
   {
-    $_REQUEST['f_tabsheet']='install';
+    $_GET['tab']='install';
 
     if(!isset($_REQUEST['ajaxfct'])) return(false);
 
@@ -335,7 +335,7 @@ class AMD_AIPInstall extends AMD_root
     /*
      * select 25 pictures into the caddie
      */
-    $sql="SELECT ti.id, ti.path, ti.has_high
+    $sql="SELECT ti.id, ti.path
           FROM ".CADDIE_TABLE." tc
             LEFT JOIN ".IMAGES_TABLE." ti ON ti.id = tc.element_id
           WHERE tc.user_id = ".$user['id']."
@@ -364,7 +364,7 @@ class AMD_AIPInstall extends AMD_root
       {
         $excludeList="";
       }
-      $sql="SELECT ti.id, ti.path, ti.has_high
+      $sql="SELECT ti.id, ti.path
             FROM ".IMAGES_TABLE." ti ".$excludeList."
             ORDER BY RAND() LIMIT ".(25-count($listToAnalyze[0])).";";
       $result=pwg_query($sql);
@@ -387,14 +387,7 @@ class AMD_AIPInstall extends AMD_root
 
       foreach($listToAnalyze[0] as $val)
       {
-        if($val['has_high']==='true' and $this->config['amd_UseMetaFromHD']=='y')
-        {
-          $this->analyzeImageFile($path."/".dirname($val['path'])."/pwg_high/".basename($val['path']), $val['id']);
-        }
-        else
-        {
-          $this->analyzeImageFile($path."/".$val['path'], $val['id']);
-        }
+        $this->analyzeImageFile($path."/".$val['path'], $val['id']);
       }
       $this->makeStatsConsolidation();
     }
