@@ -47,7 +47,7 @@ class AMD_PIP extends AMD_root
   */
   public function initEvents()
   {
-    parent::initEvents();
+    //parent::initEvents();
     add_event_handler('loc_begin_picture', array(&$this, 'loadMetadata'));
     add_event_handler('loc_end_page_tail', array(&$this, 'applyJS'));
   }
@@ -208,10 +208,10 @@ class AMD_PIP extends AMD_root
       $keyExist=array_key_exists($key, $picturesTags) & ($tagProperties['displayStatus']=='y');
       $userDefined=preg_match('/^userDefined\./i', $key);
 
-      if(($group!=$tagProperties['gName']) and
+      if(($group!='AMD'.$tagProperties['groupId']) and
          ( $keyExist or $userDefined) )
       {
-        $group=$tagProperties['gName'];
+        $group='AMD'.$tagProperties['groupId'];
         if(!isset($metadata[$group]))
         {
           $metadata[$group]=Array(
@@ -271,6 +271,7 @@ class AMD_PIP extends AMD_root
         'id' => ($this->pictureProperties['analyzed']=='n')?$this->pictureProperties['id']:'0'
       );
 
+      GPCCore::setTemplateToken();
       $template->assign('datas', $datas);
       $template->append('footer_elements', $template->parse('applyJS', true));
     }

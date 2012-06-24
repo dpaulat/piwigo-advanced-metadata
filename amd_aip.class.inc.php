@@ -23,7 +23,6 @@ if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
 
 include_once('amd_root.class.inc.php');
 include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCTabSheet.class.inc.php');
-include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCAjax.class.inc.php');
 include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/genericjs.class.inc.php');
 
 
@@ -80,7 +79,6 @@ class AMD_AIP extends AMD_root
   public function __destruct()
   {
     unset($this->tabsheet);
-    unset($this->ajax);
     parent::__destruct();
   }
 
@@ -115,6 +113,7 @@ class AMD_AIP extends AMD_root
     );
 
     $template->assign('plugin', $pluginInfo);
+    GPCCore::setTemplateToken();
 
     switch($_GET['tab'])
     {
@@ -145,15 +144,15 @@ class AMD_AIP extends AMD_root
    */
   public function initEvents()
   {
+    parent::initEvents();
+
     if(isset($_GET['tab']) and $_GET['tab']=='search')
     {
       // load request builder JS only on the search page
       GPCRequestBuilder::loadJSandCSS();
     }
-
-    add_event_handler('loc_end_page_header', array(&$this->css, 'applyCSS'));
-    GPCCss::applyGpcCss();
   }
+
 
   /**
    * ---------------------------------------------------------------------------

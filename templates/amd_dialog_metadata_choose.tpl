@@ -553,7 +553,7 @@ dialogChooseMetadataBox = function()
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.tag.getValues", id:metaId },
+        data: { ajaxfct:"admin.tag.getValues", token:'{/literal}{$token}{literal}', id:metaId },
         success:
           function(msg)
           {

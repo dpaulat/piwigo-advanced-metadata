@@ -1,0 +1,38 @@
+#iListTags.clear table tr:hover { cursor:pointer; color: #D54E21; background:#dbe8f3; }
+#iListImages.clear table tr:hover, table.clear tr:hover { color: #D54E21; background:#dbe8f3; cursor:default; }
+li.groupItems table.tagListOrderItem span.listMove,
+li.groupItems span.listMove {
+  display:inline-block;
+  position:relative;
+  width:15px;
+  height:15px;
+  background:url(./../GrumPluginClasses/icons/buttons.png) transparent no-repeat -285px -90px;
+}
+li.groupItems table.tagListOrderItem:hover span.listMove,
+li.groupItems:hover span.listMove {
+  background-position:-285px -105px;
+}
+span.buttonEdit {
+  background-position:-240px -90px;
+}
+span.buttonDelete {
+  background-position:-255px -90px;
+}
+span.buttonEdit:hover {
+  background-position:-240px -105px;
+}
+span.buttonDelete:hover {
+  background-position:-255px -105px;
+}
+span.buttonPreferences {
+  background-position:-330px -90px;
+}
+span.buttonPreferences:hover {
+  background-position:-330px -105px;
+}
+span.buttonMove{
+  background-position:-285px -90px;
+}
+span.buttonMove:hover {
+  background-position:-285px -105px;
+}

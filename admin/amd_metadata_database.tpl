@@ -35,7 +35,7 @@ var processAnalyze = {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.makeStats.getStatus" },
+        data: { ajaxfct:"admin.makeStats.getStatus", token:'{/literal}{$token}{literal}' },
         success: function (msg) {
           list=msg.split(";");
           $("#ianalyzestatus").html("<ul><li>"+list[0]+"</li><li>"+list[1]+"</li><li>"+list[2]+"</li></ul>");
@@ -100,7 +100,7 @@ var processAnalyze = {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.makeStats.getList", selectMode:mode, numOfItems:NumberOfItemsPerRequest },
+        data: { ajaxfct:"admin.makeStats.getList", token:'{/literal}{$token}{literal}', selectMode:mode, numOfItems:NumberOfItemsPerRequest },
         success: function(msg)
           {
             processAnalyze.step=0;
@@ -134,7 +134,7 @@ var processAnalyze = {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.makeStats.doAnalyze", imagesList:processAnalyze.lists[processAnalyze.step] },
+        data: { ajaxfct:"admin.makeStats.doAnalyze", token:'{/literal}{$token}{literal}', imagesList:processAnalyze.lists[processAnalyze.step] },
         success: function(msg)
           {
             processAnalyze.step++;
@@ -153,7 +153,7 @@ var processAnalyze = {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: false,
-        data: { ajaxfct:"admin.makeStats.consolidate" }
+        data: { ajaxfct:"admin.makeStats.consolidate", token:'{/literal}{$token}{literal}' }
        }).responseText;
 
       processAnalyze.timeEnd = new Date();

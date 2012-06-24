@@ -94,7 +94,7 @@
                   type: "POST",
                   url: "{/literal}{$datas.urlRequest}{literal}",
                   async: true,
-                  data: { ajaxfct:"admin.userDefined.getTag", id:options.numId },
+                  data: { ajaxfct:"admin.userDefined.getTag", token:'{/literal}{$token}{literal}', id:options.numId },
                   success:
                     function(msg)
                     {
@@ -138,7 +138,7 @@
                         type: "POST",
                         url: "{/literal}{$datas.urlRequest}{literal}",
                         async: true,
-                        data: { ajaxfct:"admin.userDefined.deleteTag", id:id },
+                        data: { ajaxfct:"admin.userDefined.deleteTag", token:'{/literal}{$token}{literal}', id:id },
                         success:
                           function(msg)
                           {
@@ -202,7 +202,7 @@
           type: "POST",
           url: "{/literal}{$datas.urlRequest}{literal}",
           async: true,
-          data: { ajaxfct:"admin.userDefined.getList" },
+          data: { ajaxfct:"admin.userDefined.getList", token:'{/literal}{$token}{literal}' },
           success:
             function(msg)
             {
@@ -559,7 +559,7 @@
           type: "POST",
           url: "{/literal}{$datas.urlRequest}{literal}",
           async: true,
-          data: { ajaxfct:"admin.userDefined.setTag", id:options.numId, properties:properties },
+          data: { ajaxfct:"admin.userDefined.setTag", token:'{/literal}{$token}{literal}', id:options.numId, properties:properties },
           success:
             function(msg)
             {
@@ -603,7 +603,7 @@
 
 
 
-  $(window).loaded(
+  $(window).load(
     function ()
     {
       udm=new userDefManage();
@@ -683,12 +683,11 @@
 
 <ul style='display:none' id='iBDModel'>
   <li id='iBDRuleNumZZZZZ' class='groupItems gcBgPage rmSortable rmItem' value='ZZZZZ'>
-    <img onclick='udm.deleteRule("ZZZZZ");' src='{$themeconf.admin_icon_dir}/delete.png' class='button pointer' alt='{"g003_delete"|@translate}' title='{"g003_delete"|@translate}' style='float:right;'/>
+    <span onclick='udm.deleteRule("ZZZZZ");' class='buttonDelete button' title='{"g003_delete"|@translate}' /></span>
     <div class='rmContent'>
 
       <div class='ruleSelector'>
-        <img src='{$themeconf.admin_icon_dir}/cat_move.png' class='rmSortHandle button drag_button' alt='{"Drag to re-order"|@translate}' title='{"Drag to re-order"|@translate}'/>
-
+        <span class='buttonMove rmSortHandle drag_button' title='{"Drag to re-order"|@translate}'/></span>
 
         <select id='iBDRuleTypeZZZZZ' onchange='udm.changeRuleType("ZZZZZ");'>
           <option value='T'>{'g003_typeText'|@translate}</option>

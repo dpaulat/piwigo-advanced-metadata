@@ -21,9 +21,12 @@
   global $user;
 
   if(!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
+  if(!defined('JPEG_METADATA_DIR')) define('JPEG_METADATA_DIR', dirname(__FILE__)."/JpegMetaData/");
 
   //include_once('')
   include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCRequestBuilder.class.inc.php');
+  include_once(PHPWG_PLUGINS_PATH.'AMetaData/JpegMetaData/Common/Const.class.php');
+  include_once(PHPWG_PLUGINS_PATH.'AMetaData/JpegMetaData/Common/L10n.class.php');
 
   load_language('plugin.lang', AMD_PATH);
 

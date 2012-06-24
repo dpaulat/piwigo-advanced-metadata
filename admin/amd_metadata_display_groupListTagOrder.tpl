@@ -2,7 +2,9 @@
 <li id="g{$group}t{$data.numId}" class="gcBgTabSheet">
   <table class="tagListOrderItem">
     <tr>
-      <td style="width:20px;"><img src="{$themeconf.admin_icon_dir}/cat_move.png" class="button drag_button" alt="{'Drag to re-order'|@translate}" title="{'Drag to re-order'|@translate}"/></td>
+      <td style="width:20px;">
+        <span class='listMove' title="{'Drag to re-order'|@translate}"></span>
+      </td>
       <td style="width:30%;">{$data.tagId}</td>
       <td>{$data.name}</td>
       {if $data.pct!=''}

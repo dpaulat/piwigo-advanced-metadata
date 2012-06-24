@@ -52,7 +52,7 @@
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.showStats.getListTags", orderType:order, filterType:filter, excludeUnusedTag:unusedTag, selectedTagOnly:selectedOnly },
+        data: { ajaxfct:"admin.showStats.getListTags", token:'{/literal}{$token}{literal}', orderType:order, filterType:filter, excludeUnusedTag:unusedTag, selectedTagOnly:selectedOnly },
         success:
           function(msg)
           {
@@ -100,7 +100,7 @@
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.showStats.getListImages", orderType:order, tagId:tag,  },
+        data: { ajaxfct:"admin.showStats.getListImages", token:'{/literal}{$token}{literal}', orderType:order, tagId:tag,  },
         success:
           function(msg)
           {
@@ -128,7 +128,7 @@
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: false,
-        data: { ajaxfct:"admin.updateTag.select", tagSelected:selected, numId:numId.substr(6) }
+        data: { ajaxfct:"admin.updateTag.select", token:'{/literal}{$token}{literal}', tagSelected:selected, numId:numId.substr(6) }
        }).responseText
     );
 

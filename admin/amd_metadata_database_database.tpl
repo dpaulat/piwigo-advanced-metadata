@@ -118,6 +118,7 @@ var processAnalyze = {
         data:
           {
             ajaxfct:"admin.makeStats.getList",
+            token:'{/literal}{$token}{literal}',
             selectMode:mode,
             numOfItems:NumberOfItemsPerRequest,
             ignoreOptions:ignoreOptions,
@@ -156,7 +157,7 @@ var processAnalyze = {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.makeStats.doAnalyze", imagesList:processAnalyze.lists[processAnalyze.step] },
+        data: { ajaxfct:"admin.makeStats.doAnalyze", token:'{/literal}{$token}{literal}', imagesList:processAnalyze.lists[processAnalyze.step] },
         success: function(msg)
           {
             processAnalyze.step++;
@@ -175,7 +176,7 @@ var processAnalyze = {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: false,
-        data: { ajaxfct:"admin.makeStats.consolidate" }
+        data: { ajaxfct:"admin.makeStats.consolidate", token:'{/literal}{$token}{literal}' }
        }).responseText;
 
       processAnalyze.timeEnd = new Date();
@@ -223,7 +224,7 @@ var processAnalyze = {
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.config.setOption", id:'amd_FillDataBaseContinuously', value:$('#iamd_FillDataBaseContinuously').get(0).checked?'y':'n' },
+        data: { ajaxfct:"admin.config.setOption", token:'{/literal}{$token}{literal}', id:'amd_FillDataBaseContinuously', value:$('#iamd_FillDataBaseContinuously').get(0).checked?'y':'n' },
       }
     );
   }

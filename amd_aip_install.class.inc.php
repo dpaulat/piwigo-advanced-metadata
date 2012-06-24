@@ -50,15 +50,6 @@ class AMD_AIPInstall extends AMD_root
   }
 
   /*
-    initialize events call for the plugin
-  */
-  public function initEvents()
-  {
-    parent::initEvents();
-    add_event_handler('loc_end_page_header', array(&$this->css, 'applyCSS'));
-  }
-
-  /*
     display administration page
   */
   public function manage()

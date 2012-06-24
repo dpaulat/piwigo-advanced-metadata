@@ -19,15 +19,13 @@
  */
 
   define('PHPWG_ROOT_PATH',dirname(dirname(dirname(__FILE__))).'/');
+  if(!defined('AJAX_CALL')) define('AJAX_CALL', true);
 
   /*
    * set ajax module in admin mode if request is used for admin interface
    */
   if(!isset($_REQUEST['ajaxfct'])) $_REQUEST['ajaxfct']='';
-  if(preg_match('/^admin\./i', $_REQUEST['ajaxfct']))
-  {
-    define('IN_ADMIN', true);
-  }
+  if(preg_match('/^admin\./i', $_REQUEST['ajaxfct'])) define('IN_ADMIN', true);
 
   // the common.inc.php file loads all the main.inc.php plugins files
   include_once(PHPWG_ROOT_PATH.'include/common.inc.php' );
@@ -63,44 +61,44 @@
     {
       global $user;
 
-      if(!isset($_REQUEST['ajaxfct'])) $_REQUEST['ajaxfct']='';
+      GPCAjax::checkToken();
 
       // check if asked function is valid
       if(!(
-           $_REQUEST['ajaxfct']=='admin.makeStats.getList' or
-           $_REQUEST['ajaxfct']=='admin.makeStats.doAnalyze' or
-           $_REQUEST['ajaxfct']=='admin.makeStats.consolidate' or
-           $_REQUEST['ajaxfct']=='admin.showStats.getListTags' or
-           $_REQUEST['ajaxfct']=='admin.showStats.getListImages' or
-           $_REQUEST['ajaxfct']=='admin.updateTag.select' or
-           $_REQUEST['ajaxfct']=='admin.config.setOption' or
-           $_REQUEST['ajaxfct']=='admin.group.getList' or
-           $_REQUEST['ajaxfct']=='admin.group.delete' or
-           $_REQUEST['ajaxfct']=='admin.group.getNames' or
-           $_REQUEST['ajaxfct']=='admin.group.setNames' or
-           $_REQUEST['ajaxfct']=='admin.group.setOrder' or
-           $_REQUEST['ajaxfct']=='admin.group.getTagList' or
-           $_REQUEST['ajaxfct']=='admin.group.setTagList' or
-           $_REQUEST['ajaxfct']=='admin.group.getOrderedTagList' or
-           $_REQUEST['ajaxfct']=='admin.group.setOrderedTagList' or
-           $_REQUEST['ajaxfct']=='admin.userDefined.getList' or
-           $_REQUEST['ajaxfct']=='admin.userDefined.getTag' or
-           $_REQUEST['ajaxfct']=='admin.userDefined.setTag' or
-           $_REQUEST['ajaxfct']=='admin.userDefined.deleteTag' or
-           $_REQUEST['ajaxfct']=='admin.tag.getValues' or
-           $_REQUEST['ajaxfct']=='admin.tags.getKeywords' or
-           $_REQUEST['ajaxfct']=='admin.tags.convertKeywords' or
+           $_REQUEST[GPC_AJAX]=='admin.makeStats.getList' or
+           $_REQUEST[GPC_AJAX]=='admin.makeStats.doAnalyze' or
+           $_REQUEST[GPC_AJAX]=='admin.makeStats.consolidate' or
+           $_REQUEST[GPC_AJAX]=='admin.showStats.getListTags' or
+           $_REQUEST[GPC_AJAX]=='admin.showStats.getListImages' or
+           $_REQUEST[GPC_AJAX]=='admin.updateTag.select' or
+           $_REQUEST[GPC_AJAX]=='admin.config.setOption' or
+           $_REQUEST[GPC_AJAX]=='admin.group.getList' or
+           $_REQUEST[GPC_AJAX]=='admin.group.delete' or
+           $_REQUEST[GPC_AJAX]=='admin.group.getNames' or
+           $_REQUEST[GPC_AJAX]=='admin.group.setNames' or
+           $_REQUEST[GPC_AJAX]=='admin.group.setOrder' or
+           $_REQUEST[GPC_AJAX]=='admin.group.getTagList' or
+           $_REQUEST[GPC_AJAX]=='admin.group.setTagList' or
+           $_REQUEST[GPC_AJAX]=='admin.group.getOrderedTagList' or
+           $_REQUEST[GPC_AJAX]=='admin.group.setOrderedTagList' or
+           $_REQUEST[GPC_AJAX]=='admin.userDefined.getList' or
+           $_REQUEST[GPC_AJAX]=='admin.userDefined.getTag' or
+           $_REQUEST[GPC_AJAX]=='admin.userDefined.setTag' or
+           $_REQUEST[GPC_AJAX]=='admin.userDefined.deleteTag' or
+           $_REQUEST[GPC_AJAX]=='admin.tag.getValues' or
+           $_REQUEST[GPC_AJAX]=='admin.tags.getKeywords' or
+           $_REQUEST[GPC_AJAX]=='admin.tags.convertKeywords' or
 
-           $_REQUEST['ajaxfct']=='public.makeStats.doPictureAnalyze')) $_REQUEST['ajaxfct']='';
+           $_REQUEST[GPC_AJAX]=='public.makeStats.doPictureAnalyze')) $_REQUEST[GPC_AJAX]='';
 
-      if(preg_match('/^admin\./i', $_REQUEST['ajaxfct']) and !is_admin()) $_REQUEST['ajaxfct']='';
+      if(preg_match('/^admin\./i', $_REQUEST[GPC_AJAX]) and !is_admin()) $_REQUEST[GPC_AJAX]='';
 
-      if($_REQUEST['ajaxfct']!='')
+      if($_REQUEST[GPC_AJAX]!='')
       {
         /*
          * check admin.makeStats.getList values
          */
-        if($_REQUEST['ajaxfct']=="admin.makeStats.getList")
+        if($_REQUEST[GPC_AJAX]=="admin.makeStats.getList")
         {
           if(!isset($_REQUEST['selectMode'])) $_REQUEST['selectMode']="caddieAdd";
 
@@ -116,7 +114,7 @@
                $_REQUEST['numOfRandomItems']<=0 or
                preg_match('/^\d+$/', $_REQUEST['numOfRandomItems'])==0
               )
-            ) $_REQUEST['ajaxfct']='';
+            ) $_REQUEST[GPC_AJAX]='';
 
 
           if(!isset($_REQUEST['numOfItems'])) $_REQUEST['numOfItems']=25;
@@ -127,7 +125,7 @@
         /*
          * check admin.makeStats.doAnalyze values
          */
-        if($_REQUEST['ajaxfct']=="admin.makeStats.doAnalyze")
+        if($_REQUEST[GPC_AJAX]=="admin.makeStats.doAnalyze")
         {
           if(!isset($_REQUEST['imagesList'])) $_REQUEST['imagesList']="";
         }
@@ -135,7 +133,7 @@
         /*
          * check admin.makeStats.consolidate values
          */
-        if($_REQUEST['ajaxfct']=="admin.makeStats.consolidate")
+        if($_REQUEST[GPC_AJAX]=="admin.makeStats.consolidate")
         {
           if(!isset($_REQUEST['step'])) $_REQUEST['step']="*";
         }
@@ -143,7 +141,7 @@
         /*
          * check admin.showStats.getListTags values
          */
-        if($_REQUEST['ajaxfct']=="admin.showStats.getListTags")
+        if($_REQUEST[GPC_AJAX]=="admin.showStats.getListTags")
         {
           if(!isset($_REQUEST['orderType'])) $_REQUEST['orderType']="tag";
 
@@ -179,7 +177,7 @@
         /*
          * check admin.showStats.getListImages values
          */
-        if($_REQUEST['ajaxfct']=="admin.showStats.getListImages")
+        if($_REQUEST[GPC_AJAX]=="admin.showStats.getListImages")
         {
           if(!isset($_REQUEST['orderType'])) $_REQUEST['orderType']="num";
 
@@ -192,7 +190,7 @@
         /*
          * check admin.updateTag.select values
          */
-        if($_REQUEST['ajaxfct']=="admin.updateTag.select")
+        if($_REQUEST[GPC_AJAX]=="admin.updateTag.select")
         {
           if(!isset($_REQUEST['numId'])) $_REQUEST['numId']="";
 
@@ -202,16 +200,16 @@
         /*
          * check admin.config.setOption values
          */
-        if($_REQUEST['ajaxfct']=="admin.config.setOption")
+        if($_REQUEST[GPC_AJAX]=="admin.config.setOption")
         {
-          if(!isset($_REQUEST['id'])) $_REQUEST['ajaxfct']='';
-          if(!isset($_REQUEST['value'])) $_REQUEST['ajaxfct']='';
+          if(!isset($_REQUEST['id'])) $_REQUEST[GPC_AJAX]='';
+          if(!isset($_REQUEST['value'])) $_REQUEST[GPC_AJAX]='';
         }
 
         /*
          * check admin.group.delete values
          */
-        if($_REQUEST['ajaxfct']=="admin.group.delete" and !isset($_REQUEST['id']))
+        if($_REQUEST[GPC_AJAX]=="admin.group.delete" and !isset($_REQUEST['id']))
         {
           $_REQUEST['id']="";
         }
@@ -219,7 +217,7 @@
         /*
          * check admin.groupSetOrder values
          */
-        if($_REQUEST['ajaxfct']=="admin.group.setOrder" and !isset($_REQUEST['listGroup']))
+        if($_REQUEST[GPC_AJAX]=="admin.group.setOrder" and !isset($_REQUEST['listGroup']))
         {
           $_REQUEST['listGroup']="";
         }
@@ -227,7 +225,7 @@
         /*
          * check admin.group.getNames values
          */
-        if($_REQUEST['ajaxfct']=="admin.group.getNames" and !isset($_REQUEST['id']))
+        if($_REQUEST[GPC_AJAX]=="admin.group.getNames" and !isset($_REQUEST['id']))
         {
           $_REQUEST['id']="";
         }
@@ -235,7 +233,7 @@
         /*
          * check admin.group.setNames values
          */
-        if($_REQUEST['ajaxfct']=="admin.group.setNames")
+        if($_REQUEST[GPC_AJAX]=="admin.group.setNames")
         {
           if(!isset($_REQUEST['listNames'])) $_REQUEST['listNames']="";
 
@@ -245,7 +243,7 @@
         /*
          * check admin.group.getTagList values
          */
-        if($_REQUEST['ajaxfct']=="admin.group.getTagList" and !isset($_REQUEST['id']))
+        if($_REQUEST[GPC_AJAX]=="admin.group.getTagList" and !isset($_REQUEST['id']))
         {
           $_REQUEST['id']="";
         }
@@ -253,7 +251,7 @@
         /*
          * check admin.group.setTagList values
          */
-        if($_REQUEST['ajaxfct']=="admin.group.setTagList")
+        if($_REQUEST[GPC_AJAX]=="admin.group.setTagList")
         {
           if(!isset($_REQUEST['id'])) $_REQUEST['id']="";
 
@@ -263,7 +261,7 @@
         /*
          * check admin.group.getOrderedTagList values
          */
-        if($_REQUEST['ajaxfct']=="admin.group.getOrderedTagList" and !isset($_REQUEST['id']))
+        if($_REQUEST[GPC_AJAX]=="admin.group.getOrderedTagList" and !isset($_REQUEST['id']))
         {
           $_REQUEST['id']="";
         }
@@ -271,7 +269,7 @@
         /*
          * check admin.group.setOrderedTagList values
          */
-        if($_REQUEST['ajaxfct']=="admin.group.setOrderedTagList")
+        if($_REQUEST[GPC_AJAX]=="admin.group.setOrderedTagList")
         {
           if(!isset($_REQUEST['id'])) $_REQUEST['id']="";
 
@@ -281,7 +279,7 @@
         /*
          * check admin.userDefined.getTag values
          */
-        if($_REQUEST['ajaxfct']=="admin.userDefined.getTag" and !isset($_REQUEST['id']))
+        if($_REQUEST[GPC_AJAX]=="admin.userDefined.getTag" and !isset($_REQUEST['id']))
         {
           $_REQUEST['id']="";
         }
@@ -289,7 +287,7 @@
         /*
          * check admin.userDefined.setTag values
          */
-        if($_REQUEST['ajaxfct']=="admin.userDefined.setTag")
+        if($_REQUEST[GPC_AJAX]=="admin.userDefined.setTag")
         {
           if(!isset($_REQUEST['id'])) $_REQUEST['id']="";
           if($_REQUEST['id']!='' and !preg_match('/\d+/', $_REQUEST['id'])) $_REQUEST['id']="";
@@ -301,7 +299,7 @@
                  isset($_REQUEST['properties']['tagId'])
                 )
               )
-            ) $_REQUEST['ajaxfct']='';
+            ) $_REQUEST[GPC_AJAX]='';
 
           if(isset($_REQUEST['properties']['rules']))
           {
@@ -311,7 +309,7 @@
                    isset($val['value']) and
                    isset($val['parentId']) and
                    isset($val['type']) and
-                   isset($val['defId']))) $_REQUEST['ajaxfct']='';
+                   isset($val['defId']))) $_REQUEST[GPC_AJAX]='';
             }
           }
         }
@@ -319,7 +317,7 @@
         /*
          * check admin.userDefined.deleteTag values
          */
-        if($_REQUEST['ajaxfct']=="admin.userDefined.deleteTag" and !isset($_REQUEST['id']))
+        if($_REQUEST[GPC_AJAX]=="admin.userDefined.deleteTag" and !isset($_REQUEST['id']))
         {
           $_REQUEST['id']="";
         }
@@ -328,19 +326,19 @@
         /*
          * check admin.tag.getValues values
          */
-        if($_REQUEST['ajaxfct']=="admin.tag.getValues" and !isset($_REQUEST['id']))
+        if($_REQUEST[GPC_AJAX]=="admin.tag.getValues" and !isset($_REQUEST['id']))
         {
-          $_REQUEST['ajaxfct']='';
+          $_REQUEST[GPC_AJAX]='';
         }
 
         /*
          * check admin.tags.convertKeywords values
          */
-        if($_REQUEST['ajaxfct']=="admin.tags.convertKeywords")
+        if($_REQUEST[GPC_AJAX]=="admin.tags.convertKeywords")
         {
           if(!isset($_REQUEST['keywords'])) $_REQUEST['keywords']=array();
           if(!is_array($_REQUEST['keywords'])) $_REQUEST['keywords']=array();
-          if(count($_REQUEST['keywords'])==0) $_REQUEST['ajaxfct']='';
+          if(count($_REQUEST['keywords'])==0) $_REQUEST[GPC_AJAX]='';
         }
 
 
@@ -350,7 +348,7 @@
         /*
          * check public.makeStats.doPictureAnalyze values
          */
-        if($_REQUEST['ajaxfct']=="public.makeStats.doPictureAnalyze")
+        if($_REQUEST[GPC_AJAX]=="public.makeStats.doPictureAnalyze")
         {
           if(!isset($_REQUEST['id'])) $_REQUEST['id']="0";
         }
@@ -364,7 +362,7 @@
     protected function returnAjaxContent()
     {
       $result="<p class='errors'>An error has occured</p>";
-      switch($_REQUEST['ajaxfct'])
+      switch($_REQUEST[GPC_AJAX])
       {
         case 'admin.makeStats.getList':
           $result=$this->ajax_amd_admin_makeStatsGetList($_REQUEST['selectMode'], $_REQUEST['numOfItems'], $_REQUEST['ignoreOptions'], $_REQUEST['numOfRandomItems']);

@@ -5,15 +5,12 @@
     <td>{$data.label}</td>
     <th style="width:15%;">{$data.numOfRules}</th>
     <td width="40px">
-      <img src="{$themeconf.admin_icon_dir}/edit_s.png"
-           class="button" alt="{'g003_edit'|@translate}"
-           title="{'g003_edit'|@translate}"
-           onclick='udm.editMetadata({$data.numId});'/>
-      <img src="{$themeconf.admin_icon_dir}/delete.png"
-           class="button"
-           alt="{'g003_delete'|@translate}"
-           title="{'g003_delete'|@translate}"
-           onclick='udm.deleteMetadata({$data.numId});'/>
+      <span class="buttonEdit"
+            title="{'g003_edit'|@translate}"
+            onclick='udm.editMetadata({$data.numId});'></span>
+      <span class="buttonDelete"
+            title="{'g003_delete'|@translate}"
+            onclick='udm.deleteMetadata({$data.numId});'></span>
     </td>
   </tr>
   {/foreach}

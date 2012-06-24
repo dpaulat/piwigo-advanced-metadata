@@ -21,7 +21,7 @@
         type: "POST",
         url: "{/literal}{$urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.install.chooseInterface", interfaceMode:interfaceMode },
+        data: { ajaxfct:"admin.install.chooseInterface", token:'{/literal}{$token}{literal}', interfaceMode:interfaceMode },
         success:
           function(msg)
           {

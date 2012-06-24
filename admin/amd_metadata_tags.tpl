@@ -14,7 +14,7 @@
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.tags.getKeywords" },
+        data: { ajaxfct:"admin.tags.getKeywords", token:'{/literal}{$token}{literal}' },
         success: function (msg)
           {
             $('#iListTags').html(msg);
@@ -55,7 +55,7 @@
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.tags.convertKeywords", keywords:keywords },
+        data: { ajaxfct:"admin.tags.convertKeywords", token:'{/literal}{$token}{literal}', keywords:keywords },
         success: function (msg)
           {
             loadKeywordsList();

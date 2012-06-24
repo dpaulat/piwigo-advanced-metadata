@@ -3,10 +3,6 @@
 #iListImages { width:100%; border-bottom:1px solid; overflow:auto;}
 #iListTagsNb, #iListImagesNb { width:99%; text-align:right; margin-bottom:8px; padding:2px; font-size:80%; }
 #iListTags table, #iListImages table, table.listTags { width:100%; text-align:left; border-collapse: collapse; }
-#iListTags.roma table tr:hover { cursor:pointer; background:#303030; }
-#iListImages.roma table tr:hover, table.roma tr:hover { background:#303030; cursor:default; }
-#iListTags.clear table tr:hover { cursor:pointer; color: #D54E21; background:#dbe8f3; }
-#iListImages.clear table tr:hover, table.clear tr:hover { color: #D54E21; background:#dbe8f3; cursor:default; }
 #iHeaderListImages { width:100%; border-bottom:1px solid; }
 div.addGroup { padding-left:40px; text-align:left; }
 div.addMetadata { text-align:left; }
@@ -39,6 +35,7 @@ table.tagListOrderItem { width:100%; border-collapse:collapse; }
 img.pointer, span.pointer, div.pointer { cursor:pointer; }
 img.drag_button { margin-right:8px; }
 li.groupItems input, li.groupItems select { margin-right:4px; }
+
 
 #iBDRules ul { list-style-type:none; }
 #iBDRules li.groupItems img.rmSortHandle { cursor:move; }
@@ -138,4 +135,22 @@ li.valueItems {
   list-style:none;
   margin:8px;
   padding:0;
+}
+
+
+
+span.buttonEdit, span.buttonDelete, span.buttonPreferences,span.buttonMove {
+  display:inline-block;
+  width:15px;
+  height:15px;
+  position:relative;
+  background-color:transparent;
+  background-image:url(./../GrumPluginClasses/icons/buttons.png);
+  background-repeat:no-repeat;
+  cursor:pointer;
+}
+span.buttonMove { cursor:move; }
+
+li.groupItems span.button {
+  float:right;
 }

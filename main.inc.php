@@ -281,22 +281,25 @@ include_once('amd_version.inc.php'); // => Don't forget to update this file !!
 global $prefixeTable, $page;
 
 
-if(defined('IN_ADMIN'))
+if(!defined('AJAX_CALL'))
 {
-  //AMD admin part loaded and active only if in admin page
-  include_once("amd_aim.class.inc.php");
-  $obj = new AMD_AIM($prefixeTable, __FILE__);
-  $obj->initEvents();
-  set_plugin_data($plugin['id'], $obj);
-}
-else
-{
-  //AMD public part loaded and active only if in public page and if GPC is up to date
-  if(CommonPlugin::checkGPCRelease(3,3,2))
+  if(defined('IN_ADMIN'))
   {
-    include_once("amd_pip.class.inc.php");
-    $obj = new AMD_PIP($prefixeTable, __FILE__);
+    //AMD admin part loaded and active only if in admin page
+    include_once("amd_aim.class.inc.php");
+    $obj = new AMD_AIM($prefixeTable, __FILE__);
+    $obj->initEvents();
     set_plugin_data($plugin['id'], $obj);
+  }
+  else
+  {
+    //AMD public part loaded and active only if in public page and if GPC is up to date
+    if(CommonPlugin::checkGPCRelease(AMD_GPC_NEEDED) and !mobile_theme())
+    {
+      include_once("amd_pip.class.inc.php");
+      $obj = new AMD_PIP($prefixeTable, __FILE__);
+      set_plugin_data($plugin['id'], $obj);
+    }
   }
 }
 

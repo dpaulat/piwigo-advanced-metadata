@@ -10,7 +10,7 @@
           type: "POST",
           url: "{/literal}{$datas.urlRequest}{literal}",
           async: false,
-          data: { ajaxfct:"admin.group.getList" }
+          data: { ajaxfct:"admin.group.getList", token:'{/literal}{$token}{literal}' }
         }
       ).responseText
     )
@@ -42,7 +42,7 @@
                 type: "POST",
                 url: "{/literal}{$datas.urlRequest}{literal}",
                 async: false,
-                data: { ajaxfct:"admin.group.setOrder", listGroup:list }
+                data: { ajaxfct:"admin.group.setOrder", token:'{/literal}{$token}{literal}', listGroup:list }
               }
             ).responseText;
           }
@@ -82,7 +82,7 @@
                 type: "POST",
                 url: "{/literal}{$datas.urlRequest}{literal}",
                 async: false,
-                data: { ajaxfct:"admin.group.setOrderedTagList", id:groupId, listTag:list }
+                data: { ajaxfct:"admin.group.setOrderedTagList", token:'{/literal}{$token}{literal}', id:groupId, listTag:list }
               }
             ).responseText;
           }
@@ -99,7 +99,7 @@
           type: "POST",
           url: "{/literal}{$datas.urlRequest}{literal}",
           async: false,
-          data: { ajaxfct:"admin.group.getOrderedTagList", id:groupId }
+          data: { ajaxfct:"admin.group.getOrderedTagList", token:'{/literal}{$token}{literal}', id:groupId }
         }
       ).responseText
     );
@@ -168,7 +168,7 @@
                     type: "POST",
                     url: "{/literal}{$datas.urlRequest}{literal}",
                     async: false,
-                    data: { ajaxfct:"admin.group.delete", id:groupId }
+                    data: { ajaxfct:"admin.group.delete", token:'{/literal}{$token}{literal}', id:groupId }
                   }
                 ).responseText;
                 $("#iGroups").html(
@@ -177,7 +177,7 @@
                       type: "POST",
                       url: "{/literal}{$datas.urlRequest}{literal}",
                       async: false,
-                      data: { ajaxfct:"admin.group.getList" }
+                      data: { ajaxfct:"admin.group.getList", token:'{/literal}{$token}{literal}' }
                     }
                   ).responseText
                 );
@@ -236,7 +236,7 @@
                   type: "POST",
                   url: "{/literal}{$datas.urlRequest}{literal}",
                   async: false,
-                  data: { ajaxfct:"admin.group.setNames", id:groupId, listNames:list }
+                  data: { ajaxfct:"admin.group.setNames", token:'{/literal}{$token}{literal}', id:groupId, listNames:list }
                 }
               ).responseText;
               $("#iGroups").html(
@@ -245,7 +245,7 @@
                     type: "POST",
                     url: "{/literal}{$datas.urlRequest}{literal}",
                     async: false,
-                    data: { ajaxfct:"admin.group.getList" }
+                    data: { ajaxfct:"admin.group.getList", token:'{/literal}{$token}{literal}' }
                   }
                 ).responseText
               );
@@ -265,7 +265,7 @@
           type: "POST",
           url: "{/literal}{$datas.urlRequest}{literal}",
           async: false,
-          data: { ajaxfct:"admin.group.getNames", id:groupId }
+          data: { ajaxfct:"admin.group.getNames", token:'{/literal}{$token}{literal}', id:groupId }
         }
       ).responseText
     );
@@ -312,7 +312,7 @@
                   type: "POST",
                   url: "{/literal}{$datas.urlRequest}{literal}",
                   async: false,
-                  data: { ajaxfct:"admin.group.setTagList", id:groupId, listTag:list }
+                  data: { ajaxfct:"admin.group.setTagList", token:'{/literal}{$token}{literal}', id:groupId, listTag:list }
                 }
               ).responseText;
 
@@ -334,7 +334,7 @@
         type: "POST",
         url: "{/literal}{$datas.urlRequest}{literal}",
         async: true,
-        data: { ajaxfct:"admin.group.getTagList", id:groupId },
+        data: { ajaxfct:"admin.group.getTagList", token:'{/literal}{$token}{literal}', id:groupId },
         success:
           function(msg)
           {

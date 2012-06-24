@@ -21,7 +21,6 @@
 if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
 
 include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php');
-include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCCss.class.inc.php');
 include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCRequestBuilder.class.inc.php');
 
 include_once('amd_jpegmetadata.class.inc.php');
@@ -30,7 +29,6 @@ include_once(JPEG_METADATA_DIR."TagDefinitions/XmpTags.class.php");
 
 class AMD_root extends CommonPlugin
 {
-  protected $css;   //the css object
   protected $jpegMD;
 
   public function __construct($prefixeTable, $filelocation)
@@ -52,7 +50,6 @@ class AMD_root extends CommonPlugin
       'tags_values');
     $this->setTablesList($tableList);
 
-    $this->css = new GPCCss(dirname($this->getFileLocation()).'/'.$this->getPluginNameFiles().".css");
     $this->jpegMD=new AMD_JpegMetaData();
 
     if(isset($user['language']))
@@ -64,7 +61,6 @@ class AMD_root extends CommonPlugin
   public function __destruct()
   {
     unset($this->jpegMD);
-    unset($this->css);
     //parent::__destruct();
   }
 
@@ -119,15 +115,17 @@ class AMD_root extends CommonPlugin
      */
   }
 
-  public function loadConfig()
+  public function loadCSS()
   {
-    parent::loadConfig();
+    global $template;
+
+    parent::loadCSS();
+
+    GPCCore::addUI('gpcCSS');
+    GPCCore::addHeaderCSS('amm.css', 'plugins/'.$this->getDirectory().'/'.$this->getPluginNameFiles().".css");
+    GPCCore::addHeaderCSS('amm.cssT', 'plugins/'.$this->getDirectory().'/'.$this->getPluginNameFiles().'_'.$template->get_themeconf('name').".css");
   }
 
-  public function initEvents()
-  {
-    parent::initEvents();
-  }
 
   public function getAdminLink($mode='')
   {
@@ -793,6 +791,7 @@ Class AMD_functions {
       }
     }
 
+    GPCCore::setTemplateToken();
     $template->assign('datas', $datas);
     unset($data);
 
