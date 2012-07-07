@@ -40,6 +40,8 @@ class AMD_AIPRelease extends AMD_root
   {
     global $template;
 
+    GPCCore::setTemplateToken();
+
     $template->set_filename('plugin_admin_content', dirname($this->getFileLocation())."/admin/amd_admin.tpl");
 
     $pluginInfo=array(

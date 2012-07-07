@@ -49,6 +49,15 @@ class AMD_AIPInstall extends AMD_root
     parent::__destruct();
   }
 
+
+  public function loadCSS()
+  {
+    parent::loadCSS();
+    GPCCore::addUI('gpcCSS');
+    GPCCore::addHeaderCSS('amd.css', 'plugins/'.$this->getDirectory().'/'.$this->getPluginNameFiles().".css");
+  }
+
+
   /*
     display administration page
   */
@@ -58,6 +67,8 @@ class AMD_AIPInstall extends AMD_root
 
     $this->checkRequest();
     $this->returnAjaxContent();
+
+    GPCCore::setTemplateToken();
 
     $template->set_filename('plugin_admin_content', dirname($this->getFileLocation())."/admin/amd_admin.tpl");
 
