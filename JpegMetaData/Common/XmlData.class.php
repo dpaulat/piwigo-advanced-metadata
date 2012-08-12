@@ -239,7 +239,7 @@
      * delete an attribute
      * return true of the attribute has been deleted, otherwise false
 
-     * @param String $name : the name the attribute to delete
+     * @param String $name : the name the attribute to delete; if null value is given, delete ALL attributes
      * @return Boolean
      */
     public function delAttribute($name)
@@ -253,6 +253,18 @@
       {
         return(false);
       }
+    }
+
+    /**
+     * delete all attributes
+     * return true of the attribute has been deleted, otherwise false
+     *
+     * @return Boolean
+     */
+    public function delAttributes()
+    {
+      $this->attributes=array();
+      return(true);
     }
 
     /**

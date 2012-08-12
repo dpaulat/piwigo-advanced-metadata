@@ -490,7 +490,7 @@
     /**
      * Nikon encrypt some data
      * This function is used to decrypt them. Don't ask anything about "how does
-     * it work" abd "what's it doing", I just translated the C++ & Perl code
+     * it work" and "what's it doing", I just translated the C++ & Perl code
      * from Exiv2, Exiftool & Raw Photo Parser (Copyright 2004-2006 Dave Coffin)
      *
      * @param Integer $serialNumber : the camera serial number, in Integer

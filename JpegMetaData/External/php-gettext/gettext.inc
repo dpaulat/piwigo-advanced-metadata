@@ -196,6 +196,10 @@ function _setlocale($category, $locale) {
 function _bindtextdomain($domain, $path) {
     global $text_domains;
     // ensure $path ends with a slash ('/' should work for both, but lets still play nice)
+    /*
+      --- some hoster sometimess deactivate the php_uname()
+          in all case, it's better to work with the DIRECTORY_SEPARATOR
+
     if (substr(php_uname(), 0, 7) == "Windows") {
       if ($path[strlen($path)-1] != '\\' and $path[strlen($path)-1] != '/')
         $path .= '\\';
@@ -203,6 +207,10 @@ function _bindtextdomain($domain, $path) {
       if ($path[strlen($path)-1] != '/')
         $path .= '/';
     }
+    */
+      if ($path[strlen($path)-1] != DIRECTORY_SEPARATOR)
+        $path .= DIRECTORY_SEPARATOR;
+
     if (!array_key_exists($domain, $text_domains)) {
       // Initialize an empty domain object.
       $text_domains[$domain] = new domain();

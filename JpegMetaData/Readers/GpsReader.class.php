@@ -77,7 +77,15 @@
       switch($tagId)
       {
         case 0x0000: // Version
-          $returned=sprintf("%d.%d.%d.%d", $values[0], $values[1], $values[2], $values[3]);
+          if(isset($values[0]) and isset($values[1]) and isset($values[2]) and isset($values[3]))
+          {
+            $returned=sprintf("%d.%d.%d.%d", $values[0], $values[1], $values[2], $values[3]);
+          }
+          else
+          {
+            $returned='unknown';
+          }
+
           break;
         case 0x0001: // GPSLatitudeRef
         case 0x0003: // GPSLongitudeRef
@@ -101,7 +109,14 @@
           /*
            * converted in degrees, minutes and seconds
            */
-          $returned=ConvertData::toDMS($values[0], $values[1], $values[2]);
+          if(isset($values[0]) and isset($values[1]) and isset($values[2]))
+          {
+            $returned=ConvertData::toDMS($values[0], $values[1], $values[2]);
+          }
+          else
+          {
+            $returned="";
+          }
           break;
         case 0x0006: // GPSAltitude
         case 0x000D: // GPSSpeed
@@ -109,8 +124,15 @@
         case 0x0011: // GPSImgDirection
         case 0x0018: // GPSDestBearing
         case 0x001A: // GPSDestDistance
-          if($values[1]==0) $values[1]=1;
-          $returned=round($values[0]/$values[1],2);
+          if(isset($values[0]) and isset($values[1]))
+          {
+            if($values[1]==0) $values[1]=1;
+            $returned=round($values[0]/$values[1],2);
+          }
+          else
+          {
+            $returned=0;
+          }
           break;
         case 0x0008: // GPSSatellites
         case 0x0012: // GPSMapDatum

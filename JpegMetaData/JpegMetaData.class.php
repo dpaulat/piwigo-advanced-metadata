@@ -2,12 +2,12 @@
 /**
  * --:: JPEG MetaDatas ::-------------------------------------------------------
  *
- * Version : 1.1.0
- * Date    : 2010-07-29
+ * Version : 1.1.5
+ * Date    : 2012-08-12
  *
  *  Author    : Grum
  *   email    : grum at piwigo.org
- *   website  : http://photos.grum.fr
+ *   website  : http://www.grum.fr
  *
  *   << May the Little SpaceFrog be with you ! >>
  *
@@ -114,8 +114,28 @@
  * |         |            |     and script is terminated with a memory allocation
  * |         |            |     error
  * |         |            |
- * | 1.1.5   | 2011-04-20 | * mantis bug:2222
- * |         |            |   . Division by zero with Exif ShutterSpeedValue
+ * |         |            | * mantis bug:2191
+ * |         |            |   . Array to string conversion message on MagicTag "Author"
+ * |         |            |
+ * | 1.1.5   | 2012-08-05 | * mantis feature:2701
+ * |         |            |   . Camera database is not up to date
+ * |         |            |     . update pentax tags definition (lenses&camera)
+ * |         |            |     . update canon tags definition (lenses&camera)
+ * |         |            |     . update nikon tags definition (lenses)
+ * |         |            |
+ * |         |            | * mantis bug:2702
+ * |         |            |   . Error message displayed when an unknown camera is encountered
+ * |         |            |
+ * |         |            | * mantis bug:2720
+ * |         |            |   . When malformatted XMP rational values encountered,
+ * |         |            |     error message is displayed
+ * |         |            |
+ * |         |            | * mantis bug:2722
+ * |         |            |   . error message php_uname() function is not available
+ * |         |            |
+ * |         |            |
+ * |         |            |
+ * |         |            |
  * |         |            |
  * |         |            |
  * |         |            |

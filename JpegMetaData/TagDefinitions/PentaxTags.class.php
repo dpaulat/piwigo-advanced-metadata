@@ -90,6 +90,7 @@
           0x12958 => "Optio 330GS",
           0x12962 => "Optio 450/550",
           0x1296c => "Optio S",
+          0x12971 => "Optio S V1.01",
           0x12994 => "*ist D",
           0x129b2 => "Optio 33L",
           0x129bc => "Optio 33LF",
@@ -136,19 +137,20 @@
           0x12c32 => "Optio M20",
           0x12c3c => "Optio W20",
           0x12c46 => "Optio A20",
-          0x12c8c => "Optio M30",
           0x12c78 => "Optio E30",
           0x12c7d => "Optio E35",
           0x12c82 => "Optio T30",
+          0x12c8c => "Optio M30",
+          0x12c91 => "Optio L30",
           0x12c96 => "Optio W30",
           0x12ca0 => "Optio A30",
           0x12cb4 => "Optio E40",
           0x12cbe => "Optio M40",
+          0x12cc3 => "Optio L40",
+          0x12cc5 => "Optio L36",
           0x12cc8 => "Optio Z10",
-          0x12cdc => "Optio S10",
-          0x12ce6 => "Optio A40",
-          0x12cf0 => "Optio V10",
           0x12cd2 => "K20D",
+          0x12cd4 => "Samsung GX20",
           0x12cdc => "Optio S10",
           0x12ce6 => "Optio A40",
           0x12cf0 => "Optio V10",
@@ -156,6 +158,7 @@
           0x12d04 => "Optio S12", //from exiftool
           0x12d0e => "Optio E50",
           0x12d18 => "Optio M50",
+          0x12d22 => "Optio L50",
           0x12d2c => "Optio V20", //from exiftool
           0x12d40 => "Optio W60", //from exiftool
           0x12d4a => "Optio M60", //from exiftool
@@ -163,6 +166,7 @@
           0x12d72 => "K2000", //from exiftool
           0x12d73 => "K-m", //from exiftool
           0x12d86 => "Optio P70", //from exiftool
+          0x12d90 => "Optio L70", //from exiftool
           0x12d9a => "Optio E70", //from exiftool
           0x12dae => "X70", //from exiftool
           0x12db8 => "K-7", //from exiftool
@@ -170,6 +174,27 @@
           0x12dea => "Optio P80", //from exiftool
           0x12df4 => "Optio WS80", //from exiftool
           0x12dfe => "K-x", //from exiftool
+          0x12e08 => "645D", //from exiftool
+          0x12e12 => "Optio E80", //from exiftool
+          0x12e30 => "Optio W90", //from exiftool
+          0x12e3a => "Optio I-10", //from exiftool
+          0x12e44 => "Optio H90", //from exiftool
+          0x12e4e => "Optio E90", //from exiftool
+          0x12e58 => "X90", //from exiftool
+          0x12e6c => "K-r", //from exiftool
+          0x12e76 => "K-5", //from exiftool
+          0x12e8a => "Optio RS1000 / RS1500", //from exiftool
+          0x12e94 => "Optio RZ10", //from exiftool
+          0x12e9e => "Optio LS1000", //from exiftool
+          0x12ebc => "Optio WG-1 GPS", //from exiftool
+          0x12ed0 => "Optio S1", //from exiftool
+          0x12ee4 => "Q", //from exiftool
+          0x12ef8 => "K-01", //from exiftool
+          0x12f0c => "Optio RZ18", //from exiftool
+          0x12f16 => "Optio VS20", //from exiftool
+          0x12f2a => "Optio WG-2 GPS", //from exiftool
+          0x12f48 => "Optio LS465", //from exiftool
+          0x12f52 => "K-30", //from exiftool
             )
       ), // < CameraModel
 
@@ -186,7 +211,8 @@
           2 => "Best",
           3 => "TIFF",
           4 => "RAW",
-          5 => "Premium"
+          5 => "Premium",
+          65535 => "n/a" // from exiftool
         )
       ), // < Quality
 
@@ -216,7 +242,13 @@
           25 => "2816x2212 or 2816x2112",
           27 => "3648x2736",
           29 => "4000x3000",
-          37 => "3008x2000"
+          30 => "4288x3216",
+          31 => "4608x3456",
+          129 => "1920x1080", // from exiftool
+          257 => "3216x3216", // from exiftool
+          35 => "2400x1600", // 35 1 ?  // from exiftool
+          36 => "3008x2008 or 3040x2024", // 36 0 ?  // from exiftool
+          37 => "3008x2000", // 37 0 ? // from exiftool
         )
       ), // < Size
 
@@ -244,6 +276,15 @@
           17 => "Fireworks",
           18 => "Text",
           19 => "Panorama",
+          20 => "3-D", // from exiftool
+          21 => "Black & White", // from exiftool
+          22 => "Sepia", // from exiftool
+          23 => "Red", // from exiftool
+          24 => "Pink", // from exiftool
+          25 => "Purple", // from exiftool
+          26 => "Blue", // from exiftool
+          27 => "Green", // from exiftool
+          28 => "Yellow", // from exiftool
           30 => "Self Portrait",
           31 => "Illustrations",
           33 => "Digital Filter",
@@ -264,6 +305,7 @@
           60 => "Kids",
           61 => "Blur Reduction",
           65 => "Half-length Portrait",
+          221=> "P", // from exiftool
           255=> "Digital Filter?",
         )
       ),
@@ -324,6 +366,9 @@
           16 => "AF-S",
           17 => "AF-C",
           18 => "AF-A", // from exiftool
+          32 => "Contrast-detect", // from exiftool
+          33 => "Tracking Contrast-detect",  // from exiftool
+          288=> "Face Detect",  // from exiftool
         )
       ), // < Focus
 
@@ -339,6 +384,7 @@
           0xfffe => "Fixed Center",
           0xfffd => "Automatic Tracking AF", //from exiftool
           0xfffc => "Face Recognition AF", //from exiftool
+          0xfffb => "AF Select",  // from exiftool
           1 => "Upper-left",
           2 => "Top",
           3 => "Upper-right",
@@ -405,6 +451,15 @@
           22 => "4000", //from exiftool
           23 => "5000", //from exiftool
           24 => "6400", //from exiftool
+          25 => "8000", //from exiftool
+          26 => "10000", //from exiftool
+          27 => "12800", //from exiftool
+          28 => "16000", //from exiftool
+          29 => "20000", //from exiftool
+          30 => "25600", //from exiftool
+          31 => "32000", //from exiftool
+          32 => "40000", //from exiftool
+          33 => "51200", //from exiftool
 
           50 => "50",
           100 => "100",
@@ -422,6 +477,14 @@
           268 => "1600", //from exiftool
           269 => "2200", //from exiftool
           270 => "3200", //from exiftool
+          271 => "4500", //from exiftool
+          272 => "6400", //from exiftool
+          273 => "9000", //from exiftool
+          274 => "12800", //from exiftool
+          275 => "18000", //from exiftool
+          276 => "25600", //from exiftool
+          277 => "36000", //from exiftool
+          278 => "51200", //from exiftool
           400 => "400",
           800 => "800",
           1600 => "1600",
@@ -504,6 +567,8 @@
           4 => "Med High",
           5 => "Very Low",
           6 => "Very High",
+          7 => "-4", //from exiftool
+          8 => "+4", //from exiftool
           65535 => "none", //from exiftool
         )
       ), // < Saturation
@@ -522,7 +587,9 @@
           3 => "Med Low",
           4 => "Med High",
           5 => "Very Low",
-          6 => "Very High"
+          6 => "Very High",
+          7 => "-4", //from exiftool
+          8 => "+4", //from exiftool
         )
       ), // < Contrast
 
@@ -540,7 +607,9 @@
           3 => "Med Soft",
           4 => "Med Hard",
           5 => "Very Soft",
-          6 => "Very Hard"
+          6 => "Very Hard",
+          7 => "-4", //from exiftool
+          8 => "+4", //from exiftool
         )
       ), // < Sharpness
 
@@ -637,6 +706,9 @@
           69 => "Stockholm",
           70 => "Lisbon",
           71 => "Copenhagen", // from exiftool
+          72 => "Warsaw",  // from exiftool
+          73 => "Prague",  // from exiftool
+          74 => "Budapest",  // from exiftool
         )
       ), // < City names
 
@@ -720,6 +792,9 @@
           69 => "Stockholm",
           70 => "Lisbon",
           71 => "Copenhagen", // from exiftool
+          72 => "Warsaw",  // from exiftool
+          73 => "Prague",  // from exiftool
+          74 => "Budapest",  // from exiftool
         )
       ), // < City names
 
@@ -739,7 +814,6 @@
           0x10000000 => "Frame Synthesis?"
         )
       ), // < ImageProcessing
-
 
       // PictureMode, tag 0x0033, combi-tag 3 bytes
       0x0033 => Array(
@@ -772,6 +846,13 @@
           0x001300 => "Food", //from exiftool
           0x001400 => "Stage Lighting", //from exiftool
           0x001500 => "Night Snap", //from exiftool
+          0x001700 => "Blue Sky", //from exiftool
+          0x001800 => "Sunset", //from exiftool
+          0x001a00 => "Night Scene HDR", //from exiftool
+          0x001b00 => "HDR", //from exiftool
+          0x001c00 => "Quick Macro", //from exiftool
+          0x001d00 => "Forest", //from exiftool
+          0x001e00 => "Backlight Silhouette", //from exiftool
         /* AUTO PICT modes (auto-selected) */
           0x010400 => "Auto PICT (Standard)",
           0x010500 => "Auto PICT (Portrait)",
@@ -790,6 +871,7 @@
           0x020101 => "Hi-speed Program",
           0x020201 => "DOF Program",
           0x020301 => "MTF Program",
+          0x021601 => "Shallow DOF", //from exiftool
           0x030001 => "Green Mode",
           0x040001 => "Shutter Speed Priority",
           0x050001 => "Aperture Priority",
@@ -832,10 +914,18 @@
           0xff000000 => "Video", // from exiftool
           0x00010000 => "Self-timer (12 sec)",
           0x00020000 => "Self-timer (2 sec)",
+          0x000f0000 => "Video",    // from exiftool
+          0x00100000 => "Mirror Lock-up",   // from exiftool
           0x00ff0000 => "n/a", //from exiftool (K-x ?)
           0x00000100 => "Remote Control (3 sec)",
           0x00000200 => "Remote Control",
+          0x00000400 => "Remote Continuous Shooting",   // from exiftool
           0x00000001 => "Multiple Exposure",
+          0x00000010 => "HDR", // from exiftool
+          0x00000020 => "HDR Strong 1", // from exiftool
+          0x00000030 => "HDR Strong 2", // from exiftool
+          0x00000040 => "HDR Strong 3", // from exiftool
+          0x000000E0 => "HDR Auto", // from exiftool
           0x000000ff => "Video" //from exiftool
         )
       ), // < DriveMode
@@ -1061,17 +1151,48 @@
           0x07f2 => "smc PENTAX-DA* 16-50mm F2.8 ED AL [IF] SDM (SDM not used)",
           0x07f3 => "smc PENTAX-DA 70mm F2.4 Limited",
           0x07f4 => "smc PENTAX-DA 21mm F3.2 AL Limited",
-          0x08e2 => "smc PENTAX-DA* 55mm F1.4 SDM", //from exiftool
-          0x08e3 => "smc PENTAX DA* 60-250mm F4 [IF] SDM", //from exiftool
-          0x08e8 => "smc PENTAX-DA 17-70mm F4 AL [IF] SDM", //from exiftool
-          0x08ea => "smc PENTAX-DA* 300mm F4ED [IF] SDM",
+          0x0804 => "Sigma 50mm F1.4 EX DG HSM",
+          0x0808 => "Sigma 18-250mm F3.5-6.3 DC OS HSM",
+          0x080b => "Sigma 10-20mm F3.5 EX DC HSM",
+          0x080c => "Sigma 70-300mm F4-5.6 DG OS",
+          0x080d => "Sigma 120-400mm F4.5-5.6 APO DG OS HSM",
+          0x080e => "Sigma 17-70mm F2.8-4.0 DC Macro OS HSM",
+          0x080f => "Sigma 150-500mm F5-6.3 APO DG OS HSM",
+          0x0810 => "Sigma 70-200mm F2.8 EX DG Macro HSM II",
+          0x0811 => "Sigma 50-500mm F4.5-6.3 DG OS HSM",
+          0x0812 => "Sigma 8-16mm F4.5-5.6 DC HSM",
+          0x0815 => "Sigma 17-50mm F2.8 EX DC OS HSM",
+          0x0816 => "Sigma 85mm F1.4 EX DG HSM",
+          0x0817 => "Sigma 70-200mm F2.8 APO EX DG OS HSM",
+          0x08d7 => "smc PENTAX-DA 18-135mm F3.5-5.6 ED AL [IF] DC WR",
+          0x08e2 => "smc PENTAX-DA* 55mm F1.4 SDM",
+          0x08e3 => "smc PENTAX-DA* 60-250mm F4 [IF] SDM",
+          0x08e8 => "smc PENTAX-DA 17-70mm F4 AL [IF] SDM",
+          0x08ea => "smc PENTAX-DA* 300mm F4 ED [IF] SDM",
           0x08eb => "smc PENTAX-DA* 200mm F2.8 ED [IF] SDM",
           0x08f1 => "smc PENTAX-DA* 50-135mm F2.8 ED [IF] SDM",
           0x08f2 => "smc PENTAX-DA* 16-50mm F2.8 ED AL [IF] SDM",
           0x08ff => Array(
                       "Sigma 70-200mm F2.8 EX DG Macro HSM II",
                       "Sigma APO 150-500mm F5-6.3 DG OS HSM",
+                      "Sigma 4.5mm F2.8 EX DC HSM Circular Fisheye",
+                      "Sigma 50-200mm F4-5.6 DC OS"
                     ),
+          0x0900 => "645 Manual Lens",
+          0x0a00 => "645 A Series Lens",
+          0x0b04 => "smc PENTAX-FA 645 45-85mm F4.5",
+          0x0b08 => "smc PENTAX-FA 645 80-160mm F4.5",
+          0x0b0b => "smc PENTAX-FA 645 35mm F3.5 AL [IF]",
+          0x0b10 => "smc PENTAX-FA 645 33-55mm F4.5 AL",
+          0x0b11 => "smc PENTAX-FA 645 150-300mm F5.6 ED [IF]",
+          0x0d12 => "smc PENTAX-D FA 645 55mm F2.8 AL [IF] SDM AW",
+          0x0b13 => "smc PENTAX-D FA 645 25mm F4 AL [IF] SDM AW",
+          0x1500 => "Pentax Q Manual Lens",
+          0x1501 => "Standard Prime 8.5mm F1.9",
+          0x1502 => "Standard Zoom 5-15mm F2.8-4.5",
+          0x1503 => "Fish-eye 3.2mm F5.6",
+          0x1504 => "Toy Lens Wide 6.3mm F7.1",
+          0x1505 => "Toy Lens Telephoto 18mm F8",
           0xffff => "Unknown",
         ),
       ), // < LensType
@@ -1090,7 +1211,11 @@
           2 => "portrait",
           3 => "Landscape",
           4 => "Vibrant",
-          5 => "Monochrome"
+          5 => "Monochrome",
+          6 => "Muted",
+          7 => "Reversal Film",
+          8 => "Bleach Bypass",
+          9 => "Radiant"
         )
       ), // < ImageTone
 

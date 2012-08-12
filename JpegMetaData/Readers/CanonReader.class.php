@@ -140,6 +140,7 @@
           /*
            * null terminated strings
            */
+          //print_r($values);
           $returned=ConvertData::toStrings($values);
           break;
         case 0x000c: // "SerialNumber"
@@ -150,12 +151,28 @@
           break;
         case 0x0010: // "CanonModelID"
           $tag=$this->tagDef->getTagById(0x0010);
-          $returned=$tag['tagValues.special'][sprintf("0x%08x", $values)];
+          if(isset($tag['tagValues.special'][sprintf("0x%08x", $values)]))
+          {
+            $returned=$tag['tagValues.special'][sprintf("0x%08x", $values)];
+          }
+          else
+          {
+            $returned=sprintf("unknown (0x%08x)", $values);
+          }
+
           unset($tag);
           break;
         case 0x0015: // "SerialNumberFormat"
           $tag=$this->tagDef->getTagById(0x0015);
-          $returned=$tag['tagValues.special'][sprintf("0x%08x", $values)];
+          if(isset($tag['tagValues.special'][sprintf("0x%08x", $values)]))
+          {
+            $returned=$tag['tagValues.special'][sprintf("0x%08x", $values)];
+          }
+          else
+          {
+            $returned=sprintf("unknown (0x%08x)", $values);
+          }
+
           unset($tag);
           break;
         default:

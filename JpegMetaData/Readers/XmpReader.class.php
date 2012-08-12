@@ -246,8 +246,15 @@
               $type="n/a";
               break;
           }
+
+          $types=array('simple', 'seq', 'bag', 'alt');
+          $tagProperties=$this->tagDef->getTagById($node->getName());
+
           if($type=="seq" or $type=="bag" or $type=="alt")
           {
+            if($type!=$types[$tagProperties['type']])
+              $type=$types[$tagProperties['type']]; // if container type is not accorded with XMP schema, force it to right value
+
             $value=Array('type' => $type, 'values' => Array());
             $childNode=$child->getFirstChild();
             while(!is_null($childNode))
@@ -269,6 +276,7 @@
                 }
                 else
                 {
+                  $childNode->delAttributes(); // remove all attributes => only 'alt' type can have attributes
                   $value['values'][]=$childNode->getValue();
                 }
               }
@@ -453,33 +461,47 @@
           break;
         case "Iptc4xmpCore:IntellectualGenre":
           $returned=explode(":", $value);
+          if(!is_array($returned)) $returned=array($returned); // force the value to be an array
           break;
         case "exif:GPSLatitude":
         case "exif:GPSLongitude":
         case "exif:GPSDestLatitude":
         case "exif:GPSDestLongitude":
           $returned=Array('coord' => "", 'card'=>"");
+
           preg_match_all('/(\d{1,3}),(\d{1,2})(?:\.(\d*)){0,1}(N|S|E|W)/', $value, $result);
-          $returned['coord']=$result[1][0]."° ".$result[2][0]."' ";
-          if(trim($result[3][0])!="")
+          if(is_array($result) and
+             isset($result[1]) and
+             isset($result[2]) and
+             isset($result[3]) and
+             isset($result[4]) and
+             isset($result[1][0]) and
+             isset($result[2][0]) and
+             isset($result[3][0]) and
+             isset($result[4][0]))
           {
-            $returned['coord'].= round(("0.".$result[3][0])*60,2)."\"";
+            $returned['coord']=$result[1][0]."° ".$result[2][0]."' ";
+            if(trim($result[3][0])!="")
+            {
+              $returned['coord'].= round(("0.".$result[3][0])*60,2)."\"";
+            }
+            switch($result[4][0])
+            {
+              case "N":
+                $returned['card']="North";
+                break;
+              case "S":
+                $returned['card']="South";
+                break;
+              case "E":
+                $returned['card']="East";
+                break;
+              case "W":
+                $returned['card']="West";
+                break;
+            }
           }
-          switch($result[4][0])
-          {
-            case "N":
-              $returned['card']="North";
-              break;
-            case "S":
-              $returned['card']="South";
-              break;
-            case "E":
-              $returned['card']="East";
-              break;
-            case "W":
-              $returned['card']="West";
-              break;
-          }
+
           $type=ByteType::UNDEFINED;
           break;
         case "xmp:CreateDate":
@@ -616,7 +638,14 @@
         case "exif:SubjectDistanceRange":
         case "exif:GPSAltitudeRef":
         case "exif:GPSDifferential":
-          $returned=(int)$xmpValue;
+          if(is_int($xmpValue))
+          {
+            $returned=(int)$xmpValue;
+          }
+          else
+          {
+            $returned=0;
+          }
           $type=ByteType::ULONG;
           break;
         /* specials */
@@ -665,7 +694,14 @@
         case "exif:GPSDestBearing":
         case "exif:GPSDestDistance":
           $computed=explode("/", $xmpValue);
-          $returned=Array((int)$computed[0], (int)$computed[1]);
+          if(is_array($computed) and is_int($computed[0]) and is_int($computed[1]))
+          {
+            $returned=Array((int)$computed[0], (int)$computed[1]);
+          }
+          else
+          {
+            $returned=array(0,1);
+          }
           $type=ByteType::URATIONAL;
           unset($computed);
           break;

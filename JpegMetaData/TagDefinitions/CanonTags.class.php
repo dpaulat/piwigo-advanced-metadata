@@ -4,7 +4,7 @@
  *
  *  Author    : Grum
  *   email    : grum at piwigo.org
- *   website  : http://photos.grum.fr
+ *   website  : http://www.grum.fr
  *
  *   << May the Little SpaceFrog be with you ! >>
  *
@@ -650,9 +650,18 @@
               248 => "Canon EF 200mm f/2L IS",
               249 => "Canon EF 800mm f/5.6L IS",
               250 => "Canon EF 24 f/1.4L II",
+              251 => "Canon EF 70-200mm f/2.8L IS II USM",
+              252 => "Canon EF 70-200mm f/2.8L IS II USM + 1.4x",
+              253 => "Canon EF 70-200mm f/2.8L IS II USM + 2x",
               254 => "Canon EF 100mm f/2.8L Macro IS USM",
               488 => "Canon EF-S 15-85mm f/3.5-5.6 IS USM",
-        ),
+              489 => "Canon EF 70-300mm f/4-5.6L IS USM",
+              490 => "Canon EF 8-15mm f/4L USM",
+              491 => "Canon EF 300mm f/2.8L IS II USM",
+              494 => "Canon EF 600mm f/4.0L IS II USM",
+              495 => "Canon EF 24-70mm f/2.8L II USM",
+              4144 => "Canon EF 40mm f/2.8 STM"
+        )
       ),
 
       "0x0001.23" => Array(
@@ -1781,15 +1790,36 @@
             '0x02860000' => "PowerShot SD3500 IS / Digital IXUS 210 / IXY Digital 10S",
             '0x02870000' => "PowerShot SX210 IS",
             '0x03010000' => "PowerShot Pro90 IS",
+            '0x03020000' => "Digital IXUS 115 HS",  // added from forum
             '0x04040000' => "PowerShot G1",
             '0x06040000' => "PowerShot S100 / Digital IXUS / IXY Digital",
+            '0x4007d673' => "DC19/DC21/DC22",
+            '0x4007d674' => "XH A1",
             '0x4007d675' => "HV10",
+            '0x4007d676' => "MD130/MD140/MD150/MD160/ZR850",
             '0x4007d777' => "iVIS DC50",
             '0x4007d778' => "iVIS HV20",
             '0x4007d779' => "DC211",
             '0x4007d77b' => "iVIS HR10",
+            '0x4007d77d' => "MD255/ZR950",
+            '0x4007d81c' => "HF11",
+            '0x4007d878' => "HV30",
+            '0x4007d87c' => "XH A1S",
+            '0x4007d87e' => "DC301/DC310/DC311/DC320/DC330",
             '0x4007d87f' => "FS100",
             '0x4007d880' => "iVIS HF10",
+            '0x4007d882' => "HG20/HG21",
+            '0x4007d925' => "HF21",
+            '0x4007d926' => "HF S11",
+            '0x4007d978' => "HV40",
+            '0x4007d987' => "DC410/DC411/DC420",
+            '0x4007d988' => "FS19/FS20/FS21/FS22/FS200",
+            '0x4007d989' => "HF20/HF200",
+            '0x4007d98a' => "HF S10/S100",
+            '0x4007da8e' => "HF R10/R16/R17/R18/R100/R106",
+            '0x4007da8f' => "HF M30/M31/M36/M300/M306",
+            '0x4007da90' => "HF S20/S21/S200",
+            '0x4007da92' => "FS31/FS36/FS37/FS300/FS305/FS306/FS307",
             '0x80000001' => "EOS-1D",
             '0x80000167' => "EOS-1DS",
             '0x80000168' => "EOS 10D",
@@ -1804,15 +1834,28 @@
             '0x80000213' => "EOS 5D",
             '0x80000215' => "EOS-1Ds Mark III",
             '0x80000218' => "EOS 5D Mark II",
+            '0x80000219' => "WFT-E1",
             '0x80000232' => "EOS-1D Mark II N",
             '0x80000234' => "EOS 30D",
             '0x80000236' => "EOS Digital Rebel XTi / 400D / Kiss Digital X (and rare K236)",
+            '0x80000241' => "WFT-E2",
+            '0x80000246' => "WFT-E3",
             '0x80000250' => "EOS 7D",
             '0x80000252' => "EOS Rebel T1i / 500D / Kiss X3",
             '0x80000254' => "EOS Rebel XS / 1000D / Kiss F",
             '0x80000261' => "EOS 50D",
+            '0x80000269' => "EOS-1D X",
             '0x80000270' => "EOS Rebel T2i / 550D / Kiss X4",
+            '0x80000271' => "WFT-E4",
+            '0x80000273' => "WFT-E5",
             '0x80000281' => "EOS-1D Mark IV",
+            '0x80000285' => "EOS 5D Mark III",
+            '0x80000286' => "EOS Rebel T3i / 600D / Kiss X5",
+            '0x80000287' => "EOS 60D",
+            '0x80000288' => "EOS Rebel T3 / 1100D / Kiss X50",
+            '0x80000297' => "WFT-E2 II",
+            '0x80000298' => "WFT-E4 II",
+            '0x80000301' => "EOS Rebel T4i / 650D / Kiss X6i"
         ),
       ), // < CanonModelID
 

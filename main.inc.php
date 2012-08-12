@@ -1,18 +1,18 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.7.0
+Version: 0.7.1
 Description: An advanced metadata manager
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
 Author: grum@piwigo.org
-Author URI: http://photos.grum.fr/
+Author URI: http://www.grum.fr/
 */
 
 /*
 --------------------------------------------------------------------------------
   Author     : Grum
     email    : grum@piwigo.org
-    website  : http://photos.grum.fr
+    website  : http://www.grum.fr
     PWG user : http://forum.piwigo.org/profile.php?id=3706
 
     << May the Little SpaceFrog be with you ! >>
@@ -227,7 +227,21 @@ Author URI: http://photos.grum.fr/
 | 0.7.0   | 2012-05-25 | * mantis feature:2637
 |         |            |   . Compatibility with piwigo 2.4
 |         |            |
+| 0.7.1   | 2012-08-12 | * mantis feature:2701
+|         |            |   . Camera database is not up to date
+|         |            |     . update pentax tags definition (lenses&camera)
+|         |            |     . update canon tags definition (lenses&camera)
+|         |            |     . update nikon tags definition (lenses)
 |         |            |
+|         |            | * mantis bug:2702
+|         |            |   . Error message displayed when an unknown camera is encountered
+|         |            |
+|         |            | * mantis bug:2720
+|         |            |   . When malformatted XMP rational values encountered,
+|         |            |     error message is displayed
+|         |            |
+|         |            | * mantis bug:2722
+|         |            |   . error message php_uname() function is not available
 |         |            |
 |         |            |
 |         |            |

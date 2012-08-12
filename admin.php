@@ -29,7 +29,7 @@ $main_plugin_object = get_plugin_data($plugin_id);
 
 
 
-if(CommonPlugin::checkGPCRelease(3,2,0))
+if(CommonPlugin::checkGPCRelease(AMD_GPC_NEEDED))
 {
   $config=Array();
   GPCCore::loadConfig('amd', $config);
