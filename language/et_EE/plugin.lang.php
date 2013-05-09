@@ -201,4 +201,102 @@ $lang['g003_n_pictures_in_caddie'] = '%s pilti korvis';
 $lang['g003_name'] = 'Nimi';
 $lang['g003_new_group'] = 'Uus metainfo grupp';
 $lang['g003_no'] = 'Ei';
+$lang['g003_help_xmp'] = 'XMP on EXIF ja IPTC informatsioon talletatuna XML formaadis.
+
+XMP on paindlikum:
+[ul]
+[li]infot saab  talletada eri keeltes[/li]
+[li]Unicode märkide kasutamine (tääpitähed, mitte ladina tähestik..)[/li]
+[li]XML haldab infovahetust[/li]
+[/ul]
+
+XMP metainfo on standardiseeritud([url]http://www.metadataworkinggroup.org/specs[/url]).
+Standard soovitab kasutada EXIF või IPTC infot.
+
+EXIF ja IPTC info konverteerimine XMP formaati käib tavaliselt foto programmide abil.
+
+XMP formaati tõlkimine võib olla kadudega, selle tõttu soovitatakse jätta alles ka originaal info, samas alati ei ole see võimalik. Infokadu ei ole enamikele oluline.';
+$lang['g003_help_magic'] = 'Sama informatsiooni saab piltides talletada mitmes eri formaadis:
+[ul]
+[li]võib talletada igas formaadis[/li]
+[li]võib talletada ainult ühes formaadis[/li]
+[/ul]
+
+Näiteks Avaarvu võib talletada mitmes eri formaadis:
+[ul]
+[li][b]exif.exif.FNumber[/b][/li]
+[li][b]exif.exif.ApertureValue[/b][/li]
+[li][b]xmp.exif:ApertureValue[/b][/li]
+[li][b]xmp.exif:FNumber[/b][/li]
+[/ul]
+
+Et hallata mitmes eri kohas olevat informatsiooni, plugin pakub üldkasutatava info kokkuvõtte ja analüüsib seda. Seda kutsutakse [b]Magic[/ b] metainfoks.
+
+
+Samas [b]magic.ShotInfo.Aperture[/b] metainfo tagastab:
+
+[ul]
+[li]kui pildifailis on info olemas, siis [b]exif.exif.FNumber[/b] väärtuse, muidu [/li]
+[li]kui pildifailis olemas [b]xmp.exif: FNumber[/b] väärtuse [/li]
+[li]Kui pildifailis olemas [b]exif.exif.ApertureValue[/b] väärtuse, muidu [/ li]
+[li]Kui pildifailis olemas [b]xmp.exif: ApertureValue[/b] väärtuse.[/li]
+[/ul]';
+$lang['g003_help_iptc'] = 'IPTC metainfo on informatsioon fotograafi kohta, mida saab sisestada vastava tarkvara olemasolul.
+
+Peamiselt on info professionaalidele:
+[ul]
+[li]fotograafi info (nimi, kontaktid)[/li]
+[li]autoriõiguste kaitse info[/li]
+[li]pildi kirjeldus (pealkiri, kirjeldus, ülevaated, sildid)[/li]
+[li]erinevad profimaailmaga seotud viited[/li]
+[/ul]
+
+IPTC metainfo on standardiseeritud ([url]http://www.iptc.org[/url]).
+Standardi töötasid välja ülemaailmsed uudisteagentuurid [i]International Press Telecommunications Council [/i] (IPTC).
+[li] info pildi kohta (suurus, resolutsioon, pakkimine)';
+$lang['g003_help_exif'] = 'EXIF metainfo talletatakse pildifaili kaamera poolt.
+
+Informatsioon on peamiselt tehniline:
+[ul]
+[li]kasutatud varustus (kaamera mudel, tootja)[/li]
+[li]Pildistamise olud (ava, säri, fookuskaugus)[/li]
+[li]pildistamise aeg (kuupäev, aeg)[/li]
+[li]geograafiline asukoht (GPS\'i koordinaadid)[/li]
+[li]pildi formaadi info (suurus, resolutsioon, pakkimine)[/li]
+[/ul]
+
+EXIF metainfo on standardiseeritud([url]http://www.exif.org/Exif2-2.PDF[/url]), aga:
+
+[ul]
+[li]See standard loodi [url=http://www.jeita.or.jp]JEITA[/url] (Japan Electronics and Information Technology Industries Association)poolt ja pole muutunud pärast 2002 aastat[/li]
+[li]iga defineeritud info on valikuline, seega kõikidel kaameratel pole kõike infot.[/li]
+[li] [i]MakerNote[/i] väli on kasutusel tootja poolt, et lisada lisainformatsiooni (näiteks objektiivi tüüp); see informatsioon on kaaemrapõhine, vahel ka tootjapõhine. Antud plugin oskab mõningat infot renderdada [b]Pentaxi[/b], [b]Canoni[/b] ja [b] Nikoni [/b] kaamerates.[/li]
+[/ul]';
+$lang['g003_display_page_help'] = 'Piltide juures hoitavat metainfot saab sorteerida ja grupeerida. Vaikimisi on ainult grupp [i]Pildistamise olud[/i] nähtav, aga on võimalik luua ka teisi gruppe ([i]IPTC[/i], [i]Geosildistamine[/i], ...).
+[ul]
+[li]Loo metainfo gruppe vastavalt oma vajadusele[/li]
+[li]Lisa metainfo ekraanile[/li]
+[li]Grupi sees saad lohistamismeetodil järjekorda muuta[/li]
+[li]Muuta gruppide kuvamise järjekorda[/li]
+[/ul]
+Valikud rakendatakse koheselt.';
+$lang['g003_databaseWarning1'] = '[p]Hoidla tehakse piltide ja plugina poolt arvutuste põhjal. Olenevalt piltide suuruse ja metainfo koguse järgi võib hoidla tulla suuremahuline.
+Enne hoidla tegemise veenduda, et server sellist tegevust lubab.
+[/p][p]Hoidla kasutamine on vabatahtlik, seda ei ole vaja piltide juures metainfo näitamiseks.
+[/p][p]Hoidla loomine on vajalik, kui:[/p]
+[ul]
+[li]Saamaks statistilist infot metaandmete kohta[/li]
+[li]Kasutamaks otsingumootorit[/li]
+[/ul]';
+$lang['g003_personnal_page_help'] = 'Võimalik on luua oma metainfo olemasoleva põhjal:
+[ul]
+[li]Lisa uus metainfo[/li]
+[li]Täida atribuudid[/li]
+[li]Lisada reegleid ja neid kombineerida lohistamise meetodil[/li]
+[/ul]';
+$lang['g003_search_page_help'] = 'Võimalus on teostada erinevaid metainfo sisu  otsinguid, keerulisi ja kergeid: lisa kriteeriumeid lohistamise meetodil.';
+$lang['g003_select_page_help'] = 'Ainult siin valitud metainfo on avalik teistes kohtades: See võimaldab vähendada ebaolulise info hulka. Valik rakendatakse kohe, ei ole vaja valideerimist.';
+$lang['g003_tags_page_help'] = 'See liides lubab metainfost välja eksportida ja konvertida piltide [i]Silte[/i]. Eelnevalt konverteeritud ja piltidele lisatud silte ei kuvata, ainult konvertimist võimaldavad sildid kuvatakse.';
+$lang['g003_warning_on_analyze_1'] = 'Otsene analüüsi protsess hoidla loomisel võib võtta mitu minutit ja olla serverile koormav olenevalt analüüsiks valitud piltide kogusest.';
+$lang['g003_warning_on_analyze_5'] = 'Et saada kiiremini täiuslikku hoidlat, täiuslikum galerii analüüs on võimalik:';
 ?>

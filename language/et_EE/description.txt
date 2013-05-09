@@ -1,0 +1,1 @@
+Advanced MetaData plugin kasutab kõike metainfot, mida pilt pakub (EXIF, IPTC, XMP).
