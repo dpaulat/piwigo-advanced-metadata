@@ -361,4 +361,52 @@ To be exploited, it is necessary to update the repository.[/p]";
 
 // help for metadata translation is given at the beginning of this file
 
+$lang['g003_metadata_detail'] = 'Rango de valores para los metadatos';
+$lang['g003_warning_on_analyze_3a'] = 'del número de fotos en la galería';
+$lang['g003_warning_on_analyze_3b'] = 'del número de páginas vistas al día';
+$lang['g003_warning_on_analyze_5'] = 'Para proporcionar rápidamente un referencial completo, es posible hacer un análisis más directo de la galería:';
+$lang['g003_help_tab_xmp'] = 'XMP';
+$lang['g003_help_tab_magic'] = 'Mágico';
+$lang['g003_help_tab_iptc'] = 'IPTC';
+$lang['g003_help_tab_exif'] = 'Exif';
+$lang['g003_help_xmp'] = 'Metadatos XMP son esencialmente metadatos EXIF ​​e IPTC que se almacenan en la imagen en el formato XML.
+
+La ventaja de metadatos XMP es la provisión de flexibilidad:
+[ul]
+[li]La información se puede almacenar en varios idiomas [/ li]
+[li] el uso del juego de caracteres Unicode permite (en su mayoría) utilizar caracteres no latinos [/ li]
+[li] XML facilita la interpretación y el intercambio de información [/ li]
+[/ ul]
+
+La alimentación de metadatos XMP esta estandarizada
+([url]http://www.metadataworkinggroup.org/specs[/url]).
+La norma aconseja utilizar preferentemente los metadatos EXIF e IPTC si están presentes.
+
+La conversión de los metadatos EXIF y IPTC de metadatos XMP se suele hacer con el software de edición de fotos.
+
+El modelo XMP es más pobre que el modelo EXIF, las consecuencias del resultado de la conversión en una pérdida de información en la foto.Generalmente la información perdida no es de gran importancia para la mayoría de los usuarios, sin embargo, la norma recomienda que el software que guarda los metadatos XMP conserve el original: esto no es, por desgracia siempre el caso.';
+$lang['g003_help_magic'] = 'La misma información se puede almacenar en varios formatos en una foto:
+[ul]
+[li]puede estar presente en todos los formatos [/li]
+[li]puede estar presente en una forma, pero no en otro [/li]
+[/ul]
+
+Por ejemplo, la abertura del diagrama puede estar presente en cuatro metadatos diferente:
+[ul]
+[li][b]exif.exif.FNumber[/b][/li]
+[li][b]exif.exif.ApertureValue[/b][/li]
+[li][b]xmp.exif:ApertureValue[/b][/li]
+[li][b]xmp.exif:FNumber[/b][/li]
+[/ul]
+
+Para facilitar la restitución de información que pueda estar disperso, el plug-in ofrece un pequeño grupo de los metadatos más utilizados y se carga de analizar la presencia en las fotos, y devolver la información más relevante.
+Estos metadatos se llaman [b] Mágicos [/ b].
+
+Por lo tanto, los metadatos [b] magic.ShotInfo.Aperture [/b], se vuelven:
+[ul]
+[li] el valor de los metadatos [b] exif.exif.FNumber [/b] si esta presente en la foto, sino [/li]
+[li] el valor de los metadatos [b]xmp.exif:FNumber[/b] si esta presente en la foto, sino [/li]
+[li] el valor de los metadatos [b]exif.exif.ApertureValue[/b] si esta presente en la foto, sino [/li]
+[li] el valor de los metadatos [b]xmp.exif:ApertureValue[/b] si esta presente en la foto, sino [/li]';
+$lang['g003_help'] = 'Ayuda en metadatos';
 ?>
