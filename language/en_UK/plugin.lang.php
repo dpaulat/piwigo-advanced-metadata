@@ -104,8 +104,7 @@ $lang['g003_help_tab_exif'] = "Exif";
 $lang['g003_help_tab_iptc'] = "IPTC";
 $lang['g003_help_tab_xmp'] = "XMP";
 $lang['g003_help_tab_magic'] = "Magic";
-$lang['g003_help_exif'] = "EXIF Metadata is information stored in the image file by the camera at shooting.
-
+$lang['g003_help_exif'] = 'EXIF Metadata is information stored in the image file by the camera at shooting.
 
 The information there are mainly technical:
 [ul]
@@ -116,14 +115,14 @@ The information there are mainly technical:
 [li]information on the photo format (size, resolution, compression)[/li]
 [/ul]
 
-EXIF metadata is standardized ([url]http://www.exif.org/Exif2-2.PDF[/url]), but :
+EXIF metadata is standardized ([url]http://www.exif.org/Exif2-2.PDF[/url]), but:
 [ul]
 [li]This standard established by the [url=http://www.jeita.or.jp]JEITA[/url] (Japan Electronics and Information Technology Industries Association) has no longer changed since 2002[/li]
 [li]each metadata defined in the standard is optional, so not all cameras feed all metadata[/li]
 [li]a [i]MakerNote[/i] metadata exists as an open field used by manufacturers to store information missing from the specifications (eg, lenses references); this data are specific to each manufacturer, sometimes for each camera. The plugin knows how to render some of this information for [b]Pentax[/b], [b]Canon[/b] and [b] Nikon [/b] cameras.[/li]
-[/ul]";
+[/ul]';
 
-$lang['g003_help_iptc'] = "IPTC Metadata consists of information the photographer can record in the image with an appropriate software.
+$lang['g003_help_iptc'] = 'IPTC Metadata consists of information the photographer can record in the image with an appropriate software.
 
 Information there is mainly oriented towards the professional world:
 [ul]
@@ -135,8 +134,9 @@ Information there is mainly oriented towards the professional world:
 
 IPTC metadata is standardized ([url]http://www.iptc.org[/url]).
 This standard has been established by a consortium of major news agencies in the world, the [i]International Press Telecommunications Council [/i] (IPTC).
+';
 [li] information on the format of the photo (size, resolution, compression)";
-$lang['g003_help_xmp'] = "XMP metadata are essentially EXIF and IPTC metadata that have been stored image file using XML format.
+$lang['g003_help_xmp'] = 'XMP metadata are essentially EXIF and IPTC metadata that have been stored in the image file using XML format.
 
 XMP metadata provide more flexibility:
 [ul]
@@ -150,8 +150,8 @@ The standard advises to use preferably the EXIF and IPTC metadata, if present.
 
 EXIF & IPTC metadata conversion to XMP metadata is usually done with a photo editing software.
 
-As XMP model is poorer than EXIF, this conversion will result in information loss in the picture. Usually the lost information is not too important for most users; however, the standard recommends that the software recording XMP metadata retain the original metadata: unfortunately, that is not always the case.";
-$lang['g003_help_magic'] = "The same information can be stored within a photo in multiple formats:
+As XMP model is poorer than EXIF, this conversion will result in information loss in the picture. Usually the lost information is not too important for most users; however, the standard recommends that the software recording XMP metadata retain the original metadata: unfortunately, that is not always the case.';
+$lang['g003_help_magic'] = 'The same information can be stored within a photo in multiple formats:
 [ul]
 [li]it may exist in every format[/li]
 [li]it may be present in one format but not in another one[/li]
@@ -161,6 +161,20 @@ For example, the aperture may be present in 4 different metadata:
 [ul]
 [li][b]exif.exif.FNumber[/b][/li]
 [li][b]exif.exif.ApertureValue[/b][/li]
+[li][b]xmp.exif:ApertureValue[/b][/li]
+[li][b]xmp.exif:FNumber[/b][/li]
+[/ul]
+
+To facilitate the rendering of information that may be scattered, the plugin provides a small group of the most used metadata, and takes on the analyze of those present in the picture to return the most relevant information.
+These are called [b]Magic[/b] metadata.
+
+Thus, the [b]magic.ShotInfo.Aperture[/b] metadata returns:
+[ul]
+[li]if present in the photo, the value of the [b]exif.exif.FNumber[/b] metadata, otherwise [/li]
+[li]if present in the photo, the value of the [b]xmp.exif: FNumber[/b] metadata, otherwise [/li]
+[li]if present in the photo, the value of the [b]exif.exif.ApertureValue[/b] metadata, otherwise [/li]
+[li]if present in the photo, the value of the [b]xmp.exif: ApertureValue[/b] metadata.[/li]
+[/ul]';
 [li][b]xmp.exif:ApertureValue[/b][/li]
 [li][b]xmp.exif:FNumber[/b][/li]
 [/ul]
