@@ -134,8 +134,7 @@ Information there is mainly oriented towards the professional world:
 
 IPTC metadata is standardized ([url]http://www.iptc.org[/url]).
 This standard has been established by a consortium of major news agencies in the world, the [i]International Press Telecommunications Council [/i] (IPTC).
-';
-[li] information on the format of the photo (size, resolution, compression)";
+[li] information on the format of the photo (size, resolution, compression)';
 $lang['g003_help_xmp'] = 'XMP metadata are essentially EXIF and IPTC metadata that have been stored in the image file using XML format.
 
 XMP metadata provide more flexibility:
@@ -174,7 +173,7 @@ Thus, the [b]magic.ShotInfo.Aperture[/b] metadata returns:
 [li]if present in the photo, the value of the [b]xmp.exif: FNumber[/b] metadata, otherwise [/li]
 [li]if present in the photo, the value of the [b]exif.exif.ApertureValue[/b] metadata, otherwise [/li]
 [li]if present in the photo, the value of the [b]xmp.exif: ApertureValue[/b] metadata.[/li]
-[/ul]';
+[/ul]
 [li][b]xmp.exif:ApertureValue[/b][/li]
 [li][b]xmp.exif:FNumber[/b][/li]
 [/ul]
@@ -188,7 +187,7 @@ Thus, the [b]magic.ShotInfo.Aperture[/b] metadata returns:
 [li]if present in the photo, the value of the [b]xmp.exif: FNumber[/b]metadata, otherwise [/li]
 [li]if present in the photo, the value of the [b]exif.exif.ApertureValue[/b] metadata, otherwise [/ li]
 [li]if present in the photo, the value of the [b]xmp.exif: ApertureValue[/b] metadata.[/li]
-[/ul]";
+[/ul]';
 
 
 /** ----------------------------------------------------------------------------
