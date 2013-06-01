@@ -1,0 +1,1 @@
+Advanced MetaData gebruikt alle metadata (EXIF, IPTC and XMP) die in afbeeldingen aanwezig zijn.
