@@ -48,8 +48,7 @@ $lang['g003_tagIdAlreadyExist'] = 'Metadata med denne identifikation findes alle
 $lang['g003_tagOrder'] = 'Metadata';
 $lang['g003_tag_in_piwigo'] = 'Tilstede i Piwigo';
 $lang['g003_tags'] = 'Tags';
-$lang['g003_tags_page_help'] = 'Denne funktion udfører et udtræk af nøgleord, som er til stede i metadatene vedrørende dine fotografier, og gør det muligt at konvertere [i]Tags[/i].
-Billederne til hvilke nøgleord allerede er konverteret og tilknyttet, vises ikke: der foreslås kun nøgleord hørende til billeder, til hvilke en konvertering og mulig tilknytning er mulig.';
+$lang['g003_tags_page_help'] = 'Denne funktion udfører et udtræk af nøgleord, som er til stede i metadatene vedrørende dine fotografier, og gør det muligt at konvertere [i]Tags[/i]. Billederne til hvilke nøgleord allerede er konverteret og tilknyttet, vises ikke: der foreslås kun nøgleord hørende til billeder, til hvilke en konvertering og mulig tilknytning er mulig.';
 $lang['g003_textRuleInvalid'] = 'Regel af typen "Tekst": teksten må ikke være tom';
 $lang['g003_typeCIfBeginWith'] = 'begynd med';
 $lang['g003_typeCIfEndWith'] = 'slut med';
@@ -68,12 +67,7 @@ $lang['g003_options'] = 'Valgmuligheder';
 $lang['g003_order'] = 'Sortér efter';
 $lang['g003_personnal'] = 'Tilpas';
 $lang['g003_personnal_metadata'] = 'Tilpas metadata';
-$lang['g003_personnal_page_help'] = 'Man kan let opbygge sine egne metadata fra eksisterende metadata.
-[ul]
-[li]Tilføj nyt metadata[/li]
-[li]Udfyld egenskaberne[/li]
-[li]Tilføj regler og kombinér dem om nødvendig med træk og slip[/li]
-[/ul]';
+$lang['g003_personnal_page_help'] = 'Man kan let opbygge sine egne metadata fra eksisterende metadata. [ul][li]Tilføj nyt metadata[/li][li]Udfyld egenskaberne[/li][li]Tilføj regler og kombinér dem om nødvendig med træk og slip[/li][/ul]';
 $lang['g003_pleaseConfirmMetadataDelete'] = 'Skal metadata slettes?';
 $lang['g003_please_set_a_value'] = 'Opsæt en værdi';
 $lang['g003_rules'] = 'Regler';
@@ -81,8 +75,7 @@ $lang['g003_search'] = 'Søg';
 $lang['g003_search_page_help'] = 'Det er muligt at udføre forskellige søgninger på metadataindholdet, fra simple til komplekse: tilføj kriterier og kombinér dem med træk og slip.';
 $lang['g003_select'] = 'Udvælgelse';
 $lang['g003_select_metadata'] = 'Udvælgelse af metadata';
-$lang['g003_select_page_help'] = 'Kun metadata udvalgt her er tilgængelige i andre grænsefladers opsætning: dermed kan metadatalisten begrænses til dem, der lader til at være mest relevante for dig.
-Udvælgelsen gennemføres med det samme (det er ikke nødvendig at godkende).';
+$lang['g003_select_page_help'] = 'Kun metadata udvalgt her er tilgængelige i andre grænsefladers opsætning: dermed kan metadatalisten begrænses til dem, der lader til at være mest relevante for dig. Udvælgelsen gennemføres med det samme (det er ikke nødvendig at godkende).';
 $lang['g003_selected_tag_isnot_linked_with_any_picture'] = 'De valgte metadata er ikke forbundet med nogen billeder';
 $lang['g003_selected_tags_only'] = 'Returnér kun valgte metadata';
 $lang['g003_show'] = 'Gennemse';
@@ -127,23 +120,10 @@ $lang['g003_metadata_not_equals_one'] = 'Metadata %s er til stede og må ikke v�
 $lang['g003_metadata_not_like_all'] = 'Metadata %s er til stede og må ikke indeholde nogen af følgende værdier:';
 $lang['g003_metadata_not_like_one'] = 'Metadata %s er til stede og må ikke indeholde:';
 $lang['g003_help_tab_magic'] = 'Magi';
-$lang['g003_display_page_help'] = 'Metadata gemt sammen med billedet kan sortere og grupperes.  Som standard er kun gruppen [i]Optagelsestilstand[/i] tilgængelig, men det er muligt at oprette så mange, som der er brug for ([i]IPTC[/i], [i]Geolokation[/i], ...).
-[ul]
-[li]Opret metadatagrupper efter behov[/li]
-[li]Tilføj de metadata, der skal vises[/li]
-[li]Inden for en gruppe ændres visningsrækkefølgen ved hjælp af træk og slip[/li]
-[li]Ændring af gruppers visningsrækkefølge sker ved hjælp af træk og slip[/li]
-[/ul]
-Udvælgelse og sortering træder i kraft omgående (det er ikke nødvendigt at godkende).';
+$lang['g003_display_page_help'] = 'Metadata gemt sammen med billedet kan sortere og grupperes.  Som standard er kun gruppen [i]Optagelsestilstand[/i] tilgængelig, men det er muligt at oprette så mange, som der er brug for ([i]IPTC[/i], [i]Geolokation[/i], ...). [ul] [li]Opret metadatagrupper efter behov[/li] [li]Tilføj de metadata, der skal vises[/li][li]Inden for en gruppe ændres visningsrækkefølgen ved hjælp af træk og slip[/li] [li]Ændring af gruppers visningsrækkefølge sker ved hjælp af træk og slip[/li] [/ul] Udvælgelse og sortering træder i kraft omgående (det er ikke nødvendigt at godkende).';
 $lang['g003_fillDatabaseIgnoreWarning'] = 'Skal udføres, ændring af parametrene på denne handling kræver en ny analyse';
-$lang['g003_gpc_not_up_to_date'] = 'Plugin\'en kræver at <i>Grum Plugin Classes</i> version %s er installeret.
-I øjeblikket er version %s installeret: vær venlig at opdatere <i>Grum Plugin Classes</i> til den krævede version.';
-$lang['g003_advanced_mode_help'] = 'Den [i]avancerede[/i] tilstand er beregnet til dem, der ønsker at få det maksimale ud af hvad deres fotografier og metadata. Den tilbyder:[ul]
-[li]en mere kompleks, men komplet, grænseflade[/li]
-[li]en komplet liste over metadata (cirka 540)[/li]
-[li]udvidet funktionalitet (statistik, søgning ...)[/li]
-[/ul]
-Den [i]avancerede[/i] tilstand er nødvendig for at kunne opbygge et arkiv.';
+$lang['g003_gpc_not_up_to_date'] = 'Plugin\'en kræver at <i>Grum Plugin Classes</i> version %s er installeret. I øjeblikket er version %s installeret: vær venlig at opdatere <i>Grum Plugin Classes</i> til den krævede version.';
+$lang['g003_advanced_mode_help'] = 'Den [i]avancerede[/i] tilstand er beregnet til dem, der ønsker at få det maksimale ud af hvad deres fotografier og metadata. Den tilbyder:[ul] [li]en mere kompleks, men komplet, grænseflade[/li] [li]en komplet liste over metadata (cirka 540)[/li] [li]udvidet funktionalitet (statistik, søgning ...)[/li] [/ul] Den [i]avancerede[/i] tilstand er nødvendig for at kunne opbygge et arkiv.';
 $lang['g003_help'] = 'Hjælp til metadata';
 $lang['g003_ignoreMetadata'] = 'Ignorer følgende metadata';
 $lang['g003_informations'] = 'Oplysninger';
@@ -162,17 +142,9 @@ $lang['g003_help_tab_iptc'] = 'IPTC';
 $lang['g003_help_tab_xmp'] = 'XMP';
 $lang['g003_database'] = 'Arkiv';
 $lang['g003_databaseInformation'] = 'Vigtige oplysninger om arkivet';
-$lang['g003_databaseWarning1'] = '[p]Arkivet er opbygget ved hjælp af metadata indeholdt i billeder fra galleriet, såvel som metadata beregnet af plugin\'en.  Afhængigt af antallet af billeder og antallet af metadata der skal tilknyttes, kan arkivet blive meget stort.  Før man begynder at anvende arkivet, skal man sikre sig at databasen der stilles til rådighed af ens vært, tillader en sådan brug.[/p]
-[p]Det er dog valgfrit, om man vil benytte arkivet, da det ikke anvendes til at vise metadata vedrørende fotografier i galleriet.[/p]
-[p]Det er nødvendigt at have et arkiv med data, hvis man ønsker:[/p]
-[ul]
-[li]Statistikker på metadataene i ens fotografier (det hjælper også med udvælgelsen af metadata)[/li]
-[li]Benytte søgemaskinen[/li]
-[/ul]';
-$lang['g003_databaseWarning2_1'] = '[p]Nyt metadata er blevet tilgængeligt siden den seneste opdatering af plugin\'en:[/p][ul]%s[/ul]
-[p]For at udnytte det skal arkivet opdateres.[/p]';
-$lang['g003_databaseWarning2_n'] = '[p]Nogle nye metadata er blevet tilgængelige siden den seneste opdatering af plugin\'en:[/p][ul]%s[/ul]
-[p]For at udnytte dem, skal arkivet opdateres.[/p]';
+$lang['g003_databaseWarning1'] = '[p]Arkivet er opbygget ved hjælp af metadata indeholdt i billeder fra galleriet, såvel som metadata beregnet af plugin\'en.  Afhængigt af antallet af billeder og antallet af metadata der skal tilknyttes, kan arkivet blive meget stort.  Før man begynder at anvende arkivet, skal man sikre sig at databasen der stilles til rådighed af ens vært, tillader en sådan brug.[/p] [p]Det er dog valgfrit, om man vil benytte arkivet, da det ikke anvendes til at vise metadata vedrørende fotografier i galleriet.[/p] [p]Det er nødvendigt at have et arkiv med data, hvis man ønsker:[/p] [ul] [li]Statistikker på metadataene i ens fotografier (det hjælper også med udvælgelsen af metadata)[/li] [li]Benytte søgemaskinen[/li] [/ul]';
+$lang['g003_databaseWarning2_1'] = '[p]Nyt metadata er blevet tilgængeligt siden den seneste opdatering af plugin\'en:[/p][ul]%s[/ul] [p]For at udnytte det skal arkivet opdateres.[/p]';
+$lang['g003_databaseWarning2_n'] = '[p]Nogle nye metadata er blevet tilgængelige siden den seneste opdatering af plugin\'en:[/p][ul]%s[/ul] [p]For at udnytte dem, skal arkivet opdateres.[/p]';
 $lang['g003_database_is_not_up_to_date'] = 'Arkivet er ikke opdateret!';
 $lang['g003_default_group_name'] = 'Optagelsestilstand';
 $lang['g003_delete'] = 'Slet';
@@ -192,10 +164,7 @@ $lang['g003_analyze_is_finished'] = 'Analyse gennemført';
 $lang['g003_analyze_not_analyzed_pictures'] = 'Analysen fokuserer på billeder, der aldrig før har været analyseret, og føjer dem til det eksisterende arkiv';
 $lang['g003_analyze_random_pictures'] = 'Analysen fokuserer på %s tilfældigt valgte billeder, blandt dem der aldrig før har været analyseret, og tilføjer dem til det eksisterende arkiv';
 $lang['g003_basic_mode'] = 'Grundlæggende';
-$lang['g003_basic_mode_help'] = 'Den [i]grundlæggende[/i] tilstand er til dem, der blot ønsker at vise metadata vedrørende deres fotografier, og den tilbyder:[ul]
-[li]en grænseflade, der er så simpel som muligt[/li]
-[li]en kort liste over metadata (cirka 140, de meste almindelige)[/li]
-[/ul]';
+$lang['g003_basic_mode_help'] = 'Den [i]grundlæggende[/i] tilstand er til dem, der blot ønsker at vise metadata vedrørende deres fotografier, og den tilbyder:[ul] [li]en grænseflade, der er så simpel som muligt[/li] [li]en kort liste over metadata (cirka 140, de meste almindelige)[/li] [/ul]'; 
 $lang['g003_cancel'] = 'Annuller';
 $lang['g003_choose_a_metadata'] = 'Udfør søgning på metadataværdier';
 $lang['g003_click_to_delete_group'] = 'Klik for at fjerne metadatagruppen';
