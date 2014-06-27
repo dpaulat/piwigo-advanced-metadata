@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Advanced MetaData
-Version: 0.7.1
+Version: 0.7.2
 Description: An advanced metadata manager
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=364
 Author: grum@piwigo.org
@@ -243,7 +243,7 @@ Author URI: http://www.grum.fr/
 |         |            | * mantis bug:2722
 |         |            |   . error message php_uname() function is not available
 |         |            |
-|         |            |
+| 0.7.2   | 2014-06-27 | * Compatibility with piwigo 2.6
 |         |            |
 |         |            |
 |         |            |
