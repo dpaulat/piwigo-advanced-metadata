@@ -3,7 +3,8 @@
 {combine_script id="jquery.ui.mouse" require='jquery.ui.widget' path="themes/default/js/ui/jquery.ui.mouse.js"}
 {combine_script id="jquery.ui.position" require='jquery.ui.widget' path="themes/default/js/ui/jquery.ui.position.js"}
 {combine_script id="jquery.ui.sortable" require='jquery.ui.widget' path="themes/default/js/ui/jquery.ui.sortable.js"}
-{combine_script id="jquery.ui.dialog" require='jquery.ui.widget' src="themes/default/js/ui/jquery.ui.dialog.js"}
+{combine_script id="jquery.ui.dialog" require='jquery.ui.widget' path="themes/default/js/ui/jquery.ui.dialog.js"}
+{combine_script id="jquery.ui.button" require='jquery.ui.widget' path="themes/default/js/ui/jquery.ui.button.js"}
 
 {combine_script id="gpc.external.interface" path="plugins/GrumPluginClasses/js/external/interface/interface.js" require="jquery.ui"}
 {combine_script id="gpc.external.inestedsortable" path="plugins/GrumPluginClasses/js/external/inestedsortable.pack.js" require="gpc.external.interface"}
