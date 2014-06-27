@@ -687,10 +687,10 @@ class AMD_AIP extends AMD_root
     {
       $datas['nfoMetadata']['nfoSize']=sprintf('%.2fMio', $datas['nfoMetadata']['nfoSize']/1048576);
     }
-    $datas['nfoMetadata']['nfoSizeAndRows']=sprintf(l10n('g003_sizeAndRows'), $datas['nfoMetadata']['nfoSize'], $datas['nfoMetadata']['nfoRows']);
-    $datas['nfoMetadata']['numOfPictures']=sprintf(l10n('g003_numberOfAnalyzedPictures'), $datas['nfoMetadata']['numOfPictures']);
-    $datas['nfoMetadata']['numOfNotAnalyzedPictures']=sprintf(l10n('g003_numberOfNotAnalyzedPictures'), $datas['nfoMetadata']['numOfNotAnalyzedPictures']);
-    $datas['nfoMetadata']['numOfPicturesWithoutTag']=sprintf(l10n('g003_numberOfPicturesWithoutTags'), $datas['nfoMetadata']['numOfPicturesWithoutTag']);
+    $datas['nfoMetadata']['nfoSizeAndRows']=l10n('g003_sizeAndRows', $datas['nfoMetadata']['nfoSize'], $datas['nfoMetadata']['nfoRows']);
+    $datas['nfoMetadata']['numOfPictures']=l10n('g003_numberOfAnalyzedPictures', $datas['nfoMetadata']['numOfPictures']);
+    $datas['nfoMetadata']['numOfNotAnalyzedPictures']=l10n('g003_numberOfNotAnalyzedPictures', $datas['nfoMetadata']['numOfNotAnalyzedPictures']);
+    $datas['nfoMetadata']['numOfPicturesWithoutTag']=l10n('g003_numberOfPicturesWithoutTags', $datas['nfoMetadata']['numOfPicturesWithoutTag']);
 
     $template->assign("datas", $datas);
 
@@ -764,7 +764,7 @@ class AMD_AIP extends AMD_root
     $datas=array(
       'urlRequest' => $this->getAdminLink('ajax'),
       'NumberOfItemsPerRequest' => $this->config['amd_NumberOfItemsPerRequest'],
-      'caddieNbPictures' => ($caddieNbPictures==1)?l10n('g003_1_picture_in_caddie'):sprintf(l10n('g003_n_pictures_in_caddie'), $caddieNbPictures)
+      'caddieNbPictures' => ($caddieNbPictures==1)?l10n('g003_1_picture_in_caddie'):l10n('g003_n_pictures_in_caddie', $caddieNbPictures)
     );
 
     $template->assign("datas", $datas);

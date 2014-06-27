@@ -47,7 +47,7 @@ if(file_exists(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.
 
 function gpcMsgError(&$errors)
 {
-  $msg=sprintf(l10n('To install this plugin, you need to install Grum Plugin Classes %s before'), AMD_GPC_NEEDED);
+  $msg=l10n('To install this plugin, you need to install Grum Plugin Classes %s before', AMD_GPC_NEEDED);
   if(is_array($errors))
   {
     array_push($errors, $msg);

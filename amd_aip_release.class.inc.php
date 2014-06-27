@@ -50,7 +50,7 @@ class AMD_AIPRelease extends AMD_root
     );
 
     $template->assign('plugin', $pluginInfo);
-    $template->assign('AMD_BODY_PAGE', '<p class="warnings">'.sprintf(l10n('g003_gpc_not_up_to_date'),AMD_GPC_NEEDED, GPC_VERSION).'</p>');
+    $template->assign('AMD_BODY_PAGE', '<p class="warnings">'.l10n('g003_gpc_not_up_to_date',AMD_GPC_NEEDED, GPC_VERSION).'</p>');
     $template->assign_var_from_handle('ADMIN_CONTENT', 'plugin_admin_content');
   }
 
