@@ -19,33 +19,7 @@ if (!defined('PHPWG_ROOT_PATH')) { die('Hacking attempt!'); }
 //ini_set('error_reporting', E_ALL);
 //ini_set('display_errors', true);
 
-include_once('amd_version.inc.php'); // => Don't forget to update this file !!
-
-
-defined('AMD_DIR') || define('AMD_DIR' , basename(dirname(__FILE__)));
-defined('AMD_PATH') || define('AMD_PATH' , PHPWG_PLUGINS_PATH . AMD_DIR . '/');
-include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCCore.class.inc.php');
-include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCTables.class.inc.php');
-
-
-global $gpcInstalled, $lang; //needed for plugin manager compatibility
-
-/* -----------------------------------------------------------------------------
- * AMD needs the Grum Plugin Classe
- * -------------------------------------------------------------------------- */
-$gpcInstalled=false;
-if(file_exists(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php'))
-{
-  @include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php');
-  // need GPC release greater or equal than AMD_GPC_NEEDED
-  if(CommonPlugin::checkGPCRelease(AMD_GPC_NEEDED))
-  {
-    @include_once("amd_install.class.inc.php");
-    $gpcInstalled=true;
-  }
-}
-
-function gpcMsgError(&$errors)
+function gpcMsgError(&$errors=array())
 {
   $msg=l10n('To install this plugin, you need to install Grum Plugin Classes %s before', AMD_GPC_NEEDED);
   if(is_array($errors))
@@ -57,61 +31,101 @@ function gpcMsgError(&$errors)
     $errors=Array($msg);
   }
 }
+
+function amdInit()
+{
+  include_once('amd_version.inc.php'); // => Don't forget to update this file !!
+
+  defined('AMD_DIR') || define('AMD_DIR' , basename(dirname(__FILE__)));
+  defined('AMD_PATH') || define('AMD_PATH' , PHPWG_PLUGINS_PATH . AMD_DIR . '/');
+  @include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCCore.class.inc.php');
+  @include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/GPCTables.class.inc.php');
+
+  global $gpcInstalled, $lang; //needed for plugin manager compatibility
+
+  /* -----------------------------------------------------------------------------
+   * AMD needs the Grum Plugin Classe
+   * -------------------------------------------------------------------------- */
+  $gpcInstalled=false;
+  if(file_exists(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php'))
+  {
+    @include_once(PHPWG_PLUGINS_PATH.'GrumPluginClasses/classes/CommonPlugin.class.inc.php');
+    // need GPC release greater or equal than AMD_GPC_NEEDED
+    if(CommonPlugin::checkGPCRelease(AMD_GPC_NEEDED))
+    {
+      @include_once("amd_install.class.inc.php");
+      $gpcInstalled=true;
+    }
+  }
+
+  load_language('plugin.lang', AMD_PATH);
+}
 // -----------------------------------------------------------------------------
 
 
-
-load_language('plugin.lang', AMD_PATH);
-
-function plugin_install($plugin_id, $plugin_version, &$errors)
+class AMetaData_maintain extends PluginMaintain
 {
-  global $prefixeTable, $gpcInstalled;
-  if($gpcInstalled)
+
+  function install($plugin_version, &$errors=array())
   {
-    $amd=new AMD_install($prefixeTable, __FILE__);
-    $result=$amd->install();
+    amdInit();
+
+    global $prefixeTable, $gpcInstalled, $lang;
+
+    if($gpcInstalled)
+    {
+      $amd=new AMD_install($prefixeTable, __FILE__);
+      $result=$amd->install();
+    }
+    else
+    {
+      gpcMsgError($errors);
+    }
   }
-  else
+
+  function activate($plugin_version, &$errors=array())
   {
-    gpcMsgError($errors);
+    amdInit();
+
+    global $prefixeTable, $gpcInstalled, $lang;
+
+    if($gpcInstalled)
+    {
+      $amd=new AMD_install($prefixeTable, __FILE__);
+      $result=$amd->activate();
+    }
   }
+
+  function deactivate()
+  {
+    amdInit();
+
+    global $prefixeTable, $gpcInstalled, $lang;
+
+    if($gpcInstalled)
+    {
+      $amd=new AMD_install($prefixeTable, __FILE__);
+      $amd->deactivate();
+    }
+  }
+
+  function uninstall()
+  {
+    amdInit();
+
+    global $prefixeTable, $gpcInstalled, $lang;
+
+    if($gpcInstalled)
+    {
+      $amd=new AMD_install($prefixeTable, __FILE__);
+      $result=$amd->uninstall();
+    }
+    else
+    {
+      gpcMsgError($errors);
+    }
+  }
+
 }
-
-function plugin_activate($plugin_id, $plugin_version, &$errors)
-{
-  global $prefixeTable, $gpcInstalled;
-  if($gpcInstalled)
-  {
-    $amd=new AMD_install($prefixeTable, __FILE__);
-    $result=$amd->activate();
-  }
-}
-
-function plugin_deactivate($plugin_id)
-{
-  global $prefixeTable, $gpcInstalled;
-
-  if($gpcInstalled)
-  {
-    $amd=new AMD_install($prefixeTable, __FILE__);
-    $amd->deactivate();
-  }
-}
-
-function plugin_uninstall($plugin_id)
-{
-  global $prefixeTable, $gpcInstalled;
-  if($gpcInstalled)
-  {
-    $amd=new AMD_install($prefixeTable, __FILE__);
-    $result=$amd->uninstall();
-  }
-  else
-  {
-    gpcMsgError($errors);
-  }
-}
-
-
 
 ?>
