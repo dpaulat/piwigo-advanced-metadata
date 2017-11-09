@@ -94,7 +94,7 @@ class AMD_PIP extends AMD_root
       )
     );
 
-    trigger_action('amd_jpegMD_loaded', $this->jpegMD);
+    trigger_notify('amd_jpegMD_loaded', $this->jpegMD);
 
     $conf['show_exif']=false;
     $conf['show_iptc']=false;
@@ -196,7 +196,7 @@ class AMD_PIP extends AMD_root
 
     $userDefinedValues=$this->pictureGetUserDefinedTags($userDefinedList['list'], $userDefinedList['values']);
 
-    trigger_action('amd_jpegMD_userDefinedValues_built',
+    trigger_notify('amd_jpegMD_userDefinedValues_built',
       array(
         'picture' => $userDefinedList['values'],
         'user'    => $userDefinedValues,

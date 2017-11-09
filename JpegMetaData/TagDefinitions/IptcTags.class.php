@@ -2174,28 +2174,28 @@
 
       switch($attributeCode)
       {
-        case 001: $returned="Current"; break;
-        case 002: $returned="Analysis"; break;
-        case 003: $returned="Archive material"; break;
-        case 004: $returned="Background"; break;
-        case 005: $returned="Feature"; break;
-        case 006: $returned="Forecast"; break;
-        case 007: $returned="History"; break;
-        case 008: $returned="Obituary"; break;
-        case 009: $returned="Opinion"; break;
-        case 010: $returned="Polls & Surveys"; break;
-        case 011: $returned="Profile"; break;
-        case 012: $returned="Results Listings & Tables"; break;
-        case 013: $returned="Side bar & Supporting information"; break;
-        case 014: $returned="Summary"; break;
-        case 015: $returned="Transcript & Verbatim"; break;
-        case 016: $returned="Interview"; break;
-        case 017: $returned="From the Scene"; break;
-        case 018: $returned="Retrospective"; break;
-        case 019: $returned="Statistics"; break;
-        case 020: $returned="Update"; break;
-        case 021: $returned="Wrap-up"; break;
-        case 022: $returned="Press Release"; break;
+        case  1: $returned="Current"; break;
+        case  2: $returned="Analysis"; break;
+        case  3: $returned="Archive material"; break;
+        case  4: $returned="Background"; break;
+        case  5: $returned="Feature"; break;
+        case  6: $returned="Forecast"; break;
+        case  7: $returned="History"; break;
+        case  8: $returned="Obituary"; break;
+        case  9: $returned="Opinion"; break;
+        case 10: $returned="Polls & Surveys"; break;
+        case 11: $returned="Profile"; break;
+        case 12: $returned="Results Listings & Tables"; break;
+        case 13: $returned="Side bar & Supporting information"; break;
+        case 14: $returned="Summary"; break;
+        case 15: $returned="Transcript & Verbatim"; break;
+        case 16: $returned="Interview"; break;
+        case 17: $returned="From the Scene"; break;
+        case 18: $returned="Retrospective"; break;
+        case 19: $returned="Statistics"; break;
+        case 20: $returned="Update"; break;
+        case 21: $returned="Wrap-up"; break;
+        case 22: $returned="Press Release"; break;
         default:
           $returned="unknown code ".$attributeCode;
           break;

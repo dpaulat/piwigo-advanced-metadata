@@ -291,11 +291,6 @@ class AMD_AIP extends AMD_root
    */
   protected function adviser_abort()
   {
-    if(is_adviser())
-    {
-      $this->display_result(l10n("g003_adviser_not_allowed"), false);
-      return(true);
-    }
     return(false);
   }
 
